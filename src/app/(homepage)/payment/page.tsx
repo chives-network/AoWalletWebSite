@@ -1,5 +1,5 @@
 // Component Imports
-import Payment from '@views/home/payment'
+import Payment from '@views/home/Payment'
 
 const PaymentPage = async () => {
   // Vars

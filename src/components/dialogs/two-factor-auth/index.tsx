@@ -22,7 +22,6 @@ import type { CustomInputHorizontalData } from '@core/components/custom-inputs/t
 
 // Component Imports
 import CustomInputHorizontal from '@core/components/custom-inputs/Horizontal'
-import DirectionalIcon from '@components/DirectionalIcon'
 
 type TwoFactorAuthProps = {
   open: boolean
@@ -205,7 +204,6 @@ const TwoFactorAuth = ({ open, setOpen }: TwoFactorAuthProps) => {
         <DialogActions className='pbs-0 sm:pbe-16 sm:pli-16'>
           <Button
             variant='contained'
-            endIcon={<DirectionalIcon ltrIconClass='ri-arrow-right-line' rtlIconClass='ri-arrow-left-line' />}
             onClick={() => {
               setOpen(false)
               setShowAuthDialog(true)

@@ -8,9 +8,6 @@ import Radio from '@mui/material/Radio'
 import Button from '@mui/material/Button'
 
 // Component Imports
-import DirectionalIcon from '@components/DirectionalIcon'
-
-// Component Imports
 import CustomAvatar from '@core/components/mui/Avatar'
 
 type Props = {
@@ -96,7 +93,6 @@ const FrameWork = ({ activeStep, isLastStep, handleNext, handlePrev }: Props) =>
           color='secondary'
           disabled={activeStep === 0}
           onClick={handlePrev}
-          startIcon={<DirectionalIcon ltrIconClass='ri-arrow-left-line' rtlIconClass='ri-arrow-right-line' />}
         >
           Previous
         </Button>
@@ -108,7 +104,7 @@ const FrameWork = ({ activeStep, isLastStep, handleNext, handlePrev }: Props) =>
             isLastStep ? (
               <i className='ri-check-line' />
             ) : (
-              <DirectionalIcon ltrIconClass='ri-arrow-right-line' rtlIconClass='ri-arrow-left-line' />
+              <i className='ri-check-line' />
             )
           }
         >
