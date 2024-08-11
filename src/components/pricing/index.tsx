@@ -13,13 +13,10 @@ import { useTheme } from '@mui/material/styles'
 // Third-party Imports
 import classnames from 'classnames'
 
-// Type Imports
-import type { PricingPlanType } from '@/types/pages/pricingTypes'
-
 // Component Imports
 import PlanDetails from './PlanDetails'
 
-const Pricing = ({ data }: { data?: PricingPlanType[] }) => {
+const Pricing = ({ data }: { data?: any[] }) => {
   // States
   const [pricingPlan, setPricingPlan] = useState<'monthly' | 'annually'>('annually')
 

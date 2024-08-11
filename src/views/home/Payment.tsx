@@ -25,7 +25,6 @@ import classnames from 'classnames'
 
 // Type Imports
 import type { CustomInputHorizontalData } from '@core/components/custom-inputs/types'
-import type { PricingPlanType } from '@/types/pages/pricingTypes'
 
 // Component Imports
 import CustomInputHorizontal from '@core/components/custom-inputs/Horizontal'
@@ -79,7 +78,7 @@ const cardData: CustomInputHorizontalData[] = [
 
 const countries = ['Australia', 'Brazil', 'Canada', 'India', 'United Arab Emirates', 'United Kingdom', 'United States']
 
-const Payment = ({ data }: { data: PricingPlanType[] }) => {
+const Payment = ({ data }: { data: any[] }) => {
   // Vars
   const buttonProps: ButtonProps = {
     variant: 'outlined',

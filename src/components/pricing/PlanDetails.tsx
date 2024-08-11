@@ -7,12 +7,9 @@ import CardContent from '@mui/material/CardContent'
 // Third-party Imports
 import classnames from 'classnames'
 
-// Type Imports
-import type { PricingPlanType } from '@/types/pages/pricingTypes'
-
 type Props = {
   pricingPlan: 'monthly' | 'annually'
-  data?: PricingPlanType
+  data?: any
 }
 
 const PlanDetails = ({ data, pricingPlan }: Props) => {

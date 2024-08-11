@@ -5,16 +5,13 @@ import Dialog from '@mui/material/Dialog'
 import DialogContent from '@mui/material/DialogContent'
 import IconButton from '@mui/material/IconButton'
 
-// Type Imports
-import type { PricingPlanType } from '@/types/pages/pricingTypes'
-
 // Component Imports
 import Pricing from '@components/pricing'
 
 type PricingProps = {
   open: boolean
   setOpen: (open: boolean) => void
-  data: PricingPlanType[]
+  data: any[]
 }
 
 const PricingDialog = ({ open, setOpen, data }: PricingProps) => {

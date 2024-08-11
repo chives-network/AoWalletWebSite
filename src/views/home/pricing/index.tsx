@@ -11,9 +11,8 @@ import Faqs from './Faqs'
 import { useSettings } from '@core/hooks/useSettings'
 
 // Type Imports
-import type { PricingPlanType } from '@/types/pages/pricingTypes'
 
-const PricingWrapper = ({ data }: { data: PricingPlanType[] }) => {
+const PricingWrapper = ({ data }: { data: any[] }) => {
   // Hooks
   const { updatePageSettings } = useSettings()
 
