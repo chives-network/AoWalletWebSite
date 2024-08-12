@@ -143,20 +143,41 @@ const FrontMenu = (props: Props) => {
       >
         Contact us
       </Typography>
-      <DropdownMenu
-        mode={mode}
-        isBelowLgScreen={isBelowLgScreen}
-        isDrawerOpen={isDrawerOpen}
-        setIsDrawerOpen={setIsDrawerOpen}
-      />
       <Typography
         component={Link}
-        href='/'
+        href='/home'
         target='_blank'
         className='font-medium plb-3 pli-1.5 hover:text-primary'
         color='text.primary'
       >
-        Admin
+        Api
+      </Typography>
+      <Typography
+        component={Link}
+        href='/home'
+        target='_blank'
+        className='font-medium plb-3 pli-1.5 hover:text-primary'
+        color='text.primary'
+      >
+        Token
+      </Typography>
+      <Typography
+        component={Link}
+        href='/home'
+        target='_blank'
+        className='font-medium plb-3 pli-1.5 hover:text-primary'
+        color='text.primary'
+      >
+        Faucet
+      </Typography>
+      <Typography
+        component={Link}
+        href='/home'
+        target='_blank'
+        className='font-medium plb-3 pli-1.5 hover:text-primary'
+        color='text.primary'
+      >
+        Email
       </Typography>
     </Wrapper>
   )

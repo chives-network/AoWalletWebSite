@@ -51,9 +51,9 @@ export type Config = {
 }
 
 const themeConfig: Config = {
-  templateName: 'Materio',
+  templateName: 'AoWallet',
   homePageUrl: '/home',
-  settingsCookieName: 'materio-mui-next-demo',
+  settingsCookieName: 'AoWallet-Session',
   mode: 'system', // 'system', 'light', 'dark'
   skin: 'default', // 'default', 'bordered'
   semiDark: false, // true, false

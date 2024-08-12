@@ -33,7 +33,6 @@ const LogoText = styled.span<LogoTextProps>`
   line-height: 1.2;
   font-weight: 600;
   letter-spacing: 0.15px;
-  text-transform: uppercase;
   transition: ${({ transitionDuration }) =>
     `margin-inline-start ${transitionDuration}ms ease-in-out, opacity ${transitionDuration}ms ease-in-out`};
 
