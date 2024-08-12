@@ -7,6 +7,10 @@ import Login from '@views/Login'
 // Server Action Imports
 import { getServerMode } from '@core/utils/serverHelpers'
 
+export async function generateStaticParams() {
+  return [{}]
+}
+
 export const metadata: Metadata = {
   title: 'Login',
   description: 'Login to your account'
