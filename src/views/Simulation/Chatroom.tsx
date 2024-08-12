@@ -14,20 +14,20 @@ import Typography from '@mui/material/Typography'
 import Tooltip from '@mui/material/Tooltip'
 
 // ** Next Import
-import { useAuth } from 'src/hooks/useAuth'
+import { useAuth } from '@/hooks/useAuth'
 
 // ** Icon Imports
-import Icon from 'src/@core/components/icon'
+import Icon from '@core/components/icon'
 import toast from 'react-hot-toast'
 import Avatar from '@mui/material/Avatar'
 
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
-import { GetMyLastMsg, AoCreateProcessAuto, sleep } from 'src/functions/AoConnect/AoConnect'
-import { AoLoadBlueprintChatroom, GetChatroomMembers, RegisterChatroomMember, SendMessageToChatroom } from 'src/functions/AoConnect/Chatroom'
-import { ReminderMsgAndStoreToLocal } from 'src/functions/AoConnect/MsgReminder'
-import { ansiRegex } from 'src/configs/functions'
+import { GetMyLastMsg, AoCreateProcessAuto, sleep } from '@functions/AoConnect/AoConnect'
+import { AoLoadBlueprintChatroom, GetChatroomMembers, RegisterChatroomMember, SendMessageToChatroom } from '@functions/AoConnect/Chatroom'
+import { ReminderMsgAndStoreToLocal } from '@functions/AoConnect/MsgReminder'
+import { ansiRegex } from '@configs/functions'
 
 const Chatroom = () => {
   // ** Hook

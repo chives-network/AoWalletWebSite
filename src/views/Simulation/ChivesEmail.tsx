@@ -11,19 +11,19 @@ import Grid from '@mui/material/Grid'
 import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
 import Tooltip from '@mui/material/Tooltip'
-import authConfig from 'src/configs/auth'
+import authConfig from '@configs/auth'
 
 // ** Next Import
-import { useAuth } from 'src/hooks/useAuth'
+import { useAuth } from '@/hooks/useAuth'
 
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
-import { GetMyLastMsg, AoCreateProcessAuto, sleep } from 'src/functions/AoConnect/AoConnect'
+import { GetMyLastMsg, AoCreateProcessAuto, sleep } from '@functions/AoConnect/AoConnect'
 import { AoLoadBlueprintChivesEmail, 
   ChivesEmailGetMyEmailRecords, ChivesEmailSendEmail, ChivesEmailSetPublicKey, ChivesEmailGetPublicKeys, ChivesEmailGetEmailRecords, ChivesEmailReadEmailContent, ChivesEmailMoveToFolder
- } from 'src/functions/AoConnect/ChivesEmail'
-import { ansiRegex } from 'src/configs/functions'
+ } from '@functions/AoConnect/ChivesEmail'
+import { ansiRegex } from '@configs/functions'
 
 const ChivesEmail = () => {
   // ** Hook

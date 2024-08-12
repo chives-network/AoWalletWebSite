@@ -2,10 +2,10 @@
 import Grid from '@mui/material/Grid'
 
 // ** Styled Component
-import DropzoneWrapper from 'src/@core/styles/libs/react-dropzone'
+import DropzoneWrapper from '@core/styles/libs/react-dropzone'
 
 // ** Demo Components Imports
-import SendOutForm from 'src/views/form/SendOutForm'
+import SendOutForm from '@views/form/SendOutForm'
 
 const SendOut = () => {
   return (

@@ -11,24 +11,24 @@ import IconButton from '@mui/material/IconButton'
 import Typography, { TypographyProps } from '@mui/material/Typography'
 
 // ** Icon Imports
-import Icon from 'src/@core/components/icon'
+import Icon from '@core/components/icon'
 
 // ** Third Party Imports
 import { useDropzone } from 'react-dropzone'
 
 // ** Context
-import { useAuth } from 'src/hooks/useAuth'
+import { useAuth } from '@/hooks/useAuth'
 
 import CircularProgress from '@mui/material/CircularProgress'
 
 // ** Hooks
-import { sendAmount, getCurrentWallet, getHash, getProcessedData, getChivesLanguage } from 'src/functions/ChivesWallets'
-import {EncryptDataWithKey} from 'src/functions/ChivesEncrypt'
+import { sendAmount, getCurrentWallet, getHash, getProcessedData, getChivesLanguage } from '@functions/ChivesWallets'
+import {EncryptDataWithKey} from '@functions/ChivesEncrypt'
 
 // ** Third Party Components
 import toast from 'react-hot-toast'
 
-import authConfig from 'src/configs/auth'
+import authConfig from '@configs/auth'
 
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'

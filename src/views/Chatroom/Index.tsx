@@ -1,11 +1,11 @@
 // ** React Imports
 import { Fragment, useEffect, useState } from 'react'
 
-import AppModel from 'src/views/Chatroom/Model'
+import AppModel from '@views/Chatroom/Model'
 
 // ** Axios Imports
 import axios from 'axios'
-import authConfig from 'src/configs/auth'
+import authConfig from '@configs/auth'
 
 
 const AllApp = () => {

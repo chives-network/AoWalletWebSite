@@ -12,16 +12,16 @@ import InputAdornment from '@mui/material/InputAdornment'
 
 // ** Axios Imports
 import axios from 'axios'
-import authConfig from 'src/configs/auth'
+import authConfig from '@configs/auth'
 
 // ** Icon Imports
-import Icon from 'src/@core/components/icon'
+import Icon from '@core/components/icon'
 
 // ** Context
-import { useAuth } from 'src/hooks/useAuth'
+import { useAuth } from '@/hooks/useAuth'
 
 // ** Hooks
-import { isAddress } from 'src/functions/ChivesWallets'
+import { isAddress } from '@functions/ChivesWallets'
 
 // ** Third Party Components
 import toast from 'react-hot-toast'
@@ -31,7 +31,7 @@ import { useTranslation } from 'react-i18next'
 
 import { useRouter } from 'next/router'
 
-import { AoSendMsg } from 'src/functions/AoConnect/AoConnect'
+import { AoSendMsg } from '@functions/AoConnect/AoConnect'
 
 const SendOutForm = () => {
   // ** Hook

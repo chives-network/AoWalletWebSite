@@ -11,7 +11,7 @@ import CardContent from '@mui/material/CardContent'
 
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
-import { useAuth } from 'src/hooks/useAuth'
+import { useAuth } from '@/hooks/useAuth'
 
 
 const AoWalletModel = () => {

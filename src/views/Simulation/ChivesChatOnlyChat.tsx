@@ -15,17 +15,17 @@ import Tooltip from '@mui/material/Tooltip'
 import InputAdornment from '@mui/material/InputAdornment'
 
 // ** Next Import
-import { useAuth } from 'src/hooks/useAuth'
+import { useAuth } from '@/hooks/useAuth'
 
 // ** Icon Imports
-import Icon from 'src/@core/components/icon'
+import Icon from '@core/components/icon'
 
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
-import { GetMyLastMsg, AoCreateProcessAuto, sleep } from 'src/functions/AoConnect/AoConnect'
-import { ChivesChatAddMember, SendMessageToChivesChat, ChivesChatGetChatRecords, ChivesChatApplyJoin, ChivesChatIsMember } from 'src/functions/AoConnect/ChivesChat'
-import { ansiRegex } from 'src/configs/functions'
+import { GetMyLastMsg, AoCreateProcessAuto, sleep } from '@functions/AoConnect/AoConnect'
+import { ChivesChatAddMember, SendMessageToChivesChat, ChivesChatGetChatRecords, ChivesChatApplyJoin, ChivesChatIsMember } from '@functions/AoConnect/ChivesChat'
+import { ansiRegex } from '@configs/functions'
 
 const ChivesChatOnlyChat = () => {
   // ** Hook

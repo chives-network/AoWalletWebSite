@@ -3,13 +3,13 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 
 // ** Custom Components Imports
-import PageHeader from 'src/@core/components/page-header'
+import PageHeader from '@core/components/page-header'
 
 // ** Styled Component
-import DropzoneWrapper from 'src/@core/styles/libs/react-dropzone'
+import DropzoneWrapper from '@core/styles/libs/react-dropzone'
 
 // ** Demo Components Imports
-import FileUploaderMultiple from 'src/views/form/FileUploaderMultiple'
+import FileUploaderMultiple from '@views/form/FileUploaderMultiple'
 
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'

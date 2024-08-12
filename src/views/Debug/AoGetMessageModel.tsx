@@ -14,11 +14,11 @@ import InputAdornment from '@mui/material/InputAdornment'
 import CircularProgress from '@mui/material/CircularProgress'
 
 // ** Icon Imports
-import Icon from 'src/@core/components/icon'
-import authConfig from 'src/configs/auth'
+import Icon from '@core/components/icon'
+import authConfig from '@configs/auth'
 
 // ** Context
-import { useAuth } from 'src/hooks/useAuth'
+import { useAuth } from '@/hooks/useAuth'
 
 // ** Third Party Components
 import toast from 'react-hot-toast'
@@ -28,7 +28,7 @@ import { useTranslation } from 'react-i18next'
 
 import { useRouter } from 'next/router'
 
-import { AoGetMessage } from 'src/functions/AoConnect/AoConnect'
+import { AoGetMessage } from '@functions/AoConnect/AoConnect'
 
 import MessageRender from './MessageRender'
 

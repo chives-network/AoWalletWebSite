@@ -13,12 +13,12 @@ import Typography from '@mui/material/Typography'
 import Tooltip from '@mui/material/Tooltip'
 
 // ** Next Import
-import { useAuth } from 'src/hooks/useAuth'
+import { useAuth } from '@/hooks/useAuth'
 
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
-import { GetMyLastMsg, AoCreateProcessAuto, sleep } from 'src/functions/AoConnect/AoConnect'
+import { GetMyLastMsg, AoCreateProcessAuto, sleep } from '@functions/AoConnect/AoConnect'
 import { AoLoadBlueprintMyProcessTxIds, 
   MyProcessTxIdsGetTokens, MyProcessTxIdsAddToken, MyProcessTxIdsDelToken, 
   MyProcessTxIdsGetChatrooms, MyProcessTxIdsAddChatroom, MyProcessTxIdsDelChatroom, 
@@ -27,8 +27,8 @@ import { AoLoadBlueprintMyProcessTxIds,
   MyProcessTxIdsGetSwaps, MyProcessTxIdsAddSwap, MyProcessTxIdsDelSwap, 
   MyProcessTxIdsGetBlogs, MyProcessTxIdsAddBlog, MyProcessTxIdsDelBlog, 
   MyProcessTxIdsGetProjects, MyProcessTxIdsAddProject, MyProcessTxIdsDelProject
- } from 'src/functions/AoConnect/MyProcessTxIds'
-import { ansiRegex } from 'src/configs/functions'
+ } from '@functions/AoConnect/MyProcessTxIds'
+import { ansiRegex } from '@configs/functions'
 
 const MyProcessTxIds = () => {
   // ** Hook

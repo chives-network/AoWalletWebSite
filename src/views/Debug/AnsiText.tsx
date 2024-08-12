@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import { ansiRegex } from 'src/configs/functions'
+import { ansiRegex } from '@configs/functions'
 
 const AnsiText = ({ text }: any) => {
     

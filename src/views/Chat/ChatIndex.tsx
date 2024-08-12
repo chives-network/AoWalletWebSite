@@ -7,10 +7,10 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import toast from 'react-hot-toast'
 
 // ** Hooks
-import { useSettings } from 'src/@core/hooks/useSettings'
+import { useSettings } from '@core/hooks/useSettings'
 
 // ** Chat App Components Imports
-import ChatContent from 'src/views/Chat/ChatContent'
+import ChatContent from '@views/Chat/ChatContent'
 
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
@@ -21,25 +21,25 @@ import Card from '@mui/material/Card'
 import Divider from '@mui/material/Divider'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
-import CustomAvatar from 'src/@core/components/mui/avatar'
+import CustomAvatar from '@core/components/mui/avatar'
 import CircularProgress from '@mui/material/CircularProgress'
 
-import { ChatChatInit } from 'src/functions/ChatBook'
+import { ChatChatInit } from '@functions/ChatBook'
 
 // ** Axios Imports
-import { useAuth } from 'src/hooks/useAuth'
+import { useAuth } from '@/hooks/useAuth'
 
-import { GetChatRecordsFromLocalStorage, GetAoConnectMembers, SetAoConnectMembers, GetAoConnectChannels, SetAoConnectChannels, SaveChatRecordsToStorage } from 'src/functions/AoConnect/MsgReminder'
-import { SendMessageToChivesChat, ChivesChatGetMembers, ChivesChatGetChannels, ChivesChatAddAdmin, ChivesChatDelAdmin, ChivesChatAddInvites, ChivesChatApprovalApply, ChivesChatRefuseApply, ChivesChatDelMember, ChivesChatBlockMember, ChivesChatAddChannel, ChivesChatEditChannel, ChivesChatDelChannel, ChivesChatIsMember, GetChatroomAvatar, ChivesChatApplyJoin, ChivesChatGetChatRecords } from 'src/functions/AoConnect/ChivesChat'
-import { StatusObjType, StatusType } from 'src/types/apps/chatTypes'
-import MembersList from 'src/views/Chat/MembersList'
-import ChannelsList from 'src/views/Chat/ChannelsList'
-import UserProfileRight from 'src/views/Chat/UserProfileRight'
-import MembersInvite from 'src/views/Chat/MembersInvite'
-import MembersApplicant from 'src/views/Chat/MembersApplicant'
-import ChannelEdit from 'src/views/Chat/ChannelEdit'
+import { GetChatRecordsFromLocalStorage, GetAoConnectMembers, SetAoConnectMembers, GetAoConnectChannels, SetAoConnectChannels, SaveChatRecordsToStorage } from '@functions/AoConnect/MsgReminder'
+import { SendMessageToChivesChat, ChivesChatGetMembers, ChivesChatGetChannels, ChivesChatAddAdmin, ChivesChatDelAdmin, ChivesChatAddInvites, ChivesChatApprovalApply, ChivesChatRefuseApply, ChivesChatDelMember, ChivesChatBlockMember, ChivesChatAddChannel, ChivesChatEditChannel, ChivesChatDelChannel, ChivesChatIsMember, GetChatroomAvatar, ChivesChatApplyJoin, ChivesChatGetChatRecords } from '@functions/AoConnect/ChivesChat'
+import { StatusObjType, StatusType } from '@types/apps/chatTypes'
+import MembersList from '@views/Chat/MembersList'
+import ChannelsList from '@views/Chat/ChannelsList'
+import UserProfileRight from '@views/Chat/UserProfileRight'
+import MembersInvite from '@views/Chat/MembersInvite'
+import MembersApplicant from '@views/Chat/MembersApplicant'
+import ChannelEdit from '@views/Chat/ChannelEdit'
 
-import { ansiRegex } from 'src/configs/functions'
+import { ansiRegex } from '@configs/functions'
 
 
 const AppChat = (props: any) => {

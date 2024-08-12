@@ -6,19 +6,19 @@ import Box from '@mui/material/Box'
 import { useTheme } from '@mui/material/styles'
 
 // ** Hooks
-import { useSettings } from 'src/@core/hooks/useSettings'
+import { useSettings } from '@core/hooks/useSettings'
 
 // ** Chat App Components Imports
-import ChatIndex from 'src/views/Chat/ChatIndex'
+import ChatIndex from '@views/Chat/ChatIndex'
 
 // ** Axios Imports
-import authConfig from 'src/configs/auth'
+import authConfig from '@configs/auth'
 import { useRouter } from 'next/router'
 
-import { useAuth } from 'src/hooks/useAuth'
+import { useAuth } from '@/hooks/useAuth'
 
-import { AoCreateProcessAuto } from 'src/functions/AoConnect/AoConnect'
-import { GetAoConnectMyAoConnectTxId, SetAoConnectMyAoConnectTxId } from 'src/functions/AoConnect/MsgReminder'
+import { AoCreateProcessAuto } from '@functions/AoConnect/AoConnect'
+import { GetAoConnectMyAoConnectTxId, SetAoConnectMyAoConnectTxId } from '@functions/AoConnect/MsgReminder'
 
 
 const Chat = () => {

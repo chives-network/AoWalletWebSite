@@ -20,11 +20,11 @@ import { useRouter } from 'next/router'
 import toast from 'react-hot-toast'
 
 // ** Icon Imports
-import Icon from 'src/@core/components/icon'
+import Icon from '@core/components/icon'
 
-import { useAuth } from 'src/hooks/useAuth'
+import { useAuth } from '@/hooks/useAuth'
 import { useTranslation } from 'react-i18next'
-import { GetChatroomAvatar } from 'src/functions/AoConnect/ChivesChat'
+import { GetChatroomAvatar } from '@functions/AoConnect/ChivesChat'
 
 const AppModel = (props: any) => {
   // ** Hook

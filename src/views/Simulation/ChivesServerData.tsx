@@ -13,12 +13,12 @@ import Typography from '@mui/material/Typography'
 import Tooltip from '@mui/material/Tooltip'
 
 // ** Next Import
-import { useAuth } from 'src/hooks/useAuth'
+import { useAuth } from '@/hooks/useAuth'
 
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
-import { GetMyLastMsg, AoCreateProcessAuto, sleep } from 'src/functions/AoConnect/AoConnect'
+import { GetMyLastMsg, AoCreateProcessAuto, sleep } from '@functions/AoConnect/AoConnect'
 import { AoLoadBlueprintChivesServerData, 
   ChivesServerDataGetTokens, ChivesServerDataAddToken, ChivesServerDataDelToken, 
   ChivesServerDataGetChatrooms, ChivesServerDataAddChatroom, ChivesServerDataDelChatroom, 
@@ -28,8 +28,8 @@ import { AoLoadBlueprintChivesServerData,
   ChivesServerDataGetSwaps, ChivesServerDataAddSwap, ChivesServerDataDelSwap, 
   ChivesServerDataGetProjects, ChivesServerDataAddProject, ChivesServerDataDelProject, 
   ChivesServerDataGetFaucets, ChivesServerDataAddFaucet, ChivesServerDataDelFaucet
- } from 'src/functions/AoConnect/ChivesServerData'
-import { ansiRegex } from 'src/configs/functions'
+ } from '@functions/AoConnect/ChivesServerData'
+import { ansiRegex } from '@configs/functions'
 
 const ChivesServerData = () => {
   // ** Hook

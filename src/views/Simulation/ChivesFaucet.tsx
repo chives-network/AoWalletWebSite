@@ -11,19 +11,19 @@ import Tooltip from '@mui/material/Tooltip'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import InputAdornment from '@mui/material/InputAdornment'
-import Icon from 'src/@core/components/icon'
+import Icon from '@core/components/icon'
 
 // ** Next Import
-import { useAuth } from 'src/hooks/useAuth'
+import { useAuth } from '@/hooks/useAuth'
 
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
-import { AoCreateProcessAuto, sleep, FormatBalance } from 'src/functions/AoConnect/AoConnect'
+import { AoCreateProcessAuto, sleep, FormatBalance } from '@functions/AoConnect/AoConnect'
 
-import { AoTokenBalanceDryRun } from 'src/functions/AoConnect/Token'
-import { AoLoadBlueprintFaucet, AoFaucetGetFaucetBalance, AoFaucetDepositToken, AoFaucetGetFaucet, AoFaucetDepositBalances, AoFaucetCreditBalances, AoFaucetInfo, AoFaucetCheckAddressAoBalanceActions } from 'src/functions/AoConnect/ChivesFaucet'
-import { ansiRegex } from 'src/configs/functions'
+import { AoTokenBalanceDryRun } from '@functions/AoConnect/Token'
+import { AoLoadBlueprintFaucet, AoFaucetGetFaucetBalance, AoFaucetDepositToken, AoFaucetGetFaucet, AoFaucetDepositBalances, AoFaucetCreditBalances, AoFaucetInfo, AoFaucetCheckAddressAoBalanceActions } from '@functions/AoConnect/ChivesFaucet'
+import { ansiRegex } from '@configs/functions'
 
 const ChivesFaucetModel = () => {
   // ** Hook

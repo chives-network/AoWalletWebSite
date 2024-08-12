@@ -22,7 +22,7 @@ import { useDropzone } from 'react-dropzone'
 import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
 
-import { importWalletJsonFile, readFileText } from 'src/functions/ChivesWallets'
+import { importWalletJsonFile, readFileText } from '@functions/ChivesWallets'
 
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'

@@ -13,7 +13,7 @@ import CardContent from '@mui/material/CardContent'
 import InputAdornment from '@mui/material/InputAdornment'
 import CircularProgress from '@mui/material/CircularProgress'
 
-import authConfig from 'src/configs/auth'
+import authConfig from '@configs/auth'
 import Typography from '@mui/material/Typography'
 import Table from '@mui/material/Table'
 import TableRow from '@mui/material/TableRow'
@@ -23,10 +23,10 @@ import TableContainer from '@mui/material/TableContainer'
 
 
 // ** Icon Imports
-import Icon from 'src/@core/components/icon'
+import Icon from '@core/components/icon'
 
 // ** Context
-import { useAuth } from 'src/hooks/useAuth'
+import { useAuth } from '@/hooks/useAuth'
 
 // ** Third Party Components
 import toast from 'react-hot-toast'
@@ -36,7 +36,7 @@ import { useTranslation } from 'react-i18next'
 
 import { useRouter } from 'next/router'
 
-import { AoGetPageRecords } from 'src/functions/AoConnect/AoConnect'
+import { AoGetPageRecords } from '@functions/AoConnect/AoConnect'
 import AnsiText from './AnsiText'
 
 
