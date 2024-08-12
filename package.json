@@ -25,6 +25,8 @@
     "@mui/lab": "5.0.0-alpha.170",
     "@mui/material": "5.15.19",
     "@mui/material-nextjs": "5.15.11",
+    "@permaweb/ao-scheduler-utils": "^0.0.23",
+    "@permaweb/aoconnect": "^0.0.58",
     "@prisma/client": "^5.18.0",
     "@supercharge/promise-pool": "^3.2.0",
     "arweave-wallet-kit": "^1.0.4",
