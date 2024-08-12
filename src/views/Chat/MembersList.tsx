@@ -28,7 +28,7 @@ import Fab from '@mui/material/Fab'
 import Icon from '@/@core/components/icon'
 
 // ** Types
-import { ProfileUserType } from '@types/apps/chatTypes'
+import { ProfileUserType } from '@/types/apps/chatTypes'
 
 // ** Custom Components Import
 import CustomAvatar from '@/@core/components/mui/Avatar'

@@ -31,7 +31,7 @@ import { useAuth } from '@/hooks/useAuth'
 
 import { GetChatRecordsFromLocalStorage, GetAoConnectMembers, SetAoConnectMembers, GetAoConnectChannels, SetAoConnectChannels, SaveChatRecordsToStorage } from '@/functions/AoConnect/MsgReminder'
 import { SendMessageToChivesChat, ChivesChatGetMembers, ChivesChatGetChannels, ChivesChatAddAdmin, ChivesChatDelAdmin, ChivesChatAddInvites, ChivesChatApprovalApply, ChivesChatRefuseApply, ChivesChatDelMember, ChivesChatBlockMember, ChivesChatAddChannel, ChivesChatEditChannel, ChivesChatDelChannel, ChivesChatIsMember, GetChatroomAvatar, ChivesChatApplyJoin, ChivesChatGetChatRecords } from '@/functions/AoConnect/ChivesChat'
-import { StatusObjType, StatusType } from '@types/apps/chatTypes'
+import { StatusObjType, StatusType } from '@/types/apps/chatTypes'
 import MembersList from '@views/Chat/MembersList'
 import ChannelsList from '@views/Chat/ChannelsList'
 import UserProfileRight from '@views/Chat/UserProfileRight'

@@ -1,5 +1,4 @@
 // ** Types
-import { Dispatch } from 'redux'
 import { ReactElement, SyntheticEvent } from 'react'
 import { TxRecordType } from '@/types/apps/Chivesweave'
 
@@ -111,7 +110,6 @@ export type MailSidebarType = {
   hidden: boolean
   store: MailStore
   lgAbove: boolean
-  dispatch: Dispatch<any>
   leftSidebarOpen: boolean
   leftSidebarWidth: number
   emailDetailWindowOpen: boolean

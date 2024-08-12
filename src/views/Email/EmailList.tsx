@@ -16,7 +16,8 @@ import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import InputAdornment from '@mui/material/InputAdornment'
 import CircularProgress from '@mui/material/CircularProgress'
-import ListItem, { ListItemProps } from '@mui/material/ListItem'
+import ListItem from '@mui/material/ListItem'
+import type { ListItemProps } from '@mui/material/ListItem'
 
 import Icon from '@/@core/components/icon'
 
@@ -33,7 +34,7 @@ import EmailDetail from './EmailDetail'
 import Pagination from '@mui/material/Pagination'
 
 // ** Types
-import { EmailListType } from '@types/apps/emailTypes'
+import { EmailListType } from '@/types/apps/emailTypes'
 
 import { OptionType } from '@/@core/components/option-menu/types'
 

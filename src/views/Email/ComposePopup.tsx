@@ -33,10 +33,10 @@ import CustomAvatar from '@/@core/components/mui/Avatar'
 import ReactDraftWysiwyg from '@/@core/components/react-draft-wysiwyg'
 
 // ** Styled Component Imports
-import { EditorWrapper } from '@core/styles/libs/react-draft-wysiwyg'
+import { EditorWrapper } from '@/libs/styles/react-draft-wysiwyg'
 
 // ** Types
-import { MailComposeType, FieldMenuItems } from '@types/apps/emailTypes'
+import { MailComposeType, FieldMenuItems } from '@/types/apps/emailTypes'
 
 // ** Utils Import
 import { getInitials } from '@/@core/utils/get-initials'

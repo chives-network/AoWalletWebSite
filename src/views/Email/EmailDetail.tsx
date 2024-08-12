@@ -24,7 +24,7 @@ import OptionsMenu from '@/@core/components/option-menu'
 
 // ** Types
 import { OptionType } from '@/@core/components/option-menu/types'
-import { EmailDetailType } from '@types/apps/emailTypes'
+import { EmailDetailType } from '@/types/apps/emailTypes'
 
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'

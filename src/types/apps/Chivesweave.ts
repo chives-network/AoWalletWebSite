@@ -1,7 +1,4 @@
 
-// ** Types
-import { Dispatch } from 'redux'
-
 export type DriveLabelType = 'Png' | 'Jpeg' | 'Mp4' | 'Office' | 'Mp4' | 'Stl'
 
 export type DriveFolderType = 'myfiles' | 'shared' | 'draft' | 'starred' | 'spam' | 'trash'
@@ -16,7 +13,6 @@ export type EmailSidebarType = {
   hidden: boolean
   store: any
   lgAbove: boolean
-  dispatch: Dispatch<any>
   folder: string
   setFolder: (val: any) => void
   leftSidebarOpen: boolean

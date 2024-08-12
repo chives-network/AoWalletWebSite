@@ -1,5 +1,4 @@
 // ** Types
-import { Dispatch } from 'redux'
 import { ThemeColor } from '@/@core/types'
 
 export type StatusType = 'busy' | 'away' | 'online' | 'offline'
@@ -89,7 +88,6 @@ export type ChatContentType = {
   mdAbove: boolean
   store: ChatStoreType
   membersListWidth: number
-  dispatch: Dispatch<any>
   statusObj: StatusObjType
   userProfileRightOpen: boolean
   handleLeftSidebarToggle: () => void

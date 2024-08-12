@@ -10,7 +10,7 @@ import { CustomAvatarProps } from './types'
 import { ThemeColor } from '@/@core/types'
 
 // ** Hooks Imports
-import useBgColor, { UseBgColorType } from 'src/@core/hooks/useBgColor'
+import useBgColor, { UseBgColorType } from '@/@core/hooks/useBgColor'
 
 const Avatar = forwardRef((props: CustomAvatarProps, ref: Ref<any>) => {
   // ** Props
