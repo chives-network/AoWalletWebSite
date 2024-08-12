@@ -1,6 +1,6 @@
 
 //Due need to use the node esm mode, so have change the package.json and move the repo to this location. Version: 0.0.53
-import { connect, createDataItemSigner }  from "../../../scripts/@permaweb/aoconnect"
+import { connect, createDataItemSigner }  from "@permaweb/aoconnect"
 
 import { ConvertInboxMessageFormatAndStorage } from './MsgReminder'
 import authConfig from '../../configs/auth'

@@ -47,7 +47,7 @@ const LoginV2 = ({ mode }: { mode: Mode }) => {
   const borderedLightIllustration = '/images/illustrations/auth/v2-login-light-border.png'
 
   // Hooks
-  const router = useRouter()
+  
   const { settings } = useSettings()
   const authBackground = useImageVariant(mode, lightImg, darkImg)
 
@@ -98,7 +98,6 @@ const LoginV2 = ({ mode }: { mode: Mode }) => {
             autoComplete='off'
             onSubmit={e => {
               e.preventDefault()
-              router.push('/')
             }}
             className='flex flex-col gap-5'
           >

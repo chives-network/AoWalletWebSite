@@ -16,7 +16,7 @@ import Avatar from '@mui/material/Avatar'
 import Container from '@mui/material/Container'
 import CircularProgress from '@mui/material/CircularProgress'
 import { useTheme } from '@mui/material/styles'
-import { useRouter } from 'next/router'
+
 import toast from 'react-hot-toast'
 
 // ** Icon Imports
@@ -30,7 +30,7 @@ const AppModel = (props: any) => {
   // ** Hook
   const { t } = useTranslation()
   const theme = useTheme()
-  const router = useRouter()
+  
 
   // ** Props
   const {
@@ -74,9 +74,7 @@ const AppModel = (props: any) => {
                         <Box position="relative" sx={{mb: 2, mr: 2}}>
                           <CardMedia image={`/images/cardmedia/cardmedia-${theme.palette.mode}.png`} sx={{ height: '11.25rem', objectFit: 'contain', borderRadius: 1 }}/>
                           <Box position="absolute" top={10} left={5} m={1} px={0.8} borderRadius={1}
-                            onClick={()=>{
-                              router.push('/chat/chat/' + item.id)
-                            }}
+                            
                             sx={{cursor: 'pointer'}}
                           >
                             <Box display="flex" alignItems="center">
@@ -106,9 +104,6 @@ const AppModel = (props: any) => {
                               WebkitLineClamp: 3,
                               WebkitBoxOrient: 'vertical',
                             }}
-                            onClick={()=>{
-                              router.push('/chat/chat/' + item.id)
-                            }}
                             >
                             <Typography variant='caption'>{item.intro}</Typography>
                           </Box>
@@ -120,7 +115,7 @@ const AppModel = (props: any) => {
                           <Box position="absolute" top={2} right={1} m={1} px={0.8}>
                             <Button variant="text" size="small" startIcon={<Icon icon='material-symbols:chat-outline' />} 
                               onClick={()=>{
-                                router.push('/chat/chat/' + item.id)
+                                
                               }}
                               >
                               {t('Chat')}

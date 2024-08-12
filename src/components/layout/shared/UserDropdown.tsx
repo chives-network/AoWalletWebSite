@@ -4,9 +4,6 @@
 import { useRef, useState } from 'react'
 import type { MouseEvent } from 'react'
 
-// Next Imports
-import { useRouter } from 'next/navigation'
-
 // MUI Imports
 import { styled } from '@mui/material/styles'
 import Badge from '@mui/material/Badge'
@@ -42,7 +39,7 @@ const UserDropdown = () => {
   const anchorRef = useRef<HTMLDivElement>(null)
 
   // Hooks
-  const router = useRouter()
+  
 
   const { settings } = useSettings()
 
@@ -51,20 +48,12 @@ const UserDropdown = () => {
   }
 
   const handleDropdownClose = (event?: MouseEvent<HTMLLIElement> | (MouseEvent | TouchEvent), url?: string) => {
-    if (url) {
-      router.push(url)
-    }
-
+    
     if (anchorRef.current && anchorRef.current.contains(event?.target as HTMLElement)) {
       return
     }
 
     setOpen(false)
-  }
-
-  const handleUserLogout = async () => {
-    // Redirect to login page
-    router.push('/login')
   }
 
   return (
@@ -128,19 +117,6 @@ const UserDropdown = () => {
                     <i className='ri-question-line' />
                     <Typography color='text.primary'>FAQ</Typography>
                   </MenuItem>
-                  <div className='flex items-center plb-2 pli-4'>
-                    <Button
-                      fullWidth
-                      variant='contained'
-                      color='error'
-                      size='small'
-                      endIcon={<i className='ri-logout-box-r-line' />}
-                      onClick={handleUserLogout}
-                      sx={{ '& .MuiButton-endIcon': { marginInlineStart: 1.5 } }}
-                    >
-                      Logout
-                    </Button>
-                  </div>
                 </MenuList>
               </ClickAwayListener>
             </Paper>

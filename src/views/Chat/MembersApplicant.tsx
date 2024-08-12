@@ -1,7 +1,7 @@
 // ** React Imports
 import { useEffect } from 'react'
 
-import { useRouter } from 'next/router'
+
 import { useAuth } from '@/hooks/useAuth'
 import { CheckPermission } from '@/functions/ChatBook'
 import { useTranslation } from 'react-i18next'
@@ -29,11 +29,7 @@ const MembersApplicant = (props: any) => {
     // ** Hook
     const { t } = useTranslation()
     const auth = useAuth()
-    const router = useRouter()
-    useEffect(() => {
-        CheckPermission(auth, router, false)
-    }, [auth, router])
-
+    
     const isDisabledButton = false
 
     console.log("valueMembersApplicant", valueMembersApplicant)

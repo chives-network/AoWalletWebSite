@@ -31,8 +31,6 @@ import toast from 'react-hot-toast'
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
-import { useRouter } from 'next/router'
-
 import { AoSendMsg, AoGetMessage, generateRandomNumber } from '@/functions/AoConnect/AoConnect'
 import { SetAoConnectReminderProcessTxId, GetAoConnectReminderProcessTxId, SetAoConnectMyAoConnectTxId, GetAoConnectMyAoConnectTxId } from '@/functions/AoConnect/MsgReminder'
 
@@ -44,8 +42,6 @@ import MessageRender from './MessageRender'
 const AoSendMsgModel = () => {
   // ** Hook
   const { t } = useTranslation()
-
-  const router = useRouter()
 
   const [action, setAction] = useState<string>('Chat')
     
@@ -141,15 +137,6 @@ const AoSendMsgModel = () => {
   }
 
   const handleSubmit = async () => {
-    if(currentAddress == undefined || currentAddress.length != 43) {
-        toast.success(t(`Please create a wallet first`), {
-            position: 'top-center',
-            duration: 4000
-        })
-        router.push("/mywallets");
-        
-        return
-    }
 
     setResultText('')
     setResultText2('')

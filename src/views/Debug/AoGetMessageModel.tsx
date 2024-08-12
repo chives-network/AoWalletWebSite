@@ -26,7 +26,7 @@ import toast from 'react-hot-toast'
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
-import { useRouter } from 'next/router'
+
 
 import { AoGetMessage } from '@/functions/AoConnect/AoConnect'
 
@@ -37,7 +37,7 @@ const AoGetMessageModel = () => {
   // ** Hook
   const { t } = useTranslation()
 
-  const router = useRouter()
+  
     
   // ** State
   const [uploadingButton, setUploadingButton] = useState<string>(`${t('Submit')}`)
@@ -75,7 +75,7 @@ const AoGetMessageModel = () => {
             position: 'top-right', 
             duration: 4000
         })
-        router.push("/mywallets");
+        
         
         return
     }

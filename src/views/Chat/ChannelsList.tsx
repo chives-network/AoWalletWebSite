@@ -2,7 +2,7 @@
 import { useState, useEffect, ReactNode, Fragment } from 'react'
 
 // ** Next Imports
-import { useRouter } from 'next/router'
+
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
@@ -63,7 +63,7 @@ const ChannelsList = (props: any) => {
   const { t } = useTranslation()
 
   // ** Hooks
-  const router = useRouter()
+  
 
   const handleChatClick = (id: string) => {
     setActive(id)
@@ -74,10 +74,7 @@ const ChannelsList = (props: any) => {
   }
 
   useEffect(() => {
-    router.events.on('routeChangeComplete', () => {
-      setActive('')
-    })
-
+    
     console.log("ChannelsList channelId", channelId)
     
     if(getChivesChatGetChannels)   {

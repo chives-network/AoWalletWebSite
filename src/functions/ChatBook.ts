@@ -524,19 +524,7 @@ export function GetAllLLMById(id: string): any[] {
 }
 
 export function CheckPermission(auth: any, router: any, forcelogout: boolean) {
-    const roleList = ['admin', 'user']
-    if(auth && auth.user && auth.user.loading == '1')  { // User info loaded by browser
-        if(auth && auth.user && auth.user.role && roleList.includes(auth.user.role) ) {
-            //Permission Valid
-        }
-        else if(router && auth && auth.user && auth.user.role) {
-            console.log("auth.user", auth.user)
-            router.replace('/login')
-        }
-    }
-    if(forcelogout) {
-        router.replace('/login')
-    }
+
 }
 
 interface ReportSection {

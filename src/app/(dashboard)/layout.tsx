@@ -18,14 +18,11 @@ import VerticalFooter from '@components/layout/vertical/Footer'
 import HorizontalFooter from '@components/layout/horizontal/Footer'
 import ScrollToTop from '@core/components/scroll-to-top'
 
-// Util Imports
-import { getMode, getSystemMode } from '@core/utils/serverHelpers'
-
 const Layout = async ({ children }: ChildrenType) => {
   // Vars
   const direction = 'ltr'
-  const mode = getMode()
-  const systemMode = getSystemMode()
+  const mode = 'light'
+  const systemMode = 'light'
 
   return (
     <Providers direction={direction}>

@@ -1,7 +1,7 @@
 // ** React Imports
 import { useEffect } from 'react'
 
-import { useRouter } from 'next/router'
+
 import { useAuth } from '@/hooks/useAuth'
 import { useTranslation } from 'react-i18next'
 
@@ -32,7 +32,7 @@ const TokenSendOut = (props: any) => {
 
     // ** Hook
     const { t } = useTranslation()
-    const router = useRouter()
+    
 
     const auth = useAuth()
     const currentAddress = auth.currentAddress
@@ -55,7 +55,7 @@ const TokenSendOut = (props: any) => {
             toast.success(t(`Please create a wallet first`), {
                 duration: 4000
             })
-            router.push("/mywallets");
+            
             
             return
         }

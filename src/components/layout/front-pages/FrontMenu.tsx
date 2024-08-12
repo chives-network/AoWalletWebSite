@@ -142,8 +142,7 @@ const FrontMenu = (props: Props) => {
       </Typography>
       <Typography
         component={Link}
-        href='/home'
-        target='_blank'
+        href='/api'
         className='font-medium plb-3 pli-1.5 hover:text-primary'
         color='text.primary'
       >
@@ -151,8 +150,7 @@ const FrontMenu = (props: Props) => {
       </Typography>
       <Typography
         component={Link}
-        href='/home'
-        target='_blank'
+        href='/token'
         className='font-medium plb-3 pli-1.5 hover:text-primary'
         color='text.primary'
       >
@@ -160,21 +158,28 @@ const FrontMenu = (props: Props) => {
       </Typography>
       <Typography
         component={Link}
-        href='/home'
-        target='_blank'
-        className='font-medium plb-3 pli-1.5 hover:text-primary'
-        color='text.primary'
-      >
-        Faucet
-      </Typography>
-      <Typography
-        component={Link}
-        href='/home'
+        href='/email'
         target='_blank'
         className='font-medium plb-3 pli-1.5 hover:text-primary'
         color='text.primary'
       >
         Email
+      </Typography>
+      <Typography
+        component={Link}
+        href='/debug'
+        className='font-medium plb-3 pli-1.5 hover:text-primary'
+        color='text.primary'
+      >
+        Debug
+      </Typography>
+      <Typography
+        component={Link}
+        href='/tool'
+        className='font-medium plb-3 pli-1.5 hover:text-primary'
+        color='text.primary'
+      >
+        Tool
       </Typography>
     </Wrapper>
   )

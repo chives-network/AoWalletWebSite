@@ -2,7 +2,7 @@
 import { useState, useEffect, ChangeEvent, ReactNode, Fragment } from 'react'
 
 // ** Next Imports
-import { useRouter } from 'next/router'
+
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
@@ -99,7 +99,7 @@ const MembersList = (props: any) => {
   const { t } = useTranslation()
 
   // ** Hooks
-  const router = useRouter()
+  
 
   const [AdminsTxidList, setAdminsTxidList] = useState<string[]>([])
   const [AdminsList, setAdminsList] = useState<any[]>([])
@@ -163,10 +163,7 @@ const MembersList = (props: any) => {
   }
 
   useEffect(() => {
-    router.events.on('routeChangeComplete', () => {
-      setActive(null)
-    })
-
+    
     return () => {
       setActive(null)
     }

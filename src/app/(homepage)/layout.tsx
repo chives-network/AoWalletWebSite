@@ -12,9 +12,6 @@ import Providers from '@components/Providers'
 import BlankLayout from '@layouts/BlankLayout'
 import FrontLayout from '@components/layout/front-pages'
 
-// Util Imports
-import { getSystemMode } from '@core/utils/serverHelpers'
-
 // Style Imports
 import '@/app/globals.css'
 
@@ -29,7 +26,7 @@ export const metadata = {
 
 const Layout = ({ children }: ChildrenType) => {
   // Vars
-  const systemMode = getSystemMode()
+  const systemMode = 'light'
 
   return (
     <html id='__next'>

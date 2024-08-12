@@ -1,7 +1,7 @@
 // ** React Imports
 import { useEffect } from 'react'
 
-import { useRouter } from 'next/router'
+
 import { useAuth } from '@/hooks/useAuth'
 import { useTranslation } from 'react-i18next'
 
@@ -30,7 +30,7 @@ const TokenAirdrop = (props: any) => {
 
     // ** Hook
     const { t } = useTranslation()
-    const router = useRouter()
+    
 
     const auth = useAuth()
     const currentAddress = auth.currentAddress
@@ -57,7 +57,7 @@ const TokenAirdrop = (props: any) => {
             toast.success(t(`Please Mint a wallet first`), {
                 duration: 4000
             })
-            router.push("/mywallets");
+            
             
             return
         }

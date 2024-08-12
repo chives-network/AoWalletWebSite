@@ -13,7 +13,7 @@ import ChatIndex from '@views/Chat/ChatIndex'
 
 // ** Axios Imports
 import authConfig from '@configs/auth'
-import { useRouter } from 'next/router'
+
 
 import { useAuth } from '@/hooks/useAuth'
 
@@ -29,8 +29,8 @@ const Chat = () => {
   // ** Hooks
   const theme = useTheme()
   const { settings } = useSettings()
-  const router = useRouter()
-  const { id } = router.query
+  
+  const { id } = '0'
 
   const auth = useAuth()
   const currentAddress = auth.currentAddress

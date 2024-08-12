@@ -4,9 +4,6 @@ import type { Metadata } from 'next'
 // Component Imports
 import Login from '@views/Login'
 
-// Server Action Imports
-import { getServerMode } from '@core/utils/serverHelpers'
-
 export const metadata: Metadata = {
   title: 'Login',
   description: 'Login to your account'
@@ -14,7 +11,7 @@ export const metadata: Metadata = {
 
 const LoginPage = () => {
   // Vars
-  const mode = getServerMode()
+  const mode = 'light'
 
   return <Login mode={mode} />
 }

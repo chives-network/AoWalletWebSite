@@ -27,7 +27,7 @@ import toast from 'react-hot-toast'
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
-import { useRouter } from 'next/router'
+
 
 import { AoCreateProcess } from '@/functions/AoConnect/AoConnect'
 
@@ -35,7 +35,7 @@ const AoCreateProcessModel = () => {
   // ** Hook
   const { t } = useTranslation()
 
-  const router = useRouter()
+  
     
   // ** State
   const [uploadingButton, setUploadingButton] = useState<string>(`${t('Submit')}`)
@@ -81,7 +81,7 @@ const AoCreateProcessModel = () => {
             position: 'top-center',
             duration: 4000
         })
-        router.push("/mywallets");
+        
         
         return
     }
