@@ -27,7 +27,7 @@ import { useTranslation } from 'react-i18next'
 import CircularProgress from '@mui/material/CircularProgress'
 import OptionsMenu from '@/@core/components/option-menu'
 import IconButton from '@mui/material/IconButton'
-import { getNanoid } from '@/functions/string.tools'
+import { getNanoid } from '@/functions/ChivesWallets'
 import Icon from '@/@core/components/icon'
 
 const ScrollWrapper = ({ children, hidden }: { children: ReactNode; hidden: boolean }) => {

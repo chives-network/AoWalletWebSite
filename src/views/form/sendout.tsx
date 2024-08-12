@@ -2,20 +2,17 @@
 import Grid from '@mui/material/Grid'
 
 // ** Styled Component
-import DropzoneWrapper from '@core/styles/libs/react-dropzone'
 
 // ** Demo Components Imports
 import SendOutForm from '@views/form/SendOutForm'
 
 const SendOut = () => {
   return (
-    <DropzoneWrapper>
       <Grid container spacing={6} className='match-height'>
         <Grid item xs={12}>
             <SendOutForm />
         </Grid>
       </Grid>
-    </DropzoneWrapper>
   )
 }
 

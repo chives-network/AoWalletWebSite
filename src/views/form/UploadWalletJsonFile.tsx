@@ -7,8 +7,9 @@ import Grid from '@mui/material/Grid'
 import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
 import { styled } from '@mui/material/styles'
-import Typography, { TypographyProps } from '@mui/material/Typography'
 import CircularProgress from '@mui/material/CircularProgress'
+import Typography from '@mui/material/Typography';
+import type { TypographyProps } from '@mui/material/Typography';
 
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
@@ -79,7 +80,7 @@ const UploadWalletJsonFile = ( { handleRefreshWalletData }: any ) => {
   
   const handleImportWalletJsonFile = async (file: File) => {
     const jsonFileContent: string = await readFileText(file)
-    const NewWalletData: any = await importWalletJsonFile(JSON.parse(jsonFileContent))
+    const NewWalletData: any = await importWalletJsonFile(JSON.parse(jsonFileContent), '123456')
     if(NewWalletData) {
         console.log("NewWalletData", NewWalletData)
         setIsLoading(true)

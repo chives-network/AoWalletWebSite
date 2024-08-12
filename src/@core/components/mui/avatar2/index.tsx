@@ -7,7 +7,7 @@ import { lighten, useTheme } from '@mui/material/styles'
 
 // ** Types
 import { CustomAvatarProps } from './types'
-import { ThemeColor } from '@/@core/layouts/types'
+import { ThemeColor } from '@/@core/types'
 
 // ** Hooks Imports
 import useBgColor, { UseBgColorType } from 'src/@core/hooks/useBgColor'
