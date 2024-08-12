@@ -56,6 +56,7 @@
     "@iconify/tools": "4.0.4",
     "@iconify/types": "2.0.0",
     "@iconify/utils": "2.1.24",
+    "@types/chrome": "^0.0.269",
     "@types/draft-js": "^0.11.18",
     "@types/node": "^20.14.2",
     "@types/react": "^18.3.3",

@@ -20,7 +20,9 @@ const defaultProvider: AuthValuesType = {
   publicKey: '',
   permissions: [],
   walletNames: [],
-  strategy: ''
+  strategy: '',
+  currentAddress: '',
+  currentWallet: null
 }
 
 const AuthContext = createContext(defaultProvider)
@@ -62,7 +64,9 @@ const AuthProvider = ({ children }: Props) => {
     publicKey,
     permissions,
     walletNames,
-    strategy
+    strategy,
+    currentAddress: '',
+    currentWallet: null
   }
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>

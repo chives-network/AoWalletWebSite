@@ -318,7 +318,8 @@ const MembersList = (props: any) => {
                   {optionsMenus && optionsMenus.length > 0 && (
                     <OptionsMenu
                       icon={<Icon icon='mdi:dots-vertical' fontSize='1.25rem' />}
-                      menuProps={{ sx: { '& .MuiMenu-paper': { mt: 4, minWidth: 130 } } }}
+                      
+                      //menuProps={{ sx: { '& .MuiMenu-paper': { mt: 4, minWidth: 130 } } }}
                       iconButtonProps={{ size: 'small', sx: { color: 'text.secondary' } }}
                       options={optionsMenus}
                     />

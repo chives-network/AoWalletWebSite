@@ -38,7 +38,7 @@ const HelpCenterHeader = ({ searchValue, setSearchValue }: Props) => {
           variant='outlined'
           placeholder='Ask a question...'
           value={searchValue}
-          onChange={e => setSearchValue(e.target.value)}
+          onChange={(e: any) => setSearchValue(e.target.value)}
           InputProps={{
             startAdornment: (
               <InputAdornment position='start'>

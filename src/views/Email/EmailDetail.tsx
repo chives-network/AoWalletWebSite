@@ -284,7 +284,8 @@ const EmailDetail = (props: EmailDetailType) => {
                         ) : null}
                         <OptionsMenu
                           iconButtonProps={{ size: 'small' }}
-                          iconProps={{ fontSize: '1.375rem' }}
+                          
+                          //iconProps={{ fontSize: '1.375rem' }}
                           options={[
                             {
                               text: t('Reply'),

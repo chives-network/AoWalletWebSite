@@ -102,7 +102,7 @@ export type ChatSidebarLeftType = {
   store: ChatStoreType
   membersListWidth: number
   userStatus: StatusType
-  dispatch: Dispatch<any>
+  dispatch: any
   leftSidebarOpen: boolean
   statusObj: StatusObjType
   userProfileLeftOpen: boolean
@@ -137,7 +137,7 @@ export type UserProfileRightType = {
 
 export type SendMsgComponentType = {
   store: ChatStoreType
-  dispatch: Dispatch<any>
+  dispatch: any
   sendMsg: (params: SendMsgParamsType) => void
 }
 

@@ -146,7 +146,7 @@ export type EmailListType = {
 export type EmailDetailType = {
   currentEmail: any
   hidden: boolean
-  dispatch: Dispatch<any>
+  dispatch: any
   direction: 'ltr' | 'rtl'
   emailDetailWindowOpen: boolean
   folder: string

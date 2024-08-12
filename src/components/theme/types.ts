@@ -97,6 +97,8 @@ declare module '@mui/material/styles' {
       tableHeaderBg: string
       tooltipText: string
       trackBg: string
+      primaryGradient: string
+      main: string
     }
   }
   interface PaletteOptions {

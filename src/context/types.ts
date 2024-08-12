@@ -29,5 +29,7 @@ export type AuthValuesType = {
   publicKey: string | undefined,
   permissions: string[],
   walletNames: any,
-  strategy: string
+  strategy: string | boolean,
+  currentAddress: string, 
+  currentWallet: any
 }

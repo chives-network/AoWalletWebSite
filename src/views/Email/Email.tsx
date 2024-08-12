@@ -1,9 +1,6 @@
 // ** React Imports
 import { useState, useEffect } from 'react'
 
-// ** Redux Imports
-import { useDispatch, useSelector } from 'react-redux'
-
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import { useTheme } from '@mui/material/styles'
@@ -12,9 +9,6 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 // ** Hooks
 import { useSettings } from '@core/hooks/useSettings'
 
-// ** Types
-import { RootState, AppDispatch } from '@store'
-
 // ** Email App Component Imports
 import EmailList from '@views/Email/EmailList'
 import SidebarLeft from '@views/Email/SidebarLeft'
@@ -22,9 +16,6 @@ import ComposePopup from '@views/Email/ComposePopup'
 
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
-
-// ** Actions
-import { fetchData } from '@store/apps/email'
 
 // ** Context
 import { useAuth } from '@/hooks/useAuth'
@@ -56,7 +47,6 @@ const EmailAppLayout = () => {
   // ** Hooks
   const theme = useTheme()
   const { settings } = useSettings()
-  const dispatch = useDispatch<AppDispatch>()
   const lgAbove = useMediaQuery(theme.breakpoints.up('lg'))
   const mdAbove = useMediaQuery(theme.breakpoints.up('md'))
   const smAbove = useMediaQuery(theme.breakpoints.up('sm'))
@@ -68,11 +58,10 @@ const EmailAppLayout = () => {
   
   //const hidden = useMediaQuery(theme.breakpoints.down('lg'))
   const hidden = true
-  const store = useSelector((state: RootState) => state.email)
 
   // ** Vars
   const leftSidebarWidth = 260
-  const { skin, direction } = settings
+  const { skin } = settings
 
   const auth = useAuth()
   const currentWallet = auth.currentWallet
@@ -99,6 +88,8 @@ const EmailAppLayout = () => {
       setLoading(true)
       console.log("loading", loading)
       setNoEmailText('Loading...')
+
+      /*
       dispatch(
         fetchData({
           address: String(currentAoAddress),
@@ -111,10 +102,11 @@ const EmailAppLayout = () => {
         console.log("loading", loading)
         setNoEmailText('No Email')
       })
+      */
       setComposeOpen(false)
       setComposeTitle(`${t(`Compose`)}`)
     }
-  }, [dispatch, paginationModel, folder, currentAoAddress, counter])
+  }, [paginationModel, folder, currentAoAddress, counter])
 
   const handleLeftSidebarToggle = () => setLeftSidebarOpen(!leftSidebarOpen)
 
@@ -131,10 +123,10 @@ const EmailAppLayout = () => {
       }}
     >
       <SidebarLeft
-        store={store}
+        store={null}
         hidden={hidden}
         lgAbove={lgAbove}
-        dispatch={dispatch}
+        dispatch={'ltr'}
         folder={folder}
         setFolder={setFolder}
         emailDetailWindowOpen={emailDetailWindowOpen}
@@ -148,11 +140,11 @@ const EmailAppLayout = () => {
       />
       <EmailList
         query={query}
-        store={store}
+        store={null}
         hidden={hidden}
         lgAbove={lgAbove}
         setQuery={setQuery}
-        direction={direction}
+        direction={'ltr'}
         folder={folder}
         EmailCategoriesColors={EmailCategoriesColors}
         currentEmail={currentEmail}
