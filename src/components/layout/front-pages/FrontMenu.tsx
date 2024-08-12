@@ -23,9 +23,6 @@ import type { Mode } from '@core/types'
 // Hook Imports
 import { useIntersection } from '@/hooks/useIntersection'
 
-// Component Imports
-import DropdownMenu from './DropdownMenu'
-
 type Props = {
   mode: Mode
   isDrawerOpen: boolean
@@ -72,7 +69,7 @@ const Wrapper = (props: WrapperProps) => {
 
 const FrontMenu = (props: Props) => {
   // Props
-  const { isDrawerOpen, setIsDrawerOpen, mode } = props
+  const { isDrawerOpen, setIsDrawerOpen } = props
 
   // Hooks
   const pathname = usePathname()
