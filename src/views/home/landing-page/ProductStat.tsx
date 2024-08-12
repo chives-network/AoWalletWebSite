@@ -12,7 +12,7 @@ import classnames from 'classnames'
 import type { ThemeColor } from '@/@core/types'
 
 // Component Imports
-import CustomAvatar from '@core/components/mui/Avatar'
+import CustomAvatar from '@/@core/components/mui/Avatar'
 
 // Styles Imports
 import frontCommonStyles from '@views/home/styles.module.css'

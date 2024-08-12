@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 
 import { useRouter } from 'next/router'
 import { useAuth } from '@/hooks/useAuth'
-import { CheckPermission } from '@functions/ChatBook'
+import { CheckPermission } from '@/functions/ChatBook'
 import { useTranslation } from 'react-i18next'
 
 // ** MUI Imports
@@ -16,9 +16,9 @@ import DialogContentText from '@mui/material/DialogContentText'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
-import Icon from '@core/components/icon'
 import IconButton from '@mui/material/IconButton'
 import TextField2 from './TextField2'
+import Icon from '@/@core/components/icon'
 
 const ChannelEdit = (props: any) => {
     // ** Props

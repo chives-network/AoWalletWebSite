@@ -10,7 +10,7 @@ import Grid from '@mui/material/Grid'
 import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
 import Tooltip from '@mui/material/Tooltip'
-import { getNanoid } from '@functions/string.tools'
+import { getNanoid } from '@/functions/ChivesWallets'
 
 // ** Next Import
 import { useAuth } from '@/hooks/useAuth'
@@ -18,9 +18,9 @@ import { useAuth } from '@/hooks/useAuth'
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
-import { GetMyLastMsg, AoCreateProcessAuto, sleep } from '@functions/AoConnect/AoConnect'
+import { GetMyLastMsg, AoCreateProcessAuto, sleep } from '@/functions/AoConnect/AoConnect'
 import { AoLoadBlueprintChivesChat, GetChivesChatAdmins, GetChivesChatMembersByOwner, GetChivesChatInvites, 
-  ChivesChatAddAdmin, ChivesChatDelAdmin, ChivesChatAddInvite, ChivesChatAddMember, ChivesChatDelMember, ChivesChatAddChannel, ChivesChatGetChannels, ChivesChatAgreeInvite, ChivesChatRefuseInvite, ChivesChatApplyJoin, ChivesChatGetApplicants,ChivesChatApprovalApply, ChivesChatRefuseApply } from '@functions/AoConnect/ChivesChat'
+  ChivesChatAddAdmin, ChivesChatDelAdmin, ChivesChatAddInvite, ChivesChatAddMember, ChivesChatDelMember, ChivesChatAddChannel, ChivesChatGetChannels, ChivesChatAgreeInvite, ChivesChatRefuseInvite, ChivesChatApplyJoin, ChivesChatGetApplicants,ChivesChatApprovalApply, ChivesChatRefuseApply } from '@/functions/AoConnect/ChivesChat'
 import { ansiRegex } from '@configs/functions'
 
 const ChivesChat = () => {

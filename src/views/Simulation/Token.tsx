@@ -19,16 +19,16 @@ import InputAdornment from '@mui/material/InputAdornment'
 import { useAuth } from '@/hooks/useAuth'
 
 // ** Icon Imports
-import Icon from '@core/components/icon'
+import Icon from '@/@core/components/icon'
 import toast from 'react-hot-toast'
 import Avatar from '@mui/material/Avatar'
 
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
-import { GetMyLastMsg, AoCreateProcessAuto, generateRandomNumber, sleep, FormatBalance } from '@functions/AoConnect/AoConnect'
-import { AoLoadBlueprintToken, AoTokenTransfer, AoTokenMint, AoTokenBalancesDryRun } from '@functions/AoConnect/Token'
-import { ReminderMsgAndStoreToLocal } from '@functions/AoConnect/MsgReminder'
+import { GetMyLastMsg, AoCreateProcessAuto, generateRandomNumber, sleep, FormatBalance } from '@/functions/AoConnect/AoConnect'
+import { AoLoadBlueprintToken, AoTokenTransfer, AoTokenMint, AoTokenBalancesDryRun } from '@/functions/AoConnect/Token'
+import { ReminderMsgAndStoreToLocal } from '@/functions/AoConnect/MsgReminder'
 import { ansiRegex } from '@configs/functions'
 
 const TokenModel = () => {

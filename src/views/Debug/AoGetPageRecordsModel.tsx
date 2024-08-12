@@ -23,7 +23,7 @@ import TableContainer from '@mui/material/TableContainer'
 
 
 // ** Icon Imports
-import Icon from '@core/components/icon'
+import Icon from '@/@core/components/icon'
 
 // ** Context
 import { useAuth } from '@/hooks/useAuth'
@@ -36,7 +36,7 @@ import { useTranslation } from 'react-i18next'
 
 import { useRouter } from 'next/router'
 
-import { AoGetPageRecords } from '@functions/AoConnect/AoConnect'
+import { AoGetPageRecords } from '@/functions/AoConnect/AoConnect'
 import AnsiText from './AnsiText'
 
 

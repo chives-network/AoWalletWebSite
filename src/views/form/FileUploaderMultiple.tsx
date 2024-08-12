@@ -11,7 +11,7 @@ import IconButton from '@mui/material/IconButton'
 import Typography, { TypographyProps } from '@mui/material/Typography'
 
 // ** Icon Imports
-import Icon from '@core/components/icon'
+import Icon from '@/@core/components/icon'
 
 // ** Third Party Imports
 import { useDropzone } from 'react-dropzone'
@@ -22,8 +22,8 @@ import { useAuth } from '@/hooks/useAuth'
 import CircularProgress from '@mui/material/CircularProgress'
 
 // ** Hooks
-import { sendAmount, getCurrentWallet, getHash, getProcessedData, getChivesLanguage } from '@functions/ChivesWallets'
-import {EncryptDataWithKey} from '@functions/ChivesEncrypt'
+import { sendAmount, getCurrentWallet, getHash, getProcessedData, getChivesLanguage } from '@/functions/ChivesWallets'
+import {EncryptDataWithKey} from '@/functions/ChivesEncrypt'
 
 // ** Third Party Components
 import toast from 'react-hot-toast'

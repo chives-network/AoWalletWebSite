@@ -21,8 +21,8 @@ import InputAdornment from '@mui/material/InputAdornment'
 import toast from 'react-hot-toast'
 
 import Box from '@mui/material/Box'
-import Icon from '@core/components/icon'
 import IconButton from '@mui/material/IconButton'
+import Icon from '@/@core/components/icon'
 
 const TokenAirdrop = (props: any) => {
     // ** Props

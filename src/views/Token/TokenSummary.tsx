@@ -5,14 +5,14 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 
 // ** Icon Imports
-import Icon from '@core/components/icon'
 import MuiAvatar from '@mui/material/Avatar'
-import authConfig from '@configs/auth'
 import IconButton from '@mui/material/IconButton'
 
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
+import Icon from '@/@core/components/icon'
+import authConfig from '@configs/auth'
 import { GetTokenAvatar } from '@/functions/AoConnect/Token'
 
 const TokenSummary = (prop: any) => {

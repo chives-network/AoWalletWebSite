@@ -31,7 +31,7 @@ import type { Mode } from '@core/types'
 
 // Component Imports
 import Link from '@components/Link'
-import CustomAvatar from '@core/components/mui/Avatar'
+import CustomAvatar from '@/@core/components/mui/avatar2'
 
 // Hook Imports
 import { useImageVariant } from '@core/hooks/useImageVariant'

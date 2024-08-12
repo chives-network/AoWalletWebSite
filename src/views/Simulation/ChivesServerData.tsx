@@ -18,7 +18,7 @@ import { useAuth } from '@/hooks/useAuth'
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
-import { GetMyLastMsg, AoCreateProcessAuto, sleep } from '@functions/AoConnect/AoConnect'
+import { GetMyLastMsg, AoCreateProcessAuto, sleep } from '@/functions/AoConnect/AoConnect'
 import { AoLoadBlueprintChivesServerData, 
   ChivesServerDataGetTokens, ChivesServerDataAddToken, ChivesServerDataDelToken, 
   ChivesServerDataGetChatrooms, ChivesServerDataAddChatroom, ChivesServerDataDelChatroom, 
@@ -28,7 +28,7 @@ import { AoLoadBlueprintChivesServerData,
   ChivesServerDataGetSwaps, ChivesServerDataAddSwap, ChivesServerDataDelSwap, 
   ChivesServerDataGetProjects, ChivesServerDataAddProject, ChivesServerDataDelProject, 
   ChivesServerDataGetFaucets, ChivesServerDataAddFaucet, ChivesServerDataDelFaucet
- } from '@functions/AoConnect/ChivesServerData'
+ } from '@/functions/AoConnect/ChivesServerData'
 import { ansiRegex } from '@configs/functions'
 
 const ChivesServerData = () => {

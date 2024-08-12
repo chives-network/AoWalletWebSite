@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography'
 import toast from 'react-hot-toast'
 
 // ** Icon Imports
-import Icon from '@core/components/icon'
+import Icon from '@/@core/components/icon'
 
 // ** Third Party Imports
 import PerfectScrollbar from 'react-perfect-scrollbar'
@@ -19,11 +19,11 @@ import PerfectScrollbar from 'react-perfect-scrollbar'
 import { useSettings } from '@core/hooks/useSettings'
 
 // ** Custom Components Imports
-import Sidebar from '@core/components/sidebar'
-import OptionsMenu from '@core/components/option-menu'
+import Sidebar from '@/@core/components/sidebar'
+import OptionsMenu from '@/@core/components/option-menu'
 
 // ** Types
-import { OptionType } from '@core/components/option-menu/types'
+import { OptionType } from '@/@core/components/option-menu/types'
 import { EmailDetailType } from '@types/apps/emailTypes'
 
 // ** Third Party Import
@@ -31,9 +31,9 @@ import { useTranslation } from 'react-i18next'
 
 import { formatTimestampLocalTime } from '@configs/functions';
 
-import { GetFileCacheStatus } from '@functions/ChivesWallets'
+import { GetFileCacheStatus } from '@/functions/ChivesWallets'
 
-import { GetAppAvatarModId } from '@functions/AoConnect/Token'
+import { GetAppAvatarModId } from '@/functions/AoConnect/Token'
 
 const EmailDetail = (props: EmailDetailType) => {
   // ** Hook

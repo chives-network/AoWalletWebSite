@@ -18,13 +18,13 @@ import InputAdornment from '@mui/material/InputAdornment'
 import { useAuth } from '@/hooks/useAuth'
 
 // ** Icon Imports
-import Icon from '@core/components/icon'
+import Icon from '@/@core/components/icon'
 
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
-import { GetMyLastMsg, AoCreateProcessAuto, sleep } from '@functions/AoConnect/AoConnect'
-import { ChivesChatAddMember, SendMessageToChivesChat, ChivesChatGetChatRecords, ChivesChatApplyJoin, ChivesChatIsMember } from '@functions/AoConnect/ChivesChat'
+import { GetMyLastMsg, AoCreateProcessAuto, sleep } from '@/functions/AoConnect/AoConnect'
+import { ChivesChatAddMember, SendMessageToChivesChat, ChivesChatGetChatRecords, ChivesChatApplyJoin, ChivesChatIsMember } from '@/functions/AoConnect/ChivesChat'
 import { ansiRegex } from '@configs/functions'
 
 const ChivesChatOnlyChat = () => {

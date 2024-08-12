@@ -19,7 +19,7 @@ import ListItemButton from '@mui/material/ListItemButton'
 import FormControlLabel from '@mui/material/FormControlLabel'
 
 // ** Icon Imports
-import Icon from '@core/components/icon'
+import Icon from '@/@core/components/icon'
 
 // ** Third Party Components
 import PerfectScrollbar from 'react-perfect-scrollbar'
@@ -28,7 +28,7 @@ import PerfectScrollbar from 'react-perfect-scrollbar'
 import { StatusType, UserProfileLeftType } from '@types/apps/chatTypes'
 
 // ** Custom Component Imports
-import Sidebar from '@core/components/sidebar'
+import Sidebar from '@/@core/components/sidebar'
 
 const UserProfileLeft = (props: UserProfileLeftType) => {
   const {

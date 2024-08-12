@@ -24,10 +24,10 @@ import type { ButtonProps } from '@mui/material/Button'
 import classnames from 'classnames'
 
 // Type Imports
-import type { CustomInputHorizontalData } from '@core/components/custom-inputs/types'
+import type { CustomInputHorizontalData } from '@/@core/components/custom-inputs/types'
 
 // Component Imports
-import CustomInputHorizontal from '@core/components/custom-inputs/Horizontal'
+import CustomInputHorizontal from '@/@core/components/custom-inputs/Horizontal'
 import PricingDialog from '@components/dialogs/pricing'
 import OpenDialogOnElementClick from '@components/dialogs/OpenDialogOnElementClick'
 import { useSettings } from '@core/hooks/useSettings'

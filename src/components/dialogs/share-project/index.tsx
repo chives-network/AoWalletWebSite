@@ -26,7 +26,7 @@ import MenuItem from '@mui/material/MenuItem'
 import themeConfig from '@configs/themeConfig'
 
 // Component Imports
-import CustomAvatar from '@core/components/mui/Avatar'
+import CustomAvatar from '@/@core/components/mui/avatar2'
 
 type ShareProjectProps = {
   open: boolean

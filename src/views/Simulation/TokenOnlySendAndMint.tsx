@@ -18,16 +18,16 @@ import InputAdornment from '@mui/material/InputAdornment'
 import { useAuth } from '@/hooks/useAuth'
 
 // ** Icon Imports
-import Icon from '@core/components/icon'
+import Icon from '@/@core/components/icon'
 import toast from 'react-hot-toast'
 import Avatar from '@mui/material/Avatar'
 
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
-import { AoCreateProcessAuto, generateRandomNumber } from '@functions/AoConnect/AoConnect'
-import { AoTokenTransfer, AoTokenBalanceDryRun } from '@functions/AoConnect/Token'
-import { ReminderMsgAndStoreToLocal } from '@functions/AoConnect/MsgReminder'
+import { AoCreateProcessAuto, generateRandomNumber } from '@/functions/AoConnect/AoConnect'
+import { AoTokenTransfer, AoTokenBalanceDryRun } from '@/functions/AoConnect/Token'
+import { ReminderMsgAndStoreToLocal } from '@/functions/AoConnect/MsgReminder'
 
 const TokenOnlySendAndMintModel = () => {
   // ** Hook

@@ -16,15 +16,15 @@ import Box from '@mui/material/Box'
 import { useAuth } from '@/hooks/useAuth'
 import authConfig from '@configs/auth'
 
-import { GetMyLastMsg } from '@functions/AoConnect/AoConnect'
-import { MyProcessTxIdsGetTokens, MyProcessTxIdsAddToken, MyProcessTxIdsDelToken } from '@functions/AoConnect/MyProcessTxIds'
+import { GetMyLastMsg } from '@/functions/AoConnect/AoConnect'
+import { MyProcessTxIdsGetTokens, MyProcessTxIdsAddToken, MyProcessTxIdsDelToken } from '@/functions/AoConnect/MyProcessTxIds'
 
 import TokenLeft from '@views/Token/TokenLeft'
 import TokenIndex from '@views/Token/TokenIndex'
 
 import { ansiRegex } from '@configs/functions'
-import { AoCreateProcessAuto } from '@functions/AoConnect/AoConnect'
-import { GetAoConnectMyAoConnectTxId, SetAoConnectMyAoConnectTxId } from '@functions/AoConnect/MsgReminder'
+import { AoCreateProcessAuto } from '@/functions/AoConnect/AoConnect'
+import { GetAoConnectMyAoConnectTxId, SetAoConnectMyAoConnectTxId } from '@/functions/AoConnect/MsgReminder'
 
 const TokenModel = () => {
   // ** Hook

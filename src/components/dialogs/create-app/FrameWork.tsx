@@ -8,7 +8,7 @@ import Radio from '@mui/material/Radio'
 import Button from '@mui/material/Button'
 
 // Component Imports
-import CustomAvatar from '@core/components/mui/Avatar'
+import CustomAvatar from '@/@core/components/mui/avatar2'
 
 type Props = {
   activeStep: number

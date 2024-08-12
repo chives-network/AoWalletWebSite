@@ -15,7 +15,7 @@ import ListItemText from '@mui/material/ListItemText'
 import ListItemButton from '@mui/material/ListItemButton'
 
 // ** Icon Imports
-import Icon from '@core/components/icon'
+import Icon from '@/@core/components/icon'
 
 // ** Third Party Components
 import PerfectScrollbar from 'react-perfect-scrollbar'
@@ -24,10 +24,10 @@ import PerfectScrollbar from 'react-perfect-scrollbar'
 import { UserProfileRightType } from '@types/apps/chatTypes'
 
 // ** Custom Component Imports
-import Sidebar from '@core/components/sidebar'
-import CustomAvatar from '@core/components/mui/avatar'
+import Sidebar from '@/@core/components/sidebar'
+import CustomAvatar from '@/@core/components/mui/Avatar'
 
-import { getInitials } from '@core/utils/get-initials'
+import { getInitials } from '@/@core/utils/get-initials'
 
 const UserProfileRight = (props: UserProfileRightType) => {
   const {

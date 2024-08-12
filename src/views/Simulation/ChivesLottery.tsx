@@ -15,11 +15,11 @@ import { useAuth } from '@/hooks/useAuth'
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
-//import { AoLoadBlueprintLottery, AoLotteryCheckBalance, AoLotteryCredit, AoLotteryUpdateBalance } from '@functions/AoConnect/ChivesLottery'
+//import { AoLoadBlueprintLottery, AoLotteryCheckBalance, AoLotteryCredit, AoLotteryUpdateBalance } from '@/functions/AoConnect/ChivesLottery'
 
-import { GetMyLastMsg, AoCreateProcessAuto, sleep } from '@functions/AoConnect/AoConnect'
-import { AoTokenBalanceDryRun } from '@functions/AoConnect/Token'
-import { AoLoadBlueprintLottery, AoLotteryCheckBalance, AoLotteryDeposit, AoLotteryUpdateBalance, AoLotteryCredit } from '@functions/AoConnect/ChivesLottery'
+import { GetMyLastMsg, AoCreateProcessAuto, sleep } from '@/functions/AoConnect/AoConnect'
+import { AoTokenBalanceDryRun } from '@/functions/AoConnect/Token'
+import { AoLoadBlueprintLottery, AoLotteryCheckBalance, AoLotteryDeposit, AoLotteryUpdateBalance, AoLotteryCredit } from '@/functions/AoConnect/ChivesLottery'
 import { ansiRegex } from '@configs/functions'
 
 const ChivesLotteryModel = () => {

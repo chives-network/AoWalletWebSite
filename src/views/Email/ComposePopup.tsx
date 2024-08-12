@@ -16,21 +16,21 @@ import InputLabel from '@mui/material/InputLabel'
 import ButtonGroup from '@mui/material/ButtonGroup'
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete'
 
-import { EncryptEmailAES256GCMV1 } from '@functions/ChivesEncrypt'
+import { EncryptEmailAES256GCMV1 } from '@/functions/ChivesEncrypt'
 
-import { ChivesEmailSendEmail } from '@functions/AoConnect/ChivesEmail'
+import { ChivesEmailSendEmail } from '@/functions/AoConnect/ChivesEmail'
 
 import authConfig from '@configs/auth'
 
 // ** Icon Imports
-import Icon from '@core/components/icon'
+import Icon from '@/@core/components/icon'
 
 // ** Third Party Components
 import { EditorState, ContentState } from 'draft-js'
 
 // ** Custom Components Imports
-import CustomAvatar from '@core/components/mui/avatar'
-import ReactDraftWysiwyg from '@core/components/react-draft-wysiwyg'
+import CustomAvatar from '@/@core/components/mui/Avatar'
+import ReactDraftWysiwyg from '@/@core/components/react-draft-wysiwyg'
 
 // ** Styled Component Imports
 import { EditorWrapper } from '@core/styles/libs/react-draft-wysiwyg'
@@ -39,7 +39,7 @@ import { EditorWrapper } from '@core/styles/libs/react-draft-wysiwyg'
 import { MailComposeType, FieldMenuItems } from '@types/apps/emailTypes'
 
 // ** Utils Import
-import { getInitials } from '@core/utils/get-initials'
+import { getInitials } from '@/@core/utils/get-initials'
 
 
 // ** Styles

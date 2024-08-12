@@ -11,22 +11,22 @@ import Typography from '@mui/material/Typography'
 import ListItemText from '@mui/material/ListItemText'
 import ListItemAvatar from '@mui/material/ListItemAvatar'
 import ListItemButton from '@mui/material/ListItemButton'
-import Icon from '@core/components/icon'
+import Icon from '@/@core/components/icon'
 import Fab from '@mui/material/Fab'
 
 // ** Third Party Components
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
 // ** Custom Components Import
-import CustomAvatar from '@core/components/mui/avatar'
+import CustomAvatar from '@/@core/components/mui/Avatar'
 
-import { getInitials } from '@core/utils/get-initials'
+import { getInitials } from '@/@core/utils/get-initials'
 
 import { useTranslation } from 'react-i18next'
 
 import CircularProgress from '@mui/material/CircularProgress'
 import MuiAvatar from '@mui/material/Avatar'
-import { GetAppAvatar } from '@functions/AoConnect/Token'
+import { GetAppAvatar } from '@/functions/AoConnect/Token'
 import { formatHash} from '@configs/functions';
 
 const ScrollWrapper = ({ children, hidden }: { children: ReactNode; hidden: boolean }) => {

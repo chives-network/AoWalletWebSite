@@ -21,16 +21,16 @@ import Card from '@mui/material/Card'
 import Divider from '@mui/material/Divider'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
-import CustomAvatar from '@core/components/mui/avatar'
+import CustomAvatar from '@/@core/components/mui/Avatar'
 import CircularProgress from '@mui/material/CircularProgress'
 
-import { ChatChatInit } from '@functions/ChatBook'
+import { ChatChatInit } from '@/functions/ChatBook'
 
 // ** Axios Imports
 import { useAuth } from '@/hooks/useAuth'
 
-import { GetChatRecordsFromLocalStorage, GetAoConnectMembers, SetAoConnectMembers, GetAoConnectChannels, SetAoConnectChannels, SaveChatRecordsToStorage } from '@functions/AoConnect/MsgReminder'
-import { SendMessageToChivesChat, ChivesChatGetMembers, ChivesChatGetChannels, ChivesChatAddAdmin, ChivesChatDelAdmin, ChivesChatAddInvites, ChivesChatApprovalApply, ChivesChatRefuseApply, ChivesChatDelMember, ChivesChatBlockMember, ChivesChatAddChannel, ChivesChatEditChannel, ChivesChatDelChannel, ChivesChatIsMember, GetChatroomAvatar, ChivesChatApplyJoin, ChivesChatGetChatRecords } from '@functions/AoConnect/ChivesChat'
+import { GetChatRecordsFromLocalStorage, GetAoConnectMembers, SetAoConnectMembers, GetAoConnectChannels, SetAoConnectChannels, SaveChatRecordsToStorage } from '@/functions/AoConnect/MsgReminder'
+import { SendMessageToChivesChat, ChivesChatGetMembers, ChivesChatGetChannels, ChivesChatAddAdmin, ChivesChatDelAdmin, ChivesChatAddInvites, ChivesChatApprovalApply, ChivesChatRefuseApply, ChivesChatDelMember, ChivesChatBlockMember, ChivesChatAddChannel, ChivesChatEditChannel, ChivesChatDelChannel, ChivesChatIsMember, GetChatroomAvatar, ChivesChatApplyJoin, ChivesChatGetChatRecords } from '@/functions/AoConnect/ChivesChat'
 import { StatusObjType, StatusType } from '@types/apps/chatTypes'
 import MembersList from '@views/Chat/MembersList'
 import ChannelsList from '@views/Chat/ChannelsList'

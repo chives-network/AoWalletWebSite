@@ -25,19 +25,19 @@ import PerfectScrollbar from 'react-perfect-scrollbar'
 import Fab from '@mui/material/Fab'
 
 // ** Icon Imports
-import Icon from '@core/components/icon'
+import Icon from '@/@core/components/icon'
 
 // ** Types
 import { ProfileUserType } from '@types/apps/chatTypes'
 
 // ** Custom Components Import
-import CustomAvatar from '@core/components/mui/avatar'
+import CustomAvatar from '@/@core/components/mui/Avatar'
 
-import { getInitials } from '@core/utils/get-initials'
+import { getInitials } from '@/@core/utils/get-initials'
 
 import { useTranslation } from 'react-i18next'
 import CircularProgress from '@mui/material/CircularProgress'
-import OptionsMenu from '@core/components/option-menu'
+import OptionsMenu from '@/@core/components/option-menu'
 
 const ScrollWrapper = ({ children, hidden }: { children: ReactNode; hidden: boolean }) => {
   if (hidden) {

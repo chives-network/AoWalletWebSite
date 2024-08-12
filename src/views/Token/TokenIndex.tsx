@@ -19,10 +19,8 @@ import TableCell from '@mui/material/TableCell'
 import CircularProgress from '@mui/material/CircularProgress'
 
 // ** Next Import
-import { useAuth } from '@/hooks/useAuth'
 
 // ** Icon Imports
-import Icon from '@core/components/icon'
 import toast from 'react-hot-toast'
 import MuiAvatar from '@mui/material/Avatar'
 import authConfig from '@configs/auth'
@@ -42,16 +40,19 @@ import TokenMyAllTransactions from './TokenMyAllTransactions'
 import TokenReceivedTransactions from './TokenReceivedTransactions'
 import TokenSentTransaction from './TokenSentTransaction'
 
-import { AoCreateProcessAuto, FormatBalance, sleep, isOwner } from '@functions/AoConnect/AoConnect'
-import { AoLoadBlueprintToken, AoTokenTransfer, AoTokenMint, AoTokenAirdrop, AoTokenBalanceDryRun, AoTokenBalancesDryRun, AoTokenBalancesPageDryRun, AoTokenInfoDryRun, AoTokenAllTransactions, AoTokenSentTransactions, AoTokenReceivedTransactions, AoTokenMyAllTransactions, GetTokenAvatar } from '@functions/AoConnect/Token'
+import { AoCreateProcessAuto, FormatBalance, sleep } from '@/functions/AoConnect/AoConnect'
+import { AoLoadBlueprintToken, AoTokenTransfer, AoTokenMint, AoTokenAirdrop, AoTokenBalanceDryRun, AoTokenBalancesDryRun, AoTokenBalancesPageDryRun, AoTokenInfoDryRun, AoTokenAllTransactions, AoTokenSentTransactions, AoTokenReceivedTransactions, AoTokenMyAllTransactions, GetTokenAvatar } from '@/functions/AoConnect/Token'
 
-import { ChivesServerDataGetTokens } from '@functions/AoConnect/ChivesServerData'
+import { ChivesServerDataGetTokens } from '@/functions/AoConnect/ChivesServerData'
 
-import { downloadCsv } from '@functions/ChatBook'
+import { downloadCsv } from '@/functions/ChatBook'
+
+import Icon from '@/@core/components/icon'
 
 // ** Third Party Components
 import { BigNumber } from 'bignumber.js'
 import { ansiRegex } from '@configs/functions'
+import { useAuth } from '@/hooks/useAuth'
 
 const TokenIndexModel = (prop: any) => {
   // ** Hook
@@ -141,6 +142,7 @@ const TokenIndexModel = (prop: any) => {
           console.log("handleTokenBalancesPagination", pageId, tokenInfo)
           break;
       }
+      setIsOwnerStatus(false)
     }
   }, [pageId, tokenInfo, tokenListAction])
 
@@ -165,10 +167,6 @@ const TokenIndexModel = (prop: any) => {
     setSearchToken(CurrentToken)
     setCancelTokenFavorite(false)
 
-    const isOwnerData = await isOwner(CurrentToken, currentAddress)
-    setIsOwnerStatus(isOwnerData)
-    console.log("isOwnerData", isOwnerData)
-    
     setTokenGetInfor((prevState: any)=>({
       ...prevState,
       TokenProcessTxId: CurrentToken,
@@ -234,7 +232,7 @@ const TokenIndexModel = (prop: any) => {
     }
     
     console.log("handleTokenSearch tokenGetInfor", tokenGetInfor)
-    if(isOwnerData == false) {
+    if(false) {
       const AoDryRunBalance = await AoTokenBalanceDryRun(CurrentToken, currentAddress)
       if(AoDryRunBalance && tokenInfo && Denomination) {
         setTokenGetInfor((prevState: any)=>({

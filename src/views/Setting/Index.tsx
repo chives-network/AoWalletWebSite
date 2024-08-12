@@ -15,12 +15,12 @@ import TableRow from '@mui/material/TableRow'
 import TableCell from '@mui/material/TableCell'
 import { useTranslation } from 'react-i18next'
 import IconButton from '@mui/material/IconButton'
-import Icon from '@core/components/icon'
+import Icon from '@/@core/components/icon'
 import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
 import CircularProgress from '@mui/material/CircularProgress'
 import { useAuth } from '@/hooks/useAuth'
-import { GetTokenAvatar } from '@functions/AoConnect/Token'
+import { GetTokenAvatar } from '@/functions/AoConnect/Token'
 
 import toast from 'react-hot-toast'
 import MuiAvatar from '@mui/material/Avatar'
@@ -34,11 +34,11 @@ import {
     ChivesServerDataGetSwaps, ChivesServerDataAddSwap, ChivesServerDataDelSwap, 
     ChivesServerDataGetProjects, ChivesServerDataAddProject, ChivesServerDataDelProject, 
     ChivesServerDataGetFaucets, ChivesServerDataAddFaucet, ChivesServerDataDelFaucet
-   } from '@functions/AoConnect/ChivesServerData'
+   } from '@/functions/AoConnect/ChivesServerData'
 
-import { AoTokenInfoDryRun } from '@functions/AoConnect/Token'
-import { AoChatroomInfoDryRun } from '@functions/AoConnect/ChivesChat'
-import { AoFaucetInfo } from '@functions/AoConnect/ChivesFaucet'
+import { AoTokenInfoDryRun } from '@/functions/AoConnect/Token'
+import { AoChatroomInfoDryRun } from '@/functions/AoConnect/ChivesChat'
+import { AoFaucetInfo } from '@/functions/AoConnect/ChivesFaucet'
 
 import { ansiRegex } from '@configs/functions'
 

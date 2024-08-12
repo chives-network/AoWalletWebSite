@@ -15,8 +15,9 @@ import IconButton from '@mui/material/IconButton'
 import CircularProgress from '@mui/material/CircularProgress'
 import Grid from '@mui/material/Grid'
 import Pagination from '@mui/material/Pagination'
+
 import { formatHash, formatToken } from '@configs/functions'
-import Icon from '@core/components/icon'
+import Icon from '@/@core/components/icon'
 
 const TokenAllTransactions = (prop: any) => {
   

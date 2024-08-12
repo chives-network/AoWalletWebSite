@@ -20,7 +20,7 @@ import authConfig from '@configs/auth'
 
 
 // ** Icon Imports
-import Icon from '@core/components/icon'
+import Icon from '@/@core/components/icon'
 
 // ** Context
 import { useAuth } from '@/hooks/useAuth'
@@ -33,8 +33,8 @@ import { useTranslation } from 'react-i18next'
 
 import { useRouter } from 'next/router'
 
-import { AoSendMsg, AoGetMessage, generateRandomNumber } from '@functions/AoConnect/AoConnect'
-import { SetAoConnectReminderProcessTxId, GetAoConnectReminderProcessTxId, SetAoConnectMyAoConnectTxId, GetAoConnectMyAoConnectTxId } from '@functions/AoConnect/MsgReminder'
+import { AoSendMsg, AoGetMessage, generateRandomNumber } from '@/functions/AoConnect/AoConnect'
+import { SetAoConnectReminderProcessTxId, GetAoConnectReminderProcessTxId, SetAoConnectMyAoConnectTxId, GetAoConnectMyAoConnectTxId } from '@/functions/AoConnect/MsgReminder'
 
 
 import MessageRender from './MessageRender'

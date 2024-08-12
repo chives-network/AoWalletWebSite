@@ -19,10 +19,10 @@ import { useAuth } from '@/hooks/useAuth'
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
-import { GetMyLastMsg, AoCreateProcessAuto, sleep } from '@functions/AoConnect/AoConnect'
+import { GetMyLastMsg, AoCreateProcessAuto, sleep } from '@/functions/AoConnect/AoConnect'
 import { AoLoadBlueprintChivesEmail, 
   ChivesEmailGetMyEmailRecords, ChivesEmailSendEmail, ChivesEmailSetPublicKey, ChivesEmailGetPublicKeys, ChivesEmailGetEmailRecords, ChivesEmailReadEmailContent, ChivesEmailMoveToFolder
- } from '@functions/AoConnect/ChivesEmail'
+ } from '@/functions/AoConnect/ChivesEmail'
 import { ansiRegex } from '@configs/functions'
 
 const ChivesEmail = () => {

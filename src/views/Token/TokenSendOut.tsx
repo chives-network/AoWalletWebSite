@@ -21,10 +21,10 @@ import InputAdornment from '@mui/material/InputAdornment'
 import toast from 'react-hot-toast'
 
 import Box from '@mui/material/Box'
-import Icon from '@core/components/icon'
+import Icon from '@/@core/components/icon'
 import IconButton from '@mui/material/IconButton'
 
-import { BalanceCompare } from '@functions/AoConnect/AoConnect'
+import { BalanceCompare } from '@/functions/AoConnect/AoConnect'
 
 const TokenSendOut = (props: any) => {
     // ** Props

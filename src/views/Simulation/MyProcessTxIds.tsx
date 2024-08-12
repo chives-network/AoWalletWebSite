@@ -18,7 +18,7 @@ import { useAuth } from '@/hooks/useAuth'
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
-import { GetMyLastMsg, AoCreateProcessAuto, sleep } from '@functions/AoConnect/AoConnect'
+import { GetMyLastMsg, AoCreateProcessAuto, sleep } from '@/functions/AoConnect/AoConnect'
 import { AoLoadBlueprintMyProcessTxIds, 
   MyProcessTxIdsGetTokens, MyProcessTxIdsAddToken, MyProcessTxIdsDelToken, 
   MyProcessTxIdsGetChatrooms, MyProcessTxIdsAddChatroom, MyProcessTxIdsDelChatroom, 
@@ -27,7 +27,7 @@ import { AoLoadBlueprintMyProcessTxIds,
   MyProcessTxIdsGetSwaps, MyProcessTxIdsAddSwap, MyProcessTxIdsDelSwap, 
   MyProcessTxIdsGetBlogs, MyProcessTxIdsAddBlog, MyProcessTxIdsDelBlog, 
   MyProcessTxIdsGetProjects, MyProcessTxIdsAddProject, MyProcessTxIdsDelProject
- } from '@functions/AoConnect/MyProcessTxIds'
+ } from '@/functions/AoConnect/MyProcessTxIds'
 import { ansiRegex } from '@configs/functions'
 
 const MyProcessTxIds = () => {

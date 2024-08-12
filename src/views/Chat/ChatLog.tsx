@@ -13,15 +13,15 @@ import Backdrop from '@mui/material/Backdrop'
 import CircularProgress from '@mui/material/CircularProgress'
 
 // ** Icon Imports
-import Icon from '@core/components/icon'
 
 // ** Third Party Components
 import PerfectScrollbarComponent, { ScrollBarProps } from 'react-perfect-scrollbar'
 
 // ** Custom Components Imports
-import CustomAvatar from '@core/components/mui/avatar'
+import CustomAvatar from '@/@core/components/mui/Avatar'
 
 import { formatHash, formatTimestampLocalTime} from '@configs/functions';
+import Icon from '@/@core/components/icon'
 
 const PerfectScrollbar = styled(PerfectScrollbarComponent)<ScrollBarProps & { ref: Ref<unknown> }>(({ theme }) => ({
   padding: theme.spacing(3, 5, 3, 3)

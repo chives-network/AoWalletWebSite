@@ -18,17 +18,17 @@ import ListItemButton from '@mui/material/ListItemButton'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
 // ** Custom Components Import
-import CustomAvatar from '@core/components/mui/avatar'
+import CustomAvatar from '@/@core/components/mui/Avatar'
 
-import { getInitials } from '@core/utils/get-initials'
+import { getInitials } from '@/@core/utils/get-initials'
 
 import { useTranslation } from 'react-i18next'
 
-import Icon from '@core/components/icon'
 import CircularProgress from '@mui/material/CircularProgress'
-import OptionsMenu from '@core/components/option-menu'
+import OptionsMenu from '@/@core/components/option-menu'
 import IconButton from '@mui/material/IconButton'
-import { getNanoid } from '@functions/string.tools'
+import { getNanoid } from '@/functions/string.tools'
+import Icon from '@/@core/components/icon'
 
 const ScrollWrapper = ({ children, hidden }: { children: ReactNode; hidden: boolean }) => {
   if (hidden) {

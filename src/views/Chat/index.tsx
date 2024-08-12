@@ -17,8 +17,8 @@ import { useRouter } from 'next/router'
 
 import { useAuth } from '@/hooks/useAuth'
 
-import { AoCreateProcessAuto } from '@functions/AoConnect/AoConnect'
-import { GetAoConnectMyAoConnectTxId, SetAoConnectMyAoConnectTxId } from '@functions/AoConnect/MsgReminder'
+import { AoCreateProcessAuto } from '@/functions/AoConnect/AoConnect'
+import { GetAoConnectMyAoConnectTxId, SetAoConnectMyAoConnectTxId } from '@/functions/AoConnect/MsgReminder'
 
 
 const Chat = () => {

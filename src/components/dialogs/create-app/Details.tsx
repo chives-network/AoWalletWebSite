@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 
 // Component Imports
-import CustomAvatar from '@core/components/mui/Avatar'
+import CustomAvatar from '@/@core/components/mui/avatar2'
 
 // Config Imports
 import themeConfig from '@configs/themeConfig'
