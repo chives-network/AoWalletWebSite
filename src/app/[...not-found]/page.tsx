@@ -7,6 +7,9 @@ import NotFound from '@views/NotFound'
 // Util Imports
 import { getSystemMode, getServerMode } from '@core/utils/serverHelpers'
 
+export async function generateStaticParams() {
+  return [{}]
+}
 
 const NotFoundPage = () => {
   // Vars
