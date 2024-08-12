@@ -73,15 +73,15 @@ const HeroSection = ({ mode }: { mode: Mode }) => {
       <div className={classnames('pbs-16 overflow-hidden', frontCommonStyles.layoutSpacing)}>
         <div className='md:max-is-[550px] mlb-0 mli-auto text-center'>
           <Typography className='font-extrabold text-primary sm:text-[38px] text-3xl mbe-4 leading-[44px]'>
-            All in one sass application for your business
+            All in one Ao & ArWeave wallet application
           </Typography>
           <Typography className='font-medium' color='text.primary'>
-            No coding required to make customizations. The live customizer has everything your marketing need.
+          Include Wallets, Tokens, Faucets, Email, Chat, and others.
           </Typography>
           <div className='mbs-8'>
             <Button
               component={Link}
-              href='/front-pages/landing-page#pricing-plans'
+              href='/home#pricing-plans'
               variant='contained'
               color='primary'
               size='large'

@@ -31,12 +31,12 @@ const GetStarted = () => {
               Ready to Get Started?
             </Typography>
             <Typography className='font-medium' color='text.secondary'>
-              Start your project with a 14-day free trial
+              Start your project with AoWallet for free
             </Typography>
           </div>
           <Button
             component={Link}
-            href='/home/payment'
+            href='/home'
             variant='contained'
           >
             Get Started

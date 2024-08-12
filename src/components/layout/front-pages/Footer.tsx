@@ -1,9 +1,7 @@
 // MUI Imports
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
 import Chip from '@mui/material/Chip'
-import TextField from '@mui/material/TextField'
 import IconButton from '@mui/material/IconButton'
 
 // Third-party Imports
@@ -17,7 +15,6 @@ import Logo from '@components/layout/shared/Logo'
 import { frontLayoutClasses } from '@layouts/utils/layoutClasses'
 
 // Styles Imports
-import styles from './styles.module.css'
 import frontCommonStyles from '@views/home/styles.module.css'
 
 function Footer() {
@@ -37,57 +34,34 @@ function Footer() {
                   <Logo color='var(--mui-palette-common-white)' />
                 </Link>
                 <Typography color='white' className='lg:max-is-[390px] opacity-[0.78]'>
-                  Most Powerful & Comprehensive 🤩 React NextJS Admin Template with Elegant Material Design & Unique
-                  Layouts.
+                  A non-custodial Ao & Arweave wallet with powerful functions, supporting Chrome extension, Android, and iOS platforms.
                 </Typography>
-                <div className='flex gap-4'>
-                  <TextField
-                    size='small'
-                    className={styles.inputBorder}
-                    label='Subscribe to newsletter'
-                    placeholder='Your email'
-                    sx={{
-                      ' & .MuiInputBase-root:hover:not(.Mui-focused) fieldset': {
-                        borderColor: 'rgb(var(--mui-mainColorChannels-dark) / 0.6) !important'
-                      },
-                      '& .MuiInputBase-root.Mui-focused fieldset': {
-                        borderColor: 'var(--mui-palette-primary-main)!important'
-                      },
-                      '& .MuiFormLabel-root.Mui-focused': {
-                        color: 'var(--mui-palette-primary-main) !important'
-                      }
-                    }}
-                  />
-                  <Button variant='contained' color='primary'>
-                    Subscribe
-                  </Button>
-                </div>
               </div>
             </Grid>
             <Grid item xs={12} sm={3} lg={2}>
               <Typography color='white' className='font-medium mbe-6 opacity-[0.92]'>
-                Pages
+                Integration
               </Typography>
               <div className='flex flex-col gap-4'>
-                <Typography component={Link} href='/home/pricing' color='white' className='opacity-[0.78]'>
-                  Pricing
-                </Typography>
-                <Link href='/home/payment' className='flex items-center gap-[10px]'>
+                <Link href='/home' className='flex items-center gap-[10px]'>
                   <Typography color='white' className='opacity-[0.78]'>
-                    Payment
+                    React Demo
                   </Typography>
                   <Chip label='New' color='primary' size='small' />
                 </Link>
+                <Typography component={Link} href='/home' color='white' className='opacity-[0.78]'>
+                  Tokens Hub
+                </Typography>
                 <Typography
                   component={Link}
-                  href='/pages/misc/under-maintenance'
+                  href='/home'
                   color='white'
                   className='opacity-[0.78]'
                 >
-                  Maintenance
+                  Faucets Hub
                 </Typography>
-                <Typography component={Link} href='/pages/misc/coming-soon' color='white' className='opacity-[0.78]'>
-                  Coming Soon
+                <Typography component={Link} href='/home' color='white' className='opacity-[0.78]'>
+                  Apps
                 </Typography>
               </div>
             </Grid>
@@ -96,17 +70,17 @@ function Footer() {
                 Products
               </Typography>
               <div className='flex flex-col gap-4'>
-                <Typography component={Link} href='/home' color='white' className='opacity-[0.78]'>
-                  Page builder
+                <Typography color='white' className='opacity-[0.78]'>
+                  Email
                 </Typography>
-                <Typography component={Link} href='/home' color='white' className='opacity-[0.78]'>
-                  Admin Dashboards
+                <Typography color='white' className='opacity-[0.78]'>
+                  Chat
                 </Typography>
-                <Typography component={Link} href='/home' color='white' className='opacity-[0.78]'>
-                  UI Kits
+                <Typography color='white' className='opacity-[0.78]'>
+                  Paid Document
                 </Typography>
-                <Typography component={Link} href='/home' color='white' className='opacity-[0.78]'>
-                  Illustrations
+                <Typography color='white' className='opacity-[0.78]'>
+                  Blog
                 </Typography>
               </div>
             </Grid>
@@ -157,27 +131,19 @@ function Footer() {
             <span>{`© ${new Date().getFullYear()}, Made with `}</span>
             <span>{`❤️`}</span>
             <span>{` by `}</span>
-            <Link href='https://themeselection.com' target='_blank' className='font-medium text-white'>
-              ThemeSelection
+            <Link href='https://www.aowallet.org' target='_blank' className='font-medium text-white'>
+              AoWallet
             </Link>
           </p>
           <div className='flex gap-6 items-center opacity-[0.78]'>
-            <IconButton component={Link} size='small' href='https://github.com/themeselection' target='_blank'>
+            <IconButton component={Link} size='small' href='https://github.com/chives-network/AoWallet/' target='_blank'>
               <i className='ri-github-fill text-white text-lg' />
             </IconButton>
-            <IconButton component={Link} size='small' href='https://www.facebook.com/ThemeSelections/' target='_blank'>
-              <i className='ri-facebook-fill text-white text-lg' />
-            </IconButton>
-            <IconButton component={Link} size='small' href='https://twitter.com/Theme_Selection' target='_blank'>
+            <IconButton component={Link} size='small' href='https://twitter.com/AoWallet' target='_blank'>
               <i className='ri-twitter-fill text-white text-lg' />
             </IconButton>
-            <IconButton
-              component={Link}
-              size='small'
-              href='https://in.linkedin.com/company/themeselection'
-              target='_blank'
-            >
-              <i className='ri-linkedin-fill text-white text-lg' />
+            <IconButton component={Link} size='small' href='https://discord.com/invite/aAkMH9Q3AY' target='_blank' >
+              <i className='ri-discord-fill text-white text-lg' />
             </IconButton>
           </div>
         </div>

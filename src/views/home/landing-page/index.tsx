@@ -9,14 +9,15 @@ import type { Mode } from '@core/types'
 // Component Imports
 import HeroSection from './HeroSection'
 import UsefulFeature from './UsefulFeature'
-import CustomerReviews from './CustomerReviews'
 import OurTeam from './OurTeam'
-import Pricing from './Pricing'
 import ProductStat from './ProductStat'
 import Faqs from './Faqs'
 import GetStarted from './GetStarted'
 import ContactUs from './ContactUs'
 import { useSettings } from '@core/hooks/useSettings'
+
+//import CustomerReviews from './CustomerReviews'
+//import Pricing from './Pricing'
 
 const LandingPageWrapper = ({ mode }: { mode: Mode }) => {
   // Hooks
@@ -34,9 +35,7 @@ const LandingPageWrapper = ({ mode }: { mode: Mode }) => {
     <>
       <HeroSection mode={mode} />
       <UsefulFeature />
-      <CustomerReviews />
       <OurTeam />
-      <Pricing />
       <ProductStat />
       <Faqs />
       <GetStarted />
