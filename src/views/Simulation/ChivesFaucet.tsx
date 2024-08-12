@@ -22,7 +22,7 @@ import { useTranslation } from 'react-i18next'
 import { AoCreateProcessAuto, sleep, FormatBalance } from '@/functions/AoConnect/AoConnect'
 
 import { AoTokenBalanceDryRun } from '@/functions/AoConnect/Token'
-import { AoLoadBlueprintFaucet, AoFaucetGetFaucetBalance, AoFaucetDepositToken, AoFaucetGetFaucet, AoFaucetDepositBalances, AoFaucetCreditBalances, AoFaucetInfo, AoFaucetCheckAddressAoBalanceActions } from '@/functions/AoConnect/ChivesFaucet'
+import { AoLoadBlueprintFaucet, AoFaucetGetFaucetBalance, AoFaucetDepositToken, AoFaucetGetFaucet, AoFaucetDepositBalances, AoFaucetCreditBalances, AoFaucetInfo } from '@/functions/AoConnect/ChivesFaucet'
 import { ansiRegex } from '@configs/functions'
 
 const ChivesFaucetModel = () => {
@@ -62,8 +62,8 @@ const ChivesFaucetModel = () => {
       }))
     }
 
-    const FaucetProcessTxId = "v8kYJ15f0DAdC11Z4Q_TrvEz_FK_CA1ItQWEwSEp5r4"
-    /*
+    //const FaucetProcessTxId = "v8kYJ15f0DAdC11Z4Q_TrvEz_FK_CA1ItQWEwSEp5r4"
+    
     const FaucetProcessTxId = await AoCreateProcessAuto(currentWallet.jwk)
 
     if(FaucetProcessTxId) {
@@ -109,20 +109,8 @@ const ChivesFaucetModel = () => {
     console.log("handleSimulatedChivesFaucet LoadBlueprintFaucet", LoadBlueprintFaucet)
 
     await sleep(3000)
-    */
-
-    const AoFaucetCheckAddressAoBalanceActionsData: any = await AoFaucetCheckAddressAoBalanceActions(currentWallet.jwk, FaucetProcessTxId)
-    console.log("AoFaucetCheckAddressAoBalanceActionsData1", AoFaucetCheckAddressAoBalanceActionsData?.msg?.Messages)
-    if(AoFaucetCheckAddressAoBalanceActionsData?.msg?.Messages && AoFaucetCheckAddressAoBalanceActionsData?.msg?.Messages[4]?.Data) {
-      console.log("AoFaucetCheckAddressAoBalanceActionsData2", AoFaucetCheckAddressAoBalanceActionsData)
-      setToolInfo((prevState: any)=>({
-        ...prevState,
-        AoFaucetCheckAddressAoBalanceActionsData: AoFaucetCheckAddressAoBalanceActionsData?.msg?.Messages[4]?.Data
-      }))
-    }
 
     setIsDisabledButton(false)
-    return 
 
     const AoFaucetInfoData = await AoFaucetInfo(FaucetProcessTxId)
     console.log("AoFaucetInfoData AoFaucetInfo", AoFaucetInfoData)
