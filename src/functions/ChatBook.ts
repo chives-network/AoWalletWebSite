@@ -523,10 +523,6 @@ export function GetAllLLMById(id: string): any[] {
     return GetAllLLMSData.filter((Item: any)=>Item.id == id)
 }
 
-export function CheckPermission(auth: any, router: any, forcelogout: boolean) {
-
-}
-
 interface ReportSection {
     title: string;
     content: string[];

@@ -30,7 +30,7 @@ const Chat = () => {
   const theme = useTheme()
   const { settings } = useSettings()
   
-  const { id } = '0'
+  const id = '0'
 
   const auth = useAuth()
   const currentAddress = auth.currentAddress

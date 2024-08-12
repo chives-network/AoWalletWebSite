@@ -83,7 +83,7 @@ export const GetAoConnectReminderProcessTxId = () => {
 export const ReminderMsgAndStoreToLocal = async (processTxId: string, reminder = true) => {
     
     const AoConnectLastCursorData = window.localStorage.getItem(AoConnectLastCursor + "_" + processTxId) || undefined
-    const AoGetPageRecordsList = await AoGetPageRecords(processTxId, 'DESC', AoConnectEveryTimeGetMsgCount, AoConnectLastCursorData);
+    const AoGetPageRecordsList: any = await AoGetPageRecords(processTxId, 'DESC', AoConnectEveryTimeGetMsgCount, AoConnectLastCursorData);
     const NeedReminderMsg: any[] = []
     const NeedSaveMsg: any[] = []
 

@@ -1,9 +1,4 @@
-// ** React Imports
-import { useEffect } from 'react'
 
-
-import { useAuth } from '@/hooks/useAuth'
-import { CheckPermission } from '@/functions/ChatBook'
 import { useTranslation } from 'react-i18next'
 
 // ** MUI Imports
@@ -27,7 +22,6 @@ const MembersInvite = (props: any) => {
 
     // ** Hook
     const { t } = useTranslation()
-    const auth = useAuth()
     
     const isDisabledButton = false
 
