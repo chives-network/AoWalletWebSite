@@ -114,7 +114,7 @@ const TokenIndexModel = (prop: any) => {
     if(tokenInfo && pageId > 0 && Number(tokenInfo.TokenHolders)>0 ) {
       setTokenGetInfor((prevState: any)=>({
         ...prevState,
-        TokenBalances: [[],[],[],[],[],[],[],[],[],[]]
+        TokenBalances: []
       }))
       setPageCount(Math.ceil(tokenInfo.TokenHolders/pageSize))
       setStartIndex((pageId - 1) * pageSize + 1) //start with 1, not 0
@@ -335,7 +335,7 @@ const TokenIndexModel = (prop: any) => {
   const handleAoTokenAllTransactions = async function (CurrentToken: string) {
     setTokenGetInfor((prevState: any)=>({
       ...prevState,
-      AoTokenAllTransactionsList: [[],[],[],[],[],[],[],[],[],[]],
+      AoTokenAllTransactionsList: [],
     }))
     const AoDryRunData: any = await AoTokenAllTransactions(CurrentToken, String(startIndex), String(endIndex))
     console.log("AoDryRunData", AoDryRunData)
@@ -357,7 +357,7 @@ const TokenIndexModel = (prop: any) => {
   const handleAoTokenMyAllTransactions = async function (CurrentToken: string) {
     setTokenGetInfor((prevState: any)=>({
       ...prevState,
-      AoTokenMyAllTransactionsList: [[],[],[],[],[],[],[],[],[],[]],
+      AoTokenMyAllTransactionsList: [],
     }))
     const AoDryRunData: any = await AoTokenMyAllTransactions(CurrentToken, currentAddress, String(startIndex), String(endIndex))
     console.log("AoDryRunData", AoDryRunData)
@@ -379,7 +379,7 @@ const TokenIndexModel = (prop: any) => {
   const handleAoTokenSentTransactions = async function (CurrentToken: string) {
     setTokenGetInfor((prevState: any)=>({
       ...prevState,
-      AoTokenSentTransactionsList: [[],[],[],[],[],[],[],[],[],[]],
+      AoTokenSentTransactionsList: [],
     }))
     const AoDryRunData: any = await AoTokenSentTransactions(CurrentToken, currentAddress, String(startIndex), String(endIndex))
     console.log("handleAoTokenSentTransactions AoDryRunData", AoDryRunData)
@@ -401,7 +401,7 @@ const TokenIndexModel = (prop: any) => {
   const handleAoTokenReceivedTransactions = async function (CurrentToken: string) {
     setTokenGetInfor((prevState: any)=>({
       ...prevState,
-      AoTokenReceivedTransactionsList: [[],[],[],[],[],[],[],[],[],[]],
+      AoTokenReceivedTransactionsList: [],
     }))
     const AoDryRunData: any = await AoTokenReceivedTransactions(CurrentToken, currentAddress, String(startIndex), String(endIndex))
     console.log("handleAoTokenReceivedTransactions AoDryRunData", AoDryRunData)
