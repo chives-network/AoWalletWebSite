@@ -34,7 +34,7 @@ const TokenCreate = (props: any) => {
     
 
     const auth = useAuth()
-    const currentAddress = auth.address
+    const currentAddress = auth.address as string
 
     useEffect(()=>{
         setTokenCreate( (prevState: any) => ({ 

@@ -34,7 +34,7 @@ const TokenSendOut = (props: any) => {
     const { t } = useTranslation()
     
     const auth = useAuth()
-    const currentAddress = auth.address
+    const currentAddress = auth.address as string
 
     useEffect(()=>{
         setTokenGetInfor( (prevState: any) => ({ 

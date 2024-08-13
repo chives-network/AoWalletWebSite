@@ -43,7 +43,7 @@ const AoGetPageRecordsModel = ({ auth }: any) => {
   
   const [resultRecords, setresultRecords] = useState<any>()
 
-  const currentAddress = auth.address
+  const currentAddress = auth.address as string
 
   const [processTxId, setprocessTxId] = useState<string>("K4kzmPPoxWp0YQqG0UNDeXIhWuhWkMcG0Hx8HYCjmLw")
   const [processTxIdError, setprocessTxIdError] = useState<string | null>(null)

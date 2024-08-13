@@ -40,7 +40,7 @@ const SendOutForm = () => {
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
   
   const auth = useAuth()
-  const currentAddress = auth.address
+  const currentAddress = auth.address as string
   
   const [inputAddress, setInputAddress] = useState<string>("")
   const [inputAddressError, setInputAddressError] = useState<string | null>(null)

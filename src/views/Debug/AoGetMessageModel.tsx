@@ -37,7 +37,7 @@ const AoGetMessageModel = ({ auth }: any) => {
   
   const [resultText, setResultText] = useState<any>()
 
-  const currentAddress = auth.address
+  const currentAddress = auth.address as string
 
   const [processTxId, setprocessTxId] = useState<string>("K4kzmPPoxWp0YQqG0UNDeXIhWuhWkMcG0Hx8HYCjmLw")
   const [processTxIdError, setprocessTxIdError] = useState<string | null>(null)

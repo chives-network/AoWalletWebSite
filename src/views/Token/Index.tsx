@@ -45,7 +45,7 @@ const TokenModel = () => {
   const mdAbove = useMediaQuery(theme.breakpoints.up('md'))
 
   const auth = useAuth()
-  const currentAddress = auth.address
+  const currentAddress = auth.address as string
 
   const [tokenLeft, setTokenLeft] = useState<any[]>([])
   const [counter, setCounter] = useState<number>(0)
