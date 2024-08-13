@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState, useEffect } from 'react'
+import { useState, useEffect, memo } from 'react'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
@@ -95,41 +95,23 @@ const EmailAppLayout = () => {
   }
 
   useEffect(() => {
-    if(true && currentAoAddress && currentAoAddress.length == 43) {
+    if(true && currentAoAddress && currentAoAddress.length == 43 && folder && paginationModel && paginationModel.page) {
       setLoading(true)
-      console.log("loading", loading)
       setNoEmailText('Loading...')
-
-      /*
-      dispatch(
-        fetchData({
-          address: String(currentAoAddress),
-          pageId: paginationModel.page - 1,
-          pageSize: paginationModel.pageSize,
-          folder: folder
-        })
-      ).then(()=>{
-        setLoading(false)
-        console.log("loading", loading)
-        setNoEmailText('No Email')
-      })
-      */
       const params = {
         address: String(currentAoAddress),
         pageId: paginationModel.page - 1,
         pageSize: paginationModel.pageSize,
         folder: folder
       }
-
+      console.log("paramsparamsparamsparams", params, counter)
       handleGetEmailData(params)
-      
       setComposeOpen(false)
       setComposeTitle(`${t(`Compose`)}`)
     }
   }, [paginationModel, folder, currentAoAddress, counter])
 
   const handleGetEmailData = async (params: any) => {
-      console.log("params", params)
       const startIndex = params.pageId * params.pageSize + 1
       const endIndex = (params.pageId+1) * params.pageSize
       const ChivesEmailGetMyEmailRecordsData1 = await ChivesEmailGetMyEmailRecords(authConfig.AoConnectChivesEmailServerData, params.address, params.folder ?? "Inbox", String(startIndex), String(endIndex))
@@ -140,14 +122,15 @@ const EmailAppLayout = () => {
         if(filterEmails && filterEmails.length == 0) {
           setNoEmailText('No Email')
         }
-        setStore({ ...{filterEmails, totalRecords, emailFolder, startIndex, endIndex, EmailRecordsCount, recordsUnRead}, filter: params })
+        setStore({ ...{data: filterEmails, total: totalRecords, emailFolder, startIndex, endIndex, EmailRecordsCount, recordsUnRead}, filter: params, allPages: Math.ceil(totalRecords / 10) })
       }
       else {
         setLoading(false)
         setNoEmailText('No Email')
-        setStore({ ...{filterEmails: [], totalRecords : 0, emailFolder: params.folder, startIndex: '0', endIndex: '10', EmailRecordsCount: {}, recordsUnRead:{} }, filter: params })
+        //setStore({ ...{data: [], total : 0, emailFolder: params.folder, startIndex: '0', endIndex: '10', EmailRecordsCount: {}, recordsUnRead:{} }, filter: params, allPages: 0 })
       }
   }
+  console.log("setStore", store)
 
   const handleLeftSidebarToggle = () => setLeftSidebarOpen(!leftSidebarOpen)
 
@@ -186,7 +169,7 @@ const EmailAppLayout = () => {
             </Grid>
           </Grid>
       )}
-      {loadingWallet == 1 && store != null && (
+      {loadingWallet == 1 && store && (
         <Box
           sx={{
             width: '100%',
@@ -256,4 +239,4 @@ const EmailAppLayout = () => {
   )
 }
 
-export default EmailAppLayout
+export default memo(EmailAppLayout)

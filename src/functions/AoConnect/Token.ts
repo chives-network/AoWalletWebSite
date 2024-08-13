@@ -711,7 +711,7 @@ export const GetAppAvatar = (logo: string) => {
     }
     else {
 
-        return "/images/chatroom/2.png"
+        return "/images/avatars/2.png"
     }
 
 }
@@ -719,11 +719,11 @@ export const GetAppAvatar = (logo: string) => {
 export const GetAppAvatarModId = (logo: string) => {
     if(logo) {
 
-        return "/images/chatroom/" + (logo[0].charCodeAt(0)%8 + 1) + ".png"
+        return "/images/avatars/" + (logo[0].charCodeAt(0)%8 + 1) + ".png"
     }
     else {
 
-        return "/images/chatroom/2.png"
+        return "/images/avatars/2.png"
     }
 
 }

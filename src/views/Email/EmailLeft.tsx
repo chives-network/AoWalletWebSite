@@ -31,12 +31,15 @@ import { CustomBadgeProps } from '@/@core/components/mui/badge2/types'
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
+// Styles Imports
+import styles from './styles.module.css'
+
 // ** Styled Components
 const ListItemStyled = styled(ListItem)<ListItemProps & { component?: ElementType; href: string }>(({ theme }) => ({
   borderLeftWidth: '3px',
   borderLeftStyle: 'solid',
   padding: theme.spacing(0, 5),
-  marginBottom: theme.spacing(1)
+  marginBottom: theme.spacing(2)
 }))
 
 const ListBadge = styled(CustomBadge)<CustomBadgeProps>(() => ({
@@ -81,8 +84,8 @@ const EmailLeft = (props: any) => {
     folder: string,
     color: 'default' | 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'info'
   ) => {
-    if (store && store.recordsCount && store.recordsCount[folder]) {
-      return <ListBadge skin='light' color={color} sx={{ ml: 2 }} badgeContent={store.recordsCount[folder]} />
+    if (store && store.EmailRecordsCount && store.EmailRecordsCount[folder]) {
+      return <ListBadge skin='light' color={color} sx={{ ml: 2 }} badgeContent={store.EmailRecordsCount[folder]} />
     }
     else {
       return null
@@ -294,8 +297,8 @@ const EmailLeft = (props: any) => {
                 borderLeftColor: handleActiveItem('folder', 'Important') ? 'primary.main' : 'transparent'
               }}
             >
-              <ListItemIcon sx={{ mr: 3.5, '& svg': { color: `${EmailCategoriesColors['Important']}.main` } }}>
-                <Icon icon='mdi:circle' fontSize='0.75rem' />
+              <ListItemIcon sx={{ mr: 0, my: 1, '& svg': { color: `${EmailCategoriesColors['Important']}.main` } }}>
+                <Icon icon='mdi:circle' fontSize='0.75rem' width='1rem' height='1rem' />
               </ListItemIcon>
               <ListItemText
                 primary={`${t(`Important`)}`}
@@ -317,8 +320,8 @@ const EmailLeft = (props: any) => {
                 borderLeftColor: handleActiveItem('folder', 'Social') ? 'primary.main' : 'transparent'
               }}
             >
-              <ListItemIcon sx={{ mr: 3.5, '& svg': { color: `${EmailCategoriesColors['Social']}.main` } }}>
-                <Icon icon='mdi:circle' fontSize='0.75rem' />
+              <ListItemIcon sx={{ mr: 0, my: 1, '& svg': { color: `${EmailCategoriesColors['Social']}.main` } }}>
+                <Icon icon='mdi:circle' fontSize='0.75rem' width='1rem' height='1rem'/>
               </ListItemIcon>
               <ListItemText
                 primary={`${t(`Social`)}`}
@@ -340,8 +343,8 @@ const EmailLeft = (props: any) => {
                 borderLeftColor: handleActiveItem('folder', 'Updates') ? 'primary.main' : 'transparent'
               }}
             >
-              <ListItemIcon sx={{ mr: 3.5, '& svg': { color: `${EmailCategoriesColors['Updates']}.main` } }}>
-                <Icon icon='mdi:circle' fontSize='0.75rem' />
+              <ListItemIcon sx={{ mr: 0, my: 1 }}>
+                <Icon icon='mdi:circle' fontSize='0.75rem' width='1rem' height='1rem'/>
               </ListItemIcon>
               <ListItemText
                 primary={`${t(`Updates`)}`}
@@ -363,8 +366,8 @@ const EmailLeft = (props: any) => {
                 borderLeftColor: handleActiveItem('folder', 'Forums') ? 'warning.main' : 'transparent'
               }}
             >
-              <ListItemIcon sx={{ mr: 3.5, '& svg': { color: `${EmailCategoriesColors['Forums']}.main` } }}>
-                <Icon icon='mdi:circle' fontSize='0.75rem' />
+              <ListItemIcon sx={{ mr: 0, my: 1, '& svg': { color: `${EmailCategoriesColors['Forums']}.main` } }}>
+                <Icon icon='mdi:circle' fontSize='0.75rem' width='1rem' height='1rem'/>
               </ListItemIcon>
               <ListItemText
                 primary={`${t(`Forums`)}`}
@@ -386,8 +389,8 @@ const EmailLeft = (props: any) => {
                 borderLeftColor: handleActiveItem('folder', 'Promotions') ? 'primary.main' : 'transparent'
               }}
             >
-              <ListItemIcon sx={{ mr: 3.5, '& svg': { color: `${EmailCategoriesColors['Promotions']}.main` } }}>
-                <Icon icon='mdi:circle' fontSize='0.75rem' />
+              <ListItemIcon sx={{ mr: 0, my: 1, '& svg': { color: `${EmailCategoriesColors['Promotions']}.main` } }}>
+                <Icon icon='mdi:circle' fontSize='0.75rem' width='1rem' height='1rem' />
               </ListItemIcon>
               <ListItemText
                 primary={`${t(`Promotions`)}`}

@@ -4,7 +4,6 @@ import ChatModel from '@/views/Chatroom/Index';
 
 const Chat = () => {
 
-
   return <ChatModel />
 
 }

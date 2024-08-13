@@ -528,11 +528,13 @@ const EmailList = (props: EmailListType) => {
         
         <Divider sx={{ m: '0 !important' }} />
         <Box sx={{ px: 3, py: 1 }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-            <Grid item key={"Pagination"} xs={12} sm={12} md={12} lg={12} sx={{ py: 2 }}>
-              <Pagination count={Number(store?.allPages)} variant='outlined' color='primary' page={paginationModel.page} onChange={handlePageChange} siblingCount={2} boundaryCount={3} />
-            </Grid>
-          </Box>
+          {store && store.allPages && store.allPages > 0 && (
+            <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+              <Grid item key={"Pagination"} xs={12} sm={12} md={12} lg={12} sx={{ py: 2 }}>
+                <Pagination count={Number(store?.allPages)} variant='outlined' color='primary' page={paginationModel.page} onChange={handlePageChange} siblingCount={2} boundaryCount={3} />
+              </Grid>
+            </Box>
+          )}
         </Box>
 
       </Box>
