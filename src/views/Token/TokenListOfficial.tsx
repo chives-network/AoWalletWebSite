@@ -13,6 +13,7 @@ import TableCell from '@mui/material/TableCell'
 import { useTranslation } from 'react-i18next'
 import IconButton from '@mui/material/IconButton'
 import CircularProgress from '@mui/material/CircularProgress'
+import Backdrop from '@mui/material/Backdrop'
 
 import Grid from '@mui/material/Grid'
 
@@ -103,18 +104,17 @@ const TokenListOfficial = (prop: any) => {
             </TableBody>
             </Table>
 
-            {tokenGetInfor && TokenBalances == null && (
+            {tokenGetInfor && tokenGetInfor.isLoading == true && (
                 <Box sx={{ pl: 5, py: 3 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
                     <Grid item key={"Pagination"} xs={12} sm={12} md={12} lg={12} sx={{ padding: '10px 0 10px 0' }}>
-                        <CircularProgress />
                         <Typography noWrap variant='body2' sx={{ color: 'primary.main', pr: 3, display: 'inline', ml: 5, pt: 0 }}>{t('Loading token holders...')}</Typography>
                     </Grid>
                     </Box>
                 </Box>
             )}
 
-            {pageCount > 0 && (
+            {pageCount > 0 && tokenGetInfor.isLoading == false && (
                 <Box sx={{ pl: 5, py: 3 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
                     <Grid item key={"Pagination"} xs={12} sm={12} md={12} lg={12} sx={{ padding: '10px 0 10px 0' }}>
@@ -123,6 +123,18 @@ const TokenListOfficial = (prop: any) => {
                     </Box>
                 </Box>
             )}
+
+            <Backdrop
+                open={tokenGetInfor.isLoading}
+                sx={{
+                zIndex: 5,
+                position: 'absolute',
+                color: 'common.white',
+                backgroundColor: 'action.disabledBackground'
+                }}
+            >
+                <CircularProgress color='inherit' />
+            </Backdrop>
 
         </TableContainer>
 

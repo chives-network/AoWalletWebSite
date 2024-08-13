@@ -55,7 +55,9 @@ const TokenLeft = (props: any) => {
     leftSidebarOpen,
     handleLeftSidebarToggle,
     setTokenGetInfor,
-    setCancelTokenFavorite
+    setCancelTokenFavorite,
+    pageCount,
+    setPageCount
   } = props
 
   // ** States
@@ -72,6 +74,7 @@ const TokenLeft = (props: any) => {
     setAddTokenButtonText('Have favorite')
     setAddTokenFavorite(false)
     setCancelTokenFavorite(false)
+    setPageCount(0)
   }
 
   const renderTokens = (tokenLeft: any[]) => {

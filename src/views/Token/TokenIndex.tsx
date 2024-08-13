@@ -85,7 +85,9 @@ const TokenIndexModel = (prop: any) => {
           cancelTokenButtonText, 
           cancelTokenButtonDisabled,
           setCancelTokenFavorite,
-          setCancelTokenButtonDisabled
+          setCancelTokenButtonDisabled,
+          pageCount,
+          setPageCount
         } = prop
   
   const [myProcessTxIdInPage, setMyProcessTxIdInPage] = useState<string>(myAoConnectTxId)
@@ -105,7 +107,6 @@ const TokenIndexModel = (prop: any) => {
   const [tokenListAction, setTokenListAction] = useState<string>("All Holders")
   const [tokenListModel, setTokenListModel] = useState<string>("ChivesToken")
   const [pageId, setPageId] = useState<number>(1)
-  const [pageCount, setPageCount] = useState<number>(0)
   const [startIndex, setStartIndex] = useState<number>(1)
   const [endIndex, setEndIndex] = useState<number>(15)
   const pageSize = 15
@@ -114,7 +115,8 @@ const TokenIndexModel = (prop: any) => {
     if(tokenInfo && pageId > 0 && Number(tokenInfo.TokenHolders)>0 ) {
       setTokenGetInfor((prevState: any)=>({
         ...prevState,
-        TokenBalances: []
+        TokenBalances: [],
+        isLoading: true
       }))
       setPageCount(Math.ceil(tokenInfo.TokenHolders/pageSize))
       setStartIndex((pageId - 1) * pageSize + 1) //start with 1, not 0
@@ -145,8 +147,6 @@ const TokenIndexModel = (prop: any) => {
     }
   }, [pageId, tokenInfo, tokenListAction])
 
-  // ** State
-  //const [isLoading, setIsLoading] = useState(false);
 
   useEffect(()=>{
     if(searchToken && searchToken.length == 43) {
@@ -178,7 +178,8 @@ const TokenIndexModel = (prop: any) => {
       TokenHolders: null,
       CirculatingSupply: null,
       Version: null,
-      Release: null
+      Release: null,
+      isLoading: false
     }))
 
     const TokenGetMap: any = await AoTokenInfoDryRun(CurrentToken)
@@ -196,7 +197,8 @@ const TokenIndexModel = (prop: any) => {
         Denomination: TokenGetMap.Denomination,
         TokenHolders: TokenGetMap?.TokenHolders,
         CirculatingSupply: TokenGetMap?.TotalSupply,
-        ...TokenGetMap
+        ...TokenGetMap,
+        isLoading: false
       }))
       const isFavorite = tokenLeft.some((item: any) => item.Id == CurrentToken)
       if(isFavorite) {
@@ -226,6 +228,7 @@ const TokenIndexModel = (prop: any) => {
         TokenBalance: 0,
         TokenBalancesAllRecords: null,
         TokenBalances: null,
+        isLoading: false,
       }))
       setTokenListAction('')
     }
@@ -247,7 +250,8 @@ const TokenIndexModel = (prop: any) => {
         if(AoDryRunBalance) {
           setTokenGetInfor((prevState: any)=>({
             ...prevState,
-            TokenBalance: FormatBalance(AoDryRunBalance, Number(Denomination))
+            TokenBalance: FormatBalance(AoDryRunBalance, Number(Denomination)),
+            isLoading: false
           }))
         }
       }
@@ -307,6 +311,10 @@ const TokenIndexModel = (prop: any) => {
     return new Promise((resolve, reject) => {
       setTimeout(async () => {
         try {
+          setTokenGetInfor((prevState: any) => ({
+            ...prevState,
+            isLoading: true
+          }));
           let LoadBlueprintToken: any = await AoLoadBlueprintToken(globalThis.arweaveWallet, TokenProcessTxId, tokenCreate);
           while(LoadBlueprintToken && LoadBlueprintToken.status == 'ok' && LoadBlueprintToken.msg && LoadBlueprintToken.msg.error)  {
             sleep(6000)
@@ -323,6 +331,10 @@ const TokenIndexModel = (prop: any) => {
             }));
             resolve({ Token: TokenProcessTxId, Balance: FormatBalance(AoDryRunBalance, 12) });
           }
+          setTokenGetInfor((prevState: any) => ({
+            ...prevState,
+            isLoading: false
+          }));
         } catch (error) {
           console.log("handleTokenCreate Error:", error);
           reject(error);
@@ -345,6 +357,7 @@ const TokenIndexModel = (prop: any) => {
           ...prevState,
           AoTokenAllTransactionsList: AoDryRunData[0],
           AoTokenAllTransactionsCount: AoDryRunData[1],
+          isLoading: false
         }))
         setPageCount(Math.ceil(AoDryRunData[1]/pageSize))
       }
@@ -367,6 +380,7 @@ const TokenIndexModel = (prop: any) => {
           ...prevState,
           AoTokenMyAllTransactionsList: AoDryRunData[0],
           AoTokenMyAllTransactionsCount: AoDryRunData[1],
+          isLoading: false,
         }))
         setPageCount(Math.ceil(AoDryRunData[1]/pageSize))
       }
@@ -389,6 +403,7 @@ const TokenIndexModel = (prop: any) => {
           ...prevState,
           AoTokenSentTransactionsList: AoDryRunData[0],
           AoTokenSentTransactionsCount: AoDryRunData[1],
+          isLoading: false,
         }))
         setPageCount(Math.ceil(AoDryRunData[1]/pageSize))
       }
@@ -411,6 +426,7 @@ const TokenIndexModel = (prop: any) => {
           ...prevState,
           AoTokenReceivedTransactionsList: AoDryRunData[0],
           AoTokenReceivedTransactionsCount: AoDryRunData[1],
+          isLoading: false,
         }))
         setPageCount(Math.ceil(AoDryRunData[1]/pageSize))
       }
@@ -426,6 +442,10 @@ const TokenIndexModel = (prop: any) => {
 
       return 
     }
+    setTokenGetInfor((prevState: any)=>({
+      ...prevState,
+      isLoading: true
+    }))
     console.log("handleAoTokenBalancesDryRunOfficialToken Log", tokenGetInfor, tokenInfo)
     if(tokenGetInfor || tokenGetInfor.TokenBalancesAllRecords == undefined)   {
       const AoDryRunBalances = await AoTokenBalancesDryRun(CurrentToken)
@@ -448,7 +468,8 @@ const TokenIndexModel = (prop: any) => {
             ...prevState,
             TokenBalancesAllRecords: AoDryRunBalancesJsonSortedResult,
             TokenHolders: TokenHolders,
-            CirculatingSupply: CirculatingSupply.toString()
+            CirculatingSupply: CirculatingSupply.toString(),
+            isLoading: false
           }))
           console.log("handleAoTokenBalancesDryRunOfficialToken", AoDryRunBalancesJsonSortedResult, "TokenHolders", TokenHolders, tokenInfo, tokenGetInfor)
         }
@@ -457,6 +478,10 @@ const TokenIndexModel = (prop: any) => {
         }
       }
     }
+    setTokenGetInfor((prevState: any)=>({
+      ...prevState,
+      isLoading: false
+    }))
   }
 
   const handleAoTokenBalancesDryRunChivesToken = async function (CurrentToken: string, Denomination: number) {
@@ -485,7 +510,8 @@ const TokenIndexModel = (prop: any) => {
           TokenBalances: AoDryRunBalancesJsonSorted,
           TokenBalancesAllRecords: null,
           TokenHolders: TokenHolders,
-          CirculatingSupply: CirculatingSupply.toString()
+          CirculatingSupply: CirculatingSupply.toString(),
+          isLoading: false
         }))
         console.log("AoDryRunBalances", AoDryRunBalancesJsonSorted, "TokenHolders", TokenHolders)
       }
@@ -512,7 +538,8 @@ const TokenIndexModel = (prop: any) => {
     setIsDisabledButton(true)
     setTokenGetInfor((prevState: any)=>({
       ...prevState,
-      disabledSendOutButton: true
+      disabledSendOutButton: true,
+      isLoading: true
     }))
 
     const MintTokenData = await AoTokenMint(globalThis.arweaveWallet, TokenProcessTxId, MintAmount)
@@ -532,7 +559,8 @@ const TokenIndexModel = (prop: any) => {
     setIsDisabledButton(false)
     setTokenGetInfor((prevState: any)=>({
       ...prevState,
-      disabledSendOutButton: false
+      disabledSendOutButton: false,
+      isLoading: false
     }))
 
   }
@@ -554,7 +582,8 @@ const TokenIndexModel = (prop: any) => {
     setIsDisabledButton(true)
     setTokenGetInfor((prevState: any)=>({
       ...prevState,
-      disabledSendOutButton: true
+      disabledSendOutButton: true,
+      isLoading: true
     }))
 
     const MintTokenData = await AoTokenAirdrop(globalThis.arweaveWallet, TokenProcessTxId, AddressList, AmountList)
@@ -575,7 +604,8 @@ const TokenIndexModel = (prop: any) => {
     setIsDisabledButton(false)
     setTokenGetInfor((prevState: any)=>({
       ...prevState,
-      disabledSendOutButton: false
+      disabledSendOutButton: false,
+      isLoading: false
     }))
 
   }
@@ -613,7 +643,8 @@ const TokenIndexModel = (prop: any) => {
           if(AoDryRunBalance) {
             setTokenGetInfor((prevState: any)=>({
               ...prevState,
-              TokenBalance: FormatBalance(AoDryRunBalance, Number(tokenInfo.Denomination))
+              TokenBalance: FormatBalance(AoDryRunBalance, Number(tokenInfo.Denomination)),
+              isLoading: false
             }))
           }
 
@@ -812,10 +843,10 @@ const TokenIndexModel = (prop: any) => {
                                     </Box>
                                   </Box>
                                 </Box>
-                                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                <Box sx={{ display: 'flex', alignItems: 'center', width: '200px' }}>
                                   <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', mr: 3 }}>
-                                    <Typography sx={{ fontWeight: 500, fontSize: '0.875rem' }}>
-                                      {t('Token holders')}
+                                    <Typography sx={{ fontWeight: 500, fontSize: '0.875rem', wordWrap: 'break-word' }}>
+                                      {t('Holders')}
                                     </Typography>
                                     <Typography variant='caption' sx={{ color: 'primary.secondary', pt: 0.4 }}>
                                       {t('Circulating supply')}

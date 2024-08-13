@@ -55,12 +55,13 @@ const TokenModel = () => {
   const [addTokenButtonDisabled, setAddTokenButtonDisabled] = useState<boolean>(false)
   const [addTokenFavorite, setAddTokenFavorite] = useState<boolean>(false)
   const [tokenCreate, setTokenCreate] = useState<any>({ openCreateToken: false, FormSubmit: 'Submit', isDisabledButton: false })
-  const [tokenGetInfor, setTokenGetInfor] = useState<any>({ openSendOutToken: false, disabledSendOutButton:false, FormSubmit: 'Submit', isDisabledButton: false })
+  const [tokenGetInfor, setTokenGetInfor] = useState<any>({ openSendOutToken: false, disabledSendOutButton:false, FormSubmit: 'Submit', isDisabledButton: false, isLoading: false })
   
   const [cancelTokenButtonText, setCancelTokenButtonText] = useState<string>('Cancel Favorite')
   const [cancelTokenButtonDisabled, setCancelTokenButtonDisabled] = useState<boolean>(false)
   const [cancelTokenFavorite, setCancelTokenFavorite] = useState<boolean>(false)
   const [tokenInfo, setTokenInfo] = useState<any>(null)
+  const [pageCount, setPageCount] = useState<number>(0)
 
   const [leftSidebarOpen, setLeftSidebarOpen] = useState<boolean>(false)
   const handleLeftSidebarToggle = () => setLeftSidebarOpen(!leftSidebarOpen)
@@ -222,6 +223,8 @@ const TokenModel = () => {
             handleLeftSidebarToggle={handleLeftSidebarToggle}
             setTokenGetInfor={setTokenGetInfor}
             setCancelTokenFavorite={setCancelTokenFavorite}
+            pageCount={pageCount}
+            setPageCount={setPageCount}
           />
           {myAoConnectTxId && myAoConnectTxId.length == 43 && (
             <TokenIndex 
@@ -251,6 +254,8 @@ const TokenModel = () => {
               setCancelTokenFavorite={setCancelTokenFavorite}
               setCancelTokenButtonText={setCancelTokenButtonText}
               setCancelTokenButtonDisabled={setCancelTokenButtonDisabled}
+              pageCount={pageCount}
+              setPageCount={setPageCount}
             />
           )}
         </Fragment>

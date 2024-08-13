@@ -13,7 +13,8 @@ import TableCell from '@mui/material/TableCell'
 import { useTranslation } from 'react-i18next'
 import IconButton from '@mui/material/IconButton'
 import CircularProgress from '@mui/material/CircularProgress'
-import { formatHash, formatToken } from '@configs/functions';
+import { formatHash, formatToken } from '@configs/functions'
+import Backdrop from '@mui/material/Backdrop'
 
 import Grid from '@mui/material/Grid'
 
@@ -56,6 +57,9 @@ const TokenMyAllTransactions = (prop: any) => {
                 </TableCell>
                 <TableCell sx={{my: 0, py: 0}}>
                     Amount
+                </TableCell>
+                <TableCell sx={{my: 0, py: 0}}>
+                    Operation
                 </TableCell>
             </TableRow>
             {tokenGetInfor && tokenGetInfor.AoTokenMyAllTransactionsList && tokenGetInfor.AoTokenMyAllTransactionsList.map((Item: string[], Index: number)=>{
@@ -111,7 +115,7 @@ const TokenMyAllTransactions = (prop: any) => {
                 </Box>
             )}
 
-            {tokenGetInfor && tokenGetInfor.AoTokenMyAllTransactionsList && tokenGetInfor.AoTokenMyAllTransactionsList.length == 0 && (
+            {tokenGetInfor && tokenGetInfor.AoTokenMyAllTransactionsList && tokenGetInfor.AoTokenMyAllTransactionsList.length == 0 && tokenGetInfor.isLoading == false && (
                 <Box sx={{ pl: 5, py: 3 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
                     <Grid item key={"Pagination"} xs={12} sm={12} md={12} lg={12} sx={{ padding: '10px 0 10px 0' }}>
@@ -121,7 +125,7 @@ const TokenMyAllTransactions = (prop: any) => {
                 </Box>
             )}
 
-            {pageCount > 0 && (
+            {pageCount > 0 && tokenGetInfor.isLoading == false && (
                 <Box sx={{ pl: 5, py: 3 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
                     <Grid item key={"Pagination"} xs={12} sm={12} md={12} lg={12} sx={{ padding: '10px 0 10px 0' }}>
@@ -130,6 +134,18 @@ const TokenMyAllTransactions = (prop: any) => {
                     </Box>
                 </Box>
             )}
+
+            <Backdrop
+                open={tokenGetInfor.isLoading}
+                sx={{
+                zIndex: 5,
+                position: 'absolute',
+                color: 'common.white',
+                backgroundColor: 'action.disabledBackground'
+                }}
+            >
+                <CircularProgress color='inherit' />
+            </Backdrop>
 
         </TableContainer>
 

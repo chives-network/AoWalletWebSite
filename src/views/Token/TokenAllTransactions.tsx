@@ -15,6 +15,7 @@ import IconButton from '@mui/material/IconButton'
 import CircularProgress from '@mui/material/CircularProgress'
 import Grid from '@mui/material/Grid'
 import Pagination from '@mui/material/Pagination'
+import Backdrop from '@mui/material/Backdrop'
 
 import { formatHash, formatToken } from '@configs/functions'
 import Icon from '@/@core/components/icon'
@@ -123,7 +124,7 @@ const TokenAllTransactions = (prop: any) => {
                 </Box>
             )}
 
-            {tokenGetInfor && tokenGetInfor.AoTokenAllTransactionsList && tokenGetInfor.AoTokenAllTransactionsList.length == 0 && (
+            {tokenGetInfor && tokenGetInfor.AoTokenAllTransactionsList && tokenGetInfor.AoTokenAllTransactionsList.length == 0 && tokenGetInfor.isLoading == false && (
                 <Box sx={{ pl: 5, py: 3 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
                     <Grid item key={"Pagination"} xs={12} sm={12} md={12} lg={12} sx={{ padding: '10px 0 10px 0' }}>
@@ -133,7 +134,7 @@ const TokenAllTransactions = (prop: any) => {
                 </Box>
             )}
 
-            {pageCount > 0 && (
+            {pageCount > 0 && tokenGetInfor.isLoading == false && (
                 <Box sx={{ pl: 5, py: 3 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
                     <Grid item key={"Pagination"} xs={12} sm={12} md={12} lg={12} sx={{ padding: '10px 0 10px 0' }}>
@@ -142,6 +143,18 @@ const TokenAllTransactions = (prop: any) => {
                     </Box>
                 </Box>
             )}
+
+            <Backdrop
+                open={tokenGetInfor.isLoading}
+                sx={{
+                zIndex: 5,
+                position: 'absolute',
+                color: 'common.white',
+                backgroundColor: 'action.disabledBackground'
+                }}
+            >
+                <CircularProgress color='inherit' />
+            </Backdrop>
 
         </TableContainer>
 

@@ -69,7 +69,7 @@ const TokenSummary = (prop: any) => {
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', mr: 3 }}>
                 <Typography sx={{ fontWeight: 500, fontSize: '0.875rem' }}>
-                    {t('Token holders')}
+                    {t('Holders')}
                 </Typography>
                 <Typography variant='caption' sx={{ color: 'primary.secondary', pt: 0.4 }}>
                     {t('Circulating supply')}
