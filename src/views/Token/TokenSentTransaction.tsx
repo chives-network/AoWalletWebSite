@@ -57,9 +57,6 @@ const TokenSentTransaction = (prop: any) => {
                 <TableCell sx={{my: 0, py: 0}}>
                     Amount
                 </TableCell>
-                <TableCell sx={{my: 0, py: 0}}>
-                    Operation
-                </TableCell>
             </TableRow>
             {tokenGetInfor && tokenGetInfor.AoTokenSentTransactionsList && tokenGetInfor.AoTokenSentTransactionsList.map((Item: string[], Index: number)=>{
 
@@ -123,7 +120,7 @@ const TokenSentTransaction = (prop: any) => {
                 <Box sx={{ pl: 5, py: 3 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
                     <Grid item key={"Pagination"} xs={12} sm={12} md={12} lg={12} sx={{ padding: '10px 0 10px 0' }}>
-                        <Pagination count={pageCount} variant='outlined' color='primary' page={pageId} onChange={handlePageChange} siblingCount={1} boundaryCount={1} />
+                        <Pagination size='small' count={pageCount} variant='outlined' color='primary' page={pageId} onChange={handlePageChange} siblingCount={1} boundaryCount={1} />
                     </Grid>
                     </Box>
                 </Box>

@@ -43,8 +43,6 @@ const AoGetPageRecordsModel = ({ auth }: any) => {
   
   const [resultRecords, setresultRecords] = useState<any>()
 
-  const currentAddress = auth.address as string
-
   const [processTxId, setprocessTxId] = useState<string>("8_hH-EEYmXtbHXh_1r5w3nt-gGTqyB4UBj5XtOPy-SM")
   const [processTxIdError, setprocessTxIdError] = useState<string | null>(null)
   const handleprocessTxIdChange = (event: any) => {

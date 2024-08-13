@@ -4,7 +4,6 @@ import { Fragment, memo } from 'react'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import TableContainer from '@mui/material/TableContainer'
 import Table from '@mui/material/Table'
@@ -22,7 +21,7 @@ import Icon from '@/@core/components/icon'
 
 const TokenListChivesToken = (prop: any) => {
   
-  const { tokenGetInfor, setTokenGetInfor, setPageId, pageId, pageCount, startIndex } = prop
+  const { tokenGetInfor, setPageId, pageId, pageCount, startIndex } = prop
 
   const { t } = useTranslation()
 
@@ -57,9 +56,6 @@ const TokenListChivesToken = (prop: any) => {
                 <TableCell sx={{my: 0, py: 0}}>
                     Amount
                 </TableCell>
-                <TableCell sx={{my: 0, py: 0}}>
-                    Operation
-                </TableCell>
             </TableRow>
             {tokenGetInfor && tokenGetInfor.TokenBalances && Object.keys(tokenGetInfor.TokenBalances).map((Item: string, Index: number)=>{
 
@@ -75,11 +71,6 @@ const TokenListChivesToken = (prop: any) => {
                                 </TableCell>
                                 <TableCell sx={{my: 0, py: 0}}>
                                     <Typography noWrap variant='body2' sx={{ color: 'info.main', pr: 1, display: 'inline', my: 0, py: 0 }}>......</Typography>
-                                </TableCell>
-                                <TableCell sx={{my: 0, py: 0}}>
-                                    <Button sx={{textTransform: 'none', my: 0}} size="small" disabled variant='outlined'>
-                                    {t("Send")}
-                                    </Button>
                                 </TableCell>
                             </TableRow>
                         )}
@@ -100,17 +91,6 @@ const TokenListChivesToken = (prop: any) => {
                                 </TableCell>
                                 <TableCell sx={{my: 0, py: 0}}>
                                     <Typography noWrap variant='body2' sx={{ color: 'primary.main', pr: 3, display: 'inline', my: 0, py: 0 }}>{tokenGetInfor.TokenBalances[Item]}</Typography>
-                                </TableCell>
-                                <TableCell sx={{my: 0, py: 0}}>
-                                    <Button sx={{textTransform: 'none', my: 0}} size="small" disabled={tokenGetInfor.disabledSendOutButton || tokenGetInfor.TokenProcessTxId == Item} variant='outlined' onClick={
-                                        () => { setTokenGetInfor((prevState: any)=>({
-                                            ...prevState,
-                                            openSendOutToken: true,
-                                            SendOutToken: Item,
-                                        })) }
-                                    }>
-                                    {t("Send")}
-                                    </Button>
                                 </TableCell>
                             </TableRow>
                         )}
@@ -137,7 +117,7 @@ const TokenListChivesToken = (prop: any) => {
                 <Box sx={{ pl: 5, py: 3 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
                     <Grid item key={"Pagination"} xs={12} sm={12} md={12} lg={12} sx={{ padding: '10px 0 10px 0' }}>
-                        <Pagination count={pageCount} variant='outlined' color='primary' page={pageId} onChange={handlePageChange} siblingCount={1} boundaryCount={1} />
+                        <Pagination size='small' count={pageCount} variant='outlined' color='primary' page={pageId} onChange={handlePageChange} siblingCount={1} boundaryCount={1} />
                     </Grid>
                     </Box>
                 </Box>

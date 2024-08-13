@@ -107,8 +107,8 @@ const TokenIndexModel = (prop: any) => {
   const [pageId, setPageId] = useState<number>(1)
   const [pageCount, setPageCount] = useState<number>(0)
   const [startIndex, setStartIndex] = useState<number>(1)
-  const [endIndex, setEndIndex] = useState<number>(10)
-  const pageSize = 10
+  const [endIndex, setEndIndex] = useState<number>(15)
+  const pageSize = 15
 
   useEffect(()=>{
     if(tokenInfo && pageId > 0 && Number(tokenInfo.TokenHolders)>0 ) {
@@ -670,15 +670,6 @@ const TokenIndexModel = (prop: any) => {
           <Card sx={{ padding: '0 8px' }}>
               {myProcessTxIdInPage ?
               <Grid container>
-                <Grid item xs={12}>
-                  <Card>
-                    <Grid item sx={{ display: 'flex', alignItems: 'center' }}>
-                      <Typography noWrap variant='body1' sx={{ my: 2, mx: 2 }}>
-                          {t("Token Explorer")}
-                      </Typography>
-                    </Grid>
-                  </Card>
-                </Grid>
                 <Grid item xs={12} sx={{my: 2}}>
                   <Card>
 
@@ -1018,9 +1009,6 @@ const TokenIndexModel = (prop: any) => {
                               <TableCell sx={{my: 0, py: 0}}>
                                   Sort
                               </TableCell>
-                              <TableCell sx={{my: 0, py: 0}}>
-                                  Operation
-                              </TableCell>
                           </TableRow>
                           {serverData && serverData.map((Item: any, Index: number)=>{
               
@@ -1062,15 +1050,34 @@ const TokenIndexModel = (prop: any) => {
                                                       sx={{ width: '2.5rem', height: '2.5rem' }}
                                                     />
                                                   </Badge>
-                                                  <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                                                    <Typography sx={{ fontWeight: 500, fontSize: '0.875rem' }}>
+                                                  <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }} >
+                                                    <Typography sx={{ fontWeight: 500, fontSize: '0.875rem', cursor: 'pointer', mt: 2 }}
+                                                      onClick={
+                                                          () => { 
+                                                            setAddTokenFavorite(true)
+                                                            handleTokenSearch(Row[serverModel + 'Id'])
+                                                            setTokenGetInfor((prevState: any)=>({
+                                                              ...prevState,
+                                                              CurrentToken: Row[serverModel + 'Id']
+                                                            }))
+                                                          }
+                                                      }>
                                                       {ServerModelData?.Name ?? 'Token'}
                                                       <Typography noWrap variant='body2' sx={{ml: 2, display: 'inline', color: 'primary.secondary'}}>Denomination: {ServerModelData?.Denomination ?? ''}</Typography>
                                                       <Typography noWrap variant='body2' sx={{ml: 2, display: 'inline', color: 'primary.secondary'}}>Version: {ServerModelData?.Version ?? ''}</Typography>
                                                     </Typography>
-                                                    <Typography variant='caption' sx={{ color: 'primary.secondary', pt: 0.4 }}>
+                                                    <Typography variant='caption' sx={{ color: 'primary.secondary' }}>
                                                       {ServerModelData?.Ticker}
-                                                      <Link href={authConfig.AoConnectAoLink + `/token/${Row[serverModel + 'Id']}`} target='_blank'>
+                                                      <Link sx={{cursor: 'pointer'}} onClick={
+                                                          () => { 
+                                                            setAddTokenFavorite(true)
+                                                            handleTokenSearch(Row[serverModel + 'Id'])
+                                                            setTokenGetInfor((prevState: any)=>({
+                                                              ...prevState,
+                                                              CurrentToken: Row[serverModel + 'Id']
+                                                            }))
+                                                          }
+                                                      }>
                                                         <Typography noWrap variant='body2' sx={{ml: 2, mr: 1, display: 'inline', color: 'primary.main'}}>{Row[serverModel + 'Id']}</Typography>
                                                       </Link>
                                                       <IconButton aria-label='capture screenshot' color='secondary' size='small' onClick={()=>{
@@ -1087,20 +1094,6 @@ const TokenIndexModel = (prop: any) => {
                                               </TableCell>
                                               <TableCell sx={{my: 0, py: 0}}>
                                                   <Typography noWrap variant='body2' sx={{ color: 'primary.main', pr: 3, display: 'inline', my: 0, py: 0 }}>{Row[serverModel + 'Sort']}</Typography>
-                                              </TableCell>
-                                              <TableCell sx={{my: 0, py: 0}}>
-                                                  <Button sx={{textTransform: 'none', my: 0}} size="small" disabled={isDisabledButton} variant='outlined'  onClick={
-                                                      () => { 
-                                                        setAddTokenFavorite(true)
-                                                        handleTokenSearch(Row[serverModel + 'Id'])
-                                                        setTokenGetInfor((prevState: any)=>({
-                                                          ...prevState,
-                                                          CurrentToken: Row[serverModel + 'Id']
-                                                        }))
-                                                       }
-                                                  }>
-                                                  {t("View")}
-                                                  </Button>
                                               </TableCell>
                                           </TableRow>
                                       )}
