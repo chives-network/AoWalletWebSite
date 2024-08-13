@@ -112,29 +112,19 @@ const FrontMenu = (props: Props) => {
       </Typography>
       <Typography
         component={Link}
-        href='/home#team'
-        className={classnames('font-medium plb-3 pli-1.5 hover:text-primary', {
-          'text-primary': intersections.team
-        })}
-        color='text.primary'
-      >
-        Team
-      </Typography>
-      <Typography
-        component={Link}
-        href='/api'
-        className='font-medium plb-3 pli-1.5 hover:text-primary'
-        color='text.primary'
-      >
-        Api
-      </Typography>
-      <Typography
-        component={Link}
         href='/token'
         className='font-medium plb-3 pli-1.5 hover:text-primary'
         color='text.primary'
       >
         Token
+      </Typography>
+      <Typography
+        component={Link}
+        href='/faucet'
+        className='font-medium plb-3 pli-1.5 hover:text-primary'
+        color='text.primary'
+      >
+        Faucet
       </Typography>
       <Typography
         component={Link}

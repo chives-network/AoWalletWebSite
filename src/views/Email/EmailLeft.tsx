@@ -49,7 +49,7 @@ const ListBadge = styled(CustomBadge)<CustomBadgeProps>(() => ({
   }
 }))
 
-const SidebarLeft = (props: any) => {
+const EmailLeft = (props: any) => {
   // ** Hook
   const { t } = useTranslation()
   
@@ -406,4 +406,4 @@ const SidebarLeft = (props: any) => {
   )
 }
 
-export default SidebarLeft
+export default EmailLeft

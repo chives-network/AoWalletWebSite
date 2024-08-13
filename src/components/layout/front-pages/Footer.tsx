@@ -40,28 +40,17 @@ function Footer() {
             </Grid>
             <Grid item xs={12} sm={3} lg={2}>
               <Typography color='white' className='font-medium mbe-6 opacity-[0.92]'>
-                Integration
+                Coming soon
               </Typography>
               <div className='flex flex-col gap-4'>
-                <Link href='/home' className='flex items-center gap-[10px]'>
-                  <Typography color='white' className='opacity-[0.78]'>
-                    React Demo
-                  </Typography>
-                  <Chip label='New' color='primary' size='small' />
-                </Link>
-                <Typography component={Link} href='/home' color='white' className='opacity-[0.78]'>
-                  Tokens Hub
+                <Typography color='white' className='opacity-[0.78]'>
+                  Blog
                 </Typography>
-                <Typography
-                  component={Link}
-                  href='/home'
-                  color='white'
-                  className='opacity-[0.78]'
-                >
-                  Faucets Hub
+                <Typography color='white' className='opacity-[0.78]'>
+                  Swap
                 </Typography>
-                <Typography component={Link} href='/home' color='white' className='opacity-[0.78]'>
-                  Apps
+                <Typography color='white' className='opacity-[0.78]'>
+                  Paid Document
                 </Typography>
               </div>
             </Grid>
@@ -70,17 +59,17 @@ function Footer() {
                 Products
               </Typography>
               <div className='flex flex-col gap-4'>
-                <Typography color='white' className='opacity-[0.78]'>
+                <Typography component={Link} href='/token' color='white' className='opacity-[0.78]'>
+                  Token
+                </Typography>
+                <Typography component={Link} href='/faucet' color='white' className='opacity-[0.78]'>
+                  Faucet
+                </Typography>
+                <Typography component={Link} href='/email' color='white' className='opacity-[0.78]'>
                   Email
                 </Typography>
-                <Typography color='white' className='opacity-[0.78]'>
+                <Typography component={Link} href='/chat' color='white' className='opacity-[0.78]'>
                   Chat
-                </Typography>
-                <Typography color='white' className='opacity-[0.78]'>
-                  Paid Document
-                </Typography>
-                <Typography color='white' className='opacity-[0.78]'>
-                  Blog
                 </Typography>
               </div>
             </Grid>

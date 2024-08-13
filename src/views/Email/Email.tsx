@@ -14,7 +14,7 @@ import { useSettings } from '@core/hooks/useSettings'
 
 // ** Email App Component Imports
 import EmailList from '@views/Email/EmailList'
-import SidebarLeft from '@views/Email/SidebarLeft'
+import EmailLeft from '@views/Email/EmailLeft'
 import ComposePopup from '@views/Email/ComposePopup'
 
 // ** Third Party Import
@@ -200,7 +200,7 @@ const EmailAppLayout = () => {
             ...(skin === 'bordered' && { border: `1px solid ${theme.palette.divider}` })
           }}
         >
-          <SidebarLeft
+          <EmailLeft
             store={store}
             hidden={hidden}
             lgAbove={lgAbove}
