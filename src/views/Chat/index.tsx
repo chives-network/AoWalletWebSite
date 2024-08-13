@@ -4,6 +4,8 @@ import { useEffect, useState, memo } from 'react'
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
 import { useTheme } from '@mui/material/styles'
 
 // ** Hooks
@@ -35,6 +37,17 @@ const Chat = () => {
 
   const auth = useAuth()
   const currentAddress = auth.currentAddress
+
+  const [loadingWallet, setLoadingWallet] = useState<number>(0)
+
+  useEffect(()=>{
+    if(auth && auth.connected == false) {
+        setLoadingWallet(2)
+    }
+    if(auth && auth.connected == true && auth.address != '') {
+        setLoadingWallet(1)
+    }
+  }, [auth])
 
   useEffect(() => {
     if(id && id.length == 43) {
@@ -80,27 +93,47 @@ const Chat = () => {
 
   return (
     <Grid container sx={{maxWidth: '1152px', margin: '0 auto', maxHeight: '1152px'}}>
-      {id && app?
-      <Box
-        className='app-chat'
-        sx={{
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          borderRadius: 1,
-          overflow: 'hidden',
-          position: 'relative',
-          my: 6,
-          backgroundColor: 'background.paper',
-          boxShadow: skin === 'bordered' ? 0 : 6,
-          ...(skin === 'bordered' && { border: `1px solid ${theme.palette.divider}` })
-        }}
-      >
-        <ChatIndex id={id} app={app} myAoConnectTxId={myAoConnectTxId} currentAddress={currentAddress} />
-      </Box>
-      :
-      null
-      }
+      {loadingWallet == 0 && (
+          <Grid container spacing={5}>
+              <Grid item xs={12} justifyContent="flex-end">
+                <Card sx={{ my: 6 }}>
+                  <CardContent>
+                    Loading Wallet Status
+                  </CardContent>
+                </Card>
+              </Grid>
+          </Grid>
+      )}
+      {loadingWallet == 2 && (
+          <Grid container spacing={5}>
+            <Grid item xs={12} justifyContent="flex-end">
+              <Card sx={{ my: 6 }}>
+                <CardContent>
+                Please Connect Wallet First
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
+      )}
+      {loadingWallet == 1 && id && app && (
+        <Box
+          className='app-chat'
+          sx={{
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            borderRadius: 1,
+            overflow: 'hidden',
+            position: 'relative',
+            my: 6,
+            backgroundColor: 'background.paper',
+            boxShadow: skin === 'bordered' ? 0 : 6,
+            ...(skin === 'bordered' && { border: `1px solid ${theme.palette.divider}` })
+          }}
+        >
+          <ChatIndex id={id} app={app} myAoConnectTxId={myAoConnectTxId} currentAddress={currentAddress} />
+        </Box>
+      )}
     </Grid>
   )
 }

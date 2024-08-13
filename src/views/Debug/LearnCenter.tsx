@@ -3,6 +3,7 @@ import { useState, useEffect, Fragment } from 'react'
 // ** MUI Imports
 import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
+import CardContent from '@mui/material/CardContent'
 
 import { useAuth } from '@/hooks/useAuth'
 
@@ -32,15 +33,23 @@ const LearnCenter = () => {
       {loadingWallet == 0 && (
           <Grid container spacing={5}>
               <Grid item xs={12} justifyContent="flex-end">
-                  Loading Wallet Status
+                <Card sx={{ my: 6 }}>
+                  <CardContent>
+                    Loading Wallet Status
+                  </CardContent>
+                </Card>
               </Grid>
           </Grid>
       )}
       {loadingWallet == 2 && (
           <Grid container spacing={5}>
-              <Grid item xs={12} justifyContent="flex-end">
-                  Please Connect Wallet First
-              </Grid>
+            <Grid item xs={12} justifyContent="flex-end">
+              <Card sx={{ my: 6 }}>
+                <CardContent>
+                Please Connect Wallet First
+                </CardContent>
+              </Card>
+            </Grid>
           </Grid>
       )}
       {loadingWallet == 1 && (

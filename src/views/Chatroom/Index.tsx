@@ -2,13 +2,15 @@
 import { useEffect, useState } from 'react'
 
 import Grid from '@mui/material/Grid'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
 
 import AppModel from '@views/Chatroom/Model'
 
 // ** Axios Imports
 import axios from 'axios'
 import authConfig from '@configs/auth'
-
+import { useAuth } from '@/hooks/useAuth'
 
 const AllApp = () => {
 
@@ -23,6 +25,19 @@ const AllApp = () => {
   
   const [type, setType] = useState<string>("ALL")
   const [search, setSearch] = useState<string>("ALL")
+
+  const auth = useAuth()
+  
+  const [loadingWallet, setLoadingWallet] = useState<number>(0)
+  
+  useEffect(()=>{
+    if(auth && auth.connected == false) {
+        setLoadingWallet(2)
+    }
+    if(auth && auth.connected == true && auth.address != '') {
+        setLoadingWallet(1)
+    }
+  }, [auth])
 
   useEffect(() => {
     
@@ -102,7 +117,31 @@ const AllApp = () => {
 
   return (
     <Grid container sx={{maxWidth: '1152px', margin: '0 auto', maxHeight: '1152px'}}>
+      {loadingWallet == 0 && (
+          <Grid container spacing={5}>
+              <Grid item xs={12} justifyContent="flex-end">
+                <Card sx={{ my: 6 }}>
+                  <CardContent>
+                    Loading Wallet Status
+                  </CardContent>
+                </Card>
+              </Grid>
+          </Grid>
+      )}
+      {loadingWallet == 2 && (
+          <Grid container spacing={5}>
+            <Grid item xs={12} justifyContent="flex-end">
+              <Card sx={{ my: 6 }}>
+                <CardContent>
+                Please Connect Wallet First
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
+      )}
+      {loadingWallet == 1 && app && (
       <AppModel app={app} loading={loading} loadingText={loadingText} appId={appId} setAppId={setAppId} show={show} setShow={setShow} handleSearchFilter={handleSearchFilter}/>
+      )}
     </Grid>
   )
 }
