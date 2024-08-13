@@ -33,8 +33,6 @@ const TokenOnlySendAndMintModel = () => {
   // ** Hook
   const { t } = useTranslation()
 
-  const auth = useAuth()
-  const currentWallet = 'auth.currentWallet'
   const currentAddress = 'auth.currentAddress'
 
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
@@ -142,11 +140,6 @@ const TokenOnlySendAndMintModel = () => {
 
 
   const handleSimulatedToken = async function () {
-
-    if(currentWallet == undefined || currentWallet == null) {
-
-      return
-    }
 
     setIsDisabledButton(true)
     setToolInfo(null)

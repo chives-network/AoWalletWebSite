@@ -44,7 +44,6 @@ const SendOutForm = () => {
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
   
   const auth = useAuth()
-  const currentWallet = auth.currentWallet
   const currentAddress = auth.currentAddress
   
   const [inputAddress, setInputAddress] = useState<string>("")

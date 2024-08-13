@@ -63,7 +63,7 @@ const ComposePopup = (props: MailComposeType) => {
   const { t } = useTranslation()
 
   // ** Props
-  const { mdAbove, composeOpen, composePopupWidth, toggleComposeOpen, currentAoAddress, currentWallet, currentEmail, folder } = props
+  const { mdAbove, composeOpen, composePopupWidth, toggleComposeOpen, currentAoAddress, currentEmail, folder } = props
 
   // ** States
   const [emailTo, setEmailTo] = useState<FieldMenuItems[]>([])

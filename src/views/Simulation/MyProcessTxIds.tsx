@@ -34,19 +34,12 @@ const MyProcessTxIds = () => {
   // ** Hook
   const { t } = useTranslation()
 
-  const auth = useAuth()
-  const currentWallet = 'auth.currentWallet'
   const currentAddress = 'auth.currentAddress'
   
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
   const [toolInfo, setToolInfo] = useState<any>({MyProcessTxIds:''})
 
   const handleSimulatedMyProcessTxIds = async function () {
-
-    if(currentWallet == undefined || currentWallet == null) {
-
-      return
-    }
 
     setIsDisabledButton(true)
 

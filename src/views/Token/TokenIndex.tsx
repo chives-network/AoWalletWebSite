@@ -59,7 +59,6 @@ const TokenIndexModel = (prop: any) => {
   const { t } = useTranslation()
 
   const auth = useAuth()
-  const currentWallet = auth.currentWallet
   const currentAddress = auth.currentAddress
   
   const { myAoConnectTxId,

@@ -80,8 +80,8 @@ const AoCreateProcessModel = ({ auth }: any) => {
     }
     console.log("Auth", auth)
 
-    //setIsDisabledButton(true)
-    //setUploadingButton(`${t('Submitting...')}`)
+    setIsDisabledButton(true)
+    setUploadingButton(`${t('Submitting...')}`)
     
     const processId: any = await AoCreateProcess(globalThis.arweaveWallet, moduleTxId, String(scheduler), JSON.parse(tags));
 
@@ -89,8 +89,8 @@ const AoCreateProcessModel = ({ auth }: any) => {
       toast.success(processId, { position: 'top-right', duration: 4000 })
       setResultText(processId)
     }
-    //setIsDisabledButton(false)
-    //setUploadingButton(`${t('Submit')}`)
+    setIsDisabledButton(false)
+    setUploadingButton(`${t('Submit')}`)
 
   }
 

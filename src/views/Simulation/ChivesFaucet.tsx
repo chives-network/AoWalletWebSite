@@ -29,8 +29,6 @@ const ChivesFaucetModel = () => {
   // ** Hook
   const { t } = useTranslation()
 
-  const auth = useAuth()
-  const currentWallet = 'auth.currentWallet'
   const currentAddress = 'auth.currentAddress'
 
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
@@ -39,10 +37,6 @@ const ChivesFaucetModel = () => {
 
   const handleSimulatedChivesFaucet = async function () {
 
-    if(currentWallet == undefined || currentWallet == null) {
-
-      return
-    }
     setIsDisabledButton(true)
 
     const TokenIdInFaucet = toolInfo.TokenIdInFaucet
