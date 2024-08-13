@@ -5,3 +5,13 @@ declare module '*.module.css';
 declare module '@emotion/react';
 declare module 'human-crypto-keys';
 declare module 'secrets.js';
+
+declare global {
+    interface Window {
+        Arweave: typeof Arweave;
+    }
+    module globalThis {
+        var Arweave: unknown;
+        var arweaveWallet: any;
+    }
+}

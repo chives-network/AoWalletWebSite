@@ -12,9 +12,6 @@ import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
 import Tooltip from '@mui/material/Tooltip'
 
-// ** Next Import
-import { useAuth } from '@/hooks/useAuth'
-
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 

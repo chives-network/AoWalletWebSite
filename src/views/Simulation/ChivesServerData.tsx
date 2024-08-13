@@ -12,9 +12,6 @@ import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
 import Tooltip from '@mui/material/Tooltip'
 
-// ** Next Import
-import { useAuth } from '@/hooks/useAuth'
-
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
@@ -35,8 +32,6 @@ const ChivesServerData = () => {
   // ** Hook
   const { t } = useTranslation()
 
-  const auth = useAuth()
-  const currentWallet = 'auth.currentWallet'
   const currentAddress = 'auth.currentAddress'
   
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
@@ -44,14 +39,8 @@ const ChivesServerData = () => {
 
   const handleSimulatedChivesServerData = async function () {
 
-    if(currentWallet == undefined || currentWallet == null) {
-
-      return
-    }
-
     setIsDisabledButton(true)
 
-    
     const ChivesServerData = await AoCreateProcessAuto(globalThis.arweaveWallet)
     if(ChivesServerData) {
       setToolInfo((prevState: any)=>({

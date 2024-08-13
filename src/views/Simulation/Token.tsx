@@ -15,9 +15,6 @@ import Tooltip from '@mui/material/Tooltip'
 import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
 
-// ** Next Import
-import { useAuth } from '@/hooks/useAuth'
-
 // ** Icon Imports
 import Icon from '@/@core/components/icon'
 import toast from 'react-hot-toast'
@@ -35,8 +32,6 @@ const TokenModel = () => {
   // ** Hook
   const { t } = useTranslation()
 
-  const auth = useAuth()
-  const currentWallet = 'auth.currentWallet'
   const currentAddress = 'auth.currentAddress'
 
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
@@ -144,11 +139,6 @@ const TokenModel = () => {
 
 
   const handleSimulatedToken = async function () {
-
-    if(currentWallet == undefined || currentWallet == null) {
-
-      return
-    }
 
     setIsDisabledButton(true)
     setToolInfo(null)

@@ -12,9 +12,6 @@ import Typography from '@mui/material/Typography'
 import Tooltip from '@mui/material/Tooltip'
 import { getNanoid } from '@/functions/ChivesWallets'
 
-// ** Next Import
-import { useAuth } from '@/hooks/useAuth'
-
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
@@ -27,8 +24,6 @@ const ChivesChat = () => {
   // ** Hook
   const { t } = useTranslation()
 
-  const auth = useAuth()
-  const currentWallet = 'auth.currentWallet'
   const currentAddress = 'auth.currentAddress'
 
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
@@ -36,11 +31,6 @@ const ChivesChat = () => {
 
   const handleSimulatedChivesChat = async function () {
     
-    if(currentWallet == undefined || currentWallet == null) {
-
-      return
-    }
-
     setIsDisabledButton(true)
     setToolInfo(null)
     

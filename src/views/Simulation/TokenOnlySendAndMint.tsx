@@ -14,9 +14,6 @@ import Tooltip from '@mui/material/Tooltip'
 import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
 
-// ** Next Import
-import { useAuth } from '@/hooks/useAuth'
-
 // ** Icon Imports
 import Icon from '@/@core/components/icon'
 import toast from 'react-hot-toast'

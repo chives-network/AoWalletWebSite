@@ -46,7 +46,6 @@ const AoSendMsgModel = ({ auth }: any) => {
   const [resultText, setResultText] = useState<string>("")
   const [resultText2, setResultText2] = useState<any>()
 
-  const currentWallet = auth.currentWallet
   const currentAddress = auth.currentAddress
 
   const [chatroomId, setChatroomId] = useState<string>("")

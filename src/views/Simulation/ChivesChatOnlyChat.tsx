@@ -14,9 +14,6 @@ import Typography from '@mui/material/Typography'
 import Tooltip from '@mui/material/Tooltip'
 import InputAdornment from '@mui/material/InputAdornment'
 
-// ** Next Import
-import { useAuth } from '@/hooks/useAuth'
-
 // ** Icon Imports
 import Icon from '@/@core/components/icon'
 

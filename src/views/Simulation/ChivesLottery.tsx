@@ -9,9 +9,6 @@ import Link from '@mui/material/Link'
 import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
 
-// ** Next Import
-import { useAuth } from '@/hooks/useAuth'
-
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
@@ -26,8 +23,6 @@ const ChivesLotteryModel = () => {
   // ** Hook
   const { t } = useTranslation()
 
-  const auth = useAuth()
-  const currentWallet = 'auth.currentWallet'
   const currentAddress = 'auth.currentAddress'
 
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
@@ -36,11 +31,7 @@ const ChivesLotteryModel = () => {
 
   const handleSimulatedChivesLottery = async function () {
     console.log("setLotteryInfo", setLotteryInfo, lotteryInfo)
-    if(currentWallet == undefined || currentWallet == null) {
-
-      return
-    }
-
+    
     setIsDisabledButton(true)
     setToolInfo(null)
 

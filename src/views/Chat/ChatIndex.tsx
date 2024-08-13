@@ -26,9 +26,6 @@ import CircularProgress from '@mui/material/CircularProgress'
 
 import { ChatChatInit } from '@/functions/ChatBook'
 
-// ** Axios Imports
-import { useAuth } from '@/hooks/useAuth'
-
 import { GetChatRecordsFromLocalStorage, GetAoConnectMembers, SetAoConnectMembers, GetAoConnectChannels, SetAoConnectChannels, SaveChatRecordsToStorage } from '@/functions/AoConnect/MsgReminder'
 import { SendMessageToChivesChat, ChivesChatGetMembers, ChivesChatGetChannels, ChivesChatAddAdmin, ChivesChatDelAdmin, ChivesChatAddInvites, ChivesChatApprovalApply, ChivesChatRefuseApply, ChivesChatDelMember, ChivesChatBlockMember, ChivesChatAddChannel, ChivesChatEditChannel, ChivesChatDelChannel, ChivesChatIsMember, GetChatroomAvatar, ChivesChatApplyJoin, ChivesChatGetChatRecords } from '@/functions/AoConnect/ChivesChat'
 import { StatusObjType, StatusType } from '@/types/apps/chatTypes'
@@ -94,9 +91,6 @@ const AppChat = (props: any) => {
     setUserProfileRightOpen(!userProfileRightOpen)
     setMember(null)
   }
-
-  const auth = useAuth()
-  const currentWallet = auth.currentWallet
 
   const { t } = useTranslation()
   const { id, app, myAoConnectTxId, currentAddress } = props

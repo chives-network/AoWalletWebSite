@@ -13,9 +13,6 @@ import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import Tooltip from '@mui/material/Tooltip'
 
-// ** Next Import
-import { useAuth } from '@/hooks/useAuth'
-
 // ** Icon Imports
 import Icon from '@/@core/components/icon'
 import toast from 'react-hot-toast'

@@ -1,5 +1,5 @@
 // ** React Imports
-import { useEffect, useState, Fragment, memo } from 'react'
+import { useEffect, useState, memo } from 'react'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
@@ -35,7 +35,6 @@ const Chat = () => {
 
   const auth = useAuth()
   const currentAddress = auth.currentAddress
-  const currentWallet = auth.currentWallet
 
   useEffect(() => {
     if(id && id.length == 43) {

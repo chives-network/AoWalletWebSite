@@ -13,9 +13,6 @@ import Typography from '@mui/material/Typography'
 import InputAdornment from '@mui/material/InputAdornment'
 import Icon from '@/@core/components/icon'
 
-// ** Next Import
-import { useAuth } from '@/hooks/useAuth'
-
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 

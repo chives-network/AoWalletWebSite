@@ -38,7 +38,6 @@ const AoCreateProcessModel = ({ auth }: any) => {
   
   const [resultText, setResultText] = useState<string>("")
 
-  const currentWallet = auth.currentWallet
   const currentAddress = auth.address
 
   const [moduleTxId, setmoduleTxId] = useState<string>(authConfig.AoConnectModule)
