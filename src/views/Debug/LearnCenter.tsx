@@ -66,17 +66,17 @@ const LearnCenter = () => {
           </Grid>
           <Grid item xs={12}>
             <Card sx={{ mt: 6 }}>
-              <AoGetPageRecordsModel auth={auth} />
+              <AoGetPageRecordsModel />
             </Card>
           </Grid>
           <Grid item xs={12}>
             <Card sx={{ mt: 6 }}>
-              <AoGetMessageModel auth={auth} />
+              <AoGetMessageModel />
             </Card>
           </Grid>
           <Grid item xs={6}>
             <Card sx={{ mt: 6, mb: 6 }}>
-              <AoCreateProcessModel auth={auth} />
+              <AoCreateProcessModel />
             </Card>
           </Grid>
         </Fragment>
