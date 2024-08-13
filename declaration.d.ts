@@ -15,3 +15,5 @@ declare global {
         var arweaveWallet: any;
     }
 }
+
+export {};
