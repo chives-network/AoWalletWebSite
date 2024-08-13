@@ -52,7 +52,7 @@ const EmailDetail = (props: EmailDetailType) => {
     handleMoveToTrash,
     handleMoveToSpam,
     handleMoveToFolder,
-    currentWallet,
+    auth,
     handleReadEmailContent,
     setComposeOpen,
     setCurrentEmail
@@ -63,7 +63,7 @@ const EmailDetail = (props: EmailDetailType) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (currentEmail && currentEmail.Id && currentWallet) {
+      if (currentEmail && currentEmail.Id && auth) {
         handleReadEmailContent(currentEmail.Id, folder)
       }
     };

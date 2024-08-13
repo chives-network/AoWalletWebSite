@@ -112,7 +112,7 @@ const EmailList = (props: EmailListType) => {
     loading,
     setLoading,
     noEmailText,
-    currentWallet,
+    auth,
     currentAoAddress,
     counter,
     setCounter,
@@ -151,7 +151,7 @@ const EmailList = (props: EmailListType) => {
   }
 
   const handleReadEmailContent = async (id: string | null, folder: string) => {
-    if (id && id.length == 43 && currentWallet) {
+    if (id && id.length == 43 && auth) {
       setHaveReadEmails((prevState: any)=>({
         ...prevState,
         [id]: true
@@ -230,7 +230,7 @@ const EmailList = (props: EmailListType) => {
     handleMoveToTrash,
     handleMoveToSpam,
     handleMoveToFolder,
-    currentWallet,
+    auth,
     currentAoAddress,
     setHaveReadEmails,
     handleReadEmailContent,

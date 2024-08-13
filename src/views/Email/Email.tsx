@@ -5,6 +5,9 @@ import { useState, useEffect } from 'react'
 import Box from '@mui/material/Box'
 import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
+import Card from '@mui/material/Card'
+import Grid from '@mui/material/Grid'
+import CardContent from '@mui/material/CardContent'
 
 // ** Hooks
 import { useSettings } from '@core/hooks/useSettings'
@@ -64,15 +67,19 @@ const EmailAppLayout = () => {
   const { skin } = settings
 
   const auth = useAuth()
-  const currentWallet = auth.currentWallet
-  const currentAddress = auth.currentAddress
 
+  const [loadingWallet, setLoadingWallet] = useState<number>(0)
   const [currentAoAddress, setMyAoConnectTxId] = useState<string>('')
-  useEffect(() => {
-    if(currentAddress && currentAddress.length === 43) {
-      setMyAoConnectTxId(currentAddress);
+
+  useEffect(()=>{
+    if(auth && auth.connected == false) {
+        setLoadingWallet(2)
     }
-  }, [currentAddress]);
+    if(auth && auth.connected == true && auth.address != '') {
+        setLoadingWallet(1)
+        setMyAoConnectTxId(auth.address as string);
+    }
+  }, [auth])
 
 
   // ** State
@@ -111,68 +118,94 @@ const EmailAppLayout = () => {
   const handleLeftSidebarToggle = () => setLeftSidebarOpen(!leftSidebarOpen)
 
   return (
-    <Box
-      sx={{
-        width: '100%',
-        display: 'flex',
-        borderRadius: 1,
-        overflow: 'hidden',
-        position: 'relative',
-        boxShadow: skin === 'bordered' ? 0 : 6,
-        ...(skin === 'bordered' && { border: `1px solid ${theme.palette.divider}` })
-      }}
-    >
-      <SidebarLeft
-        store={null}
-        hidden={hidden}
-        lgAbove={lgAbove}
-        dispatch={'ltr'}
-        folder={folder}
-        setFolder={setFolder}
-        emailDetailWindowOpen={emailDetailWindowOpen}
-        leftSidebarOpen={leftSidebarOpen}
-        leftSidebarWidth={leftSidebarWidth}
-        composeTitle={composeTitle}
-        toggleComposeOpen={toggleComposeOpen}
-        setEmailDetailWindowOpen={setEmailDetailWindowOpen}
-        handleLeftSidebarToggle={handleLeftSidebarToggle}
-        EmailCategoriesColors={EmailCategoriesColors}
-      />
-      <EmailList
-        query={query}
-        store={null}
-        hidden={hidden}
-        lgAbove={lgAbove}
-        setQuery={setQuery}
-        direction={'ltr'}
-        folder={folder}
-        EmailCategoriesColors={EmailCategoriesColors}
-        currentEmail={currentEmail}
-        setCurrentEmail={setCurrentEmail}
-        emailDetailWindowOpen={emailDetailWindowOpen}
-        setEmailDetailWindowOpen={setEmailDetailWindowOpen}
-        paginationModel={paginationModel}
-        handlePageChange={handlePageChange}
-        loading={loading}
-        setLoading={setLoading}
-        noEmailText={noEmailText}
-        currentWallet={currentWallet}
-        currentAoAddress={currentAoAddress}
-        counter={counter}
-        setCounter={setCounter}
-        setComposeOpen={setComposeOpen}
-      />
-      <ComposePopup
-        mdAbove={mdAbove}
-        composeOpen={composeOpen}
-        composePopupWidth={composePopupWidth}
-        toggleComposeOpen={toggleComposeOpen}
-        currentAoAddress={currentAoAddress}
-        currentWallet={currentWallet}
-        currentEmail={currentEmail}
-        folder={folder}
-      />
-    </Box>
+      <Grid container sx={{maxWidth: '1152px', margin: '0 auto', maxHeight: '1152px'}}>
+      {loadingWallet == 0 && (
+          <Grid container spacing={5}>
+              <Grid item xs={12} justifyContent="flex-end">
+                <Card sx={{ my: 6 }}>
+                  <CardContent>
+                    Loading Wallet Status
+                  </CardContent>
+                </Card>
+              </Grid>
+          </Grid>
+      )}
+      {loadingWallet == 2 && (
+          <Grid container spacing={5}>
+            <Grid item xs={12} justifyContent="flex-end">
+              <Card sx={{ my: 6 }}>
+                <CardContent>
+                Please Connect Wallet First
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
+      )}
+      {loadingWallet == 1 && (
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            borderRadius: 1,
+            overflow: 'hidden',
+            position: 'relative',
+            boxShadow: skin === 'bordered' ? 0 : 6,
+            ...(skin === 'bordered' && { border: `1px solid ${theme.palette.divider}` })
+          }}
+        >
+          <SidebarLeft
+            store={null}
+            hidden={hidden}
+            lgAbove={lgAbove}
+            dispatch={'ltr'}
+            folder={folder}
+            setFolder={setFolder}
+            emailDetailWindowOpen={emailDetailWindowOpen}
+            leftSidebarOpen={leftSidebarOpen}
+            leftSidebarWidth={leftSidebarWidth}
+            composeTitle={composeTitle}
+            toggleComposeOpen={toggleComposeOpen}
+            setEmailDetailWindowOpen={setEmailDetailWindowOpen}
+            handleLeftSidebarToggle={handleLeftSidebarToggle}
+            EmailCategoriesColors={EmailCategoriesColors}
+          />
+          <EmailList
+            query={query}
+            store={null}
+            hidden={hidden}
+            lgAbove={lgAbove}
+            setQuery={setQuery}
+            direction={'ltr'}
+            folder={folder}
+            EmailCategoriesColors={EmailCategoriesColors}
+            currentEmail={currentEmail}
+            setCurrentEmail={setCurrentEmail}
+            emailDetailWindowOpen={emailDetailWindowOpen}
+            setEmailDetailWindowOpen={setEmailDetailWindowOpen}
+            paginationModel={paginationModel}
+            handlePageChange={handlePageChange}
+            loading={loading}
+            setLoading={setLoading}
+            noEmailText={noEmailText}
+            auth={auth}
+            currentAoAddress={currentAoAddress}
+            counter={counter}
+            setCounter={setCounter}
+            setComposeOpen={setComposeOpen}
+          />
+          <ComposePopup
+            mdAbove={mdAbove}
+            composeOpen={composeOpen}
+            composePopupWidth={composePopupWidth}
+            toggleComposeOpen={toggleComposeOpen}
+            currentAoAddress={currentAoAddress}
+            auth={auth}
+            currentEmail={currentEmail}
+            folder={folder}
+          />
+        </Box>
+      )}
+      </Grid>
   )
 }
 

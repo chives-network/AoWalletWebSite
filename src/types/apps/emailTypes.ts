@@ -136,7 +136,7 @@ export type EmailListType = {
   loading: boolean
   setLoading: (val: boolean) => void
   noEmailText: string
-  currentWallet: any
+  auth: any
   currentAoAddress: any
   counter: number
   setCounter: (id: number) => void
@@ -161,7 +161,7 @@ export type EmailDetailType = {
   handleMoveToTrash: (id: string | null) => void
   handleMoveToSpam: (id: string | null) => void
   handleMoveToFolder: (id: string | null, oldFolder: string, newFolder: string) => void
-  currentWallet: any
+  auth: any
   currentAoAddress: string
   EmailCategoriesColors: any
   setHaveReadEmails: any
