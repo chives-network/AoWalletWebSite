@@ -166,7 +166,7 @@ const AoCreateProcessModel = ({ auth }: any) => {
 
                 <Grid item xs={12} container justifyContent="flex-start">
                     {t('Result')}:
-                    <Link href={authConfig.AoConnectAoLink + `/entity/${resultText}`} target='_blank'>
+                    <Link href={authConfig.AoConnectAoLink + `/entity/${resultText}`} target='_blank' sx={{ml: 1}}>
                         <Typography variant='body2'>
                             {resultText}
                         </Typography>

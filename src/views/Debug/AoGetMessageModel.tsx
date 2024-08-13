@@ -39,7 +39,7 @@ const AoGetMessageModel = ({ auth }: any) => {
 
   const currentAddress = auth.address as string
 
-  const [processTxId, setprocessTxId] = useState<string>("K4kzmPPoxWp0YQqG0UNDeXIhWuhWkMcG0Hx8HYCjmLw")
+  const [processTxId, setprocessTxId] = useState<string>("8_hH-EEYmXtbHXh_1r5w3nt-gGTqyB4UBj5XtOPy-SM")
   const [processTxIdError, setprocessTxIdError] = useState<string | null>(null)
   const handleprocessTxIdChange = (event: any) => {
     setprocessTxId(event.target.value);
@@ -53,7 +53,7 @@ const AoGetMessageModel = ({ auth }: any) => {
     console.log("processTxId", processTxId)
   };
   
-  const [message, setMessage] = useState<string>("JQbi-qZBHWQCCl3BoPEwWOfGzNlYhxK0DmlwQlBb4cM")
+  const [message, setMessage] = useState<string>("t4xWBJg2xfcZ0TdsVwNFMDr7dlDrMqL5N8LftaIwaVQ")
   const [messageError, setMessageError] = useState<string | null>(null)
   const handlemessageChange = (event: any) => {
     setMessage(event.target.value);
