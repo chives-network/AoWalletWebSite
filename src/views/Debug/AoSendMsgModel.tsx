@@ -248,7 +248,7 @@ const AoSendMsgModel = () => {
         </Card>
 
     <Grid container spacing={6}>
-      <Grid item xs={6}>
+      <Grid item xs={6} sx={{my: 6}}>
         <Card>
             <CardHeader title={`${t('Send Message')}`} />
             <CardContent>
@@ -334,7 +334,7 @@ const AoSendMsgModel = () => {
             </CardContent>
         </Card>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={6} sx={{my: 6}}>
         <Card>
             <CardHeader title={`${t('Command Example')}`} />
             <CardContent>

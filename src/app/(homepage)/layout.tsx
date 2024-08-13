@@ -12,6 +12,9 @@ import Providers from '@components/Providers'
 import BlankLayout from '@layouts/BlankLayout'
 import FrontLayout from '@components/layout/front-pages'
 
+import { ArweaveWalletKit } from "arweave-wallet-kit"
+import { AuthProvider } from '@/context/AuthContext'
+
 // Style Imports
 import '@/app/globals.css'
 
@@ -31,13 +34,25 @@ const Layout = ({ children }: ChildrenType) => {
   return (
     <html id='__next'>
       <body className='flex is-full min-bs-full flex-auto flex-col'>
-        <Providers direction='ltr'>
-          <BlankLayout systemMode={systemMode}>
-            <IntersectionProvider>
-              <FrontLayout>{children}</FrontLayout>
-            </IntersectionProvider>
-          </BlankLayout>
-        </Providers>
+        <ArweaveWalletKit
+          config={{
+            permissions: ["ACCESS_ADDRESS", "SIGN_TRANSACTION", "DISPATCH", "ACCESS_ALL_ADDRESSES"],
+            ensurePermissions: true,
+            appInfo: {
+              name: "StarterKit",
+            },
+          }}
+        >
+          <AuthProvider>
+            <Providers direction='ltr'>
+              <BlankLayout systemMode={systemMode}>
+                <IntersectionProvider>
+                  <FrontLayout>{children}</FrontLayout>
+                </IntersectionProvider>
+              </BlankLayout>
+            </Providers>
+          </AuthProvider>
+        </ArweaveWalletKit>
       </body>
     </html>
   )

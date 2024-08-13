@@ -7,7 +7,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 
 // MUI Imports
-import Button from '@mui/material/Button'
+import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import useScrollTrigger from '@mui/material/useScrollTrigger'
@@ -27,6 +27,7 @@ import CustomIconButton from '@core/components/mui/IconButton'
 
 // Util Imports
 import { frontLayoutClasses } from '@layouts/utils/layoutClasses'
+import { ConnectButton } from "arweave-wallet-kit"
 
 // Styles Imports
 import styles from './styles.module.css'
@@ -59,14 +60,14 @@ const Header = ({ mode }: { mode: Mode }) => {
               <FrontMenu mode={mode} isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
             </div>
           ) : (
-            <div className='flex items-center gap-10'>
+            <div className='flex items-center gap-4'>
               <Link href='/'>
                 <Logo />
               </Link>
               <FrontMenu mode={mode} isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
             </div>
           )}
-          <div className='flex items-center gap-2 sm:gap-4'>
+          <div className='flex items-center sm:gap-4'>
             <ModeDropdown />
             {isBelowLgScreen ? (
               <CustomIconButton
@@ -79,16 +80,14 @@ const Header = ({ mode }: { mode: Mode }) => {
                 <i className='ri-shopping-cart-line text-xl' />
               </CustomIconButton>
             ) : (
-              <Button
-                component={Link}
-                variant='contained'
-                href='/'
-                startIcon={<i className='ri-shopping-cart-line text-xl' />}
-                className='whitespace-nowrap'
-                target='_blank'
-              >
-                Connect Wallet
-              </Button>
+              <Box sx={{ display: 'flex', alignItems: 'center', my: 0 }}>
+                <ConnectButton
+                  accent="#9155FD"
+                  profileModal={true}
+                  showBalance={true}
+                  showProfilePicture={true}
+                />
+              </Box>
             )}
           </div>
         </div>
