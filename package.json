@@ -30,6 +30,7 @@
     "@prisma/client": "^5.18.0",
     "@supercharge/promise-pool": "^3.2.0",
     "arweave-wallet-kit": "^1.0.4",
+    "axios": "^1.7.3",
     "bignumber.js": "^9.1.2",
     "classnames": "2.5.1",
     "clipboard-copy": "^4.0.1",
