@@ -127,7 +127,7 @@ const EmailAppLayout = () => {
       else {
         setLoading(false)
         setNoEmailText('No Email')
-        //setStore({ ...{data: [], total : 0, emailFolder: params.folder, startIndex: '0', endIndex: '10', EmailRecordsCount: {}, recordsUnRead:{} }, filter: params, allPages: 0 })
+        setStore({ ...{data: [], total : 0, emailFolder: params.folder, startIndex: '0', endIndex: '10', EmailRecordsCount: {}, recordsUnRead:{} }, filter: params, allPages: 0 })
       }
   }
   console.log("setStore", store)

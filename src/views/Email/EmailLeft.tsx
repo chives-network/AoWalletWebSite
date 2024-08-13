@@ -31,9 +31,6 @@ import { CustomBadgeProps } from '@/@core/components/mui/badge2/types'
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
-// Styles Imports
-import styles from './styles.module.css'
-
 // ** Styled Components
 const ListItemStyled = styled(ListItem)<ListItemProps & { component?: ElementType; href: string }>(({ theme }) => ({
   borderLeftWidth: '3px',
