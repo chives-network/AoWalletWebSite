@@ -48,7 +48,7 @@ const SettingModel = () => {
   const { t } = useTranslation()
 
   const auth = useAuth()
-  const currentAddress = auth.currentAddress
+  const currentAddress = auth.address
 
   const [serverModel, setServerModel] = useState<string>("Token")
   const [serverTxId, setServerTxId] = useState<string>("cC3CM1npsgqmFygx--WUooDj5SQMDEwIBFKiuGuqu5Y")

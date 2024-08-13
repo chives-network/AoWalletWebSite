@@ -33,9 +33,8 @@ const TokenSendOut = (props: any) => {
     // ** Hook
     const { t } = useTranslation()
     
-
     const auth = useAuth()
-    const currentAddress = auth.currentAddress
+    const currentAddress = auth.address
 
     useEffect(()=>{
         setTokenGetInfor( (prevState: any) => ({ 
@@ -51,15 +50,6 @@ const TokenSendOut = (props: any) => {
     }, [])
 
     const handleSubmit = async () => {
-        if(currentAddress == undefined || currentAddress.length != 43) {
-            toast.success(t(`Please create a wallet first`), {
-                duration: 4000
-            })
-            
-            
-            return
-        }
-
         if(tokenGetInfor && (tokenGetInfor.SendOutToken == null || tokenGetInfor.SendOutToken.trim() == "") )  {
             setTokenGetInfor( (prevState: any) => ({ 
                 ...prevState, 

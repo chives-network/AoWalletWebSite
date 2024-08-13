@@ -43,7 +43,7 @@ const AppModel = (props: any) => {
 
   
   const auth = useAuth()
-  const currentAddress = auth.currentAddress
+  const currentAddress = auth.address
 
   const ChatroomAvatar = GetChatroomAvatar('Chives')
 

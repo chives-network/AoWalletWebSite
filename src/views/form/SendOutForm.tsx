@@ -29,22 +29,18 @@ import toast from 'react-hot-toast'
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
-
-
 import { AoSendMsg } from '@/functions/AoConnect/AoConnect'
 
 const SendOutForm = () => {
   // ** Hook
   const { t } = useTranslation()
 
-  
-    
   // ** State
   const [uploadingButton, setUploadingButton] = useState<string>(`${t('Submit')}`)
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
   
   const auth = useAuth()
-  const currentAddress = auth.currentAddress
+  const currentAddress = auth.address
   
   const [inputAddress, setInputAddress] = useState<string>("")
   const [inputAddressError, setInputAddressError] = useState<string | null>(null)

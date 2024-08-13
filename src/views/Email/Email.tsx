@@ -22,6 +22,9 @@ import { useTranslation } from 'react-i18next'
 
 // ** Context
 import { useAuth } from '@/hooks/useAuth'
+import authConfig from '@/configs/auth'
+
+import { ChivesEmailGetMyEmailRecords } from '@/functions/AoConnect/ChivesEmail'
 
 // ** Variables
 const EmailCategoriesColors: any = {
@@ -70,6 +73,7 @@ const EmailAppLayout = () => {
 
   const [loadingWallet, setLoadingWallet] = useState<number>(0)
   const [currentAoAddress, setMyAoConnectTxId] = useState<string>('')
+  const [store, setStore] = useState<any>(null)
 
   useEffect(()=>{
     if(auth && auth.connected == false) {
@@ -110,15 +114,45 @@ const EmailAppLayout = () => {
         setNoEmailText('No Email')
       })
       */
+      const params = {
+        address: String(currentAoAddress),
+        pageId: paginationModel.page - 1,
+        pageSize: paginationModel.pageSize,
+        folder: folder
+      }
+
+      handleGetEmailData(params)
+      
       setComposeOpen(false)
       setComposeTitle(`${t(`Compose`)}`)
     }
   }, [paginationModel, folder, currentAoAddress, counter])
 
+  const handleGetEmailData = async (params: any) => {
+      console.log("params", params)
+      const startIndex = params.pageId * params.pageSize + 1
+      const endIndex = (params.pageId+1) * params.pageSize
+      const ChivesEmailGetMyEmailRecordsData1 = await ChivesEmailGetMyEmailRecords(authConfig.AoConnectChivesEmailServerData, params.address, params.folder ?? "Inbox", String(startIndex), String(endIndex))
+      if(ChivesEmailGetMyEmailRecordsData1) {
+        console.log("ChivesEmailGetMyEmailRecordsData1", ChivesEmailGetMyEmailRecordsData1)
+        const [filterEmails, totalRecords, emailFolder, startIndex, endIndex, EmailRecordsCount, recordsUnRead] = ChivesEmailGetMyEmailRecordsData1
+        setLoading(false)
+        if(filterEmails && filterEmails.length == 0) {
+          setNoEmailText('No Email')
+        }
+        setStore({ ...{filterEmails, totalRecords, emailFolder, startIndex, endIndex, EmailRecordsCount, recordsUnRead}, filter: params })
+      }
+      else {
+        setLoading(false)
+        setNoEmailText('No Email')
+        setStore({ ...{filterEmails: [], totalRecords : 0, emailFolder: params.folder, startIndex: '0', endIndex: '10', EmailRecordsCount: {}, recordsUnRead:{} }, filter: params })
+      }
+  }
+
   const handleLeftSidebarToggle = () => setLeftSidebarOpen(!leftSidebarOpen)
 
   return (
-      <Grid container sx={{maxWidth: '1152px', margin: '0 auto', maxHeight: '1152px'}}>
+      <Grid container sx={{maxWidth: '1152px', margin: '0 auto'}}>
       {loadingWallet == 0 && (
           <Grid container spacing={5}>
               <Grid item xs={12} justifyContent="flex-end">
@@ -141,20 +175,33 @@ const EmailAppLayout = () => {
             </Grid>
           </Grid>
       )}
-      {loadingWallet == 1 && (
+      {loadingWallet == 1 && store == null && (
+          <Grid container spacing={5}>
+            <Grid item xs={12} justifyContent="flex-end">
+              <Card sx={{ my: 6 }}>
+                <CardContent>
+                Loading data from Email Server
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
+      )}
+      {loadingWallet == 1 && store != null && (
         <Box
           sx={{
             width: '100%',
+            height: '800px',
             display: 'flex',
             borderRadius: 1,
             overflow: 'hidden',
             position: 'relative',
+            my: 6,
             boxShadow: skin === 'bordered' ? 0 : 6,
             ...(skin === 'bordered' && { border: `1px solid ${theme.palette.divider}` })
           }}
         >
           <SidebarLeft
-            store={null}
+            store={store}
             hidden={hidden}
             lgAbove={lgAbove}
             dispatch={'ltr'}
@@ -171,7 +218,7 @@ const EmailAppLayout = () => {
           />
           <EmailList
             query={query}
-            store={null}
+            store={store}
             hidden={hidden}
             lgAbove={lgAbove}
             setQuery={setQuery}

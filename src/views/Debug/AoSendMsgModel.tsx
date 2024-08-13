@@ -46,7 +46,7 @@ const AoSendMsgModel = ({ auth }: any) => {
   const [resultText, setResultText] = useState<string>("")
   const [resultText2, setResultText2] = useState<any>()
 
-  const currentAddress = auth.currentAddress
+  const currentAddress = auth.address
 
   const [chatroomId, setChatroomId] = useState<string>("")
   const [chatroomIdError, setChatroomIdError] = useState<string | null>(null)
@@ -229,7 +229,7 @@ const AoSendMsgModel = ({ auth }: any) => {
                         />
                     </Grid>
                     <Grid item xs={2} justifyContent="flex-end">
-                        <Button type='submit' sx={{mt: 1}} variant='contained' size='large' onClick={handleSaveLocalStorage} >
+                        <Button size="small" type='submit' sx={{mt: 1}} variant='contained' onClick={handleSaveLocalStorage} >
                             {uploadingButton}
                         </Button>
                     </Grid>
@@ -293,26 +293,26 @@ const AoSendMsgModel = ({ auth }: any) => {
 
                     <Grid item xs={12} container justifyContent="flex-end">
                         {resultText && (
-                        <Button variant='outlined' size='small' sx={{ mr:3 }} onClick={()=>{
-                            setResultText('')
-                            setResultText2('')
-                        }} disabled={isDisabledButton} >
-                            {t('Cannel')}
-                        </Button>
+                            <Button variant='outlined' size='small' sx={{ mr:3 }} onClick={()=>{
+                                setResultText('')
+                                setResultText2('')
+                            }} disabled={isDisabledButton} >
+                                {t('Cannel')}
+                            </Button>
                         )}
                         {isDisabledButton && (
                             <Box sx={{ m: 0, pt:1 }}>
                                 <CircularProgress sx={{ mr: 5, mt: 0 }} />
                             </Box>
                         )}
-                        <Button type='submit' variant='contained' size='large' onClick={handleSubmit} disabled={isDisabledButton} >
+                        <Button type='submit' variant='contained' size='small' onClick={handleSubmit} disabled={isDisabledButton} >
                             {uploadingButton}
                         </Button>
                     </Grid>
 
                     <Grid container justifyContent="flex-start" alignItems="center">
                         <Link href={authConfig.AoConnectAoLink + `/message/${resultText}`} target='_blank'>
-                            <Typography variant='body2' sx={{ml: 3, mt:2}}>
+                            <Typography variant='body2' sx={{ml: 6, mt:2}}>
                                 {resultText}
                             </Typography>
                         </Link>
@@ -320,6 +320,14 @@ const AoSendMsgModel = ({ auth }: any) => {
                             <Button size="small" sx={{mt: 3, ml: 3}} variant='outlined' disabled={isDisabledButton2} onClick={handleGetMsgContent}>{t('Get Content')}</Button>
                         )}
                     </Grid>
+
+                    {resultText2 && (
+                        <Grid item xs={12}>
+                            <Grid container sx={{ml: 0, width: '100%'}}>
+                                <MessageRender resultText={resultText2} />
+                            </Grid>   
+                        </Grid>
+                    )}
 
                 </Grid>
             </CardContent>
@@ -489,9 +497,6 @@ const AoSendMsgModel = ({ auth }: any) => {
                                     </Typography>
                                 </Box>
 
-
-
-                                
                                 <Box sx={{ display: 'grid', gridTemplateColumns: 'auto 1fr', alignItems: 'center', m: 0, p: 0 }}>
                                     <Button variant='outlined' size='small' sx={{ textTransform: 'none', mr:3, mb: 2 }} onClick={()=>{
                                         setMessage('Join("Quests", "Wang001")')
@@ -569,7 +574,7 @@ const AoSendMsgModel = ({ auth }: any) => {
                                 
                                 <Box sx={{ display: 'grid', gridTemplateColumns: 'auto 1fr', alignItems: 'center', m: 0, p: 0 }}>
                                     <Button variant='outlined' size='small' sx={{ textTransform: 'none', mr:3, mb: 2 }} onClick={()=>{
-                                        handleLuaFromGithub('token')
+                                        handleLuaFromGithub('chivestoken')
                                         setMessageHelp('ProcessTxId: TokenTxId')
                                         setProcessTxId(chatroomId)
                                     }}>
@@ -645,23 +650,9 @@ const AoSendMsgModel = ({ auth }: any) => {
             </CardContent>
         </Card>    
       </Grid>
-      {resultText2 && (
-        <Grid item xs={12}>
-            <Card>
-                <CardHeader title={`${t('Message Content')}`} />
-                <CardContent>
-                    <Grid container spacing={5}>
-                        <MessageRender resultText={resultText2} />
-                    </Grid>
-                </CardContent>
-            </Card>    
-        </Grid>
-      )}
-
+      
     </Grid>
 
-    
-        
     </Fragment>
   )
 }

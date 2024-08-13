@@ -34,7 +34,7 @@ const TokenCreate = (props: any) => {
     
 
     const auth = useAuth()
-    const currentAddress = auth.currentAddress
+    const currentAddress = auth.address
 
     useEffect(()=>{
         setTokenCreate( (prevState: any) => ({ 
@@ -54,15 +54,6 @@ const TokenCreate = (props: any) => {
     }, [])
 
     const handleSubmit = async () => {
-        if(currentAddress == undefined || currentAddress.length != 43) {
-            toast.success(t(`Please create a wallet first`), {
-                duration: 4000
-            })
-            
-            
-            return
-        }
-
         console.log("tokenCreate", tokenCreate)
 
         if(tokenCreate && (tokenCreate.Name == null || tokenCreate.Name.trim() == "") )  {

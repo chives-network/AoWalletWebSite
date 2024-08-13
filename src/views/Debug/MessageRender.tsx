@@ -8,7 +8,7 @@ import AnsiText from './AnsiText'
 const MessageRender = ({ resultText }: any) => {
 
     return  (
-                    <Box>
+                    <Box sx={{width: '100%'}}>
                         {resultText && resultText.Output && resultText.Output.data && resultText.Output.data.output && 
                         (
                             <AnsiText text={resultText.Output.data.output} />

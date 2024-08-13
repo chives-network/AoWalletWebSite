@@ -43,7 +43,7 @@ const AoGetPageRecordsModel = ({ auth }: any) => {
   
   const [resultRecords, setresultRecords] = useState<any>()
 
-  const currentAddress = auth.currentAddress
+  const currentAddress = auth.address
 
   const [processTxId, setprocessTxId] = useState<string>("K4kzmPPoxWp0YQqG0UNDeXIhWuhWkMcG0Hx8HYCjmLw")
   const [processTxIdError, setprocessTxIdError] = useState<string | null>(null)
@@ -60,16 +60,6 @@ const AoGetPageRecordsModel = ({ auth }: any) => {
   };
 
   const handleSubmit = async () => {
-    if(currentAddress == undefined || currentAddress.length != 43) {
-        toast.success(t(`Please create a wallet first`), {
-            position: 'top-right', 
-            duration: 4000
-        })
-        
-        
-        return
-    }
-
     setIsDisabledButton(true)
     setUploadingButton(`${t('Submitting...')}`)
 

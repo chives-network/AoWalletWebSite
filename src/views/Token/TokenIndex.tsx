@@ -59,7 +59,7 @@ const TokenIndexModel = (prop: any) => {
   const { t } = useTranslation()
 
   const auth = useAuth()
-  const currentAddress = auth.currentAddress
+  const currentAddress = auth.address
   
   const { myAoConnectTxId,
           tokenLeft,

@@ -94,7 +94,6 @@ const EmailList = (props: EmailListType) => {
   // ** Hook
   const { t } = useTranslation()
   
-  // ** Props
   const {
     store,
     query,

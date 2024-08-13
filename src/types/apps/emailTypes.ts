@@ -176,7 +176,7 @@ export type MailComposeType = {
   toggleComposeOpen: () => void
   composePopupWidth: string | number
   currentAoAddress: string
-  currentWallet: any
+  auth: any
   currentEmail: any
   folder: string
 }

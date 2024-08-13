@@ -69,16 +69,6 @@ const AoCreateProcessModel = ({ auth }: any) => {
   };
 
   const handleSubmit = async () => {
-    if(currentAddress == undefined || currentAddress.length != 43) {
-        toast.success(t(`Please create a wallet first`), {
-            position: 'top-center',
-            duration: 4000
-        })
-
-        return
-    }
-    console.log("Auth", auth)
-
     setIsDisabledButton(true)
     setUploadingButton(`${t('Submitting...')}`)
     

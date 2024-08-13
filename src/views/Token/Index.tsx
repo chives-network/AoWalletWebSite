@@ -45,7 +45,7 @@ const TokenModel = () => {
   const mdAbove = useMediaQuery(theme.breakpoints.up('md'))
 
   const auth = useAuth()
-  const currentAddress = auth.currentAddress
+  const currentAddress = auth.address
 
   const [tokenLeft, setTokenLeft] = useState<any[]>([])
   const [counter, setCounter] = useState<number>(0)
@@ -184,15 +184,13 @@ const TokenModel = () => {
     }
   }
   
-
-  
   return (
-    <Grid container sx={{maxWidth: '1152px', margin: '0 auto', maxHeight: '1152px'}}>
+    <Grid container sx={{maxWidth: '1152px', margin: '0 auto'}}>
       <Box
         className='app-chat'
         sx={{
           width: '100%',
-          height: '100%',
+          height: '800px',
           display: 'flex',
           borderRadius: 1,
           overflow: 'hidden',

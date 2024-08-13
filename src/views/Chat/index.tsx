@@ -36,7 +36,7 @@ const Chat = () => {
   const id = '0'
 
   const auth = useAuth()
-  const currentAddress = auth.currentAddress
+  const currentAddress = auth.address
 
   const [loadingWallet, setLoadingWallet] = useState<number>(0)
 
