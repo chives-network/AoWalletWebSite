@@ -2,7 +2,6 @@
 import { useEffect } from 'react'
 
 
-import { useAuth } from '@/hooks/useAuth'
 import { useTranslation } from 'react-i18next'
 
 // ** MUI Imports
@@ -33,9 +32,6 @@ const TokenSendOut = (props: any) => {
     // ** Hook
     const { t } = useTranslation()
     
-    const auth = useAuth()
-    const currentAddress = auth.address as string
-
     useEffect(()=>{
         setTokenGetInfor( (prevState: any) => ({ 
             ...prevState,

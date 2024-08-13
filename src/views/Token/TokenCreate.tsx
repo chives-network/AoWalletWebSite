@@ -21,7 +21,6 @@ import toast from 'react-hot-toast'
 import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
 
-import { useAuth } from '@/hooks/useAuth'
 import Icon from '@/@core/components/icon'
 
 const TokenCreate = (props: any) => {
@@ -31,10 +30,6 @@ const TokenCreate = (props: any) => {
     // ** Hook
     const { t } = useTranslation()
     
-
-    const auth = useAuth()
-    const currentAddress = auth.address as string
-
     useEffect(()=>{
         setTokenCreate( (prevState: any) => ({ 
             ...prevState,

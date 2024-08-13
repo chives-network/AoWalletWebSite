@@ -56,7 +56,6 @@ const TokenLeft = (props: any) => {
     handleLeftSidebarToggle,
     setTokenGetInfor,
     setCancelTokenFavorite,
-    pageCount,
     setPageCount
   } = props
 

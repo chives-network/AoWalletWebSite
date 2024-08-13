@@ -33,7 +33,7 @@ import { useTranslation } from 'react-i18next'
 import { AoGetPageRecords } from '@/functions/AoConnect/AoConnect'
 import AnsiText from './AnsiText'
 
-const AoGetPageRecordsModel = ({ auth }: any) => {
+const AoGetPageRecordsModel = () => {
   // ** Hook
   const { t } = useTranslation()
 

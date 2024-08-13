@@ -9,7 +9,6 @@ import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
 import Link from '@mui/material/Link'
-import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import Tooltip from '@mui/material/Tooltip'
 import TextField from '@mui/material/TextField'
@@ -17,8 +16,6 @@ import InputAdornment from '@mui/material/InputAdornment'
 
 // ** Icon Imports
 import Icon from '@/@core/components/icon'
-import toast from 'react-hot-toast'
-import Avatar from '@mui/material/Avatar'
 
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'

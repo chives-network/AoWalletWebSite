@@ -28,7 +28,7 @@ import { useTranslation } from 'react-i18next'
 
 import { AoCreateProcess } from '@/functions/AoConnect/AoConnect'
 
-const AoCreateProcessModel = ({ auth }: any) => {
+const AoCreateProcessModel = () => {
   // ** Hook
   const { t } = useTranslation()
 
@@ -37,8 +37,6 @@ const AoCreateProcessModel = ({ auth }: any) => {
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
   
   const [resultText, setResultText] = useState<string>("")
-
-  const currentAddress = auth.address as string
 
   const [moduleTxId, setmoduleTxId] = useState<string>(authConfig.AoConnectModule)
   const [moduleTxIdError, setmoduleTxIdError] = useState<string | null>(null)

@@ -16,8 +16,6 @@ import InputAdornment from '@mui/material/InputAdornment'
 
 // ** Icon Imports
 import Icon from '@/@core/components/icon'
-import toast from 'react-hot-toast'
-import Avatar from '@mui/material/Avatar'
 
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'

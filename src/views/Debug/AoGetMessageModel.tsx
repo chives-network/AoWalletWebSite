@@ -27,7 +27,7 @@ import { AoGetMessage } from '@/functions/AoConnect/AoConnect'
 
 import MessageRender from './MessageRender'
 
-const AoGetMessageModel = ({ auth }: any) => {
+const AoGetMessageModel = () => {
   // ** Hook
   const { t } = useTranslation()
 
@@ -36,8 +36,6 @@ const AoGetMessageModel = ({ auth }: any) => {
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
   
   const [resultText, setResultText] = useState<any>()
-
-  const currentAddress = auth.address as string
 
   const [processTxId, setprocessTxId] = useState<string>("8_hH-EEYmXtbHXh_1r5w3nt-gGTqyB4UBj5XtOPy-SM")
   const [processTxIdError, setprocessTxIdError] = useState<string | null>(null)
