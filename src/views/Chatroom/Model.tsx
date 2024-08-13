@@ -49,7 +49,7 @@ const AppModel = (props: any) => {
 
   const renderContent = () => {
       return (
-        <Grid container spacing={2}>
+        <Grid container sx={{my: 6}}>
           <Grid item xs={12} sx={{ height: '100%', overflowY: 'auto', scrollbarWidth: 'thin', scrollbarColor: '#ffffff' }}>
             <Card sx={{ px: 3, pt: 1}}>
               {true ? (

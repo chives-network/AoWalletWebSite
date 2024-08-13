@@ -30,8 +30,8 @@ const ChivesFaucetModel = () => {
   const { t } = useTranslation()
 
   const auth = useAuth()
-  const currentWallet = auth.currentWallet
-  const currentAddress = auth.currentAddress
+  const currentWallet = 'auth.currentWallet'
+  const currentAddress = 'auth.currentAddress'
 
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
   const [toolInfo, setToolInfo] = useState<any>({FaucetSendRule: 'EveryDay', FaucetSendAmount: '0.123', TokenIdInFaucet:'8NtyJMkKt2Q5bshS70K1k52AAiG7qLNm7FU82OIL9hE'})

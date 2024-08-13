@@ -18,54 +18,54 @@ const LearnCenter = () => {
   // ** Hook
 
   return (
-    <Grid container spacing={6}>
+    <Grid container sx={{maxWidth: '1152px', margin: '0 auto'}}>
       <Grid item xs={12}>
-        <Card sx={{ padding: '0 8px' }}>
+        <Card sx={{ mt: 6, p: 2, pb: 0 }}>
           <ChivesFaucet />
         </Card>
       </Grid>
       <Grid item xs={12}>
-        <Card sx={{ padding: '0 8px' }}>
+        <Card sx={{ mt: 6, p: 2, pb: 0 }}>
           <ChivesChat />
         </Card>
       </Grid>
       <Grid item xs={12}>
-        <Card sx={{ padding: '0 8px' }}>
+        <Card sx={{ mt: 6, p: 2, pb: 0 }}>
           <ChivesChatOnlyChat />
         </Card>
       </Grid>
       <Grid item xs={12}>
-        <Card sx={{ padding: '0 8px' }}>
+        <Card sx={{ mt: 6, p: 2, pb: 0 }}>
           <ChivesEmail />
         </Card>
       </Grid>
       <Grid item xs={12}>
-        <Card sx={{ padding: '0 8px' }}>
+        <Card sx={{ mt: 6, p: 2, pb: 0 }}>
           <ChivesServerData />
         </Card>
       </Grid>
       <Grid item xs={12}>
-        <Card sx={{ padding: '0 8px' }}>
+        <Card sx={{ mt: 6, p: 2, pb: 0 }}>
           <ChivesLottery />
         </Card>
       </Grid>
       <Grid item xs={12}>
-        <Card sx={{ padding: '0 8px' }}>
+        <Card sx={{ mt: 6, p: 2, pb: 0 }}>
           <Chatroom />
         </Card>
       </Grid>
       <Grid item xs={12}>
-        <Card sx={{ padding: '0 8px' }}>
+        <Card sx={{ mt: 6, p: 2, pb: 0 }}>
           <Token />
         </Card>
       </Grid>
       <Grid item xs={12}>
-        <Card sx={{ padding: '0 8px' }}>
+        <Card sx={{ mt: 6, p: 2, pb: 0 }}>
           <TokenOnlySendAndMint />
         </Card>
       </Grid>
       <Grid item xs={12}>
-        <Card sx={{ padding: '0 8px' }}>
+        <Card sx={{ mt: 6, mb: 6 }}>
           <MyProcessTxIds />
         </Card>
       </Grid>

@@ -3,6 +3,7 @@ import { useEffect, useState, Fragment, memo } from 'react'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
 import { useTheme } from '@mui/material/styles'
 
 // ** Hooks
@@ -79,7 +80,7 @@ const Chat = () => {
   const { skin } = settings
 
   return (
-    <Fragment>
+    <Grid container sx={{maxWidth: '1152px', margin: '0 auto', maxHeight: '1152px'}}>
       {id && app?
       <Box
         className='app-chat'
@@ -90,6 +91,7 @@ const Chat = () => {
           borderRadius: 1,
           overflow: 'hidden',
           position: 'relative',
+          my: 6,
           backgroundColor: 'background.paper',
           boxShadow: skin === 'bordered' ? 0 : 6,
           ...(skin === 'bordered' && { border: `1px solid ${theme.palette.divider}` })
@@ -100,7 +102,7 @@ const Chat = () => {
       :
       null
       }
-    </Fragment>
+    </Grid>
   )
 }
 

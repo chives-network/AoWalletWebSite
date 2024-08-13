@@ -11,6 +11,7 @@ import { useSettings } from '@core/hooks/useSettings'
 
 // ** Third Party Import
 import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
 
 // ** Axios Imports
 import { useAuth } from '@/hooks/useAuth'
@@ -187,7 +188,7 @@ const TokenModel = () => {
 
   
   return (
-    <Fragment>
+    <Grid container sx={{maxWidth: '1152px', margin: '0 auto', maxHeight: '1152px'}}>
       <Box
         className='app-chat'
         sx={{
@@ -197,6 +198,7 @@ const TokenModel = () => {
           borderRadius: 1,
           overflow: 'hidden',
           position: 'relative',
+          my: 6,
           backgroundColor: 'background.paper',
           boxShadow: skin === 'bordered' ? 0 : 6,
           ...(skin === 'bordered' && { border: `1px solid ${theme.palette.divider}` })
@@ -257,7 +259,7 @@ const TokenModel = () => {
         </Fragment>
 
       </Box>
-    </Fragment>
+    </Grid>
   )
 }
 

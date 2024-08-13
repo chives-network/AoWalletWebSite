@@ -1,5 +1,7 @@
 // ** React Imports
-import { Fragment, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+
+import Grid from '@mui/material/Grid'
 
 import AppModel from '@views/Chatroom/Model'
 
@@ -99,9 +101,9 @@ const AllApp = () => {
   }, [app]); 
 
   return (
-    <Fragment>
+    <Grid container sx={{maxWidth: '1152px', margin: '0 auto', maxHeight: '1152px'}}>
       <AppModel app={app} loading={loading} loadingText={loadingText} appId={appId} setAppId={setAppId} show={show} setShow={setShow} handleSearchFilter={handleSearchFilter}/>
-    </Fragment>
+    </Grid>
   )
 }
 

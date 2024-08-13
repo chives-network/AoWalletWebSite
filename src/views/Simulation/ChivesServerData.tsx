@@ -36,8 +36,8 @@ const ChivesServerData = () => {
   const { t } = useTranslation()
 
   const auth = useAuth()
-  const currentWallet = auth.currentWallet
-  const currentAddress = auth.currentAddress
+  const currentWallet = 'auth.currentWallet'
+  const currentAddress = 'auth.currentAddress'
   
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
   const [toolInfo, setToolInfo] = useState<any>({ChivesServerData:''})
