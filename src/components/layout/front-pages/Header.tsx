@@ -8,7 +8,10 @@ import Link from 'next/link'
 
 // MUI Imports
 import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import useScrollTrigger from '@mui/material/useScrollTrigger'
+import type { Theme } from '@mui/material/styles'
 
 // Third-party Imports
 import classnames from 'classnames'
@@ -20,6 +23,7 @@ import type { Mode } from '@core/types'
 import Logo from '@components/layout/shared/Logo'
 import ModeDropdown from '@components/layout/shared/ModeDropdown'
 import FrontMenu from './FrontMenu'
+import CustomIconButton from '@core/components/mui/IconButton'
 
 // Util Imports
 import { frontLayoutClasses } from '@layouts/utils/layoutClasses'
@@ -31,6 +35,9 @@ const Header = ({ mode }: { mode: Mode }) => {
   // States
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
+  // Hooks
+  const isBelowLgScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('lg'))
+
   // Detect window scroll
   const trigger = useScrollTrigger({
     threshold: 0,
@@ -41,23 +48,48 @@ const Header = ({ mode }: { mode: Mode }) => {
     <header className={classnames(frontLayoutClasses.header, styles.header)}>
       <div className={classnames(frontLayoutClasses.navbar, styles.navbar, { [styles.headerScrolled]: trigger })}>
         <div className={classnames(frontLayoutClasses.navbarContent, styles.navbarContent)}>
-          <div className='flex items-center gap-10'>
-            <Link href='/home'>
-              <Logo />
-            </Link>
-            <FrontMenu mode={mode} isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
-          </div>
+          {isBelowLgScreen ? (
+            <div className='flex items-center gap-2 sm:gap-4'>
+              <IconButton onClick={() => setIsDrawerOpen(true)} className='-mis-2'>
+                <i className='ri-menu-line text-textPrimary' />
+              </IconButton>
+              <Link href='/'>
+                <Logo />
+              </Link>
+              <FrontMenu mode={mode} isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
+            </div>
+          ) : (
+            <div className='flex items-center gap-10'>
+              <Link href='/'>
+                <Logo />
+              </Link>
+              <FrontMenu mode={mode} isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
+            </div>
+          )}
           <div className='flex items-center gap-2 sm:gap-4'>
             <ModeDropdown />
-            <Button
-              component={Link}
-              variant='contained'
-              href='/home'
-              startIcon={<i className='ri-shopping-cart-line text-xl' />}
-              className='whitespace-nowrap'
-            >
-              Connect Wallet
-            </Button>
+            {isBelowLgScreen ? (
+              <CustomIconButton
+                component={Link}
+                variant='contained'
+                href='/'
+                color='primary'
+                target='_blank'
+              >
+                <i className='ri-shopping-cart-line text-xl' />
+              </CustomIconButton>
+            ) : (
+              <Button
+                component={Link}
+                variant='contained'
+                href='/'
+                startIcon={<i className='ri-shopping-cart-line text-xl' />}
+                className='whitespace-nowrap'
+                target='_blank'
+              >
+                Connect Wallet
+              </Button>
+            )}
           </div>
         </div>
       </div>
