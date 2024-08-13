@@ -337,7 +337,7 @@ const ChivesLotteryModel = () => {
                   }>
                   {t("Simulated Lottery")}
                   </Button>
-                  <Link sx={{mt: 2, mr: 2}} href={`https://github.com/chives-network/AoConnect/blob/main/blueprints/chiveslottery.lua`} target='_blank'>
+                  <Link sx={{mt: 2, mr: 2}} href={`https://github.com/chives-network/AoWalletWebsite/blob/main/blueprints/chiveslottery.lua`} target='_blank'>
                       <Typography variant='body2'>
                         {t("Lottery Lua")}
                       </Typography>

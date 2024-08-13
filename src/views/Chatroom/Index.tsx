@@ -46,7 +46,7 @@ const AllApp = () => {
     if(loadingAllData == false)  {
       try {
         setLoading(true)
-        const RS = await axios.get('https://raw.githubusercontent.com/chives-network/AoConnect/main/collection/chatroom.json', { headers: { 'Content-Type': 'application/json'} }).then(res=>res.data)
+        const RS = await axios.get('https://raw.githubusercontent.com/chives-network/AoWalletWebsite/main/collection/chatroom.json', { headers: { 'Content-Type': 'application/json'} }).then(res=>res.data)
 
         if(RS) {
           const appInitial: string[] = []

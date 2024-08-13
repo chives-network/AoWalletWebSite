@@ -179,7 +179,7 @@ const AoSendMsgModel = () => {
 
   const handleLuaFromGithub = async (module: string) => {
     try {
-        const Data = await axios.get('https://raw.githubusercontent.com/chives-network/AoConnect/main/blueprints/' + module + '.lua', { headers: { }, params: { } }).then(res => res.data)
+        const Data = await axios.get('https://raw.githubusercontent.com/chives-network/AoWalletWebsite/main/blueprints/' + module + '.lua', { headers: { }, params: { } }).then(res => res.data)
         setMessage(Data)
         setTags('[ { "name": "Action", "value": "Eval" } ]')
         setResultText('')

@@ -478,7 +478,7 @@ const ChivesChatOnlyChat = () => {
                     {t("Simulated ChivesChat (Only Simulated Chat)")}
                     </Button>
                   </Box>
-                  <Link sx={{mt: 2, mr: 2}} href={`https://github.com/chives-network/AoConnect/blob/main/blueprints/chiveschat.lua`} target='_blank'>
+                  <Link sx={{mt: 2, mr: 2}} href={`https://github.com/chives-network/AoWalletWebsite/blob/main/blueprints/chiveschat.lua`} target='_blank'>
                       <Typography variant='body2'>
                         {t("ChivesChat Lua")}
                       </Typography>

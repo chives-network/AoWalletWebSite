@@ -235,7 +235,7 @@ const TokenOnlySendAndMintModel = () => {
                     {t("Simulated Token (Only Simulated Send And Mint)")}
                     </Button>
                   </Box>
-                  <Link sx={{mt: 2, mr: 2}} href={`https://github.com/chives-network/AoConnect/blob/main/blueprints/chivestoken.lua`} target='_blank'>
+                  <Link sx={{mt: 2, mr: 2}} href={`https://github.com/chives-network/AoWalletWebsite/blob/main/blueprints/chivestoken.lua`} target='_blank'>
                       <Typography variant='body2'>
                         {t("Token Lua")}
                       </Typography>
