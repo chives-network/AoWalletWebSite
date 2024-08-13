@@ -18,7 +18,6 @@ import CircularProgress from '@mui/material/CircularProgress'
 import Icon from '@/@core/components/icon'
 
 // ** Context
-import { useAuth } from '@/hooks/useAuth'
 import authConfig from '@configs/auth'
 
 // ** Third Party Components
@@ -27,25 +26,20 @@ import toast from 'react-hot-toast'
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
-
-
 import { AoCreateProcess } from '@/functions/AoConnect/AoConnect'
 
-const AoCreateProcessModel = () => {
+const AoCreateProcessModel = ({ auth }: any) => {
   // ** Hook
   const { t } = useTranslation()
 
-  
-    
   // ** State
   const [uploadingButton, setUploadingButton] = useState<string>(`${t('Submit')}`)
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
   
   const [resultText, setResultText] = useState<string>("")
 
-  const auth = useAuth()
   const currentWallet = auth.currentWallet
-  const currentAddress = auth.currentAddress
+  const currentAddress = auth.address
 
   const [moduleTxId, setmoduleTxId] = useState<string>(authConfig.AoConnectModule)
   const [moduleTxIdError, setmoduleTxIdError] = useState<string | null>(null)
@@ -81,22 +75,22 @@ const AoCreateProcessModel = () => {
             position: 'top-center',
             duration: 4000
         })
-        
-        
+
         return
     }
+    console.log("Auth", auth)
 
-    setIsDisabledButton(true)
-    setUploadingButton(`${t('Submitting...')}`)
-
-    const processId: any = await AoCreateProcess(currentWallet.jwk, moduleTxId, String(scheduler), JSON.parse(tags));
+    //setIsDisabledButton(true)
+    //setUploadingButton(`${t('Submitting...')}`)
+    
+    const processId: any = await AoCreateProcess(globalThis.arweaveWallet, moduleTxId, String(scheduler), JSON.parse(tags));
 
     if(processId && processId.length == 43) {
       toast.success(processId, { position: 'top-right', duration: 4000 })
       setResultText(processId)
     }
-    setIsDisabledButton(false)
-    setUploadingButton(`${t('Submit')}`)
+    //setIsDisabledButton(false)
+    //setUploadingButton(`${t('Submit')}`)
 
   }
 

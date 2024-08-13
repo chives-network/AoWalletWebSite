@@ -290,9 +290,9 @@ const TokenIndexModel = (prop: any) => {
       }
     }
     else {
-      TokenProcessTxId = await AoCreateProcessAuto(currentWallet.jwk)
+      TokenProcessTxId = await AoCreateProcessAuto(globalThis.arweaveWallet)
       while(TokenProcessTxId && TokenProcessTxId.length != 43) {
-        TokenProcessTxId = await AoCreateProcessAuto(currentWallet.jwk)
+        TokenProcessTxId = await AoCreateProcessAuto(globalThis.arweaveWallet)
         console.log("TokenProcessTxId", TokenProcessTxId)
       }
     }
@@ -308,10 +308,10 @@ const TokenIndexModel = (prop: any) => {
     return new Promise((resolve, reject) => {
       setTimeout(async () => {
         try {
-          let LoadBlueprintToken: any = await AoLoadBlueprintToken(currentWallet.jwk, TokenProcessTxId, tokenCreate);
+          let LoadBlueprintToken: any = await AoLoadBlueprintToken(globalThis.arweaveWallet, TokenProcessTxId, tokenCreate);
           while(LoadBlueprintToken && LoadBlueprintToken.status == 'ok' && LoadBlueprintToken.msg && LoadBlueprintToken.msg.error)  {
             sleep(6000)
-            LoadBlueprintToken = await AoLoadBlueprintToken(currentWallet.jwk, TokenProcessTxId, tokenCreate);
+            LoadBlueprintToken = await AoLoadBlueprintToken(globalThis.arweaveWallet, TokenProcessTxId, tokenCreate);
             console.log("handleTokenCreate LoadBlueprintToken:", LoadBlueprintToken);
           }
   
@@ -516,7 +516,7 @@ const TokenIndexModel = (prop: any) => {
       disabledSendOutButton: true
     }))
 
-    const MintTokenData = await AoTokenMint(currentWallet.jwk, TokenProcessTxId, MintAmount)
+    const MintTokenData = await AoTokenMint(globalThis.arweaveWallet, TokenProcessTxId, MintAmount)
     if(MintTokenData) {
       console.log("MintTokenData", MintTokenData)
       if(MintTokenData?.msg?.Messages[0]?.Data)  {
@@ -558,7 +558,7 @@ const TokenIndexModel = (prop: any) => {
       disabledSendOutButton: true
     }))
 
-    const MintTokenData = await AoTokenAirdrop(currentWallet.jwk, TokenProcessTxId, AddressList, AmountList)
+    const MintTokenData = await AoTokenAirdrop(globalThis.arweaveWallet, TokenProcessTxId, AddressList, AmountList)
     if(MintTokenData) {
       console.log("MintTokenData", MintTokenData)
       if(MintTokenData?.msg?.Messages[0]?.Data)  {
@@ -587,7 +587,7 @@ const TokenIndexModel = (prop: any) => {
     
     setIsDisabledButton(true)
 
-    const AoTokenTransferData = await AoTokenTransfer(currentWallet.jwk, TokenProcessTxId, ReceivedAddress, Number(Amount))
+    const AoTokenTransferData = await AoTokenTransfer(globalThis.arweaveWallet, TokenProcessTxId, ReceivedAddress, Number(Amount))
     if(AoTokenTransferData && tokenInfo && tokenInfo.Denomination) {
       console.log("AoTokenTransferData", AoTokenTransferData)
       if(AoTokenTransferData?.msg?.Messages[0]?.Data)  {

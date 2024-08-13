@@ -50,7 +50,7 @@ const MyProcessTxIds = () => {
 
     setIsDisabledButton(true)
 
-    const MyProcessTxIds = await AoCreateProcessAuto(currentWallet.jwk)
+    const MyProcessTxIds = await AoCreateProcessAuto(globalThis.arweaveWallet)
     if(MyProcessTxIds) {
       setToolInfo((prevState: any)=>({
         ...prevState,
@@ -69,10 +69,10 @@ const MyProcessTxIds = () => {
 
     await sleep(10000)
 
-    let LoadBlueprintMyProcessTxIds: any = await AoLoadBlueprintMyProcessTxIds(currentWallet.jwk, MyProcessTxIds);
+    let LoadBlueprintMyProcessTxIds: any = await AoLoadBlueprintMyProcessTxIds(globalThis.arweaveWallet, MyProcessTxIds);
     while(LoadBlueprintMyProcessTxIds && LoadBlueprintMyProcessTxIds.status == 'ok' && LoadBlueprintMyProcessTxIds.msg && LoadBlueprintMyProcessTxIds.msg.error)  {
       sleep(6000)
-      LoadBlueprintMyProcessTxIds = await AoLoadBlueprintMyProcessTxIds(currentWallet.jwk, MyProcessTxIds);
+      LoadBlueprintMyProcessTxIds = await AoLoadBlueprintMyProcessTxIds(globalThis.arweaveWallet, MyProcessTxIds);
       console.log("handleSimulatedToken LoadBlueprintMyProcessTxIds:", LoadBlueprintMyProcessTxIds);
     }
     if(LoadBlueprintMyProcessTxIds) {
@@ -87,7 +87,7 @@ const MyProcessTxIds = () => {
     }
     console.log("LoadBlueprintMyProcessTxIds", LoadBlueprintMyProcessTxIds)
 
-    const TokenProcessTxId1 = await AoCreateProcessAuto(currentWallet.jwk)
+    const TokenProcessTxId1 = await AoCreateProcessAuto(globalThis.arweaveWallet)
     if(TokenProcessTxId1) {
       setToolInfo((prevState: any)=>({
         ...prevState,
@@ -95,7 +95,7 @@ const MyProcessTxIds = () => {
       }))
     }
 
-    const TokenProcessTxId2 = await AoCreateProcessAuto(currentWallet.jwk)
+    const TokenProcessTxId2 = await AoCreateProcessAuto(globalThis.arweaveWallet)
     if(TokenProcessTxId2) {
       setToolInfo((prevState: any)=>({
         ...prevState,
@@ -103,7 +103,7 @@ const MyProcessTxIds = () => {
       }))
     }
 
-    const MyProcessTxIdsAddToken1 = await MyProcessTxIdsAddToken(currentWallet.jwk, MyProcessTxIds, TokenProcessTxId1, '666', 'Group', 'Data')
+    const MyProcessTxIdsAddToken1 = await MyProcessTxIdsAddToken(globalThis.arweaveWallet, MyProcessTxIds, TokenProcessTxId1, '666', 'Group', 'Data')
     if(MyProcessTxIdsAddToken1) {
       console.log("MyProcessTxIdsAddToken1", MyProcessTxIdsAddToken1)
       if(MyProcessTxIdsAddToken1?.msg?.Output?.data?.output)  {
@@ -116,7 +116,7 @@ const MyProcessTxIds = () => {
           }))
 
           //Read message from inbox
-          const MyProcessTxIdsAddTokenData1 = await GetMyLastMsg(currentWallet.jwk, TokenProcessTxId1)
+          const MyProcessTxIdsAddTokenData1 = await GetMyLastMsg(globalThis.arweaveWallet, TokenProcessTxId1)
           if(MyProcessTxIdsAddTokenData1?.msg?.Output?.data?.output)  {
             const formatText2 = MyProcessTxIdsAddTokenData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -132,7 +132,7 @@ const MyProcessTxIds = () => {
       }
     }
 
-    const MyProcessTxIdsAddToken2 = await MyProcessTxIdsAddToken(currentWallet.jwk, MyProcessTxIds, TokenProcessTxId2, '777', 'Group', 'Data')
+    const MyProcessTxIdsAddToken2 = await MyProcessTxIdsAddToken(globalThis.arweaveWallet, MyProcessTxIds, TokenProcessTxId2, '777', 'Group', 'Data')
     if(MyProcessTxIdsAddToken2) {
       console.log("MyProcessTxIdsAddToken2", MyProcessTxIdsAddToken2)
       if(MyProcessTxIdsAddToken2?.msg?.Output?.data?.output)  {
@@ -145,7 +145,7 @@ const MyProcessTxIds = () => {
           }))
 
           //Read message from inbox
-          const MyProcessTxIdsAddTokenData1 = await GetMyLastMsg(currentWallet.jwk, TokenProcessTxId2)
+          const MyProcessTxIdsAddTokenData1 = await GetMyLastMsg(globalThis.arweaveWallet, TokenProcessTxId2)
           if(MyProcessTxIdsAddTokenData1?.msg?.Output?.data?.output)  {
             const formatText2 = MyProcessTxIdsAddTokenData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -170,7 +170,7 @@ const MyProcessTxIds = () => {
       }))
     }
 
-    const MyProcessTxIdsDelToken2 = await MyProcessTxIdsDelToken(currentWallet.jwk, MyProcessTxIds, TokenProcessTxId2)
+    const MyProcessTxIdsDelToken2 = await MyProcessTxIdsDelToken(globalThis.arweaveWallet, MyProcessTxIds, TokenProcessTxId2)
     if(MyProcessTxIdsDelToken2) {
       console.log("MyProcessTxIdsDelToken2", MyProcessTxIdsDelToken2)
       if(MyProcessTxIdsDelToken2?.msg?.Output?.data?.output)  {
@@ -183,7 +183,7 @@ const MyProcessTxIds = () => {
           }))
 
           //Read message from inbox
-          const MyProcessTxIdsDelTokenData1 = await GetMyLastMsg(currentWallet.jwk, TokenProcessTxId1)
+          const MyProcessTxIdsDelTokenData1 = await GetMyLastMsg(globalThis.arweaveWallet, TokenProcessTxId1)
           if(MyProcessTxIdsDelTokenData1?.msg?.Output?.data?.output)  {
             const formatText2 = MyProcessTxIdsDelTokenData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -217,7 +217,7 @@ const MyProcessTxIds = () => {
     const ChatroomProcessTxId1 = TokenProcessTxId1
     const ChatroomProcessTxId2 = TokenProcessTxId2
 
-    const MyProcessTxIdsAddChatroom1 = await MyProcessTxIdsAddChatroom(currentWallet.jwk, MyProcessTxIds, MyProcessTxIds, ChatroomProcessTxId1, '666', 'Data')
+    const MyProcessTxIdsAddChatroom1 = await MyProcessTxIdsAddChatroom(globalThis.arweaveWallet, MyProcessTxIds, MyProcessTxIds, ChatroomProcessTxId1, '666', 'Data')
     if(MyProcessTxIdsAddChatroom1) {
       console.log("MyProcessTxIdsAddChatroom1", MyProcessTxIdsAddChatroom1)
       if(MyProcessTxIdsAddChatroom1?.msg?.Output?.data?.output)  {
@@ -230,7 +230,7 @@ const MyProcessTxIds = () => {
           }))
 
           //Read message from inbox
-          const MyProcessTxIdsAddChatroomData1 = await GetMyLastMsg(currentWallet.jwk, ChatroomProcessTxId1)
+          const MyProcessTxIdsAddChatroomData1 = await GetMyLastMsg(globalThis.arweaveWallet, ChatroomProcessTxId1)
           if(MyProcessTxIdsAddChatroomData1?.msg?.Output?.data?.output)  {
             const formatText2 = MyProcessTxIdsAddChatroomData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -246,7 +246,7 @@ const MyProcessTxIds = () => {
       }
     }
 
-    const MyProcessTxIdsAddChatroom2 = await MyProcessTxIdsAddChatroom(currentWallet.jwk, MyProcessTxIds, MyProcessTxIds, ChatroomProcessTxId2, '777', 'Data')
+    const MyProcessTxIdsAddChatroom2 = await MyProcessTxIdsAddChatroom(globalThis.arweaveWallet, MyProcessTxIds, MyProcessTxIds, ChatroomProcessTxId2, '777', 'Data')
     if(MyProcessTxIdsAddChatroom2) {
       console.log("MyProcessTxIdsAddChatroom2", MyProcessTxIdsAddChatroom2)
       if(MyProcessTxIdsAddChatroom2?.msg?.Output?.data?.output)  {
@@ -259,7 +259,7 @@ const MyProcessTxIds = () => {
           }))
 
           //Read message from inbox
-          const MyProcessTxIdsAddChatroomData1 = await GetMyLastMsg(currentWallet.jwk, ChatroomProcessTxId2)
+          const MyProcessTxIdsAddChatroomData1 = await GetMyLastMsg(globalThis.arweaveWallet, ChatroomProcessTxId2)
           if(MyProcessTxIdsAddChatroomData1?.msg?.Output?.data?.output)  {
             const formatText2 = MyProcessTxIdsAddChatroomData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -284,7 +284,7 @@ const MyProcessTxIds = () => {
       }))
     }
 
-    const MyProcessTxIdsDelChatroom2 = await MyProcessTxIdsDelChatroom(currentWallet.jwk, MyProcessTxIds, MyProcessTxIds, ChatroomProcessTxId2)
+    const MyProcessTxIdsDelChatroom2 = await MyProcessTxIdsDelChatroom(globalThis.arweaveWallet, MyProcessTxIds, MyProcessTxIds, ChatroomProcessTxId2)
     if(MyProcessTxIdsDelChatroom2) {
       console.log("MyProcessTxIdsDelChatroom2", MyProcessTxIdsDelChatroom2)
       if(MyProcessTxIdsDelChatroom2?.msg?.Output?.data?.output)  {
@@ -297,7 +297,7 @@ const MyProcessTxIds = () => {
           }))
 
           //Read message from inbox
-          const MyProcessTxIdsDelChatroomData1 = await GetMyLastMsg(currentWallet.jwk, ChatroomProcessTxId1)
+          const MyProcessTxIdsDelChatroomData1 = await GetMyLastMsg(globalThis.arweaveWallet, ChatroomProcessTxId1)
           if(MyProcessTxIdsDelChatroomData1?.msg?.Output?.data?.output)  {
             const formatText2 = MyProcessTxIdsDelChatroomData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -332,7 +332,7 @@ const MyProcessTxIds = () => {
     const LotteryProcessTxId1 = TokenProcessTxId1
     const LotteryProcessTxId2 = TokenProcessTxId2
     
-    const MyProcessTxIdsAddLottery1 = await MyProcessTxIdsAddLottery(currentWallet.jwk, MyProcessTxIds, MyProcessTxIds, LotteryProcessTxId1, '666', 'Data')
+    const MyProcessTxIdsAddLottery1 = await MyProcessTxIdsAddLottery(globalThis.arweaveWallet, MyProcessTxIds, MyProcessTxIds, LotteryProcessTxId1, '666', 'Data')
     if(MyProcessTxIdsAddLottery1) {
       console.log("MyProcessTxIdsAddLottery1", MyProcessTxIdsAddLottery1)
       if(MyProcessTxIdsAddLottery1?.msg?.Output?.data?.output)  {
@@ -345,7 +345,7 @@ const MyProcessTxIds = () => {
           }))
     
           //Read message from inbox
-          const MyProcessTxIdsAddLotteryData1 = await GetMyLastMsg(currentWallet.jwk, LotteryProcessTxId1)
+          const MyProcessTxIdsAddLotteryData1 = await GetMyLastMsg(globalThis.arweaveWallet, LotteryProcessTxId1)
           if(MyProcessTxIdsAddLotteryData1?.msg?.Output?.data?.output)  {
             const formatText2 = MyProcessTxIdsAddLotteryData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -361,7 +361,7 @@ const MyProcessTxIds = () => {
       }
     }
     
-    const MyProcessTxIdsAddLottery2 = await MyProcessTxIdsAddLottery(currentWallet.jwk, MyProcessTxIds, MyProcessTxIds, LotteryProcessTxId2, '777', 'Data')
+    const MyProcessTxIdsAddLottery2 = await MyProcessTxIdsAddLottery(globalThis.arweaveWallet, MyProcessTxIds, MyProcessTxIds, LotteryProcessTxId2, '777', 'Data')
     if(MyProcessTxIdsAddLottery2) {
       console.log("MyProcessTxIdsAddLottery2", MyProcessTxIdsAddLottery2)
       if(MyProcessTxIdsAddLottery2?.msg?.Output?.data?.output)  {
@@ -374,7 +374,7 @@ const MyProcessTxIds = () => {
           }))
     
           //Read message from inbox
-          const MyProcessTxIdsAddLotteryData1 = await GetMyLastMsg(currentWallet.jwk, LotteryProcessTxId2)
+          const MyProcessTxIdsAddLotteryData1 = await GetMyLastMsg(globalThis.arweaveWallet, LotteryProcessTxId2)
           if(MyProcessTxIdsAddLotteryData1?.msg?.Output?.data?.output)  {
             const formatText2 = MyProcessTxIdsAddLotteryData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -399,7 +399,7 @@ const MyProcessTxIds = () => {
       }))
     }
     
-    const MyProcessTxIdsDelLottery2 = await MyProcessTxIdsDelLottery(currentWallet.jwk, MyProcessTxIds, MyProcessTxIds, LotteryProcessTxId2)
+    const MyProcessTxIdsDelLottery2 = await MyProcessTxIdsDelLottery(globalThis.arweaveWallet, MyProcessTxIds, MyProcessTxIds, LotteryProcessTxId2)
     if(MyProcessTxIdsDelLottery2) {
       console.log("MyProcessTxIdsDelLottery2", MyProcessTxIdsDelLottery2)
       if(MyProcessTxIdsDelLottery2?.msg?.Output?.data?.output)  {
@@ -412,7 +412,7 @@ const MyProcessTxIds = () => {
           }))
     
           //Read message from inbox
-          const MyProcessTxIdsDelLotteryData1 = await GetMyLastMsg(currentWallet.jwk, LotteryProcessTxId1)
+          const MyProcessTxIdsDelLotteryData1 = await GetMyLastMsg(globalThis.arweaveWallet, LotteryProcessTxId1)
           if(MyProcessTxIdsDelLotteryData1?.msg?.Output?.data?.output)  {
             const formatText2 = MyProcessTxIdsDelLotteryData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -446,7 +446,7 @@ const MyProcessTxIds = () => {
     const BlogProcessTxId1 = TokenProcessTxId1
     const BlogProcessTxId2 = TokenProcessTxId2
     
-    const MyProcessTxIdsAddBlog1 = await MyProcessTxIdsAddBlog(currentWallet.jwk, MyProcessTxIds, MyProcessTxIds, BlogProcessTxId1, '666', 'Data')
+    const MyProcessTxIdsAddBlog1 = await MyProcessTxIdsAddBlog(globalThis.arweaveWallet, MyProcessTxIds, MyProcessTxIds, BlogProcessTxId1, '666', 'Data')
     if(MyProcessTxIdsAddBlog1) {
       console.log("MyProcessTxIdsAddBlog1", MyProcessTxIdsAddBlog1)
       if(MyProcessTxIdsAddBlog1?.msg?.Output?.data?.output)  {
@@ -459,7 +459,7 @@ const MyProcessTxIds = () => {
           }))
     
           //Read message from inbox
-          const MyProcessTxIdsAddBlogData1 = await GetMyLastMsg(currentWallet.jwk, BlogProcessTxId1)
+          const MyProcessTxIdsAddBlogData1 = await GetMyLastMsg(globalThis.arweaveWallet, BlogProcessTxId1)
           if(MyProcessTxIdsAddBlogData1?.msg?.Output?.data?.output)  {
             const formatText2 = MyProcessTxIdsAddBlogData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -475,7 +475,7 @@ const MyProcessTxIds = () => {
       }
     }
     
-    const MyProcessTxIdsAddBlog2 = await MyProcessTxIdsAddBlog(currentWallet.jwk, MyProcessTxIds, MyProcessTxIds, BlogProcessTxId2, '777', 'Data')
+    const MyProcessTxIdsAddBlog2 = await MyProcessTxIdsAddBlog(globalThis.arweaveWallet, MyProcessTxIds, MyProcessTxIds, BlogProcessTxId2, '777', 'Data')
     if(MyProcessTxIdsAddBlog2) {
       console.log("MyProcessTxIdsAddBlog2", MyProcessTxIdsAddBlog2)
       if(MyProcessTxIdsAddBlog2?.msg?.Output?.data?.output)  {
@@ -488,7 +488,7 @@ const MyProcessTxIds = () => {
           }))
     
           //Read message from inbox
-          const MyProcessTxIdsAddBlogData1 = await GetMyLastMsg(currentWallet.jwk, BlogProcessTxId2)
+          const MyProcessTxIdsAddBlogData1 = await GetMyLastMsg(globalThis.arweaveWallet, BlogProcessTxId2)
           if(MyProcessTxIdsAddBlogData1?.msg?.Output?.data?.output)  {
             const formatText2 = MyProcessTxIdsAddBlogData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -513,7 +513,7 @@ const MyProcessTxIds = () => {
       }))
     }
     
-    const MyProcessTxIdsDelBlog2 = await MyProcessTxIdsDelBlog(currentWallet.jwk, MyProcessTxIds, MyProcessTxIds, BlogProcessTxId2)
+    const MyProcessTxIdsDelBlog2 = await MyProcessTxIdsDelBlog(globalThis.arweaveWallet, MyProcessTxIds, MyProcessTxIds, BlogProcessTxId2)
     if(MyProcessTxIdsDelBlog2) {
       console.log("MyProcessTxIdsDelBlog2", MyProcessTxIdsDelBlog2)
       if(MyProcessTxIdsDelBlog2?.msg?.Output?.data?.output)  {
@@ -526,7 +526,7 @@ const MyProcessTxIds = () => {
           }))
     
           //Read message from inbox
-          const MyProcessTxIdsDelBlogData1 = await GetMyLastMsg(currentWallet.jwk, BlogProcessTxId1)
+          const MyProcessTxIdsDelBlogData1 = await GetMyLastMsg(globalThis.arweaveWallet, BlogProcessTxId1)
           if(MyProcessTxIdsDelBlogData1?.msg?.Output?.data?.output)  {
             const formatText2 = MyProcessTxIdsDelBlogData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -560,7 +560,7 @@ const MyProcessTxIds = () => {
     const SwapProcessTxId1 = TokenProcessTxId1
     const SwapProcessTxId2 = TokenProcessTxId2
     
-    const MyProcessTxIdsAddSwap1 = await MyProcessTxIdsAddSwap(currentWallet.jwk, MyProcessTxIds, MyProcessTxIds, SwapProcessTxId1, '666', 'Data')
+    const MyProcessTxIdsAddSwap1 = await MyProcessTxIdsAddSwap(globalThis.arweaveWallet, MyProcessTxIds, MyProcessTxIds, SwapProcessTxId1, '666', 'Data')
     if(MyProcessTxIdsAddSwap1) {
       console.log("MyProcessTxIdsAddSwap1", MyProcessTxIdsAddSwap1)
       if(MyProcessTxIdsAddSwap1?.msg?.Output?.data?.output)  {
@@ -573,7 +573,7 @@ const MyProcessTxIds = () => {
           }))
     
           //Read message from inbox
-          const MyProcessTxIdsAddSwapData1 = await GetMyLastMsg(currentWallet.jwk, SwapProcessTxId1)
+          const MyProcessTxIdsAddSwapData1 = await GetMyLastMsg(globalThis.arweaveWallet, SwapProcessTxId1)
           if(MyProcessTxIdsAddSwapData1?.msg?.Output?.data?.output)  {
             const formatText2 = MyProcessTxIdsAddSwapData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -589,7 +589,7 @@ const MyProcessTxIds = () => {
       }
     }
     
-    const MyProcessTxIdsAddSwap2 = await MyProcessTxIdsAddSwap(currentWallet.jwk, MyProcessTxIds, MyProcessTxIds, SwapProcessTxId2, '777', 'Data')
+    const MyProcessTxIdsAddSwap2 = await MyProcessTxIdsAddSwap(globalThis.arweaveWallet, MyProcessTxIds, MyProcessTxIds, SwapProcessTxId2, '777', 'Data')
     if(MyProcessTxIdsAddSwap2) {
       console.log("MyProcessTxIdsAddSwap2", MyProcessTxIdsAddSwap2)
       if(MyProcessTxIdsAddSwap2?.msg?.Output?.data?.output)  {
@@ -602,7 +602,7 @@ const MyProcessTxIds = () => {
           }))
     
           //Read message from inbox
-          const MyProcessTxIdsAddSwapData1 = await GetMyLastMsg(currentWallet.jwk, SwapProcessTxId2)
+          const MyProcessTxIdsAddSwapData1 = await GetMyLastMsg(globalThis.arweaveWallet, SwapProcessTxId2)
           if(MyProcessTxIdsAddSwapData1?.msg?.Output?.data?.output)  {
             const formatText2 = MyProcessTxIdsAddSwapData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -627,7 +627,7 @@ const MyProcessTxIds = () => {
       }))
     }
     
-    const MyProcessTxIdsDelSwap2 = await MyProcessTxIdsDelSwap(currentWallet.jwk, MyProcessTxIds, MyProcessTxIds, SwapProcessTxId2)
+    const MyProcessTxIdsDelSwap2 = await MyProcessTxIdsDelSwap(globalThis.arweaveWallet, MyProcessTxIds, MyProcessTxIds, SwapProcessTxId2)
     if(MyProcessTxIdsDelSwap2) {
       console.log("MyProcessTxIdsDelSwap2", MyProcessTxIdsDelSwap2)
       if(MyProcessTxIdsDelSwap2?.msg?.Output?.data?.output)  {
@@ -640,7 +640,7 @@ const MyProcessTxIds = () => {
           }))
     
           //Read message from inbox
-          const MyProcessTxIdsDelSwapData1 = await GetMyLastMsg(currentWallet.jwk, SwapProcessTxId1)
+          const MyProcessTxIdsDelSwapData1 = await GetMyLastMsg(globalThis.arweaveWallet, SwapProcessTxId1)
           if(MyProcessTxIdsDelSwapData1?.msg?.Output?.data?.output)  {
             const formatText2 = MyProcessTxIdsDelSwapData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -673,7 +673,7 @@ const MyProcessTxIds = () => {
     const ProjectProcessTxId1 = TokenProcessTxId1
     const ProjectProcessTxId2 = TokenProcessTxId2
     
-    const MyProcessTxIdsAddProject1 = await MyProcessTxIdsAddProject(currentWallet.jwk, MyProcessTxIds, MyProcessTxIds, ProjectProcessTxId1, '666', 'Data')
+    const MyProcessTxIdsAddProject1 = await MyProcessTxIdsAddProject(globalThis.arweaveWallet, MyProcessTxIds, MyProcessTxIds, ProjectProcessTxId1, '666', 'Data')
     if(MyProcessTxIdsAddProject1) {
       console.log("MyProcessTxIdsAddProject1", MyProcessTxIdsAddProject1)
       if(MyProcessTxIdsAddProject1?.msg?.Output?.data?.output)  {
@@ -686,7 +686,7 @@ const MyProcessTxIds = () => {
           }))
     
           //Read message from inbox
-          const MyProcessTxIdsAddProjectData1 = await GetMyLastMsg(currentWallet.jwk, ProjectProcessTxId1)
+          const MyProcessTxIdsAddProjectData1 = await GetMyLastMsg(globalThis.arweaveWallet, ProjectProcessTxId1)
           if(MyProcessTxIdsAddProjectData1?.msg?.Output?.data?.output)  {
             const formatText2 = MyProcessTxIdsAddProjectData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -702,7 +702,7 @@ const MyProcessTxIds = () => {
       }
     }
     
-    const MyProcessTxIdsAddProject2 = await MyProcessTxIdsAddProject(currentWallet.jwk, MyProcessTxIds, MyProcessTxIds, ProjectProcessTxId2, '777', 'Data')
+    const MyProcessTxIdsAddProject2 = await MyProcessTxIdsAddProject(globalThis.arweaveWallet, MyProcessTxIds, MyProcessTxIds, ProjectProcessTxId2, '777', 'Data')
     if(MyProcessTxIdsAddProject2) {
       console.log("MyProcessTxIdsAddProject2", MyProcessTxIdsAddProject2)
       if(MyProcessTxIdsAddProject2?.msg?.Output?.data?.output)  {
@@ -715,7 +715,7 @@ const MyProcessTxIds = () => {
           }))
     
           //Read message from inbox
-          const MyProcessTxIdsAddProjectData1 = await GetMyLastMsg(currentWallet.jwk, ProjectProcessTxId2)
+          const MyProcessTxIdsAddProjectData1 = await GetMyLastMsg(globalThis.arweaveWallet, ProjectProcessTxId2)
           if(MyProcessTxIdsAddProjectData1?.msg?.Output?.data?.output)  {
             const formatText2 = MyProcessTxIdsAddProjectData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -740,7 +740,7 @@ const MyProcessTxIds = () => {
       }))
     }
     
-    const MyProcessTxIdsDelProject2 = await MyProcessTxIdsDelProject(currentWallet.jwk, MyProcessTxIds, MyProcessTxIds, ProjectProcessTxId2)
+    const MyProcessTxIdsDelProject2 = await MyProcessTxIdsDelProject(globalThis.arweaveWallet, MyProcessTxIds, MyProcessTxIds, ProjectProcessTxId2)
     if(MyProcessTxIdsDelProject2) {
       console.log("MyProcessTxIdsDelProject2", MyProcessTxIdsDelProject2)
       if(MyProcessTxIdsDelProject2?.msg?.Output?.data?.output)  {
@@ -753,7 +753,7 @@ const MyProcessTxIds = () => {
           }))
     
           //Read message from inbox
-          const MyProcessTxIdsDelProjectData1 = await GetMyLastMsg(currentWallet.jwk, ProjectProcessTxId1)
+          const MyProcessTxIdsDelProjectData1 = await GetMyLastMsg(globalThis.arweaveWallet, ProjectProcessTxId1)
           if(MyProcessTxIdsDelProjectData1?.msg?.Output?.data?.output)  {
             const formatText2 = MyProcessTxIdsDelProjectData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -787,7 +787,7 @@ const MyProcessTxIds = () => {
     const GuessProcessTxId1 = TokenProcessTxId1
     const GuessProcessTxId2 = TokenProcessTxId2
     
-    const MyProcessTxIdsAddGuess1 = await MyProcessTxIdsAddGuess(currentWallet.jwk, MyProcessTxIds, MyProcessTxIds, GuessProcessTxId1, '666', 'Data')
+    const MyProcessTxIdsAddGuess1 = await MyProcessTxIdsAddGuess(globalThis.arweaveWallet, MyProcessTxIds, MyProcessTxIds, GuessProcessTxId1, '666', 'Data')
     if(MyProcessTxIdsAddGuess1) {
       console.log("MyProcessTxIdsAddGuess1", MyProcessTxIdsAddGuess1)
       if(MyProcessTxIdsAddGuess1?.msg?.Output?.data?.output)  {
@@ -800,7 +800,7 @@ const MyProcessTxIds = () => {
           }))
     
           //Read message from inbox
-          const MyProcessTxIdsAddGuessData1 = await GetMyLastMsg(currentWallet.jwk, GuessProcessTxId1)
+          const MyProcessTxIdsAddGuessData1 = await GetMyLastMsg(globalThis.arweaveWallet, GuessProcessTxId1)
           if(MyProcessTxIdsAddGuessData1?.msg?.Output?.data?.output)  {
             const formatText2 = MyProcessTxIdsAddGuessData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -816,7 +816,7 @@ const MyProcessTxIds = () => {
       }
     }
     
-    const MyProcessTxIdsAddGuess2 = await MyProcessTxIdsAddGuess(currentWallet.jwk, MyProcessTxIds, MyProcessTxIds, GuessProcessTxId2, '777', 'Data')
+    const MyProcessTxIdsAddGuess2 = await MyProcessTxIdsAddGuess(globalThis.arweaveWallet, MyProcessTxIds, MyProcessTxIds, GuessProcessTxId2, '777', 'Data')
     if(MyProcessTxIdsAddGuess2) {
       console.log("MyProcessTxIdsAddGuess2", MyProcessTxIdsAddGuess2)
       if(MyProcessTxIdsAddGuess2?.msg?.Output?.data?.output)  {
@@ -829,7 +829,7 @@ const MyProcessTxIds = () => {
           }))
     
           //Read message from inbox
-          const MyProcessTxIdsAddGuessData1 = await GetMyLastMsg(currentWallet.jwk, GuessProcessTxId2)
+          const MyProcessTxIdsAddGuessData1 = await GetMyLastMsg(globalThis.arweaveWallet, GuessProcessTxId2)
           if(MyProcessTxIdsAddGuessData1?.msg?.Output?.data?.output)  {
             const formatText2 = MyProcessTxIdsAddGuessData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -854,7 +854,7 @@ const MyProcessTxIds = () => {
       }))
     }
     
-    const MyProcessTxIdsDelGuess2 = await MyProcessTxIdsDelGuess(currentWallet.jwk, MyProcessTxIds, MyProcessTxIds, GuessProcessTxId2)
+    const MyProcessTxIdsDelGuess2 = await MyProcessTxIdsDelGuess(globalThis.arweaveWallet, MyProcessTxIds, MyProcessTxIds, GuessProcessTxId2)
     if(MyProcessTxIdsDelGuess2) {
       console.log("MyProcessTxIdsDelGuess2", MyProcessTxIdsDelGuess2)
       if(MyProcessTxIdsDelGuess2?.msg?.Output?.data?.output)  {
@@ -867,7 +867,7 @@ const MyProcessTxIds = () => {
           }))
     
           //Read message from inbox
-          const MyProcessTxIdsDelGuessData1 = await GetMyLastMsg(currentWallet.jwk, GuessProcessTxId1)
+          const MyProcessTxIdsDelGuessData1 = await GetMyLastMsg(globalThis.arweaveWallet, GuessProcessTxId1)
           if(MyProcessTxIdsDelGuessData1?.msg?.Output?.data?.output)  {
             const formatText2 = MyProcessTxIdsDelGuessData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {

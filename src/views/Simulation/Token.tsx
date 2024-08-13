@@ -153,7 +153,7 @@ const TokenModel = () => {
     setIsDisabledButton(true)
     setToolInfo(null)
 
-    const TokenProcessTxId = await AoCreateProcessAuto(currentWallet.jwk)
+    const TokenProcessTxId = await AoCreateProcessAuto(globalThis.arweaveWallet)
     if(TokenProcessTxId) {
       setToolInfo((prevState: any)=>({
         ...prevState,
@@ -163,7 +163,7 @@ const TokenModel = () => {
 
     await sleep(2000)
 
-    const UserOne = await AoCreateProcessAuto(currentWallet.jwk)
+    const UserOne = await AoCreateProcessAuto(globalThis.arweaveWallet)
     if(UserOne) {
       setToolInfo((prevState: any)=>({
         ...prevState,
@@ -173,7 +173,7 @@ const TokenModel = () => {
 
     await sleep(2000)
 
-    const UserTwo = await AoCreateProcessAuto(currentWallet.jwk)
+    const UserTwo = await AoCreateProcessAuto(globalThis.arweaveWallet)
     if(UserTwo) {
       setToolInfo((prevState: any)=>({
         ...prevState,
@@ -183,7 +183,7 @@ const TokenModel = () => {
 
     await sleep(2000)
 
-    const UserThree = await AoCreateProcessAuto(currentWallet.jwk)
+    const UserThree = await AoCreateProcessAuto(globalThis.arweaveWallet)
     if(UserThree) {
       setToolInfo((prevState: any)=>({
         ...prevState,
@@ -194,10 +194,10 @@ const TokenModel = () => {
     await sleep(5000)
 
     console.log("handleSimulatedToken tokenInfo", tokenInfo)
-    let LoadBlueprintToken: any = await AoLoadBlueprintToken(currentWallet.jwk, TokenProcessTxId, tokenInfo);
+    let LoadBlueprintToken: any = await AoLoadBlueprintToken(globalThis.arweaveWallet, TokenProcessTxId, tokenInfo);
     while(LoadBlueprintToken && LoadBlueprintToken.status == 'ok' && LoadBlueprintToken.msg && LoadBlueprintToken.msg.error)  {
       sleep(6000)
-      LoadBlueprintToken = await AoLoadBlueprintToken(currentWallet.jwk, TokenProcessTxId, tokenInfo);
+      LoadBlueprintToken = await AoLoadBlueprintToken(globalThis.arweaveWallet, TokenProcessTxId, tokenInfo);
       console.log("handleSimulatedToken LoadBlueprintToken:", LoadBlueprintToken);
     }
     if(LoadBlueprintToken) {
@@ -213,7 +213,7 @@ const TokenModel = () => {
 
     await sleep(2000)
 
-    const SendTokenToUserOneData = await AoTokenTransfer(currentWallet.jwk, TokenProcessTxId, UserOne, 1001)
+    const SendTokenToUserOneData = await AoTokenTransfer(globalThis.arweaveWallet, TokenProcessTxId, UserOne, 1001)
     if(SendTokenToUserOneData) {
       console.log("SendTokenToUserOneData", SendTokenToUserOneData)
       if(SendTokenToUserOneData?.msg?.error)  {
@@ -232,7 +232,7 @@ const TokenModel = () => {
           }))
 
           //Read message from inbox
-          const UserOneInboxData = await GetMyLastMsg(currentWallet.jwk, UserOne)
+          const UserOneInboxData = await GetMyLastMsg(globalThis.arweaveWallet, UserOne)
           if(UserOneInboxData?.msg?.Output?.data?.output)  {
             const formatText2 = UserOneInboxData?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -250,7 +250,7 @@ const TokenModel = () => {
 
     await sleep(2000)
   
-    const SendTokenToUserTwoData = await AoTokenTransfer(currentWallet.jwk, TokenProcessTxId, UserTwo, 1002)
+    const SendTokenToUserTwoData = await AoTokenTransfer(globalThis.arweaveWallet, TokenProcessTxId, UserTwo, 1002)
     if(SendTokenToUserTwoData) {
       console.log("SendTokenToUserTwoData", SendTokenToUserTwoData)
       if(SendTokenToUserTwoData?.msg?.error)  {
@@ -269,7 +269,7 @@ const TokenModel = () => {
           }))
 
           //Read message from inbox
-          const UserTwoInboxData = await GetMyLastMsg(currentWallet.jwk, UserTwo)
+          const UserTwoInboxData = await GetMyLastMsg(globalThis.arweaveWallet, UserTwo)
           if(UserTwoInboxData?.msg?.Output?.data?.output)  {
             const formatText2 = UserTwoInboxData?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -287,7 +287,7 @@ const TokenModel = () => {
 
     await sleep(2000)
 
-    const SendTokenToUserThreeData = await AoTokenTransfer(currentWallet.jwk, TokenProcessTxId, UserThree, 1003)
+    const SendTokenToUserThreeData = await AoTokenTransfer(globalThis.arweaveWallet, TokenProcessTxId, UserThree, 1003)
     if(SendTokenToUserThreeData) {
       console.log("SendTokenToUserThreeData", SendTokenToUserThreeData)
       if(SendTokenToUserThreeData?.msg?.error)  {
@@ -306,7 +306,7 @@ const TokenModel = () => {
           }))
 
           //Read message from inbox
-          const UserThreeInboxData = await GetMyLastMsg(currentWallet.jwk, UserThree)
+          const UserThreeInboxData = await GetMyLastMsg(globalThis.arweaveWallet, UserThree)
           if(UserThreeInboxData?.msg?.Output?.data?.output)  {
             const formatText2 = UserThreeInboxData?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -324,7 +324,7 @@ const TokenModel = () => {
 
     await sleep(2000)
 
-    const MintTokenData = await AoTokenMint(currentWallet.jwk, TokenProcessTxId, 2000)
+    const MintTokenData = await AoTokenMint(globalThis.arweaveWallet, TokenProcessTxId, 2000)
     if(MintTokenData) {
       console.log("MintTokenData", MintTokenData)
       if(MintTokenData?.msg?.Output?.data?.output)  {
@@ -337,7 +337,7 @@ const TokenModel = () => {
           }))
 
           //Read message from inbox
-          const MintTokenInboxData = await GetMyLastMsg(currentWallet.jwk, TokenProcessTxId)
+          const MintTokenInboxData = await GetMyLastMsg(globalThis.arweaveWallet, TokenProcessTxId)
           if(MintTokenInboxData?.msg?.Output?.data?.output)  {
             const formatText2 = MintTokenInboxData?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -356,35 +356,35 @@ const TokenModel = () => {
     await sleep(2000)
     
     //add random amount transfer
-    const UserAdd1 = await AoCreateProcessAuto(currentWallet.jwk)
+    const UserAdd1 = await AoCreateProcessAuto(globalThis.arweaveWallet)
     if(UserAdd1) {
       setToolInfo((prevState: any)=>({
         ...prevState,
         UserAdd1: UserAdd1
       }))
-      await AoTokenTransfer(currentWallet.jwk, TokenProcessTxId, UserAdd1, generateRandomNumber(1111, 9999) )
+      await AoTokenTransfer(globalThis.arweaveWallet, TokenProcessTxId, UserAdd1, generateRandomNumber(1111, 9999) )
     }
 
     await sleep(2000)
 
-    const UserAdd2 = await AoCreateProcessAuto(currentWallet.jwk)
+    const UserAdd2 = await AoCreateProcessAuto(globalThis.arweaveWallet)
     if(UserAdd2) {
       setToolInfo((prevState: any)=>({
         ...prevState,
         UserAdd2: UserAdd2
       }))
-      await AoTokenTransfer(currentWallet.jwk, TokenProcessTxId, UserAdd2, generateRandomNumber(1111, 9999) )
+      await AoTokenTransfer(globalThis.arweaveWallet, TokenProcessTxId, UserAdd2, generateRandomNumber(1111, 9999) )
     }
 
     await sleep(2000)
 
-    const UserAdd3 = await AoCreateProcessAuto(currentWallet.jwk)
+    const UserAdd3 = await AoCreateProcessAuto(globalThis.arweaveWallet)
     if(UserAdd3) {
       setToolInfo((prevState: any)=>({
         ...prevState,
         UserAdd3: UserAdd3
       }))
-      await AoTokenTransfer(currentWallet.jwk, TokenProcessTxId, UserAdd3, generateRandomNumber(1111, 9999) )
+      await AoTokenTransfer(globalThis.arweaveWallet, TokenProcessTxId, UserAdd3, generateRandomNumber(1111, 9999) )
     }
 
     setToolInfo((prevState: any)=>({

@@ -64,7 +64,7 @@ const Chat = () => {
                 setMyAoConnectTxId(MyProcessTxIdData);
             }
             if(MyProcessTxIdData === '') {
-                const ChivesMyAoConnectProcessTxId = await AoCreateProcessAuto(currentWallet.jwk);
+                const ChivesMyAoConnectProcessTxId = await AoCreateProcessAuto(globalThis.arweaveWallet);
                 if(ChivesMyAoConnectProcessTxId) {
                     console.log("ChivesMyAoConnectProcessTxId", ChivesMyAoConnectProcessTxId);
                     SetAoConnectMyAoConnectTxId(currentAddress, ChivesMyAoConnectProcessTxId);

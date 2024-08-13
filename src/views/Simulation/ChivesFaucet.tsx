@@ -64,7 +64,7 @@ const ChivesFaucetModel = () => {
 
     //const FaucetProcessTxId = "v8kYJ15f0DAdC11Z4Q_TrvEz_FK_CA1ItQWEwSEp5r4"
     
-    const FaucetProcessTxId = await AoCreateProcessAuto(currentWallet.jwk)
+    const FaucetProcessTxId = await AoCreateProcessAuto(globalThis.arweaveWallet)
 
     if(FaucetProcessTxId) {
       setToolInfo((prevState: any)=>({
@@ -75,11 +75,11 @@ const ChivesFaucetModel = () => {
 
     //await sleep(3000)
     
-    let LoadBlueprintFaucet: any = await AoLoadBlueprintFaucet(currentWallet.jwk, FaucetProcessTxId, toolInfo.TokenIdInFaucet, toolInfo.FaucetSendAmount, toolInfo.FaucetSendRule);
+    let LoadBlueprintFaucet: any = await AoLoadBlueprintFaucet(globalThis.arweaveWallet, FaucetProcessTxId, toolInfo.TokenIdInFaucet, toolInfo.FaucetSendAmount, toolInfo.FaucetSendRule);
     console.log("handleSimulatedChivesFaucet LoadBlueprintFaucet:", LoadBlueprintFaucet);
     while(LoadBlueprintFaucet && LoadBlueprintFaucet.status == 'error')  {
       sleep(6000)
-      LoadBlueprintFaucet = await AoLoadBlueprintFaucet(currentWallet.jwk, FaucetProcessTxId, toolInfo.TokenIdInFaucet, toolInfo.FaucetSendAmount, toolInfo.FaucetSendRule);
+      LoadBlueprintFaucet = await AoLoadBlueprintFaucet(globalThis.arweaveWallet, FaucetProcessTxId, toolInfo.TokenIdInFaucet, toolInfo.FaucetSendAmount, toolInfo.FaucetSendRule);
       console.log("handleSimulatedChivesFaucet LoadBlueprintFaucet:", LoadBlueprintFaucet);
     }
     if(LoadBlueprintFaucet) {
@@ -130,7 +130,7 @@ const ChivesFaucetModel = () => {
       }))
     }
 
-    const DepositFaucetData = await AoFaucetDepositToken(currentWallet.jwk, toolInfo.TokenIdInFaucet, FaucetProcessTxId, 2000, Number(toolInfo.Denomination))
+    const DepositFaucetData = await AoFaucetDepositToken(globalThis.arweaveWallet, toolInfo.TokenIdInFaucet, FaucetProcessTxId, 2000, Number(toolInfo.Denomination))
     console.log("DepositFaucetData", DepositFaucetData)
     if(DepositFaucetData) {
         console.log("DepositFaucetData", DepositFaucetData)
@@ -156,7 +156,7 @@ const ChivesFaucetModel = () => {
         }))
     }
 
-    const GetFaucetFromFaucetTokenId: any = await AoFaucetGetFaucet(currentWallet.jwk, FaucetProcessTxId)
+    const GetFaucetFromFaucetTokenId: any = await AoFaucetGetFaucet(globalThis.arweaveWallet, FaucetProcessTxId)
     if(GetFaucetFromFaucetTokenId?.msg?.Messages && GetFaucetFromFaucetTokenId?.msg?.Messages[4]?.Data) {
       console.log("GetFaucetFromFaucetTokenId", GetFaucetFromFaucetTokenId)
       setToolInfo((prevState: any)=>({

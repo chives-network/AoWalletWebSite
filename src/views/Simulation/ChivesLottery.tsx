@@ -54,7 +54,7 @@ const ChivesLotteryModel = () => {
     }
     */
 
-    const LotteryProcessTxId = await AoCreateProcessAuto(currentWallet.jwk)
+    const LotteryProcessTxId = await AoCreateProcessAuto(globalThis.arweaveWallet)
     if(LotteryProcessTxId) {
       setToolInfo((prevState: any)=>({
         ...prevState,
@@ -64,10 +64,10 @@ const ChivesLotteryModel = () => {
 
     await sleep(3000)
 
-    let LoadBlueprintLottery: any = await AoLoadBlueprintLottery(currentWallet.jwk, LotteryProcessTxId, lotteryInfo);
+    let LoadBlueprintLottery: any = await AoLoadBlueprintLottery(globalThis.arweaveWallet, LotteryProcessTxId, lotteryInfo);
     while(LoadBlueprintLottery && LoadBlueprintLottery.status == 'ok' && LoadBlueprintLottery.msg && LoadBlueprintLottery.msg.error)  {
       sleep(6000)
-      LoadBlueprintLottery = await AoLoadBlueprintLottery(currentWallet.jwk, LotteryProcessTxId, lotteryInfo);
+      LoadBlueprintLottery = await AoLoadBlueprintLottery(globalThis.arweaveWallet, LotteryProcessTxId, lotteryInfo);
       console.log("handleSimulatedChivesLottery LoadBlueprintLottery:", LoadBlueprintLottery);
     }
     if(LoadBlueprintLottery) {
@@ -83,7 +83,7 @@ const ChivesLotteryModel = () => {
 
     await sleep(3000)
 
-    const LotteryUpdateBalanceData = await AoLotteryUpdateBalance(currentWallet.jwk, LotteryProcessTxId, LotteryProcessTxId)
+    const LotteryUpdateBalanceData = await AoLotteryUpdateBalance(globalThis.arweaveWallet, LotteryProcessTxId, LotteryProcessTxId)
     console.log("LotteryUpdateBalanceData", LotteryUpdateBalanceData)
     setToolInfo((prevState: any)=>({
         ...prevState,
@@ -92,7 +92,7 @@ const ChivesLotteryModel = () => {
     
     await sleep(3000)
 
-    const LotteryBalanceData = await AoLotteryCheckBalance(currentWallet.jwk, LotteryProcessTxId, LotteryProcessTxId)
+    const LotteryBalanceData = await AoLotteryCheckBalance(globalThis.arweaveWallet, LotteryProcessTxId, LotteryProcessTxId)
     if(LotteryBalanceData) {
       console.log("AoLotteryCheckBalance LotteryBalanceData1", LotteryBalanceData)
       if(LotteryBalanceData?.msg?.Output?.data?.output)  {
@@ -105,7 +105,7 @@ const ChivesLotteryModel = () => {
           }))
 
           //Read message from inbox
-          const LotteryInboxData = await GetMyLastMsg(currentWallet.jwk, LotteryProcessTxId)
+          const LotteryInboxData = await GetMyLastMsg(globalThis.arweaveWallet, LotteryProcessTxId)
           console.log("AoLotteryCheckBalance LotteryBalanceData2", LotteryInboxData)
           if(LotteryInboxData?.msg?.Output?.data?.output)  {
             const formatText2 = LotteryInboxData?.msg?.Output?.data?.output.replace(ansiRegex, '');
@@ -126,7 +126,7 @@ const ChivesLotteryModel = () => {
 
     const SendFrom = "tmRWlxyqbXzcOU7V66CwrhZTNMl6xSjjfcUrjZAIFus"
     const LOTTERY_PROCESS = "NTNTSp5xdaL3BiqgwAnWK7QZ4ces-xVEK6IOHQUkQIE"
-    const DepositLotteryData = await AoLotteryDeposit(currentWallet.jwk, LOTTERY_PROCESS, SendFrom, LotteryProcessTxId, 2)
+    const DepositLotteryData = await AoLotteryDeposit(globalThis.arweaveWallet, LOTTERY_PROCESS, SendFrom, LotteryProcessTxId, 2)
     if(DepositLotteryData) {
         console.log("DepositLotteryData", DepositLotteryData)
         if(DepositLotteryData?.msg?.error)  {
@@ -146,7 +146,7 @@ const ChivesLotteryModel = () => {
             }))
   
             //Read message from inbox
-            const UserOneInboxData1 = await GetMyLastMsg(currentWallet.jwk, LotteryProcessTxId)
+            const UserOneInboxData1 = await GetMyLastMsg(globalThis.arweaveWallet, LotteryProcessTxId)
             if(UserOneInboxData1?.msg?.Output?.data?.output)  {
               const formatText2 = UserOneInboxData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
               if(formatText2) {
@@ -156,7 +156,7 @@ const ChivesLotteryModel = () => {
                 }))
               }
             }
-            const UserOneInboxData2 = await GetMyLastMsg(currentWallet.jwk, LotteryProcessTxId)
+            const UserOneInboxData2 = await GetMyLastMsg(globalThis.arweaveWallet, LotteryProcessTxId)
             if(UserOneInboxData2?.msg?.Output?.data?.output)  {
               const formatText2 = UserOneInboxData2?.msg?.Output?.data?.output.replace(ansiRegex, '');
               if(formatText2) {
@@ -166,7 +166,7 @@ const ChivesLotteryModel = () => {
                 }))
               }
             }
-            const UserOneInboxData4 = await GetMyLastMsg(currentWallet.jwk, SendFrom)
+            const UserOneInboxData4 = await GetMyLastMsg(globalThis.arweaveWallet, SendFrom)
             if(UserOneInboxData4?.msg?.Output?.data?.output)  {
               const formatText2 = UserOneInboxData4?.msg?.Output?.data?.output.replace(ansiRegex, '');
               if(formatText2) {
@@ -176,7 +176,7 @@ const ChivesLotteryModel = () => {
                 }))
               }
             }
-            const UserOneInboxData3 = await GetMyLastMsg(currentWallet.jwk, SendFrom)
+            const UserOneInboxData3 = await GetMyLastMsg(globalThis.arweaveWallet, SendFrom)
             if(UserOneInboxData3?.msg?.Output?.data?.output)  {
               const formatText2 = UserOneInboxData3?.msg?.Output?.data?.output.replace(ansiRegex, '');
               if(formatText2) {
@@ -206,7 +206,7 @@ const ChivesLotteryModel = () => {
         }))
     }
     
-    const UserOne = await AoCreateProcessAuto(currentWallet.jwk)
+    const UserOne = await AoCreateProcessAuto(globalThis.arweaveWallet)
     if(UserOne) {
       setToolInfo((prevState: any)=>({
         ...prevState,
@@ -216,7 +216,7 @@ const ChivesLotteryModel = () => {
 
     await sleep(2000)
 
-    const SendLotteryToUserOneData = await AoLotteryCredit(currentWallet.jwk, LotteryProcessTxId, SendFrom, UserOne, 0.1)
+    const SendLotteryToUserOneData = await AoLotteryCredit(globalThis.arweaveWallet, LotteryProcessTxId, SendFrom, UserOne, 0.1)
     if(SendLotteryToUserOneData) {
       console.log("SendLotteryToUserOneData", SendLotteryToUserOneData)
       if(SendLotteryToUserOneData?.msg?.error)  {
@@ -235,7 +235,7 @@ const ChivesLotteryModel = () => {
           }))
 
           //Read message from inbox
-          const UserOneInboxData1 = await GetMyLastMsg(currentWallet.jwk, LotteryProcessTxId)
+          const UserOneInboxData1 = await GetMyLastMsg(globalThis.arweaveWallet, LotteryProcessTxId)
           if(UserOneInboxData1?.msg?.Output?.data?.output)  {
             const formatText2 = UserOneInboxData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -245,7 +245,7 @@ const ChivesLotteryModel = () => {
               }))
             }
           }
-          const UserOneInboxData2 = await GetMyLastMsg(currentWallet.jwk, LotteryProcessTxId)
+          const UserOneInboxData2 = await GetMyLastMsg(globalThis.arweaveWallet, LotteryProcessTxId)
           if(UserOneInboxData2?.msg?.Output?.data?.output)  {
             const formatText2 = UserOneInboxData2?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -255,7 +255,7 @@ const ChivesLotteryModel = () => {
               }))
             }
           }
-          const UserOneInboxData4 = await GetMyLastMsg(currentWallet.jwk, SendFrom)
+          const UserOneInboxData4 = await GetMyLastMsg(globalThis.arweaveWallet, SendFrom)
           if(UserOneInboxData4?.msg?.Output?.data?.output)  {
             const formatText2 = UserOneInboxData4?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -265,7 +265,7 @@ const ChivesLotteryModel = () => {
               }))
             }
           }
-          const UserOneInboxData3 = await GetMyLastMsg(currentWallet.jwk, SendFrom)
+          const UserOneInboxData3 = await GetMyLastMsg(globalThis.arweaveWallet, SendFrom)
           if(UserOneInboxData3?.msg?.Output?.data?.output)  {
             const formatText2 = UserOneInboxData3?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -275,7 +275,7 @@ const ChivesLotteryModel = () => {
               }))
             }
           }
-          const UserOneInboxData5 = await GetMyLastMsg(currentWallet.jwk, UserOne)
+          const UserOneInboxData5 = await GetMyLastMsg(globalThis.arweaveWallet, UserOne)
           if(UserOneInboxData5?.msg?.Output?.data?.output)  {
             const formatText2 = UserOneInboxData5?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -285,7 +285,7 @@ const ChivesLotteryModel = () => {
               }))
             }
           }
-          const UserOneInboxData6 = await GetMyLastMsg(currentWallet.jwk, UserOne)
+          const UserOneInboxData6 = await GetMyLastMsg(globalThis.arweaveWallet, UserOne)
           if(UserOneInboxData6?.msg?.Output?.data?.output)  {
             const formatText2 = UserOneInboxData6?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {

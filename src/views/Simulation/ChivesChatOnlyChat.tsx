@@ -95,7 +95,7 @@ const ChivesChatOnlyChat = () => {
         setChivesChatAoConnectTxIdError('')
     }
 
-    const UserOne = await AoCreateProcessAuto(currentWallet.jwk)
+    const UserOne = await AoCreateProcessAuto(globalThis.arweaveWallet)
     if(UserOne) {
       setToolInfo((prevState: any)=>({
         ...prevState,
@@ -103,7 +103,7 @@ const ChivesChatOnlyChat = () => {
       }))
     }
 
-    const UserTwo = await AoCreateProcessAuto(currentWallet.jwk)
+    const UserTwo = await AoCreateProcessAuto(globalThis.arweaveWallet)
     if(UserTwo) {
       setToolInfo((prevState: any)=>({
         ...prevState,
@@ -111,7 +111,7 @@ const ChivesChatOnlyChat = () => {
       }))
     }
 
-    const UserThree = await AoCreateProcessAuto(currentWallet.jwk)
+    const UserThree = await AoCreateProcessAuto(globalThis.arweaveWallet)
     if(UserThree) {
       setToolInfo((prevState: any)=>({
         ...prevState,
@@ -119,7 +119,7 @@ const ChivesChatOnlyChat = () => {
       }))
     }
 
-    const UserFour = await AoCreateProcessAuto(currentWallet.jwk)
+    const UserFour = await AoCreateProcessAuto(globalThis.arweaveWallet)
     if(UserFour) {
       setToolInfo((prevState: any)=>({
         ...prevState,
@@ -127,7 +127,7 @@ const ChivesChatOnlyChat = () => {
       }))
     }
 
-    const UserFive = await AoCreateProcessAuto(currentWallet.jwk)
+    const UserFive = await AoCreateProcessAuto(globalThis.arweaveWallet)
     if(UserFive) {
       setToolInfo((prevState: any)=>({
         ...prevState,
@@ -135,7 +135,7 @@ const ChivesChatOnlyChat = () => {
       }))
     }
 
-    const UserSix = await AoCreateProcessAuto(currentWallet.jwk)
+    const UserSix = await AoCreateProcessAuto(globalThis.arweaveWallet)
     if(UserSix) {
       setToolInfo((prevState: any)=>({
         ...prevState,
@@ -143,7 +143,7 @@ const ChivesChatOnlyChat = () => {
       }))
     }
 
-    const UserSeven = await AoCreateProcessAuto(currentWallet.jwk)
+    const UserSeven = await AoCreateProcessAuto(globalThis.arweaveWallet)
     if(UserSeven) {
       setToolInfo((prevState: any)=>({
         ...prevState,
@@ -155,7 +155,7 @@ const ChivesChatOnlyChat = () => {
 
     //Admin add or del member
 
-    const ChivesChatAdminAddUserOne = await ChivesChatAddMember(currentWallet.jwk, ChivesChatProcessTxId, UserOne, "UserOne", "UserOne Reason")
+    const ChivesChatAdminAddUserOne = await ChivesChatAddMember(globalThis.arweaveWallet, ChivesChatProcessTxId, UserOne, "UserOne", "UserOne Reason")
     if(ChivesChatAdminAddUserOne) {
       console.log("ChivesChatAdminAddUserOne", ChivesChatAdminAddUserOne)
       if(ChivesChatAdminAddUserOne?.msg?.Output?.data?.output)  {
@@ -168,7 +168,7 @@ const ChivesChatOnlyChat = () => {
           }))
 
           //Read message from inbox
-          const AdminOneInboxData = await GetMyLastMsg(currentWallet.jwk, ChivesChatProcessTxId)
+          const AdminOneInboxData = await GetMyLastMsg(globalThis.arweaveWallet, ChivesChatProcessTxId)
           if(AdminOneInboxData?.msg?.Output?.data?.output)  {
             const formatText2 = AdminOneInboxData?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -193,7 +193,7 @@ const ChivesChatOnlyChat = () => {
       }))
     }
 
-    const ChivesChatAdminAddUserTwo = await ChivesChatAddMember(currentWallet.jwk, ChivesChatProcessTxId, UserTwo, "UserTwo", "UserTwo Reason")
+    const ChivesChatAdminAddUserTwo = await ChivesChatAddMember(globalThis.arweaveWallet, ChivesChatProcessTxId, UserTwo, "UserTwo", "UserTwo Reason")
     if(ChivesChatAdminAddUserTwo) {
       console.log("ChivesChatAdminAddUserTwo", ChivesChatAdminAddUserTwo)
       if(ChivesChatAdminAddUserTwo?.msg?.Output?.data?.output)  {
@@ -206,7 +206,7 @@ const ChivesChatOnlyChat = () => {
           }))
 
           //Read message from inbox
-          const AdminOneInboxData = await GetMyLastMsg(currentWallet.jwk, ChivesChatProcessTxId)
+          const AdminOneInboxData = await GetMyLastMsg(globalThis.arweaveWallet, ChivesChatProcessTxId)
           if(AdminOneInboxData?.msg?.Output?.data?.output)  {
             const formatText2 = AdminOneInboxData?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -222,7 +222,7 @@ const ChivesChatOnlyChat = () => {
       }
     }
 
-    const ChivesChatAdminAddUserThree = await ChivesChatAddMember(currentWallet.jwk, ChivesChatProcessTxId, UserThree, "UserThree", "UserThree Reason")
+    const ChivesChatAdminAddUserThree = await ChivesChatAddMember(globalThis.arweaveWallet, ChivesChatProcessTxId, UserThree, "UserThree", "UserThree Reason")
     if(ChivesChatAdminAddUserThree) {
       console.log("ChivesChatAdminAddUserThree", ChivesChatAdminAddUserThree)
       if(ChivesChatAdminAddUserThree?.msg?.Output?.data?.output)  {
@@ -235,7 +235,7 @@ const ChivesChatOnlyChat = () => {
           }))
 
           //Read message from inbox
-          const AdminOneInboxData = await GetMyLastMsg(currentWallet.jwk, ChivesChatProcessTxId)
+          const AdminOneInboxData = await GetMyLastMsg(globalThis.arweaveWallet, ChivesChatProcessTxId)
           if(AdminOneInboxData?.msg?.Output?.data?.output)  {
             const formatText2 = AdminOneInboxData?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -251,7 +251,7 @@ const ChivesChatOnlyChat = () => {
       }
     }
 
-    const ChivesChatAdminAddUserFour = await ChivesChatAddMember(currentWallet.jwk, ChivesChatProcessTxId, UserFour, "UserFour", "UserFour Reason")
+    const ChivesChatAdminAddUserFour = await ChivesChatAddMember(globalThis.arweaveWallet, ChivesChatProcessTxId, UserFour, "UserFour", "UserFour Reason")
     if(ChivesChatAdminAddUserFour) {
       console.log("ChivesChatAdminAddUserFour", ChivesChatAdminAddUserFour)
       if(ChivesChatAdminAddUserFour?.msg?.Output?.data?.output)  {
@@ -264,7 +264,7 @@ const ChivesChatOnlyChat = () => {
           }))
 
           //Read message from inbox
-          const AdminOneInboxData = await GetMyLastMsg(currentWallet.jwk, ChivesChatProcessTxId)
+          const AdminOneInboxData = await GetMyLastMsg(globalThis.arweaveWallet, ChivesChatProcessTxId)
           if(AdminOneInboxData?.msg?.Output?.data?.output)  {
             const formatText2 = AdminOneInboxData?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -280,7 +280,7 @@ const ChivesChatOnlyChat = () => {
       }
     }
 
-    const ChivesChatAdminAddUserFive = await ChivesChatAddMember(currentWallet.jwk, ChivesChatProcessTxId, UserFive, "UserFive", "UserFive Reason")
+    const ChivesChatAdminAddUserFive = await ChivesChatAddMember(globalThis.arweaveWallet, ChivesChatProcessTxId, UserFive, "UserFive", "UserFive Reason")
     if(ChivesChatAdminAddUserFive) {
       console.log("ChivesChatAdminAddUserFive", ChivesChatAdminAddUserFive)
       if(ChivesChatAdminAddUserFive?.msg?.Output?.data?.output)  {
@@ -293,7 +293,7 @@ const ChivesChatOnlyChat = () => {
           }))
 
           //Read message from inbox
-          const AdminOneInboxData = await GetMyLastMsg(currentWallet.jwk, ChivesChatProcessTxId)
+          const AdminOneInboxData = await GetMyLastMsg(globalThis.arweaveWallet, ChivesChatProcessTxId)
           if(AdminOneInboxData?.msg?.Output?.data?.output)  {
             const formatText2 = AdminOneInboxData?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -309,7 +309,7 @@ const ChivesChatOnlyChat = () => {
       }
     }
 
-    const ChivesChatUserSixApplyJoin = await ChivesChatApplyJoin(currentWallet.jwk, ChivesChatProcessTxId, "UserSix", "Hope join this chatroom")
+    const ChivesChatUserSixApplyJoin = await ChivesChatApplyJoin(globalThis.arweaveWallet, ChivesChatProcessTxId, "UserSix", "Hope join this chatroom")
     if(ChivesChatUserSixApplyJoin) {
       console.log("ChivesChatUserSixApplyJoin", ChivesChatUserSixApplyJoin)
       if(ChivesChatUserSixApplyJoin?.msg?.Output?.data?.output)  {
@@ -322,7 +322,7 @@ const ChivesChatOnlyChat = () => {
           }))
 
           //Read message from inbox
-          const AdminOneInboxData = await GetMyLastMsg(currentWallet.jwk, UserSix)
+          const AdminOneInboxData = await GetMyLastMsg(globalThis.arweaveWallet, UserSix)
           if(AdminOneInboxData?.msg?.Output?.data?.output)  {
             const formatText2 = AdminOneInboxData?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -338,7 +338,7 @@ const ChivesChatOnlyChat = () => {
       }
     }
 
-    const ChivesChatUserSevenApplyJoin = await ChivesChatApplyJoin(currentWallet.jwk, ChivesChatProcessTxId, "UserSeven", "Hope join this chatroom")
+    const ChivesChatUserSevenApplyJoin = await ChivesChatApplyJoin(globalThis.arweaveWallet, ChivesChatProcessTxId, "UserSeven", "Hope join this chatroom")
     if(ChivesChatUserSevenApplyJoin) {
       console.log("ChivesChatUserSevenApplyJoin", ChivesChatUserSevenApplyJoin)
       if(ChivesChatUserSevenApplyJoin?.msg?.Output?.data?.output)  {
@@ -351,7 +351,7 @@ const ChivesChatOnlyChat = () => {
           }))
 
           //Read message from inbox
-          const AdminOneInboxData = await GetMyLastMsg(currentWallet.jwk, UserSeven)
+          const AdminOneInboxData = await GetMyLastMsg(globalThis.arweaveWallet, UserSeven)
           if(AdminOneInboxData?.msg?.Output?.data?.output)  {
             const formatText2 = AdminOneInboxData?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -368,7 +368,7 @@ const ChivesChatOnlyChat = () => {
     }
 
     /*
-    const GetChivesChatMembersByOwner4th = await GetChivesChatMembersByOwner(currentWallet.jwk, ChivesChatProcessTxId)
+    const GetChivesChatMembersByOwner4th = await GetChivesChatMembersByOwner(globalThis.arweaveWallet, ChivesChatProcessTxId)
     if(GetChivesChatMembersByOwner4th) {
       console.log("GetChivesChatMembersByOwner4th", GetChivesChatMembersByOwner4th)
       if(GetChivesChatMembersByOwner4th?.msg?.Output?.data?.output)  {
@@ -381,7 +381,7 @@ const ChivesChatOnlyChat = () => {
     }
     */
 
-    const UserOneSendMessage = await SendMessageToChivesChat(currentWallet.jwk, ChivesChatProcessTxId, channelId, "Send message from UserOne Random: " + String(Math.random()))
+    const UserOneSendMessage = await SendMessageToChivesChat(globalThis.arweaveWallet, ChivesChatProcessTxId, channelId, "Send message from UserOne Random: " + String(Math.random()))
     if(UserOneSendMessage) {
         setToolInfo((prevState: any)=>({
             ...prevState,
@@ -389,7 +389,7 @@ const ChivesChatOnlyChat = () => {
         }))
     }
 
-    const UserTwoSendMessage = await SendMessageToChivesChat(currentWallet.jwk, ChivesChatProcessTxId, channelId, "Send message from UserTwo Random: " + String(Math.random()))
+    const UserTwoSendMessage = await SendMessageToChivesChat(globalThis.arweaveWallet, ChivesChatProcessTxId, channelId, "Send message from UserTwo Random: " + String(Math.random()))
     if(UserTwoSendMessage) {
         setToolInfo((prevState: any)=>({
             ...prevState,
@@ -397,7 +397,7 @@ const ChivesChatOnlyChat = () => {
         }))
     }
 
-    const UserThreeSendMessage = await SendMessageToChivesChat(currentWallet.jwk, ChivesChatProcessTxId, channelId, "Send message from UserThree Random: " + String(Math.random()))
+    const UserThreeSendMessage = await SendMessageToChivesChat(globalThis.arweaveWallet, ChivesChatProcessTxId, channelId, "Send message from UserThree Random: " + String(Math.random()))
     if(UserThreeSendMessage) {
         setToolInfo((prevState: any)=>({
             ...prevState,
@@ -405,7 +405,7 @@ const ChivesChatOnlyChat = () => {
         }))
     }
 
-    const UserFourSendMessage = await SendMessageToChivesChat(currentWallet.jwk, ChivesChatProcessTxId, channelId, "Send message from UserFour Hello, AO! Random: " + String(Math.random()))
+    const UserFourSendMessage = await SendMessageToChivesChat(globalThis.arweaveWallet, ChivesChatProcessTxId, channelId, "Send message from UserFour Hello, AO! Random: " + String(Math.random()))
     if(UserFourSendMessage) {
         setToolInfo((prevState: any)=>({
             ...prevState,
@@ -413,7 +413,7 @@ const ChivesChatOnlyChat = () => {
         }))
     }
 
-    const UserFiveSendMessage = await SendMessageToChivesChat(currentWallet.jwk, ChivesChatProcessTxId, channelId, "Send message from UserFive 你好, AO! Random: " + String(Math.random()))
+    const UserFiveSendMessage = await SendMessageToChivesChat(globalThis.arweaveWallet, ChivesChatProcessTxId, channelId, "Send message from UserFive 你好, AO! Random: " + String(Math.random()))
     if(UserFiveSendMessage) {
         setToolInfo((prevState: any)=>({
             ...prevState,

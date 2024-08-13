@@ -11,13 +11,10 @@ import CardContent from '@mui/material/CardContent'
 
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
-import { useAuth } from '@/hooks/useAuth'
 
-
-const AoWalletModel = () => {
+const AoWalletModel = ({ auth }: any) => {
   // ** Hook
   const { t } = useTranslation()
-  const auth = useAuth()
 
   const [toolInfo, setToolInfo] = useState<any>({})
 

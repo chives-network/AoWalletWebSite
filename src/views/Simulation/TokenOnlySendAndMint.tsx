@@ -163,14 +163,14 @@ const TokenOnlySendAndMintModel = () => {
     for (let i = 0; i < 50; i++) {
         const AoTokenBalanceDryRunData = await AoTokenBalanceDryRun(TokenProcessTxId, TokenProcessTxId)
         console.log("AoTokenBalanceDryRunData", AoTokenBalanceDryRunData)
-        const UserAdd = await AoCreateProcessAuto(currentWallet.jwk);
+        const UserAdd = await AoCreateProcessAuto(globalThis.arweaveWallet);
         if (UserAdd) {
             const SendAmount = generateRandomNumber(10, 99)
             setToolInfo((prevState: any) => ({
                 ...prevState,
                 ["User"+i]: UserAdd + " Amount: " + SendAmount
             }));
-            const AoTokenTransferData = await AoTokenTransfer(currentWallet.jwk, TokenProcessTxId, UserAdd, SendAmount);
+            const AoTokenTransferData = await AoTokenTransfer(globalThis.arweaveWallet, TokenProcessTxId, UserAdd, SendAmount);
             console.log("AoTokenTransferData", AoTokenTransferData)
             const AoTokenBalanceDryRunData = await AoTokenBalanceDryRun(TokenProcessTxId, UserAdd)
             console.log("AoTokenBalanceDryRunData", AoTokenBalanceDryRunData)

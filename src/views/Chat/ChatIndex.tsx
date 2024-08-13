@@ -232,7 +232,7 @@ const AppChat = (props: any) => {
 
       return
     }
-    const AddAdminByMemberId = await ChivesChatAddAdmin(currentWallet.jwk, id, MemberId)
+    const AddAdminByMemberId = await ChivesChatAddAdmin(globalThis.arweaveWallet, id, MemberId)
     console.log("AddAdminByMemberId", AddAdminByMemberId)
     if(AddAdminByMemberId?.msg?.Messages[0]?.Data)  {
       toast.success(t(AddAdminByMemberId?.msg?.Messages[0]?.Data) as string, { duration: 2500, position: 'top-center' })
@@ -247,7 +247,7 @@ const AppChat = (props: any) => {
 
       return
     }
-    const DelAdminByMemberId = await ChivesChatDelAdmin(currentWallet.jwk, id, MemberId)
+    const DelAdminByMemberId = await ChivesChatDelAdmin(globalThis.arweaveWallet, id, MemberId)
     console.log("AddAdminByMemberId", DelAdminByMemberId)
     if(DelAdminByMemberId?.msg?.Messages[0]?.Data)  {
       toast.success(t(DelAdminByMemberId?.msg?.Messages[0]?.Data) as string, { duration: 2500, position: 'top-center' })
@@ -262,7 +262,7 @@ const AppChat = (props: any) => {
 
       return
     }
-    const ChivesChatAddInvitesUserOne = await ChivesChatAddInvites(currentWallet.jwk, id, valueMembersInvite.replace(/\n/g, '\\n'), "Invite Member", "Hope you join this chatroom")
+    const ChivesChatAddInvitesUserOne = await ChivesChatAddInvites(globalThis.arweaveWallet, id, valueMembersInvite.replace(/\n/g, '\\n'), "Invite Member", "Hope you join this chatroom")
     console.log("ChivesChatAddInvitesUserOne", ChivesChatAddInvitesUserOne)
     if(ChivesChatAddInvitesUserOne?.msg?.Messages[0]?.Data)  {
       toast.success(t(ChivesChatAddInvitesUserOne?.msg?.Messages[0]?.Data) as string, { duration: 2500, position: 'top-center' })
@@ -291,7 +291,7 @@ const AppChat = (props: any) => {
     }
 
     if(Action == 'Accept')  {
-      const ChivesChatApprovalApplyMembers = await ChivesChatApprovalApply(currentWallet.jwk, id, Applicants, "Applicant Member", "Administrator approval your request")
+      const ChivesChatApprovalApplyMembers = await ChivesChatApprovalApply(globalThis.arweaveWallet, id, Applicants, "Applicant Member", "Administrator approval your request")
       console.log("ChivesChatApprovalApplyMembers", ChivesChatApprovalApplyMembers)
       if(ChivesChatApprovalApplyMembers?.msg?.Messages[0]?.Data)  {
         toast.success(t(ChivesChatApprovalApplyMembers?.msg?.Messages[0]?.Data) as string, { duration: 2500, position: 'top-center' })
@@ -299,7 +299,7 @@ const AppChat = (props: any) => {
       }
     }
     if(Action == 'Refuse')  {
-      const ChivesChatRefuseApplyMembers = await ChivesChatRefuseApply(currentWallet.jwk, id, Applicants, "Applicant Member", "Administrator approval your request")
+      const ChivesChatRefuseApplyMembers = await ChivesChatRefuseApply(globalThis.arweaveWallet, id, Applicants, "Applicant Member", "Administrator approval your request")
       if(ChivesChatRefuseApplyMembers) {
         toast.success(t('Your request has been successfully executed.') as string, { duration: 2500, position: 'top-center' })
         console.log("ChivesChatRefuseApplyMembers", ChivesChatRefuseApplyMembers)
@@ -317,7 +317,7 @@ const AppChat = (props: any) => {
 
       return
     }
-    const KictOutMemberByMemberId = await ChivesChatDelMember(currentWallet.jwk, id, MemberId)
+    const KictOutMemberByMemberId = await ChivesChatDelMember(globalThis.arweaveWallet, id, MemberId)
     console.log("KictOutMemberByMemberId", KictOutMemberByMemberId)
     if(KictOutMemberByMemberId?.msg?.Messages[0]?.Data)  {
       toast.success(t(KictOutMemberByMemberId?.msg?.Messages[0]?.Data) as string, { duration: 2500, position: 'top-center' })
@@ -331,7 +331,7 @@ const AppChat = (props: any) => {
 
       return
     }
-    const BlockMemberByMemberId = await ChivesChatBlockMember(currentWallet.jwk, id, MemberId)
+    const BlockMemberByMemberId = await ChivesChatBlockMember(globalThis.arweaveWallet, id, MemberId)
     console.log("BlockMemberByMemberId", BlockMemberByMemberId)
     if(BlockMemberByMemberId?.msg?.Messages[0]?.Data)  {
       toast.success(t(BlockMemberByMemberId?.msg?.Messages[0]?.Data) as string, { duration: 2500, position: 'top-center' })
@@ -494,7 +494,7 @@ const AppChat = (props: any) => {
 
         return
       }
-      const AddChannel = await ChivesChatAddChannel(currentWallet.jwk, id, openChannelEdit.Channel.ChannelId, openChannelEdit.Channel.ChannelName, openChannelEdit.Channel.ChannelGroup, openChannelEdit.Channel.ChannelSort ?? '999', openChannelEdit.Channel.ChannelIntro, "Owner")
+      const AddChannel = await ChivesChatAddChannel(globalThis.arweaveWallet, id, openChannelEdit.Channel.ChannelId, openChannelEdit.Channel.ChannelName, openChannelEdit.Channel.ChannelGroup, openChannelEdit.Channel.ChannelSort ?? '999', openChannelEdit.Channel.ChannelIntro, "Owner")
       console.log("handleEditOrEditOrDelChannel AddChannel", AddChannel)
       if(AddChannel?.msg?.Messages[0]?.Data)  {
         toast.success(t(AddChannel?.msg?.Messages[0]?.Data) as string, { duration: 2500, position: 'top-center' })
@@ -509,7 +509,7 @@ const AppChat = (props: any) => {
 
         return
       }
-      const EditChannel = await ChivesChatEditChannel(currentWallet.jwk, id, openChannelEdit.Channel.ChannelId, openChannelEdit.Channel.ChannelName, openChannelEdit.Channel.ChannelGroup, openChannelEdit.Channel.ChannelSort ?? '999', openChannelEdit.Channel.ChannelIntro, "Owner")
+      const EditChannel = await ChivesChatEditChannel(globalThis.arweaveWallet, id, openChannelEdit.Channel.ChannelId, openChannelEdit.Channel.ChannelName, openChannelEdit.Channel.ChannelGroup, openChannelEdit.Channel.ChannelSort ?? '999', openChannelEdit.Channel.ChannelIntro, "Owner")
       console.log("handleEditOrEditOrDelChannel EditChannel", EditChannel)
       if(EditChannel?.msg?.Messages[0]?.Data)  {
         toast.success(t(EditChannel?.msg?.Messages[0]?.Data) as string, { duration: 2500, position: 'top-center' })
@@ -524,7 +524,7 @@ const AppChat = (props: any) => {
 
         return
       }
-      const DelChannel = await ChivesChatDelChannel(currentWallet.jwk, id, ChannelId)
+      const DelChannel = await ChivesChatDelChannel(globalThis.arweaveWallet, id, ChannelId)
       console.log("handleEditOrEditOrDelChannel DelChannel", DelChannel)
       if(DelChannel?.msg?.Messages[0]?.Data)  {
         toast.success(t(DelChannel?.msg?.Messages[0]?.Data) as string, { duration: 2500, position: 'top-center' })
@@ -545,7 +545,7 @@ const AppChat = (props: any) => {
   
   const handleChivesChatApplyJoin = async function () {
     setSendButtonDisable(true)
-    const ChivesChatUserApplyJoin = await ChivesChatApplyJoin(currentWallet.jwk, id, "User" + myAoConnectTxId.substring(0, 6), "Hope join this chatroom")
+    const ChivesChatUserApplyJoin = await ChivesChatApplyJoin(globalThis.arweaveWallet, id, "User" + myAoConnectTxId.substring(0, 6), "Hope join this chatroom")
     if(ChivesChatUserApplyJoin) {
       console.log("ChivesChatUserApplyJoin", ChivesChatUserApplyJoin)
       setCounter(counter+1)
@@ -579,7 +579,7 @@ const AppChat = (props: any) => {
       const currentTimezoneOffset: number = new Date().getTimezoneOffset();
       const currentTimestampInZeroUTC: number = currentTimestampWithOffset + (currentTimezoneOffset * 60 * 1000);
       
-      const SendMessageToChatroomDataUserOne = await SendMessageToChivesChat(currentWallet.jwk, id, channelId, Obj.message)
+      const SendMessageToChatroomDataUserOne = await SendMessageToChivesChat(globalThis.arweaveWallet, id, channelId, Obj.message)
       console.log("SendMessageToChatroomDataUserOne", SendMessageToChatroomDataUserOne)
       if(SendMessageToChatroomDataUserOne && SendMessageToChatroomDataUserOne.NanoId && SendMessageToChatroomDataUserOne.NanoId) {
         const messageInfor = {

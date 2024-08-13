@@ -21,12 +21,8 @@ import TableCell from '@mui/material/TableCell'
 import TableBody from '@mui/material/TableBody'
 import TableContainer from '@mui/material/TableContainer'
 
-
 // ** Icon Imports
 import Icon from '@/@core/components/icon'
-
-// ** Context
-import { useAuth } from '@/hooks/useAuth'
 
 // ** Third Party Components
 import toast from 'react-hot-toast'
@@ -34,26 +30,19 @@ import toast from 'react-hot-toast'
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
-
-
 import { AoGetPageRecords } from '@/functions/AoConnect/AoConnect'
 import AnsiText from './AnsiText'
 
-
-
-const AoGetPageRecordsModel = () => {
+const AoGetPageRecordsModel = ({ auth }: any) => {
   // ** Hook
   const { t } = useTranslation()
 
-  
-    
   // ** State
   const [uploadingButton, setUploadingButton] = useState<string>(`${t('Submit')}`)
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
   
   const [resultRecords, setresultRecords] = useState<any>()
 
-  const auth = useAuth()
   const currentAddress = auth.currentAddress
 
   const [processTxId, setprocessTxId] = useState<string>("K4kzmPPoxWp0YQqG0UNDeXIhWuhWkMcG0Hx8HYCjmLw")

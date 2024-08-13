@@ -138,12 +138,12 @@ const EmailList = (props: EmailListType) => {
     setLoading(true)
     if (id === null && store.data && store.data.length > 0) {
       await Promise.all(Object.keys(selectedEmails).map(async (EmailId: string) => {
-        const ChivesEmailMoveToFolderData = await ChivesEmailMoveToFolder(currentWallet.jwk, authConfig.AoConnectChivesEmailServerData, EmailId, oldFolder, newFolder);
+        const ChivesEmailMoveToFolderData = await ChivesEmailMoveToFolder(globalThis.arweaveWallet, authConfig.AoConnectChivesEmailServerData, EmailId, oldFolder, newFolder);
         console.log("ChivesEmailMoveToFolderData", ChivesEmailMoveToFolderData);
       }));
     }
     if (id && id.length > 0 && store.data && store.data.length > 0) {
-      const ChivesEmailMoveToFolderData = await ChivesEmailMoveToFolder(currentWallet.jwk, authConfig.AoConnectChivesEmailServerData, id, oldFolder, newFolder);
+      const ChivesEmailMoveToFolderData = await ChivesEmailMoveToFolder(globalThis.arweaveWallet, authConfig.AoConnectChivesEmailServerData, id, oldFolder, newFolder);
       console.log("ChivesEmailMoveToFolderData", ChivesEmailMoveToFolderData);
     }
     setSelectedEmails({})
@@ -156,7 +156,7 @@ const EmailList = (props: EmailListType) => {
         ...prevState,
         [id]: true
       }))
-      const ChivesEmailReadEmailContentData = await ChivesEmailReadEmailContent(currentWallet.jwk, authConfig.AoConnectChivesEmailServerData, id, folder);
+      const ChivesEmailReadEmailContentData = await ChivesEmailReadEmailContent(globalThis.arweaveWallet, authConfig.AoConnectChivesEmailServerData, id, folder);
       console.log("ChivesEmailReadEmailContentData", ChivesEmailReadEmailContentData)
     }
   }

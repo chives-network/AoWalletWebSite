@@ -75,7 +75,7 @@ const TokenModel = () => {
                 setMyAoConnectTxId(MyProcessTxIdData);
             }
             if(MyProcessTxIdData === '') {
-                const ChivesMyAoConnectProcessTxId = await AoCreateProcessAuto(currentWallet.jwk);
+                const ChivesMyAoConnectProcessTxId = await AoCreateProcessAuto(globalThis.arweaveWallet);
                 if(ChivesMyAoConnectProcessTxId) {
                     console.log("ChivesMyAoConnectProcessTxId", ChivesMyAoConnectProcessTxId);
                     SetAoConnectMyAoConnectTxId(currentAddress, ChivesMyAoConnectProcessTxId);
@@ -131,7 +131,7 @@ const TokenModel = () => {
     if(tokenInfo)  {
       setAddTokenButtonDisabled(true)
       setAddTokenButtonText('waiting')
-      const WantToSaveTokenProcessTxIdData = await MyProcessTxIdsAddToken(currentWallet.jwk, authConfig.AoConnectMyProcessTxIds, WantToSaveTokenProcessTxId, tokenGetInfor?.Sort ?? '10', 'My Tokens', JSON.stringify(tokenInfo).replace(/"/g, '\\"') )
+      const WantToSaveTokenProcessTxIdData = await MyProcessTxIdsAddToken(globalThis.arweaveWallet, authConfig.AoConnectMyProcessTxIds, WantToSaveTokenProcessTxId, tokenGetInfor?.Sort ?? '10', 'My Tokens', JSON.stringify(tokenInfo).replace(/"/g, '\\"') )
       if(WantToSaveTokenProcessTxIdData) {
         setAddTokenButtonText('Have add')
         console.log("WantToSaveTokenProcessTxIdData", WantToSaveTokenProcessTxIdData)
@@ -139,7 +139,7 @@ const TokenModel = () => {
           setCounter(counter + 1)
           const formatText = WantToSaveTokenProcessTxIdData?.msg?.Output?.data?.output.replace(ansiRegex, '');
           if(formatText) {
-            const MyProcessTxIdsAddTokenData1 = await GetMyLastMsg(currentWallet.jwk, WantToSaveTokenProcessTxId)
+            const MyProcessTxIdsAddTokenData1 = await GetMyLastMsg(globalThis.arweaveWallet, WantToSaveTokenProcessTxId)
             if(MyProcessTxIdsAddTokenData1?.msg?.Output?.data?.output)  {
               const formatText2 = MyProcessTxIdsAddTokenData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
               if(formatText2) {
@@ -159,7 +159,7 @@ const TokenModel = () => {
   const handleCancelFavoriteToken = async (WantToSaveTokenProcessTxId: string) => {
     setCancelTokenButtonDisabled(true)
     setCancelTokenButtonText('waiting')
-    const WantToSaveTokenProcessTxIdData = await MyProcessTxIdsDelToken(currentWallet.jwk, authConfig.AoConnectMyProcessTxIds, WantToSaveTokenProcessTxId)
+    const WantToSaveTokenProcessTxIdData = await MyProcessTxIdsDelToken(globalThis.arweaveWallet, authConfig.AoConnectMyProcessTxIds, WantToSaveTokenProcessTxId)
     if(WantToSaveTokenProcessTxIdData) {
       console.log("WantToSaveTokenProcessTxIdData", WantToSaveTokenProcessTxIdData)
       if(WantToSaveTokenProcessTxIdData?.msg?.Output?.data?.output)  {
@@ -169,7 +169,7 @@ const TokenModel = () => {
         if(formatText) {
 
           //Read message from inbox
-          const MyProcessTxIdsDelTokenData1 = await GetMyLastMsg(currentWallet.jwk, WantToSaveTokenProcessTxId)
+          const MyProcessTxIdsDelTokenData1 = await GetMyLastMsg(globalThis.arweaveWallet, WantToSaveTokenProcessTxId)
           if(MyProcessTxIdsDelTokenData1?.msg?.Output?.data?.output)  {
             const formatText2 = MyProcessTxIdsDelTokenData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {

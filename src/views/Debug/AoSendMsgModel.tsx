@@ -18,12 +18,8 @@ import CircularProgress from '@mui/material/CircularProgress'
 import axios from 'axios'
 import authConfig from '@configs/auth'
 
-
 // ** Icon Imports
 import Icon from '@/@core/components/icon'
-
-// ** Context
-import { useAuth } from '@/hooks/useAuth'
 
 // ** Third Party Components
 import toast from 'react-hot-toast'
@@ -34,12 +30,9 @@ import { useTranslation } from 'react-i18next'
 import { AoSendMsg, AoGetMessage, generateRandomNumber } from '@/functions/AoConnect/AoConnect'
 import { SetAoConnectReminderProcessTxId, GetAoConnectReminderProcessTxId, SetAoConnectMyAoConnectTxId, GetAoConnectMyAoConnectTxId } from '@/functions/AoConnect/MsgReminder'
 
-
 import MessageRender from './MessageRender'
 
-
-
-const AoSendMsgModel = () => {
+const AoSendMsgModel = ({ auth }: any) => {
   // ** Hook
   const { t } = useTranslation()
 
@@ -53,7 +46,6 @@ const AoSendMsgModel = () => {
   const [resultText, setResultText] = useState<string>("")
   const [resultText2, setResultText2] = useState<any>()
 
-  const auth = useAuth()
   const currentWallet = auth.currentWallet
   const currentAddress = auth.currentAddress
 
@@ -143,7 +135,7 @@ const AoSendMsgModel = () => {
     setIsDisabledButton(true)
     setUploadingButton(`${t('Submitting...')}`)
 
-    const Result: any = await AoSendMsg(currentWallet.jwk, processTxId, String(message), JSON.parse(tags));
+    const Result: any = await AoSendMsg(globalThis.arweaveWallet, processTxId, String(message), JSON.parse(tags));
 
     if(Result && Result.length == 43) {
       toast.success(Result, { 

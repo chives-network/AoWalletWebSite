@@ -52,7 +52,7 @@ const ChivesServerData = () => {
     setIsDisabledButton(true)
 
     
-    const ChivesServerData = await AoCreateProcessAuto(currentWallet.jwk)
+    const ChivesServerData = await AoCreateProcessAuto(globalThis.arweaveWallet)
     if(ChivesServerData) {
       setToolInfo((prevState: any)=>({
         ...prevState,
@@ -71,10 +71,10 @@ const ChivesServerData = () => {
 
     await sleep(5000)
 
-    let LoadBlueprintChivesServerData: any = await AoLoadBlueprintChivesServerData(currentWallet.jwk, ChivesServerData);
+    let LoadBlueprintChivesServerData: any = await AoLoadBlueprintChivesServerData(globalThis.arweaveWallet, ChivesServerData);
     while(LoadBlueprintChivesServerData && LoadBlueprintChivesServerData.status == 'ok' && LoadBlueprintChivesServerData.msg && LoadBlueprintChivesServerData.msg.error)  {
       sleep(6000)
-      LoadBlueprintChivesServerData = await AoLoadBlueprintChivesServerData(currentWallet.jwk, ChivesServerData);
+      LoadBlueprintChivesServerData = await AoLoadBlueprintChivesServerData(globalThis.arweaveWallet, ChivesServerData);
       console.log("handleSimulatedToken LoadBlueprintChivesServerData:", LoadBlueprintChivesServerData);
     }
     if(LoadBlueprintChivesServerData) {
@@ -89,7 +89,7 @@ const ChivesServerData = () => {
     }
     console.log("LoadBlueprintChivesServerData", LoadBlueprintChivesServerData)
     
-    const TokenProcessTxId1 = await AoCreateProcessAuto(currentWallet.jwk)
+    const TokenProcessTxId1 = await AoCreateProcessAuto(globalThis.arweaveWallet)
     if(TokenProcessTxId1) {
       setToolInfo((prevState: any)=>({
         ...prevState,
@@ -97,7 +97,7 @@ const ChivesServerData = () => {
       }))
     }
 
-    const TokenProcessTxId2 = await AoCreateProcessAuto(currentWallet.jwk)
+    const TokenProcessTxId2 = await AoCreateProcessAuto(globalThis.arweaveWallet)
     if(TokenProcessTxId2) {
       setToolInfo((prevState: any)=>({
         ...prevState,
@@ -110,7 +110,7 @@ const ChivesServerData = () => {
       'Testing Token': '==================================================='
     }))
 
-    const ChivesServerDataAddToken1 = await ChivesServerDataAddToken(currentWallet.jwk, ChivesServerData, TokenProcessTxId1, 'Token666', 'TokenGroup', 'TokenData')
+    const ChivesServerDataAddToken1 = await ChivesServerDataAddToken(globalThis.arweaveWallet, ChivesServerData, TokenProcessTxId1, 'Token666', 'TokenGroup', 'TokenData')
     if(ChivesServerDataAddToken1) {
       console.log("ChivesServerDataAddToken1", ChivesServerDataAddToken1)
       if(ChivesServerDataAddToken1?.msg?.Output?.data?.output)  {
@@ -123,7 +123,7 @@ const ChivesServerData = () => {
           }))
 
           //Read message from inbox
-          const ChivesServerDataAddTokenData1 = await GetMyLastMsg(currentWallet.jwk, TokenProcessTxId1)
+          const ChivesServerDataAddTokenData1 = await GetMyLastMsg(globalThis.arweaveWallet, TokenProcessTxId1)
           if(ChivesServerDataAddTokenData1?.msg?.Output?.data?.output)  {
             const formatText2 = ChivesServerDataAddTokenData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -139,7 +139,7 @@ const ChivesServerData = () => {
       }
     }
 
-    const ChivesServerDataAddToken2 = await ChivesServerDataAddToken(currentWallet.jwk, ChivesServerData, TokenProcessTxId2, 'Token777', 'TokenGroup', 'TokenData')
+    const ChivesServerDataAddToken2 = await ChivesServerDataAddToken(globalThis.arweaveWallet, ChivesServerData, TokenProcessTxId2, 'Token777', 'TokenGroup', 'TokenData')
     if(ChivesServerDataAddToken2) {
       console.log("ChivesServerDataAddToken2", ChivesServerDataAddToken2)
       if(ChivesServerDataAddToken2?.msg?.Output?.data?.output)  {
@@ -152,7 +152,7 @@ const ChivesServerData = () => {
           }))
 
           //Read message from inbox
-          const ChivesServerDataAddTokenData1 = await GetMyLastMsg(currentWallet.jwk, TokenProcessTxId2)
+          const ChivesServerDataAddTokenData1 = await GetMyLastMsg(globalThis.arweaveWallet, TokenProcessTxId2)
           if(ChivesServerDataAddTokenData1?.msg?.Output?.data?.output)  {
             const formatText2 = ChivesServerDataAddTokenData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -177,7 +177,7 @@ const ChivesServerData = () => {
       }))
     }
 
-    const ChivesServerDataDelToken2 = await ChivesServerDataDelToken(currentWallet.jwk, ChivesServerData, TokenProcessTxId2)
+    const ChivesServerDataDelToken2 = await ChivesServerDataDelToken(globalThis.arweaveWallet, ChivesServerData, TokenProcessTxId2)
     if(ChivesServerDataDelToken2) {
       console.log("ChivesServerDataDelToken2", ChivesServerDataDelToken2)
       if(ChivesServerDataDelToken2?.msg?.Output?.data?.output)  {
@@ -190,7 +190,7 @@ const ChivesServerData = () => {
           }))
 
           //Read message from inbox
-          const ChivesServerDataDelTokenData1 = await GetMyLastMsg(currentWallet.jwk, TokenProcessTxId2)
+          const ChivesServerDataDelTokenData1 = await GetMyLastMsg(globalThis.arweaveWallet, TokenProcessTxId2)
           if(ChivesServerDataDelTokenData1?.msg?.Output?.data?.output)  {
             const formatText2 = ChivesServerDataDelTokenData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -223,7 +223,7 @@ const ChivesServerData = () => {
     const ChatroomProcessTxId1 = TokenProcessTxId1
     const ChatroomProcessTxId2 = TokenProcessTxId2
 
-    const ChivesServerDataAddChatroom1 = await ChivesServerDataAddChatroom(currentWallet.jwk, ChivesServerData, ChatroomProcessTxId1, 'Chatroom666', 'ChatroomGroup', 'ChatroomData')
+    const ChivesServerDataAddChatroom1 = await ChivesServerDataAddChatroom(globalThis.arweaveWallet, ChivesServerData, ChatroomProcessTxId1, 'Chatroom666', 'ChatroomGroup', 'ChatroomData')
     if(ChivesServerDataAddChatroom1) {
       console.log("ChivesServerDataAddChatroom1", ChivesServerDataAddChatroom1)
       if(ChivesServerDataAddChatroom1?.msg?.Output?.data?.output)  {
@@ -236,7 +236,7 @@ const ChivesServerData = () => {
           }))
 
           //Read message from inbox
-          const ChivesServerDataAddChatroomData1 = await GetMyLastMsg(currentWallet.jwk, ChatroomProcessTxId1)
+          const ChivesServerDataAddChatroomData1 = await GetMyLastMsg(globalThis.arweaveWallet, ChatroomProcessTxId1)
           if(ChivesServerDataAddChatroomData1?.msg?.Output?.data?.output)  {
             const formatText2 = ChivesServerDataAddChatroomData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -252,7 +252,7 @@ const ChivesServerData = () => {
       }
     }
 
-    const ChivesServerDataAddChatroom2 = await ChivesServerDataAddChatroom(currentWallet.jwk, ChivesServerData, ChatroomProcessTxId2, 'Chatroom777', 'ChatroomGroup', 'ChatroomData')
+    const ChivesServerDataAddChatroom2 = await ChivesServerDataAddChatroom(globalThis.arweaveWallet, ChivesServerData, ChatroomProcessTxId2, 'Chatroom777', 'ChatroomGroup', 'ChatroomData')
     if(ChivesServerDataAddChatroom2) {
       console.log("ChivesServerDataAddChatroom2", ChivesServerDataAddChatroom2)
       if(ChivesServerDataAddChatroom2?.msg?.Output?.data?.output)  {
@@ -265,7 +265,7 @@ const ChivesServerData = () => {
           }))
 
           //Read message from inbox
-          const ChivesServerDataAddChatroomData1 = await GetMyLastMsg(currentWallet.jwk, ChatroomProcessTxId2)
+          const ChivesServerDataAddChatroomData1 = await GetMyLastMsg(globalThis.arweaveWallet, ChatroomProcessTxId2)
           if(ChivesServerDataAddChatroomData1?.msg?.Output?.data?.output)  {
             const formatText2 = ChivesServerDataAddChatroomData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -290,7 +290,7 @@ const ChivesServerData = () => {
       }))
     }
 
-    const ChivesServerDataDelChatroom2 = await ChivesServerDataDelChatroom(currentWallet.jwk, ChivesServerData, ChatroomProcessTxId2)
+    const ChivesServerDataDelChatroom2 = await ChivesServerDataDelChatroom(globalThis.arweaveWallet, ChivesServerData, ChatroomProcessTxId2)
     if(ChivesServerDataDelChatroom2) {
       console.log("ChivesServerDataDelChatroom2", ChivesServerDataDelChatroom2)
       if(ChivesServerDataDelChatroom2?.msg?.Output?.data?.output)  {
@@ -303,7 +303,7 @@ const ChivesServerData = () => {
           }))
 
           //Read message from inbox
-          const ChivesServerDataDelChatroomData1 = await GetMyLastMsg(currentWallet.jwk, ChatroomProcessTxId2)
+          const ChivesServerDataDelChatroomData1 = await GetMyLastMsg(globalThis.arweaveWallet, ChatroomProcessTxId2)
           if(ChivesServerDataDelChatroomData1?.msg?.Output?.data?.output)  {
             const formatText2 = ChivesServerDataDelChatroomData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -337,7 +337,7 @@ const ChivesServerData = () => {
     const LotteryProcessTxId1 = TokenProcessTxId1
     const LotteryProcessTxId2 = TokenProcessTxId2
     
-    const ChivesServerDataAddLottery1 = await ChivesServerDataAddLottery(currentWallet.jwk, ChivesServerData, LotteryProcessTxId1, 'Lottery666', 'LotteryGroup', 'LotteryData')
+    const ChivesServerDataAddLottery1 = await ChivesServerDataAddLottery(globalThis.arweaveWallet, ChivesServerData, LotteryProcessTxId1, 'Lottery666', 'LotteryGroup', 'LotteryData')
     if(ChivesServerDataAddLottery1) {
       console.log("ChivesServerDataAddLottery1", ChivesServerDataAddLottery1)
       if(ChivesServerDataAddLottery1?.msg?.Output?.data?.output)  {
@@ -350,7 +350,7 @@ const ChivesServerData = () => {
           }))
     
           //Read message from inbox
-          const ChivesServerDataAddLotteryData1 = await GetMyLastMsg(currentWallet.jwk, LotteryProcessTxId1)
+          const ChivesServerDataAddLotteryData1 = await GetMyLastMsg(globalThis.arweaveWallet, LotteryProcessTxId1)
           if(ChivesServerDataAddLotteryData1?.msg?.Output?.data?.output)  {
             const formatText2 = ChivesServerDataAddLotteryData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -366,7 +366,7 @@ const ChivesServerData = () => {
       }
     }
     
-    const ChivesServerDataAddLottery2 = await ChivesServerDataAddLottery(currentWallet.jwk, ChivesServerData, LotteryProcessTxId2, 'Lottery777', 'LotteryGroup', 'LotteryData')
+    const ChivesServerDataAddLottery2 = await ChivesServerDataAddLottery(globalThis.arweaveWallet, ChivesServerData, LotteryProcessTxId2, 'Lottery777', 'LotteryGroup', 'LotteryData')
     if(ChivesServerDataAddLottery2) {
       console.log("ChivesServerDataAddLottery2", ChivesServerDataAddLottery2)
       if(ChivesServerDataAddLottery2?.msg?.Output?.data?.output)  {
@@ -379,7 +379,7 @@ const ChivesServerData = () => {
           }))
     
           //Read message from inbox
-          const ChivesServerDataAddLotteryData1 = await GetMyLastMsg(currentWallet.jwk, LotteryProcessTxId2)
+          const ChivesServerDataAddLotteryData1 = await GetMyLastMsg(globalThis.arweaveWallet, LotteryProcessTxId2)
           if(ChivesServerDataAddLotteryData1?.msg?.Output?.data?.output)  {
             const formatText2 = ChivesServerDataAddLotteryData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -404,7 +404,7 @@ const ChivesServerData = () => {
       }))
     }
     
-    const ChivesServerDataDelLottery2 = await ChivesServerDataDelLottery(currentWallet.jwk, ChivesServerData, LotteryProcessTxId2)
+    const ChivesServerDataDelLottery2 = await ChivesServerDataDelLottery(globalThis.arweaveWallet, ChivesServerData, LotteryProcessTxId2)
     if(ChivesServerDataDelLottery2) {
       console.log("ChivesServerDataDelLottery2", ChivesServerDataDelLottery2)
       if(ChivesServerDataDelLottery2?.msg?.Output?.data?.output)  {
@@ -417,7 +417,7 @@ const ChivesServerData = () => {
           }))
     
           //Read message from inbox
-          const ChivesServerDataDelLotteryData1 = await GetMyLastMsg(currentWallet.jwk, LotteryProcessTxId2)
+          const ChivesServerDataDelLotteryData1 = await GetMyLastMsg(globalThis.arweaveWallet, LotteryProcessTxId2)
           if(ChivesServerDataDelLotteryData1?.msg?.Output?.data?.output)  {
             const formatText2 = ChivesServerDataDelLotteryData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -451,7 +451,7 @@ const ChivesServerData = () => {
     const GuessProcessTxId1 = TokenProcessTxId1
     const GuessProcessTxId2 = TokenProcessTxId2
     
-    const ChivesServerDataAddGuess1 = await ChivesServerDataAddGuess(currentWallet.jwk, ChivesServerData, GuessProcessTxId1, 'Guess666', 'GuessGroup', 'GuessData')
+    const ChivesServerDataAddGuess1 = await ChivesServerDataAddGuess(globalThis.arweaveWallet, ChivesServerData, GuessProcessTxId1, 'Guess666', 'GuessGroup', 'GuessData')
     if(ChivesServerDataAddGuess1) {
       console.log("ChivesServerDataAddGuess1", ChivesServerDataAddGuess1)
       if(ChivesServerDataAddGuess1?.msg?.Output?.data?.output)  {
@@ -464,7 +464,7 @@ const ChivesServerData = () => {
           }))
     
           //Read message from inbox
-          const ChivesServerDataAddGuessData1 = await GetMyLastMsg(currentWallet.jwk, GuessProcessTxId1)
+          const ChivesServerDataAddGuessData1 = await GetMyLastMsg(globalThis.arweaveWallet, GuessProcessTxId1)
           if(ChivesServerDataAddGuessData1?.msg?.Output?.data?.output)  {
             const formatText2 = ChivesServerDataAddGuessData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -480,7 +480,7 @@ const ChivesServerData = () => {
       }
     }
     
-    const ChivesServerDataAddGuess2 = await ChivesServerDataAddGuess(currentWallet.jwk, ChivesServerData, GuessProcessTxId2, 'Guess777', 'GuessGroup', 'GuessData')
+    const ChivesServerDataAddGuess2 = await ChivesServerDataAddGuess(globalThis.arweaveWallet, ChivesServerData, GuessProcessTxId2, 'Guess777', 'GuessGroup', 'GuessData')
     if(ChivesServerDataAddGuess2) {
       console.log("ChivesServerDataAddGuess2", ChivesServerDataAddGuess2)
       if(ChivesServerDataAddGuess2?.msg?.Output?.data?.output)  {
@@ -493,7 +493,7 @@ const ChivesServerData = () => {
           }))
     
           //Read message from inbox
-          const ChivesServerDataAddGuessData1 = await GetMyLastMsg(currentWallet.jwk, GuessProcessTxId2)
+          const ChivesServerDataAddGuessData1 = await GetMyLastMsg(globalThis.arweaveWallet, GuessProcessTxId2)
           if(ChivesServerDataAddGuessData1?.msg?.Output?.data?.output)  {
             const formatText2 = ChivesServerDataAddGuessData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -518,7 +518,7 @@ const ChivesServerData = () => {
       }))
     }
     
-    const ChivesServerDataDelGuess2 = await ChivesServerDataDelGuess(currentWallet.jwk, ChivesServerData, GuessProcessTxId2)
+    const ChivesServerDataDelGuess2 = await ChivesServerDataDelGuess(globalThis.arweaveWallet, ChivesServerData, GuessProcessTxId2)
     if(ChivesServerDataDelGuess2) {
       console.log("ChivesServerDataDelGuess2", ChivesServerDataDelGuess2)
       if(ChivesServerDataDelGuess2?.msg?.Output?.data?.output)  {
@@ -531,7 +531,7 @@ const ChivesServerData = () => {
           }))
     
           //Read message from inbox
-          const ChivesServerDataDelGuessData1 = await GetMyLastMsg(currentWallet.jwk, GuessProcessTxId2)
+          const ChivesServerDataDelGuessData1 = await GetMyLastMsg(globalThis.arweaveWallet, GuessProcessTxId2)
           if(ChivesServerDataDelGuessData1?.msg?.Output?.data?.output)  {
             const formatText2 = ChivesServerDataDelGuessData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -565,7 +565,7 @@ const ChivesServerData = () => {
     const BlogProcessTxId1 = TokenProcessTxId1
     const BlogProcessTxId2 = TokenProcessTxId2
     
-    const ChivesServerDataAddBlog1 = await ChivesServerDataAddBlog(currentWallet.jwk, ChivesServerData, BlogProcessTxId1, 'Blog666', 'BlogGroup', 'BlogData')
+    const ChivesServerDataAddBlog1 = await ChivesServerDataAddBlog(globalThis.arweaveWallet, ChivesServerData, BlogProcessTxId1, 'Blog666', 'BlogGroup', 'BlogData')
     if(ChivesServerDataAddBlog1) {
       console.log("ChivesServerDataAddBlog1", ChivesServerDataAddBlog1)
       if(ChivesServerDataAddBlog1?.msg?.Output?.data?.output)  {
@@ -578,7 +578,7 @@ const ChivesServerData = () => {
           }))
     
           //Read message from inbox
-          const ChivesServerDataAddBlogData1 = await GetMyLastMsg(currentWallet.jwk, BlogProcessTxId1)
+          const ChivesServerDataAddBlogData1 = await GetMyLastMsg(globalThis.arweaveWallet, BlogProcessTxId1)
           if(ChivesServerDataAddBlogData1?.msg?.Output?.data?.output)  {
             const formatText2 = ChivesServerDataAddBlogData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -594,7 +594,7 @@ const ChivesServerData = () => {
       }
     }
     
-    const ChivesServerDataAddBlog2 = await ChivesServerDataAddBlog(currentWallet.jwk, ChivesServerData, BlogProcessTxId2, 'Blog777', 'BlogGroup', 'BlogData')
+    const ChivesServerDataAddBlog2 = await ChivesServerDataAddBlog(globalThis.arweaveWallet, ChivesServerData, BlogProcessTxId2, 'Blog777', 'BlogGroup', 'BlogData')
     if(ChivesServerDataAddBlog2) {
       console.log("ChivesServerDataAddBlog2", ChivesServerDataAddBlog2)
       if(ChivesServerDataAddBlog2?.msg?.Output?.data?.output)  {
@@ -607,7 +607,7 @@ const ChivesServerData = () => {
           }))
     
           //Read message from inbox
-          const ChivesServerDataAddBlogData1 = await GetMyLastMsg(currentWallet.jwk, BlogProcessTxId2)
+          const ChivesServerDataAddBlogData1 = await GetMyLastMsg(globalThis.arweaveWallet, BlogProcessTxId2)
           if(ChivesServerDataAddBlogData1?.msg?.Output?.data?.output)  {
             const formatText2 = ChivesServerDataAddBlogData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -632,7 +632,7 @@ const ChivesServerData = () => {
       }))
     }
     
-    const ChivesServerDataDelBlog2 = await ChivesServerDataDelBlog(currentWallet.jwk, ChivesServerData, BlogProcessTxId2)
+    const ChivesServerDataDelBlog2 = await ChivesServerDataDelBlog(globalThis.arweaveWallet, ChivesServerData, BlogProcessTxId2)
     if(ChivesServerDataDelBlog2) {
       console.log("ChivesServerDataDelBlog2", ChivesServerDataDelBlog2)
       if(ChivesServerDataDelBlog2?.msg?.Output?.data?.output)  {
@@ -645,7 +645,7 @@ const ChivesServerData = () => {
           }))
     
           //Read message from inbox
-          const ChivesServerDataDelBlogData1 = await GetMyLastMsg(currentWallet.jwk, BlogProcessTxId2)
+          const ChivesServerDataDelBlogData1 = await GetMyLastMsg(globalThis.arweaveWallet, BlogProcessTxId2)
           if(ChivesServerDataDelBlogData1?.msg?.Output?.data?.output)  {
             const formatText2 = ChivesServerDataDelBlogData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -679,7 +679,7 @@ const ChivesServerData = () => {
     const SwapProcessTxId1 = TokenProcessTxId1
     const SwapProcessTxId2 = TokenProcessTxId2
     
-    const ChivesServerDataAddSwap1 = await ChivesServerDataAddSwap(currentWallet.jwk, ChivesServerData, SwapProcessTxId1, 'Swap666', 'SwapGroup', 'SwapData')
+    const ChivesServerDataAddSwap1 = await ChivesServerDataAddSwap(globalThis.arweaveWallet, ChivesServerData, SwapProcessTxId1, 'Swap666', 'SwapGroup', 'SwapData')
     if(ChivesServerDataAddSwap1) {
       console.log("ChivesServerDataAddSwap1", ChivesServerDataAddSwap1)
       if(ChivesServerDataAddSwap1?.msg?.Output?.data?.output)  {
@@ -692,7 +692,7 @@ const ChivesServerData = () => {
           }))
     
           //Read message from inbox
-          const ChivesServerDataAddSwapData1 = await GetMyLastMsg(currentWallet.jwk, SwapProcessTxId1)
+          const ChivesServerDataAddSwapData1 = await GetMyLastMsg(globalThis.arweaveWallet, SwapProcessTxId1)
           if(ChivesServerDataAddSwapData1?.msg?.Output?.data?.output)  {
             const formatText2 = ChivesServerDataAddSwapData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -708,7 +708,7 @@ const ChivesServerData = () => {
       }
     }
     
-    const ChivesServerDataAddSwap2 = await ChivesServerDataAddSwap(currentWallet.jwk, ChivesServerData, SwapProcessTxId2, 'Swap777', 'SwapGroup', 'SwapData')
+    const ChivesServerDataAddSwap2 = await ChivesServerDataAddSwap(globalThis.arweaveWallet, ChivesServerData, SwapProcessTxId2, 'Swap777', 'SwapGroup', 'SwapData')
     if(ChivesServerDataAddSwap2) {
       console.log("ChivesServerDataAddSwap2", ChivesServerDataAddSwap2)
       if(ChivesServerDataAddSwap2?.msg?.Output?.data?.output)  {
@@ -721,7 +721,7 @@ const ChivesServerData = () => {
           }))
     
           //Read message from inbox
-          const ChivesServerDataAddSwapData1 = await GetMyLastMsg(currentWallet.jwk, SwapProcessTxId2)
+          const ChivesServerDataAddSwapData1 = await GetMyLastMsg(globalThis.arweaveWallet, SwapProcessTxId2)
           if(ChivesServerDataAddSwapData1?.msg?.Output?.data?.output)  {
             const formatText2 = ChivesServerDataAddSwapData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -746,7 +746,7 @@ const ChivesServerData = () => {
       }))
     }
     
-    const ChivesServerDataDelSwap2 = await ChivesServerDataDelSwap(currentWallet.jwk, ChivesServerData, SwapProcessTxId2)
+    const ChivesServerDataDelSwap2 = await ChivesServerDataDelSwap(globalThis.arweaveWallet, ChivesServerData, SwapProcessTxId2)
     if(ChivesServerDataDelSwap2) {
       console.log("ChivesServerDataDelSwap2", ChivesServerDataDelSwap2)
       if(ChivesServerDataDelSwap2?.msg?.Output?.data?.output)  {
@@ -759,7 +759,7 @@ const ChivesServerData = () => {
           }))
     
           //Read message from inbox
-          const ChivesServerDataDelSwapData1 = await GetMyLastMsg(currentWallet.jwk, SwapProcessTxId2)
+          const ChivesServerDataDelSwapData1 = await GetMyLastMsg(globalThis.arweaveWallet, SwapProcessTxId2)
           if(ChivesServerDataDelSwapData1?.msg?.Output?.data?.output)  {
             const formatText2 = ChivesServerDataDelSwapData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -793,7 +793,7 @@ const ChivesServerData = () => {
     const ProjectProcessTxId1 = TokenProcessTxId1
     const ProjectProcessTxId2 = TokenProcessTxId2
     
-    const ChivesServerDataAddProject1 = await ChivesServerDataAddProject(currentWallet.jwk, ChivesServerData, ProjectProcessTxId1, 'Project666', 'ProjectGroup', 'ProjectData')
+    const ChivesServerDataAddProject1 = await ChivesServerDataAddProject(globalThis.arweaveWallet, ChivesServerData, ProjectProcessTxId1, 'Project666', 'ProjectGroup', 'ProjectData')
     if(ChivesServerDataAddProject1) {
       console.log("ChivesServerDataAddProject1", ChivesServerDataAddProject1)
       if(ChivesServerDataAddProject1?.msg?.Output?.data?.output)  {
@@ -806,7 +806,7 @@ const ChivesServerData = () => {
           }))
     
           //Read message from inbox
-          const ChivesServerDataAddProjectData1 = await GetMyLastMsg(currentWallet.jwk, ProjectProcessTxId1)
+          const ChivesServerDataAddProjectData1 = await GetMyLastMsg(globalThis.arweaveWallet, ProjectProcessTxId1)
           if(ChivesServerDataAddProjectData1?.msg?.Output?.data?.output)  {
             const formatText2 = ChivesServerDataAddProjectData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -822,7 +822,7 @@ const ChivesServerData = () => {
       }
     }
     
-    const ChivesServerDataAddProject2 = await ChivesServerDataAddProject(currentWallet.jwk, ChivesServerData, ProjectProcessTxId2, 'Project777', 'ProjectGroup', 'ProjectData')
+    const ChivesServerDataAddProject2 = await ChivesServerDataAddProject(globalThis.arweaveWallet, ChivesServerData, ProjectProcessTxId2, 'Project777', 'ProjectGroup', 'ProjectData')
     if(ChivesServerDataAddProject2) {
       console.log("ChivesServerDataAddProject2", ChivesServerDataAddProject2)
       if(ChivesServerDataAddProject2?.msg?.Output?.data?.output)  {
@@ -835,7 +835,7 @@ const ChivesServerData = () => {
           }))
     
           //Read message from inbox
-          const ChivesServerDataAddProjectData1 = await GetMyLastMsg(currentWallet.jwk, ProjectProcessTxId2)
+          const ChivesServerDataAddProjectData1 = await GetMyLastMsg(globalThis.arweaveWallet, ProjectProcessTxId2)
           if(ChivesServerDataAddProjectData1?.msg?.Output?.data?.output)  {
             const formatText2 = ChivesServerDataAddProjectData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -860,7 +860,7 @@ const ChivesServerData = () => {
       }))
     }
     
-    const ChivesServerDataDelProject2 = await ChivesServerDataDelProject(currentWallet.jwk, ChivesServerData, ProjectProcessTxId2)
+    const ChivesServerDataDelProject2 = await ChivesServerDataDelProject(globalThis.arweaveWallet, ChivesServerData, ProjectProcessTxId2)
     if(ChivesServerDataDelProject2) {
       console.log("ChivesServerDataDelProject2", ChivesServerDataDelProject2)
       if(ChivesServerDataDelProject2?.msg?.Output?.data?.output)  {
@@ -873,7 +873,7 @@ const ChivesServerData = () => {
           }))
     
           //Read message from inbox
-          const ChivesServerDataDelProjectData1 = await GetMyLastMsg(currentWallet.jwk, ProjectProcessTxId2)
+          const ChivesServerDataDelProjectData1 = await GetMyLastMsg(globalThis.arweaveWallet, ProjectProcessTxId2)
           if(ChivesServerDataDelProjectData1?.msg?.Output?.data?.output)  {
             const formatText2 = ChivesServerDataDelProjectData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -907,7 +907,7 @@ const ChivesServerData = () => {
     const FaucetProcessTxId1 = TokenProcessTxId1
     const FaucetProcessTxId2 = TokenProcessTxId2
     
-    const ChivesServerDataAddFaucet1 = await ChivesServerDataAddFaucet(currentWallet.jwk, ChivesServerData, FaucetProcessTxId1, 'Faucet666', 'FaucetGroup', 'FaucetData')
+    const ChivesServerDataAddFaucet1 = await ChivesServerDataAddFaucet(globalThis.arweaveWallet, ChivesServerData, FaucetProcessTxId1, 'Faucet666', 'FaucetGroup', 'FaucetData')
     if(ChivesServerDataAddFaucet1) {
       console.log("ChivesServerDataAddFaucet1", ChivesServerDataAddFaucet1)
       if(ChivesServerDataAddFaucet1?.msg?.Output?.data?.output)  {
@@ -920,7 +920,7 @@ const ChivesServerData = () => {
           }))
     
           //Read message from inbox
-          const ChivesServerDataAddFaucetData1 = await GetMyLastMsg(currentWallet.jwk, FaucetProcessTxId1)
+          const ChivesServerDataAddFaucetData1 = await GetMyLastMsg(globalThis.arweaveWallet, FaucetProcessTxId1)
           if(ChivesServerDataAddFaucetData1?.msg?.Output?.data?.output)  {
             const formatText2 = ChivesServerDataAddFaucetData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -936,7 +936,7 @@ const ChivesServerData = () => {
       }
     }
     
-    const ChivesServerDataAddFaucet2 = await ChivesServerDataAddFaucet(currentWallet.jwk, ChivesServerData, FaucetProcessTxId2, 'Faucet777', 'FaucetGroup', 'FaucetData')
+    const ChivesServerDataAddFaucet2 = await ChivesServerDataAddFaucet(globalThis.arweaveWallet, ChivesServerData, FaucetProcessTxId2, 'Faucet777', 'FaucetGroup', 'FaucetData')
     if(ChivesServerDataAddFaucet2) {
       console.log("ChivesServerDataAddFaucet2", ChivesServerDataAddFaucet2)
       if(ChivesServerDataAddFaucet2?.msg?.Output?.data?.output)  {
@@ -949,7 +949,7 @@ const ChivesServerData = () => {
           }))
     
           //Read message from inbox
-          const ChivesServerDataAddFaucetData1 = await GetMyLastMsg(currentWallet.jwk, FaucetProcessTxId2)
+          const ChivesServerDataAddFaucetData1 = await GetMyLastMsg(globalThis.arweaveWallet, FaucetProcessTxId2)
           if(ChivesServerDataAddFaucetData1?.msg?.Output?.data?.output)  {
             const formatText2 = ChivesServerDataAddFaucetData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {
@@ -974,7 +974,7 @@ const ChivesServerData = () => {
       }))
     }
     
-    const ChivesServerDataDelFaucet2 = await ChivesServerDataDelFaucet(currentWallet.jwk, ChivesServerData, FaucetProcessTxId2)
+    const ChivesServerDataDelFaucet2 = await ChivesServerDataDelFaucet(globalThis.arweaveWallet, ChivesServerData, FaucetProcessTxId2)
     if(ChivesServerDataDelFaucet2) {
       console.log("ChivesServerDataDelFaucet2", ChivesServerDataDelFaucet2)
       if(ChivesServerDataDelFaucet2?.msg?.Output?.data?.output)  {
@@ -987,7 +987,7 @@ const ChivesServerData = () => {
           }))
     
           //Read message from inbox
-          const ChivesServerDataDelFaucetData1 = await GetMyLastMsg(currentWallet.jwk, FaucetProcessTxId2)
+          const ChivesServerDataDelFaucetData1 = await GetMyLastMsg(globalThis.arweaveWallet, FaucetProcessTxId2)
           if(ChivesServerDataDelFaucetData1?.msg?.Output?.data?.output)  {
             const formatText2 = ChivesServerDataDelFaucetData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
             if(formatText2) {

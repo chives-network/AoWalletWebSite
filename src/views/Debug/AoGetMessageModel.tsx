@@ -17,35 +17,26 @@ import CircularProgress from '@mui/material/CircularProgress'
 import Icon from '@/@core/components/icon'
 import authConfig from '@configs/auth'
 
-// ** Context
-import { useAuth } from '@/hooks/useAuth'
-
 // ** Third Party Components
 import toast from 'react-hot-toast'
 
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
-
-
 import { AoGetMessage } from '@/functions/AoConnect/AoConnect'
 
 import MessageRender from './MessageRender'
 
-
-const AoGetMessageModel = () => {
+const AoGetMessageModel = ({ auth }: any) => {
   // ** Hook
   const { t } = useTranslation()
 
-  
-    
   // ** State
   const [uploadingButton, setUploadingButton] = useState<string>(`${t('Submit')}`)
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
   
   const [resultText, setResultText] = useState<any>()
 
-  const auth = useAuth()
   const currentAddress = auth.currentAddress
 
   const [processTxId, setprocessTxId] = useState<string>("K4kzmPPoxWp0YQqG0UNDeXIhWuhWkMcG0Hx8HYCjmLw")

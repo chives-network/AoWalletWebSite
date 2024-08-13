@@ -124,7 +124,7 @@ const SendOutForm = () => {
     setIsDisabledButton(true)
     setUploadingButton(`${t('Submitting...')}`)
 
-    const Result = await AoSendMsg(currentWallet.jwk, "KHruEP5dOP_MgNHava2kEPleihEc915GlRRr3rQ5Jz4", "Test Data", [])
+    const Result = await AoSendMsg(globalThis.arweaveWallet, "KHruEP5dOP_MgNHava2kEPleihEc915GlRRr3rQ5Jz4", "Test Data", [])
     console.log("Result", Result)
     
     if(Result || Result.length != 43) {
