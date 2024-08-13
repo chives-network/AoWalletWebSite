@@ -13,29 +13,29 @@ const LearnCenter = () => {
   // ** Hook
 
   return (
-    <Grid container spacing={6}>
+    <Grid container sx={{maxWidth: '1152px', margin: '0 auto'}}>
       <Grid item xs={12}>
-        <Card sx={{ padding: '0 8px' }}>
+        <Card sx={{ mt: 6 }}>
           <AoWalletModel />
         </Card>
       </Grid>
       <Grid item xs={12}>
-        <Card sx={{ padding: '0 8px' }}>
+        <Card sx={{ mt: 6 }}>
           <AoSendMsgModel />
         </Card>
       </Grid>
       <Grid item xs={12}>
-        <Card sx={{ padding: '0 8px' }}>
+        <Card sx={{ mt: 6 }}>
           <AoGetPageRecordsModel />
         </Card>
       </Grid>
       <Grid item xs={12}>
-        <Card sx={{ padding: '0 8px' }}>
+        <Card sx={{ mt: 6 }}>
           <AoGetMessageModel />
         </Card>
       </Grid>
       <Grid item xs={6}>
-        <Card sx={{ padding: '0 8px' }}>
+        <Card sx={{ mt: 6, mb: 6 }}>
           <AoCreateProcessModel />
         </Card>
       </Grid>

@@ -105,7 +105,7 @@ const ContactUs = () => {
                     <TextField fullWidth label='Email address' id='email-input' type='email' />
                   </div>
                   <TextField fullWidth multiline rows={6} label='Message' id='message-input' />
-                  <Button variant='contained'>Send Inquiry</Button>
+                  <Button variant='contained' disabled>Send Inquiry</Button>
                 </form>
               </CardContent>
             </Card>
