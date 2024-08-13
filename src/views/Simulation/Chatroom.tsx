@@ -23,7 +23,6 @@ import { useTranslation } from 'react-i18next'
 
 import { GetMyLastMsg, AoCreateProcessAuto, sleep } from '@/functions/AoConnect/AoConnect'
 import { AoLoadBlueprintChatroom, GetChatroomMembers, RegisterChatroomMember, SendMessageToChatroom } from '@/functions/AoConnect/Chatroom'
-import { ReminderMsgAndStoreToLocal } from '@/functions/AoConnect/MsgReminder'
 import { ansiRegex } from '@configs/functions'
 
 const Chatroom = () => {
@@ -34,106 +33,6 @@ const Chatroom = () => {
 
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
   const [toolInfo, setToolInfo] = useState<any>()
-
-  // ** State
-  //const [isLoading, setIsLoading] = useState(false);
-
-  const CustomToast = (ContentList: any, position: string, avatar: string) => {
-    return toast(
-      t => (
-        <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Avatar alt='Victor Anderson' src={ ContentList['Logo'] || '/images/avatars/' + avatar } sx={{ mr: 3, width: 40, height: 40 }} />
-            <div>
-              <Typography>{ContentList['Data']}</Typography>
-              {ContentList && ContentList['Action'] == null && ContentList['FromProcess'] && (
-                <Typography variant='caption'>{ContentList['FromProcess']} Id: {ContentList['Ref_']}</Typography>
-              )}
-              {ContentList && ContentList['Action'] != null && (
-                <Typography variant='caption'>Action: {ContentList['Action']} Id: {ContentList['Ref_']}</Typography>
-              )}
-            </div>
-          </Box>
-          <IconButton onClick={() => toast.dismiss(t.id)}>
-            <Icon icon='mdi:close' fontSize={20} />
-          </IconButton>
-        </Box>
-      ),
-      {
-        style: {
-          minWidth: '550px'
-        },
-
-        //@ts-ignore
-        position: position,
-        duration: 4000
-      }
-    )
-  }
-
-  useEffect(() => {
-    const intervalId = setInterval(async () => {
-      const UserOneTxId = toolInfo?.UserOne
-      if(UserOneTxId) {
-        const ReminderMsgAndStoreToLocalDataUserOne = UserOneTxId && UserOneTxId.length == 43 ? await ReminderMsgAndStoreToLocal(UserOneTxId) : null
-        const displayMessagesWithDelay = (messages: any[], index: number) => {
-          if (index < messages.length) {
-            setTimeout(() => {
-              CustomToast(messages[index], 'top-left', '1.png')
-              displayMessagesWithDelay(messages, index + 1);
-            }, 1000);
-          }
-        };
-        ReminderMsgAndStoreToLocalDataUserOne && displayMessagesWithDelay(ReminderMsgAndStoreToLocalDataUserOne, 0);
-        console.log("ReminderMsgAndStoreToLocalDataUserOne", ReminderMsgAndStoreToLocalDataUserOne)
-      }
-    }, 1000 * 6 * 1);
-
-    return () => clearInterval(intervalId);
-  }, [toolInfo?.UserOne]);
-
-  useEffect(() => {
-    const intervalId = setInterval(async () => {
-      const UserTwoTxId = toolInfo?.UserTwo
-      if(UserTwoTxId) {
-        const ReminderMsgAndStoreToLocalDataUserTwo = UserTwoTxId && UserTwoTxId.length == 43 ? await ReminderMsgAndStoreToLocal(UserTwoTxId) : null
-        const displayMessagesWithDelay = (messages: any[], index: number) => {
-          if (index < messages.length) {
-            setTimeout(() => {
-              CustomToast(messages[index], 'bottom-left', '2.png')
-              displayMessagesWithDelay(messages, index + 1);
-            }, 1000);
-          }
-        };
-        ReminderMsgAndStoreToLocalDataUserTwo && displayMessagesWithDelay(ReminderMsgAndStoreToLocalDataUserTwo, 0);
-        console.log("ReminderMsgAndStoreToLocalDataUserTwo", ReminderMsgAndStoreToLocalDataUserTwo)
-      }
-    }, 1000 * 6 * 1);
-
-    return () => clearInterval(intervalId);
-  }, [toolInfo?.UserTwo]);
-
-  useEffect(() => {
-    const intervalId = setInterval(async () => {
-      const UserThreeTxId = toolInfo?.UserThree
-      if(UserThreeTxId) {
-        const ReminderMsgAndStoreToLocalDataUserThree = UserThreeTxId && UserThreeTxId.length == 43 ? await ReminderMsgAndStoreToLocal(UserThreeTxId) : null
-        const displayMessagesWithDelay = (messages: any[], index: number) => {
-          if (index < messages.length) {
-            setTimeout(() => {
-              CustomToast(messages[index], 'bottom-right', '3.png')
-              displayMessagesWithDelay(messages, index + 1);
-            }, 1000);
-          }
-        };
-        ReminderMsgAndStoreToLocalDataUserThree && displayMessagesWithDelay(ReminderMsgAndStoreToLocalDataUserThree, 0);
-        console.log("ReminderMsgAndStoreToLocalDataUserThree", ReminderMsgAndStoreToLocalDataUserThree)
-      }
-    }, 1000 * 6 * 1);
-
-    return () => clearInterval(intervalId);
-  }, [toolInfo?.UserThree]);
-
 
   const handleSimulatedChatroom = async function () {
     
