@@ -27,8 +27,6 @@ import { ansiRegex } from '@configs/functions'
 import { AoCreateProcessAuto } from '@/functions/AoConnect/AoConnect'
 import { GetAoConnectMyAoConnectTxId, SetAoConnectMyAoConnectTxId } from '@/functions/AoConnect/MsgReminder'
 
-import styles from './styles.module.css'
-
 const TokenModel = () => {
   // ** Hook
 
