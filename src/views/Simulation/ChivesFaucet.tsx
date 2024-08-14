@@ -26,7 +26,7 @@ const ChivesFaucetModel = ({auth} : any) => {
   // ** Hook
   const { t } = useTranslation()
 
-  const currentAddress = auth.address as string
+  const currentAddress = auth?.address as string
 
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
   const [toolInfo, setToolInfo] = useState<any>({FaucetSendRule: 'EveryDay', FaucetSendAmount: '0.123', TokenIdInFaucet:'8NtyJMkKt2Q5bshS70K1k52AAiG7qLNm7FU82OIL9hE'})

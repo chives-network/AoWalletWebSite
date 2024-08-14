@@ -33,7 +33,7 @@ const TokenAirdrop = (props: any) => {
     
 
     const auth = useAuth()
-    const currentAddress = auth.address as string
+    const currentAddress = auth?.address as string
 
     useEffect(()=>{
         setTokenGetInfor( (prevState: any) => ({ 

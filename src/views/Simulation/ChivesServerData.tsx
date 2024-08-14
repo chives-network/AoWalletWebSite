@@ -32,7 +32,7 @@ const ChivesServerData = ({auth} : any) => {
   // ** Hook
   const { t } = useTranslation()
 
-  const currentAddress = auth.address as string
+  const currentAddress = auth?.address as string
   
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
   const [toolInfo, setToolInfo] = useState<any>({ChivesServerData:''})
