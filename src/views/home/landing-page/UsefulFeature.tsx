@@ -86,7 +86,7 @@ const UsefulFeature = () => {
 
   return (
     <section id='features' ref={ref} className='bg-backgroundPaper'>
-      <div className={classnames('flex flex-col gap-12 plb-[100px]', frontCommonStyles.layoutSpacing)}>
+      <div className={classnames('flex flex-col gap-12 plb-[60px]', frontCommonStyles.layoutSpacing)}>
         <div className='flex flex-col items-center justify-center'>
           <div className='flex items-center justify-center mbe-6 gap-3'>
             <Lines />

@@ -29,29 +29,29 @@ type StatData = {
 // Data
 const statData: StatData[] = [
   {
-    title: 'Completed Sites',
-    value: 137,
+    title: 'Applications',
+    value: 6,
     icon: 'ri-layout-line',
     color: 'primary',
     isHover: false
   },
   {
-    title: 'Working Hours',
-    value: 1100,
+    title: 'Tokens',
+    value: 20,
     icon: 'ri-time-line',
     color: 'success',
     isHover: false
   },
   {
-    title: 'Happy Customers',
-    value: 137,
+    title: 'Users',
+    value: 100,
     icon: 'ri-user-smile-line',
     color: 'warning',
     isHover: false
   },
   {
-    title: 'Awards Winning',
-    value: 23,
+    title: 'Support Platforms',
+    value: 4,
     icon: 'ri-award-line',
     color: 'info',
     isHover: false
@@ -62,7 +62,7 @@ const ProductStat = () => {
   const [hoverIndex, setHoverIndex] = useState<number | null>(null)
 
   return (
-    <section className='plb-[64px] bg-backgroundPaper'>
+    <section className='plb-[40px] bg-backgroundPaper'>
       <div className={frontCommonStyles.layoutSpacing}>
         <Grid container spacing={6}>
           {statData.map((stat, index) => (

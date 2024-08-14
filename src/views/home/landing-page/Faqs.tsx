@@ -31,28 +31,23 @@ type FaqsDataTypes = {
 const FaqsData: FaqsDataTypes[] = [
   {
     id: 'panel1',
-    question: 'Do you charge for each upgrade?',
+    question: 'Which platforms does AoWallet support?',
     answer:
-      'Lemon drops chocolate cake gummies carrot cake chupa chups muffin topping. Sesame snaps icing marzipan gummi bears macaroon dragée danish caramels powder. Bear claw dragée pastry topping soufflé. Wafer gummi bears marshmallow pastry pie.'
+      'Ios, Android, Chrome Extension, Web. There will be support for more browser extensions in the future.'
   },
   {
     id: 'panel2',
-    question: 'What is regular license?',
+    question: 'What is AoWallet?',
     active: true,
-    answer:
-      'Regular license can be used for end products that do not charge users for access or service(access is free and there will be no monthly subscription fee). Single regular license can be used for single end product and end product can be used by you or your client. If you want to sell end product to multiple clients then you will need to purchase separate license for each client. The same rule applies if you want to use the same end product on multiple domains(unique setup). For more info on regular license you can check official description.'
+    answer: `AoWallet is a wallet application on the AO and AR blockchains that supports data encryption and code auditing.
+
+Supply AO & AR wallet function, Token, Faucet, Email, Chat, Blog.`
   },
   {
     id: 'panel3',
-    question: 'What is extended license?',
+    question: 'What are the subsequent development plans for AoWallet?',
     answer:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis et aliquid quaerat possimus maxime! Mollitia reprehenderit neque repellat deleniti delectus architecto dolorum maxime, blanditiis earum ea, incidunt quam possimus cumque.'
-  },
-  {
-    id: 'panel4',
-    question: 'Which license is applicable for SASS application?',
-    answer:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis et aliquid quaerat possimus maxime! Mollitia reprehenderit neque repellat deleniti delectus architecto dolorum maxime, blanditiis earum ea, incidunt quam possimus cumque.'
+      'The expected development features include: Blog, Paid documents, Swap. If you have better ideas or suggestions, feel free to contact us at any time.'
   }
 ]
 
@@ -86,7 +81,7 @@ const Faqs = () => {
     <section
       id='faq'
       ref={ref}
-      className={classnames('flex flex-col gap-16 plb-[100px]', frontCommonStyles.layoutSpacing)}
+      className={classnames('flex flex-col gap-16 plb-[60px]', frontCommonStyles.layoutSpacing)}
     >
       <div className='flex flex-col items-center justify-center'>
         <div className='flex is-full justify-center items-center relative'>
@@ -125,7 +120,7 @@ const Faqs = () => {
                     <AccordionSummary aria-controls={data.id + '-content'} id={data.id + '-header'}>
                       {data.question}
                     </AccordionSummary>
-                    <AccordionDetails>{data.answer}</AccordionDetails>
+                    <AccordionDetails sx={{whiteSpace: 'pre-wrap'}}>{data.answer}</AccordionDetails>
                   </Accordion>
                 )
               })}

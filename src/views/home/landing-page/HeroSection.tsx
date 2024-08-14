@@ -93,7 +93,7 @@ const HeroSection = ({ mode }: { mode: Mode }) => {
       </div>
       <div
         className={classnames('relative text-center', frontCommonStyles.layoutSpacing)}
-        style={{ transform: `translate(${dashboardPosition.x}px, ${dashboardPosition.y}px)` }}
+        style={{ transform: `translate(${dashboardPosition.x}px, ${dashboardPosition.y}px)`, marginTop: '40px' }}
       >
         <Link href='/' target='_blank'>
           <img src={dashboardImage} alt='dashboard-image' className={classnames('mli-auto', styles.heroSecDashboard)} />
