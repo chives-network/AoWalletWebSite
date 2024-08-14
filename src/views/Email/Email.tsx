@@ -127,7 +127,7 @@ const EmailAppLayout = () => {
       else {
         setLoading(false)
         setNoEmailText('No Email')
-        
+
         //setStore({ ...{data: [], total : 0, emailFolder: params.folder, startIndex: '0', endIndex: '10', EmailRecordsCount: {}, recordsUnRead:{} }, filter: params, allPages: 0 })
       }
   }
@@ -138,21 +138,21 @@ const EmailAppLayout = () => {
     <Grid container sx={{maxWidth: '1152px', margin: '0 auto'}}>
       {loadingWallet == 0 && (
           <Grid container spacing={5}>
-              <Grid item xs={12} justifyContent="flex-end">
-                <Card sx={{ my: 6 }}>
-                  <CardContent>
-                    Loading Wallet Status
-                  </CardContent>
-                </Card>
-              </Grid>
+            <Grid item xs={12} justifyContent="center">
+              <Card sx={{ my: 6, width: '100%', height: '800px' }}>
+                <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                  Loading Wallet Status
+                </CardContent>
+              </Card>
+            </Grid>
           </Grid>
       )}
       {loadingWallet == 2 && (
           <Grid container spacing={5}>
-            <Grid item xs={12} justifyContent="flex-end">
-              <Card sx={{ my: 6 }}>
-                <CardContent>
-                Please Connect Wallet First
+            <Grid item xs={12} justifyContent="center">
+              <Card sx={{ my: 6, width: '100%', height: '800px' }}>
+                <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                  Please Connect Wallet First
                 </CardContent>
               </Card>
             </Grid>
@@ -160,10 +160,10 @@ const EmailAppLayout = () => {
       )}
       {loadingWallet == 1 && store == null && (
           <Grid container spacing={5}>
-            <Grid item xs={12} justifyContent="flex-end">
-              <Card sx={{ my: 6 }}>
-                <CardContent>
-                Loading data from Email Server
+            <Grid item xs={12} justifyContent="center">
+              <Card sx={{ my: 6, width: '100%', height: '800px' }}>
+                <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                  Loading data from Email Server
                 </CardContent>
               </Card>
             </Grid>

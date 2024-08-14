@@ -29,20 +29,22 @@ import { frontLayoutClasses } from '@layouts/utils/layoutClasses'
 import { ConnectButton } from "arweave-wallet-kit"
 
 // Styles Imports
-import styles from './styles.module.css'
+import styles from '@components/layout/front-pages/styles.module.css'
 
 const Header = ({ mode }: { mode: Mode }) => {
   // States
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
   // Hooks
-  const isBelowLgScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('lg'))
+  const isBelowLgScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'))
 
   // Detect window scroll
   const trigger = useScrollTrigger({
     threshold: 0,
     disableHysteresis: true
   })
+
+  console.log("frontLayoutClasses.header", frontLayoutClasses.header)
 
   return (
     <header className={classnames(frontLayoutClasses.header, styles.header)}>

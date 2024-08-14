@@ -27,6 +27,8 @@ import { ansiRegex } from '@configs/functions'
 import { AoCreateProcessAuto } from '@/functions/AoConnect/AoConnect'
 import { GetAoConnectMyAoConnectTxId, SetAoConnectMyAoConnectTxId } from '@/functions/AoConnect/MsgReminder'
 
+import styles from './styles.module.css'
+
 const TokenModel = () => {
   // ** Hook
 
@@ -36,13 +38,11 @@ const TokenModel = () => {
   const theme = useTheme()
   const { settings } = useSettings()
   const hidden = useMediaQuery(theme.breakpoints.down('lg'))
-
-  // ** Vars
   const smAbove = useMediaQuery(theme.breakpoints.up('sm'))
-  const tokenLeftWidth = smAbove ? 270 : 200
-
-  const { skin } = settings
   const mdAbove = useMediaQuery(theme.breakpoints.up('md'))
+
+  const tokenLeftWidth = smAbove ? 270 : 200
+  const { skin } = settings
 
   const auth = useAuth()
   const currentAddress = auth?.address as string
@@ -126,7 +126,6 @@ const TokenModel = () => {
     setLoadingGetTokens(false)
   }
 
-
   const handleAddToken = async (WantToSaveTokenProcessTxId: string) => {
     if(tokenInfo)  {
       setAddTokenButtonDisabled(true)
@@ -186,7 +185,7 @@ const TokenModel = () => {
   }
   
   return (
-    <Grid container sx={{maxWidth: '1152px', margin: '0 auto'}}>
+    <Grid container sx={{margin: '0 auto'}} maxWidth='1152px'>
       <Box
         className='app-chat'
         sx={{

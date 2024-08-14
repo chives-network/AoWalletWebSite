@@ -22,9 +22,9 @@ import '@/app/globals.css'
 import '@assets/iconify-icons/generated-icons.css'
 
 export const metadata = {
-  title: 'Materio - Material Design Next.js Admin Template',
+  title: 'AoWallet & Arweave Wallet',
   description:
-    'Materio - Material Design Next.js Admin Dashboard Template - is the most developer friendly & highly customizable Admin Dashboard Template based on MUI v5.'
+    'AoWallet & Arweave Wallet By Chives Network.'
 }
 
 const Layout = ({ children }: ChildrenType) => {
@@ -39,7 +39,7 @@ const Layout = ({ children }: ChildrenType) => {
             permissions: ["ACCESS_ADDRESS", "SIGN_TRANSACTION", "DISPATCH", "ACCESS_ALL_ADDRESSES"],
             ensurePermissions: true,
             appInfo: {
-              name: "StarterKit",
+              name: "AoWallet",
             },
           }}
         >
