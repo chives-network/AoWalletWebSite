@@ -90,7 +90,7 @@ function Footer() {
                     <img src='/images/front-pages/apple-icon.png' alt='apple store' className='bs-[34px]' />
                     <div className='flex flex-col items-start'>
                       <Typography variant='body2' color='white' className='capitalize opacity-[0.82]'>
-                        Download on the
+                        Not Ready
                       </Typography>
                       <Typography color='white' className='font-medium capitalize opacity-[0.92]'>
                         App Store
@@ -103,7 +103,7 @@ function Footer() {
                     <img src='/images/front-pages/google-play-icon.png' alt='Google play' className='bs-[34px]' />
                     <div className='flex flex-col items-start'>
                       <Typography variant='body2' color='white' className='opacity-[0.82]'>
-                        Download on the
+                        Not Ready
                       </Typography>
                       <Typography color='white' className='font-medium opacity-[0.92]'>
                         Google Play

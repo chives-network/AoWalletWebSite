@@ -10,16 +10,9 @@ import Typography from '@mui/material/Typography'
 // Type Imports
 import type { Mode } from '@core/types'
 
-// Hook Imports
-import { useImageVariant } from '@core/hooks/useImageVariant'
-
 const NotFound = ({ mode }: { mode: Mode }) => {
-  // Vars
-  const darkImg = '/images/pages/misc-mask-dark.png'
-  const lightImg = '/images/pages/misc-mask-light.png'
 
-  // Hooks
-  const miscBackground = useImageVariant(mode, lightImg, darkImg)
+  console.log("NotFound mode", mode)
 
   return (
     <div className='flex items-center justify-center min-bs-[100dvh] relative p-6 overflow-x-hidden'>
