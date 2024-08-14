@@ -1,34 +1,38 @@
 'use client'
 
-// Next Imports
+// ** Next Import
 import Link from 'next/link'
 
-// MUI Imports
+// ** MUI Components
 import Button from '@mui/material/Button'
+import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
+import type { BoxProps } from '@mui/material/Box'
 
-// Type Imports
-import type { Mode } from '@core/types'
+// ** Styled Components
+const BoxWrapper = styled(Box)<BoxProps>(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    width: '90vw'
+  }
+}))
 
-const NotFound = ({ mode }: { mode: Mode }) => {
-
-  console.log("NotFound mode", mode)
-
+const NotFound = () => {
   return (
-    <div className='flex items-center justify-center min-bs-[100dvh] relative p-6 overflow-x-hidden'>
-      <div className='flex items-center flex-col text-center gap-10'>
-        <div className='flex flex-col gap-2 is-[90vw] sm:is-[unset]'>
-          <Typography className='font-medium text-8xl' color='text.primary'>
-            404
+    <Box className='content-center'>
+      <Box sx={{ p: 5, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+        <BoxWrapper>
+          <Typography variant='h1'>404</Typography>
+          <Typography variant='h5' sx={{ mb: 4, fontSize: '1.5rem !important' }}>
+            Page Not Found ⚠️
           </Typography>
-          <Typography variant='h4'>Page Not Found ⚠️</Typography>
-          <Typography>We couldn&#39;t find the page you are looking for.</Typography>
-        </div>
-        <Button href='/' component={Link} variant='contained'>
+          <Typography variant='body2'>We couldn&prime;t find the page you are looking for.</Typography>
+        </BoxWrapper>
+        <Button href='/' component={Link} variant='contained' sx={{ px: 5.5, mt: 10 }}>
           Back to Home
         </Button>
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }
 

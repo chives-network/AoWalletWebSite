@@ -8,12 +8,11 @@ const NotFoundPage = () => {
   // Vars
   const direction = 'ltr'
   const systemMode = 'light'
-  const mode = 'light'
 
   return (
     <Providers direction={direction}>
       <BlankLayout systemMode={systemMode}>
-        <NotFound mode={mode} />
+        <NotFound />
       </BlankLayout>
     </Providers>
   )
