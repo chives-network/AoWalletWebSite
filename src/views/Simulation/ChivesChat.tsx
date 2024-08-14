@@ -20,11 +20,11 @@ import { AoLoadBlueprintChivesChat, GetChivesChatAdmins, GetChivesChatMembersByO
   ChivesChatAddAdmin, ChivesChatDelAdmin, ChivesChatAddInvite, ChivesChatAddMember, ChivesChatDelMember, ChivesChatAddChannel, ChivesChatGetChannels, ChivesChatAgreeInvite, ChivesChatRefuseInvite, ChivesChatApplyJoin, ChivesChatGetApplicants,ChivesChatApprovalApply, ChivesChatRefuseApply } from '@/functions/AoConnect/ChivesChat'
 import { ansiRegex } from '@configs/functions'
 
-const ChivesChat = () => {
+const ChivesChat = ({auth} : any) => {
   // ** Hook
   const { t } = useTranslation()
 
-  const currentAddress = 'auth.currentAddress'
+  const currentAddress = auth.address as string
 
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
   const [toolInfo, setToolInfo] = useState<any>()

@@ -18,11 +18,11 @@ import { GetMyLastMsg, AoCreateProcessAuto, sleep } from '@/functions/AoConnect/
 import { AoLoadBlueprintChatroom, GetChatroomMembers, RegisterChatroomMember, SendMessageToChatroom } from '@/functions/AoConnect/Chatroom'
 import { ansiRegex } from '@configs/functions'
 
-const Chatroom = () => {
+const Chatroom = ({auth} : any) => {
   // ** Hook
   const { t } = useTranslation()
 
-  const currentAddress = 'auth.currentAddress'
+  const currentAddress = auth.address as string
 
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
   const [toolInfo, setToolInfo] = useState<any>()

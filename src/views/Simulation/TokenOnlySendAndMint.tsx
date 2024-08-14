@@ -21,11 +21,11 @@ import { useTranslation } from 'react-i18next'
 import { AoCreateProcessAuto, generateRandomNumber } from '@/functions/AoConnect/AoConnect'
 import { AoTokenTransfer, AoTokenBalanceDryRun } from '@/functions/AoConnect/Token'
 
-const TokenOnlySendAndMintModel = () => {
+const TokenOnlySendAndMintModel = ({auth} : any) => {
   // ** Hook
   const { t } = useTranslation()
 
-  const currentAddress = 'auth.currentAddress'
+  const currentAddress = auth.address as string
 
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
   const [toolInfo, setToolInfo] = useState<any>()

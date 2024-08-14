@@ -125,6 +125,16 @@ const TokenMyAllTransactions = (prop: any) => {
                 </Box>
             )}
 
+            {tokenGetInfor && tokenGetInfor.AoTokenMyAllTransactionsList && tokenGetInfor.AoTokenMyAllTransactionsList.length == 0 && tokenGetInfor.isLoading == true && (
+                <Box sx={{ pl: 5, py: 3 }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+                    <Grid item key={"Pagination"} xs={12} sm={12} md={12} lg={12} sx={{ padding: '10px 0 10px 0' }}>
+                        <Typography noWrap variant='body2' sx={{ color: 'primary.main', pr: 3, display: 'inline', ml: 5, pt: 0 }}>{t('Loading')}</Typography>
+                    </Grid>
+                    </Box>
+                </Box>
+            )}
+
             {pageCount > 0 && tokenGetInfor.isLoading == false && (
                 <Box sx={{ pl: 5, py: 3 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>

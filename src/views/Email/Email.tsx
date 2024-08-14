@@ -79,7 +79,7 @@ const EmailAppLayout = () => {
     if(auth && auth.connected == false) {
         setLoadingWallet(2)
     }
-    if(auth && auth.connected == true && auth.address != '') {
+    if(auth && auth.connected == true && auth.address) {
         setLoadingWallet(1)
         setMyAoConnectTxId(auth.address as string);
     }

@@ -64,8 +64,6 @@ const TokenLeft = (props: any) => {
 
   const { t } = useTranslation()
 
-  console.log("TokenLeft myAoConnectTxId", myAoConnectTxId, tokenLeft)
-
   const handleTokenClick = (id: string) => {
     setActive(id)
     setSearchToken(id)
@@ -74,6 +72,7 @@ const TokenLeft = (props: any) => {
     setAddTokenFavorite(false)
     setCancelTokenFavorite(false)
     setPageCount(0)
+    console.log("handleTokenClick myAoConnectTxId", myAoConnectTxId)
   }
 
   const renderTokens = (tokenLeft: any[]) => {

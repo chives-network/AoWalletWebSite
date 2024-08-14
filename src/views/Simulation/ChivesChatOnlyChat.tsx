@@ -24,11 +24,11 @@ import { GetMyLastMsg, AoCreateProcessAuto, sleep } from '@/functions/AoConnect/
 import { ChivesChatAddMember, SendMessageToChivesChat, ChivesChatGetChatRecords, ChivesChatApplyJoin, ChivesChatIsMember } from '@/functions/AoConnect/ChivesChat'
 import { ansiRegex } from '@configs/functions'
 
-const ChivesChatOnlyChat = () => {
+const ChivesChatOnlyChat = ({auth} : any) => {
   // ** Hook
   const { t } = useTranslation()
 
-  const currentAddress = 'auth.currentAddress'
+  const currentAddress = auth.address as string
   
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
   const [toolInfo, setToolInfo] = useState<any>({ChivesChatProcessTxId:''})

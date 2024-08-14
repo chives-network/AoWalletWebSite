@@ -22,11 +22,11 @@ import { AoLoadBlueprintChivesEmail,
  } from '@/functions/AoConnect/ChivesEmail'
 import { ansiRegex } from '@configs/functions'
 
-const ChivesEmail = () => {
+const ChivesEmail = ({auth} : any) => {
   // ** Hook
   const { t } = useTranslation()
 
-  const currentAddress = 'auth.currentAddress'
+  const currentAddress = auth.address as string
   
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
   const [toolInfo, setToolInfo] = useState<any>({ChivesEmail:''})

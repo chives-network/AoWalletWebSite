@@ -96,7 +96,8 @@ const TokenIndexModel = (prop: any) => {
       //setMyProcessTxIdInPage(myAoConnectTxId)
     }
   }, [myAoConnectTxId])
-  console.log("myProcessTxIdmyProcessTxId", myAoConnectTxId, "myProcessTxIdInPage", myProcessTxIdInPage)
+  
+  //console.log("myProcessTxIdmyProcessTxId", myAoConnectTxId, "myProcessTxIdInPage", myProcessTxIdInPage)
 
   //const [tokenMint, setTokenMint] = useState<any>({ openMintToken: false, FormSubmit: 'Submit', isDisabledButton: false })
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
@@ -179,7 +180,7 @@ const TokenIndexModel = (prop: any) => {
       CirculatingSupply: null,
       Version: null,
       Release: null,
-      isLoading: false
+      isLoading: true
     }))
 
     const TokenGetMap: any = await AoTokenInfoDryRun(CurrentToken)
@@ -191,6 +192,7 @@ const TokenIndexModel = (prop: any) => {
         setPageCount(Math.ceil(TokenGetMap.TokenHolders/pageSize))
       }
       setTokenListModel(TokenGetMap.Release == "ChivesToken" ? TokenGetMap.Release : "Official")
+      setTokenListAction(TokenGetMap.Release == "ChivesToken" ? "All Txs" : "All Holders")
       setTokenInfo(TokenGetMap)
       setTokenGetInfor((prevState: any)=>({
         ...prevState,
@@ -315,10 +317,10 @@ const TokenIndexModel = (prop: any) => {
             ...prevState,
             isLoading: true
           }));
-          let LoadBlueprintToken: any = await AoLoadBlueprintToken(globalThis.arweaveWallet, TokenProcessTxId, tokenCreate);
+          let LoadBlueprintToken: any = await AoLoadBlueprintToken(globalThis.arweaveWallet, currentAddress, TokenProcessTxId, tokenCreate);
           while(LoadBlueprintToken && LoadBlueprintToken.status == 'ok' && LoadBlueprintToken.msg && LoadBlueprintToken.msg.error)  {
             sleep(6000)
-            LoadBlueprintToken = await AoLoadBlueprintToken(globalThis.arweaveWallet, TokenProcessTxId, tokenCreate);
+            LoadBlueprintToken = await AoLoadBlueprintToken(globalThis.arweaveWallet, currentAddress, TokenProcessTxId, tokenCreate);
             console.log("handleTokenCreate LoadBlueprintToken:", LoadBlueprintToken);
           }
   
@@ -701,7 +703,7 @@ const TokenIndexModel = (prop: any) => {
           <Card sx={{ padding: '0 8px' }}>
               {myProcessTxIdInPage ?
               <Grid container>
-                <Grid item xs={12} sx={{my: 2}}>
+                <Grid item xs={12} sx={{my: 1}}>
                   <Card>
 
                       {addTokenFavorite == true && (
@@ -779,6 +781,8 @@ const TokenIndexModel = (prop: any) => {
 
                         </Grid>
                       )}
+
+                      <TokenCreate tokenCreate={tokenCreate} setTokenCreate={setTokenCreate} handleTokenCreate={handleTokenCreate} handleTokenSearch={handleTokenSearch} handleAddToken={handleAddToken} setCounter={setCounter}/>
 
                       { searchToken && (addTokenFavorite == false || isSearchTokenModelOpen) && tokenGetInfor && tokenGetInfor.CurrentToken && (
                         <Fragment>
@@ -868,8 +872,6 @@ const TokenIndexModel = (prop: any) => {
                           </Grid>
 
                           <Grid item sx={{ display: 'column', m: 2 }}>
-
-                            <TokenCreate tokenCreate={tokenCreate} setTokenCreate={setTokenCreate} handleTokenCreate={handleTokenCreate} handleTokenSearch={handleTokenSearch} handleAddToken={handleAddToken} setCounter={setCounter}/>
 
                             <TokenMint tokenGetInfor={tokenGetInfor} setTokenGetInfor={setTokenGetInfor} handleTokenMint={handleTokenMint} handleTokenSearch={handleTokenSearch} />
 
@@ -1028,16 +1030,16 @@ const TokenIndexModel = (prop: any) => {
                           <Table>
                           <TableBody>
                           <TableRow sx={{my: 0, py: 0}}>
-                              <TableCell sx={{my: 0, py: 0}}>
+                              <TableCell>
                                   Id
                               </TableCell>
-                              <TableCell sx={{my: 0, py: 0}}>
+                              <TableCell>
                                   Token
                               </TableCell>
-                              <TableCell sx={{my: 0, py: 0}}>
+                              <TableCell>
                                   Group
                               </TableCell>
-                              <TableCell sx={{my: 0, py: 0}}>
+                              <TableCell>
                                   Sort
                               </TableCell>
                           </TableRow>

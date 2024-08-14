@@ -29,8 +29,9 @@ const TokenListOfficial = (prop: any) => {
   const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
     setPageId(page)
     console.log("TokenListOfficial handlePageChange 1", event)
-  }  
-  console.log("TokenListOfficial -------------------- handlePageChange 2", pageId, pageCount, tokenGetInfor)
+  }
+  
+  //console.log("TokenListOfficial -------------------- handlePageChange 2", pageId, pageCount, tokenGetInfor)
   
   const TokenBalances: any[] = tokenGetInfor && tokenGetInfor.TokenBalancesAllRecords && tokenGetInfor.TokenBalancesAllRecords.length>0 ? tokenGetInfor.TokenBalancesAllRecords.slice(pageId * pageSize - pageSize, (pageId) * pageSize) : null
 

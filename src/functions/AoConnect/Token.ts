@@ -6,10 +6,8 @@ import authConfig from '../../configs/auth'
 import axios from 'axios'
 
 import { MU_URL, CU_URL, GATEWAY_URL, AoGetRecord, BalanceTimes10 } from '../../functions/AoConnect/AoConnect'
-import { jwkToAddress } from '../../functions/ChivesWallets'
 
-
-export const AoLoadBlueprintToken = async (currentWalletJwk: any, processTxId: string, tokenInfo: any) => {
+export const AoLoadBlueprintToken = async (currentWalletJwk: any, AoConnectOwner: string, processTxId: string, tokenInfo: any) => {
     try {
         if(processTxId && processTxId.length != 43) {
 
@@ -22,6 +20,11 @@ export const AoLoadBlueprintToken = async (currentWalletJwk: any, processTxId: s
 
         let Data = await axios.get('https://raw.githubusercontent.com/chives-network/AoWalletWebsite/main/blueprints/chivestoken.lua', { timeout: 10000 }).then(res => res.data)
         
+        if(Data == undefined || Data == null) {
+
+            return { status: 'error', msg: 'Lua file not loaded.' }; 
+        }
+
         //Filter Token Infor
         if(tokenInfo && tokenInfo.Name) {
             Data = Data.replace("AoConnectToken", tokenInfo.Name)
@@ -38,9 +41,8 @@ export const AoLoadBlueprintToken = async (currentWalletJwk: any, processTxId: s
         if(tokenInfo && tokenInfo.Denomination) {
             Data = Data.replace("12", tokenInfo.Denomination)
         }
-        const address = await jwkToAddress(currentWalletJwk)
-        if(address && address.length == 43) {
-            Data = Data.replaceAll("AoConnectOwner", address)
+        if(AoConnectOwner && AoConnectOwner.length == 43) {
+            Data = Data.replaceAll("AoConnectOwner", AoConnectOwner)
         }
 
         const { message } = connect( { MU_URL, CU_URL, GATEWAY_URL } );
@@ -65,7 +67,7 @@ export const AoLoadBlueprintToken = async (currentWalletJwk: any, processTxId: s
         }
     }
     catch(Error: any) {
-        console.error("AoLoadBlueprintChatroom Error:", Error)
+        console.error("AoLoadBlueprintToken Error:", Error)
         if(Error && Error.message) {
 
             return { status: 'error', msg: Error.message };

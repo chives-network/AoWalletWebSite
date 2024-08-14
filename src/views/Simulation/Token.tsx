@@ -24,11 +24,11 @@ import { GetMyLastMsg, AoCreateProcessAuto, generateRandomNumber, sleep, FormatB
 import { AoLoadBlueprintToken, AoTokenTransfer, AoTokenMint, AoTokenBalancesDryRun } from '@/functions/AoConnect/Token'
 import { ansiRegex } from '@configs/functions'
 
-const TokenModel = () => {
+const TokenModel = ({auth} : any) => {
   // ** Hook
   const { t } = useTranslation()
 
-  const currentAddress = 'auth.currentAddress'
+  const currentAddress = auth.address as string
 
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
   const [toolInfo, setToolInfo] = useState<any>()
@@ -80,10 +80,10 @@ const TokenModel = () => {
     await sleep(5000)
 
     console.log("handleSimulatedToken tokenInfo", tokenInfo)
-    let LoadBlueprintToken: any = await AoLoadBlueprintToken(globalThis.arweaveWallet, TokenProcessTxId, tokenInfo);
+    let LoadBlueprintToken: any = await AoLoadBlueprintToken(globalThis.arweaveWallet, currentAddress, TokenProcessTxId, tokenInfo);
     while(LoadBlueprintToken && LoadBlueprintToken.status == 'ok' && LoadBlueprintToken.msg && LoadBlueprintToken.msg.error)  {
       sleep(6000)
-      LoadBlueprintToken = await AoLoadBlueprintToken(globalThis.arweaveWallet, TokenProcessTxId, tokenInfo);
+      LoadBlueprintToken = await AoLoadBlueprintToken(globalThis.arweaveWallet, currentAddress, TokenProcessTxId, tokenInfo);
       console.log("handleSimulatedToken LoadBlueprintToken:", LoadBlueprintToken);
     }
     if(LoadBlueprintToken) {

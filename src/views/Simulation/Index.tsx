@@ -30,7 +30,7 @@ const LearnCenter = () => {
     if(auth && auth.connected == false) {
         setLoadingWallet(2)
     }
-    if(auth && auth.connected == true && auth.address != '') {
+    if(auth && auth.connected == true && auth.address) {
         setLoadingWallet(1)
     }
   }, [auth])
@@ -63,22 +63,22 @@ const LearnCenter = () => {
         <Fragment>
           <Grid item xs={12}>
             <Card sx={{ mt: 6, p: 2, pb: 0 }}>
-              <ChivesFaucet />
+              <ChivesFaucet auth={auth} />
             </Card>
           </Grid>
           <Grid item xs={12}>
             <Card sx={{ mt: 6, p: 2, pb: 0 }}>
-              <ChivesChat />
+              <ChivesChat auth={auth} />
             </Card>
           </Grid>
           <Grid item xs={12}>
             <Card sx={{ mt: 6, p: 2, pb: 0 }}>
-              <ChivesChatOnlyChat />
+              <ChivesChatOnlyChat auth={auth} />
             </Card>
           </Grid>
           <Grid item xs={12}>
             <Card sx={{ mt: 6, p: 2, pb: 0 }}>
-              <ChivesEmail />
+              <ChivesEmail auth={auth} />
             </Card>
           </Grid>
           <Grid item xs={12}>
@@ -88,27 +88,27 @@ const LearnCenter = () => {
           </Grid>
           <Grid item xs={12}>
             <Card sx={{ mt: 6, p: 2, pb: 0 }}>
-              <ChivesLottery />
+              <ChivesLottery auth={auth} />
             </Card>
           </Grid>
           <Grid item xs={12}>
             <Card sx={{ mt: 6, p: 2, pb: 0 }}>
-              <Chatroom />
+              <Chatroom auth={auth} />
             </Card>
           </Grid>
           <Grid item xs={12}>
             <Card sx={{ mt: 6, p: 2, pb: 0 }}>
-              <Token />
+              <Token auth={auth} />
             </Card>
           </Grid>
           <Grid item xs={12}>
             <Card sx={{ mt: 6, p: 2, pb: 0 }}>
-              <TokenOnlySendAndMint />
+              <TokenOnlySendAndMint auth={auth} />
             </Card>
           </Grid>
           <Grid item xs={12}>
             <Card sx={{ mt: 6, mb: 6 }}>
-              <MyProcessTxIds />
+              <MyProcessTxIds auth={auth} />
             </Card>
           </Grid>
         </Fragment>

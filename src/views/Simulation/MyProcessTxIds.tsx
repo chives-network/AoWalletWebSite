@@ -27,11 +27,11 @@ import { AoLoadBlueprintMyProcessTxIds,
  } from '@/functions/AoConnect/MyProcessTxIds'
 import { ansiRegex } from '@configs/functions'
 
-const MyProcessTxIds = () => {
+const MyProcessTxIds = ({auth} : any) => {
   // ** Hook
   const { t } = useTranslation()
 
-  const currentAddress = 'auth.currentAddress'
+  const currentAddress = auth.address as string
   
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
   const [toolInfo, setToolInfo] = useState<any>({MyProcessTxIds:''})

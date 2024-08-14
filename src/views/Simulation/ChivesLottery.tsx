@@ -19,11 +19,11 @@ import { AoTokenBalanceDryRun } from '@/functions/AoConnect/Token'
 import { AoLoadBlueprintLottery, AoLotteryCheckBalance, AoLotteryDeposit, AoLotteryUpdateBalance, AoLotteryCredit } from '@/functions/AoConnect/ChivesLottery'
 import { ansiRegex } from '@configs/functions'
 
-const ChivesLotteryModel = () => {
+const ChivesLotteryModel = ({auth} : any) => {
   // ** Hook
   const { t } = useTranslation()
 
-  const currentAddress = 'auth.currentAddress'
+  const currentAddress = auth.address as string
 
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
   const [toolInfo, setToolInfo] = useState<any>()
