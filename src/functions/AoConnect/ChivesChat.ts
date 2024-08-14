@@ -989,7 +989,7 @@ export const GetChatroomAvatar = (Logo: string) => {
         return authConfig.backEndApi + "/" + Logo
     }
     else {
-        return '/images/chives.png'
+        return '/icons/icon128.png'
     }
 }
 

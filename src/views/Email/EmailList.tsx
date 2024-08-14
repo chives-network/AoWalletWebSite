@@ -4,7 +4,6 @@ import { Fragment, useState, SyntheticEvent, ReactNode, useEffect } from 'react'
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import List from '@mui/material/List'
-import Input from '@mui/material/Input'
 import Avatar from '@mui/material/Avatar'
 import Divider from '@mui/material/Divider'
 import Tooltip from '@mui/material/Tooltip'
@@ -14,7 +13,6 @@ import { styled } from '@mui/material/styles'
 import Grid from '@mui/material/Grid'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
-import InputAdornment from '@mui/material/InputAdornment'
 import CircularProgress from '@mui/material/CircularProgress'
 import ListItem from '@mui/material/ListItem'
 import type { ListItemProps } from '@mui/material/ListItem'
@@ -96,9 +94,7 @@ const EmailList = (props: EmailListType) => {
   
   const {
     store,
-    query,
     hidden,
-    setQuery,
     direction,
     EmailCategoriesColors,
     folder,
@@ -240,40 +236,6 @@ const EmailList = (props: EmailListType) => {
   return (
     <Box sx={{ width: '100%', overflow: 'hidden', position: 'relative', '& .ps__rail-y': { zIndex: 5 } }}>
       <Box sx={{ height: '100%', backgroundColor: 'background.paper' }}>
-        <Box sx={{ px: 3, py: 0 }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-            <Box p={2} display="flex" alignItems="center">
-              <Typography sx={{mr: 2}} >
-                {folder}
-              </Typography>
-              <Typography variant="body2" >
-              Address: {currentAoAddress}
-              </Typography>
-              <IconButton sx={{mt: 1, ml: 1}} aria-label='capture screenshot' color='secondary' size='small' onClick={() => {
-                  navigator.clipboard.writeText(currentAoAddress);
-                  toast.success(t('Copied success') as string, { duration: 1000 });
-              }}>
-                  <Icon icon='material-symbols:file-copy-outline-rounded' fontSize='inherit' />
-              </IconButton>
-            </Box>
-            <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
-              <Input
-                size="small"
-                disabled
-                value={query}
-                placeholder={`${t(`Search Not Finished`)}`}
-                onChange={e => setQuery(e.target.value)}
-                sx={{ width: '200px', '&:before, &:after': { display: 'none' } }}
-                startAdornment={
-                  <InputAdornment position='start' sx={{ color: 'text.disabled' }}>
-                    <Icon icon='mdi:magnify' fontSize='1.375rem' />
-                  </InputAdornment>
-                }
-              />
-            </Box>
-          </Box>
-        </Box>
-        <Divider sx={{ m: '0 !important' }} />
         <Box sx={{ py: 1, px: { xs: 2.5, sm: 5 } }}>
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -337,7 +299,7 @@ const EmailList = (props: EmailListType) => {
           </Box>
         </Box>
         <Divider sx={{ m: '0 !important' }} />
-        <Box sx={{ p: 0, position: 'relative', overflowX: 'hidden', height: 'calc(100% - 9.75rem)' }}>
+        <Box sx={{ p: 0, position: 'relative', overflowX: 'hidden', height: 'calc(100% - 6.75rem)' }}>
           <ScrollWrapper hidden={hidden}>
             {store && store.data && store.data.length ? (
               <List sx={{ p: 0, m: 1 }}>

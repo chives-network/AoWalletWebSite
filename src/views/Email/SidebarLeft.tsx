@@ -1,5 +1,3 @@
-// React Imports
-import { useState, useEffect } from 'react'
 import type { ReactNode } from 'react'
 
 // Next Imports
@@ -17,7 +15,6 @@ import classnames from 'classnames'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
 // Types Imports
-import type { Email, EmailState } from '@/types/apps/emailTypes'
 import type { ThemeColor } from '@core/types'
 
 // Styles Imports
@@ -56,10 +53,10 @@ export const labelColors: { [key: string]: LabelColor } = {
   private: { color: 'error', colorClass: 'text-error' }
 }
 
-const ScrollWrapper = ({ children, isBelowLgScreen }: { children: ReactNode; isBelowLgScreen: boolean }) => {
-  if (isBelowLgScreen) {
+const ScrollWrapper = ({ children, lgAbove }: { children: ReactNode; lgAbove: boolean }) => {
+  if (lgAbove) {
     return <PerfectScrollbar options={{ wheelPropagation: false }}>{children}</PerfectScrollbar>
-    
+
     //return <div className='bs-full overflow-y-auto overflow-x-hidden'>{children}</div>
   } else {
     return <PerfectScrollbar options={{ wheelPropagation: false }}>{children}</PerfectScrollbar>
@@ -70,7 +67,6 @@ const SidebarLeft = (props: any) => {
   // Props
   const {
     store,
-    hidden,
     lgAbove,
     folder,
     setFolder,
@@ -81,10 +77,6 @@ const SidebarLeft = (props: any) => {
     setEmailDetailWindowOpen,
     handleLeftSidebarToggle,
     EmailCategoriesColors,
-    uniqueLabels,
-    isBelowLgScreen,
-    isBelowMdScreen,
-    isBelowSmScreen,
     label
   } = props
 
@@ -124,8 +116,8 @@ const SidebarLeft = (props: any) => {
             {composeTitle}
           </Button>
         </CardContent>
-        <ScrollWrapper isBelowLgScreen={isBelowLgScreen}>
-          <div className='flex flex-col gap-1 plb-4'>
+        <ScrollWrapper lgAbove={lgAbove}>
+          <div className='flex flex-col'>
             {Object.entries(icons).map(([key, value]) => (
               <Link
                 key={key}
@@ -153,7 +145,9 @@ const SidebarLeft = (props: any) => {
                     label={store.EmailRecordsCount[key]}
                     size='small'
                     variant='tonal'
-                    color={iconsToColor(key)}
+
+                    //@ts-ignore
+                    color={iconsToColor(key) as string}
                   />
                 )}
               </Link>

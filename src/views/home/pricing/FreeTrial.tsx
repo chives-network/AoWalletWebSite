@@ -32,11 +32,6 @@ const FreeTrial = () => {
               </Button>
             </div>
           </Grid>
-          <Grid xs={12} md={6}>
-            <div className='md:absolute md:inline-end-[90px] xl:inline-end-[2%] flex justify-center block-end-[-1px]'>
-              <img src='/images/illustrations/characters/3.png' alt='girl with laptop' className='bs-[270px]' />
-            </div>
-          </Grid>
         </Grid>
       </div>
     </section>

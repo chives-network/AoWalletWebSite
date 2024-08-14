@@ -1,7 +1,11 @@
+'use client'
+
 // MUI Imports
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton'
+import type { Theme } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 // Third-party Imports
 import classnames from 'classnames'
@@ -17,6 +21,9 @@ import { frontLayoutClasses } from '@layouts/utils/layoutClasses'
 import frontCommonStyles from '@views/home/styles.module.css'
 
 function Footer() {
+
+  const isBelowLgScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('lg'))
+
   return (
     <footer className={frontLayoutClasses.footer}>
       <div className='relative'>
@@ -37,44 +44,45 @@ function Footer() {
                 </Typography>
               </div>
             </Grid>
-            <Grid item xs={12} sm={3} lg={2}>
-              <Typography color='white' className='font-medium mbe-6 opacity-[0.92]'>
-                Coming soon
-              </Typography>
-              <div className='flex flex-col gap-4'>
-                <Typography color='white' className='opacity-[0.78]'>
-                  Blog
+            {!isBelowLgScreen && (
+              <Grid item xs={12} sm={3} lg={2}>
+                <Typography color='white' className='font-medium mbe-6 opacity-[0.92]'>
+                  Coming soon
                 </Typography>
-                <Typography color='white' className='opacity-[0.78]'>
-                  Swap
+                <div className='flex flex-col gap-4'>
+                  <Typography color='white' className='opacity-[0.78]'>
+                    Blog
+                  </Typography>
+                  <Typography color='white' className='opacity-[0.78]'>
+                    Swap
+                  </Typography>
+                  <Typography color='white' className='opacity-[0.78]'>
+                    Paid Document
+                  </Typography>
+                </div>
+              </Grid>
+            )}
+            {!isBelowLgScreen && (
+              <Grid item xs={12} sm={3} lg={2}>
+                <Typography color='white' className='font-medium mbe-6 opacity-[0.92]'>
+                  Products
                 </Typography>
-                <Typography color='white' className='opacity-[0.78]'>
-                  Paid Document
-                </Typography>
-              </div>
-            </Grid>
-            <Grid item xs={12} sm={3} lg={2}>
-              <Typography color='white' className='font-medium mbe-6 opacity-[0.92]'>
-                Products
-              </Typography>
-              <div className='flex flex-col gap-4'>
-                <Typography component={Link} href='/token' color='white' className='opacity-[0.78]'>
-                  Token
-                </Typography>
-                <Typography component={Link} href='/faucet' color='white' className='opacity-[0.78]'>
-                  Faucet
-                </Typography>
-                <Typography component={Link} href='/email' color='white' className='opacity-[0.78]'>
-                  Email
-                </Typography>
-                <Typography component={Link} href='/chat' color='white' className='opacity-[0.78]'>
-                  Chat
-                </Typography>
-              </div>
-            </Grid>
+                <div className='flex flex-col gap-4'>
+                  <Typography component={Link} href='/token' color='white' className='opacity-[0.78]'>
+                    Token
+                  </Typography>
+                  <Typography component={Link} href='/faucet' color='white' className='opacity-[0.78]'>
+                    Faucet
+                  </Typography>
+                  <Typography component={Link} href='/email' color='white' className='opacity-[0.78]'>
+                    Email
+                  </Typography>
+                </div>
+              </Grid>
+            )}
             <Grid item xs={12} sm={6} lg={3}>
               <Typography color='white' className='font-medium mbe-6 opacity-[0.92]'>
-                Download our App
+                Download AoWallet App
               </Typography>
               <div className='flex flex-col gap-4'>
                 <Link className='bg-[#211B2C] bs-[56px] is-[211px] rounded'>
@@ -99,6 +107,32 @@ function Footer() {
                       </Typography>
                       <Typography color='white' className='font-medium opacity-[0.92]'>
                         Google Play
+                      </Typography>
+                    </div>
+                  </div>
+                </Link>
+                <Link className='bg-[#211B2C] bs-[56px] is-[211px] rounded' href='https://web.aowallet.org' target='_blank'>
+                  <div className='flex items-center pli-5 plb-[7px] gap-6'>
+                    <img src='/images/logo/html5.png' alt='Google play' className='bs-[34px]' />
+                    <div className='flex flex-col items-start'>
+                      <Typography variant='body2' color='white' className='opacity-[0.82]'>
+                        Open it on 
+                      </Typography>
+                      <Typography color='white' className='font-medium opacity-[0.92]'>
+                        Browser
+                      </Typography>
+                    </div>
+                  </div>
+                </Link>
+                <Link className='bg-[#211B2C] bs-[56px] is-[211px] rounded' href='https://chromewebstore.google.com/detail/aowallet-arweave-wallet/dcgmbfihnfgaaokeogiadpgllidjnkgm?hl=en-US&utm_source=ext_sidebar' target='_blank'>
+                  <div className='flex items-center pli-5 plb-[7px] gap-6'>
+                    <img src='/images/logo/chrome.png' alt='Google play' className='bs-[34px]' />
+                    <div className='flex flex-col items-start'>
+                      <Typography variant='body2' color='white' className='opacity-[0.82]'>
+                        Install Chrome 
+                      </Typography>
+                      <Typography color='white' className='font-medium opacity-[0.92]'>
+                        Extension
                       </Typography>
                     </div>
                   </div>

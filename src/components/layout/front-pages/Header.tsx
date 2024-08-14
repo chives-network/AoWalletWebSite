@@ -8,7 +8,7 @@ import Link from 'next/link'
 
 // MUI Imports
 import Box from '@mui/material/Box'
-import IconButton from '@mui/material/IconButton'
+import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import useScrollTrigger from '@mui/material/useScrollTrigger'
 import type { Theme } from '@mui/material/styles'
@@ -23,7 +23,6 @@ import type { Mode } from '@core/types'
 import Logo from '@components/layout/shared/Logo'
 import ModeDropdown from '@components/layout/shared/ModeDropdown'
 import FrontMenu from './FrontMenu'
-import CustomIconButton from '@core/components/mui/IconButton'
 
 // Util Imports
 import { frontLayoutClasses } from '@layouts/utils/layoutClasses'
@@ -49,37 +48,30 @@ const Header = ({ mode }: { mode: Mode }) => {
     <header className={classnames(frontLayoutClasses.header, styles.header)}>
       <div className={classnames(frontLayoutClasses.navbar, styles.navbar, { [styles.headerScrolled]: trigger })}>
         <div className={classnames(frontLayoutClasses.navbarContent, styles.navbarContent)}>
-          {isBelowLgScreen ? (
-            <div className='flex items-center gap-2 sm:gap-4'>
-              <IconButton onClick={() => setIsDrawerOpen(true)} className='-mis-2'>
-                <i className='ri-menu-line text-textPrimary' />
-              </IconButton>
-              <Link href='/'>
-                <Logo />
-              </Link>
+          <div className='flex items-center gap-4'>
+            <Link href='/'>
+              <Logo />
+            </Link>            
+            {!isBelowLgScreen && (
               <FrontMenu mode={mode} isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
-            </div>
-          ) : (
-            <div className='flex items-center gap-4'>
-              <Link href='/'>
-                <Logo />
-              </Link>
-              <FrontMenu mode={mode} isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
-            </div>
-          )}
+            )}
+            {isBelowLgScreen && (
+              <Typography
+                component={Link}
+                href='https://web.aowallet.org'
+                target='_blank'
+                className={classnames('font-medium plb-3 pli-1.5 hover:text-primary', {
+                  'text-primary': true
+                })}
+                color='text.primary'
+              >
+                WebWallet
+              </Typography>
+            )}
+          </div>
           <div className='flex items-center sm:gap-4'>
             <ModeDropdown />
-            {isBelowLgScreen ? (
-              <CustomIconButton
-                component={Link}
-                variant='contained'
-                href='/'
-                color='primary'
-                target='_blank'
-              >
-                <i className='ri-shopping-cart-line text-xl' />
-              </CustomIconButton>
-            ) : (
+            {!isBelowLgScreen && (
               <Box sx={{ display: 'flex', alignItems: 'center', my: 0 }}>
                 <ConnectButton
                   accent="#9155FD"

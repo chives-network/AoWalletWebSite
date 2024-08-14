@@ -3,9 +3,6 @@
 // React Imports
 import { useEffect, useState, memo } from 'react'
 
-import classnames from 'classnames'
-import type { Theme } from '@mui/material/styles'
-
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import { useTheme } from '@mui/material/styles'
@@ -13,16 +10,9 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
 import CardContent from '@mui/material/CardContent'
-import { commonLayoutClasses } from '@layouts/utils/layoutClasses'
 
 // ** Hooks
 import { useSettings } from '@core/hooks/useSettings'
-
-// Third-party Imports
-import { useDispatch, useSelector } from 'react-redux'
-
-// Type Imports
-import type { RootState } from '@/redux-store'
 
 // ** Email App Component Imports
 import EmailList from '@views/Email/EmailList'
@@ -68,17 +58,6 @@ const EmailAppLayout = () => {
   const mdAbove = useMediaQuery(theme.breakpoints.up('md'))
   const smAbove = useMediaQuery(theme.breakpoints.up('sm'))
 
-  // Hooks
-  const emailStore = useSelector((state: RootState) => state.emailReducer)
-  const dispatch = useDispatch()
-  const isBelowLgScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('lg'))
-  const isBelowMdScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'))
-  const isBelowSmScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'))
-
-  // Vars
-  const uniqueLabels = [...new Set(emailStore.emails.flatMap(email => email.labels))]
-
-
   const composePopupWidth = mdAbove ? 754 : smAbove ? 520 : '100%'
   const [composeTitle, setComposeTitle] = useState<string>(`${t(`Compose`)}`)
   const [composeOpen, setComposeOpen] = useState<boolean>(false)
@@ -88,7 +67,7 @@ const EmailAppLayout = () => {
   const hidden = true
 
   // ** Vars
-  const leftSidebarWidth = 260
+  const leftSidebarWidth = 220
   const { skin } = settings
 
   const auth = useAuth()
@@ -126,7 +105,6 @@ const EmailAppLayout = () => {
         pageSize: paginationModel.pageSize,
         folder: folder
       }
-      console.log("paramsparamsparamsparams", params, counter)
       handleGetEmailData(params)
       setComposeOpen(false)
       setComposeTitle(`${t(`Compose`)}`)
@@ -149,11 +127,10 @@ const EmailAppLayout = () => {
       else {
         setLoading(false)
         setNoEmailText('No Email')
+        
         //setStore({ ...{data: [], total : 0, emailFolder: params.folder, startIndex: '0', endIndex: '10', EmailRecordsCount: {}, recordsUnRead:{} }, filter: params, allPages: 0 })
       }
   }
-
-  console.log("setStore", store)
 
   const handleLeftSidebarToggle = () => setLeftSidebarOpen(!leftSidebarOpen)
 
@@ -208,7 +185,6 @@ const EmailAppLayout = () => {
         >
           <SidebarLeft
             store={store}
-            hidden={hidden}
             lgAbove={lgAbove}
             dispatch={'ltr'}
             folder={folder}
@@ -221,10 +197,6 @@ const EmailAppLayout = () => {
             setEmailDetailWindowOpen={setEmailDetailWindowOpen}
             handleLeftSidebarToggle={handleLeftSidebarToggle}
             EmailCategoriesColors={EmailCategoriesColors}
-            uniqueLabels={uniqueLabels}
-            isBelowLgScreen={isBelowLgScreen}
-            isBelowMdScreen={isBelowMdScreen}
-            isBelowSmScreen={isBelowSmScreen}
           />
           <EmailList
             query={query}

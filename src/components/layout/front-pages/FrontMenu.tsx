@@ -136,14 +136,6 @@ const FrontMenu = (props: Props) => {
       </Typography>
       <Typography
         component={Link}
-        href='/chat'
-        className='font-medium plb-3 pli-1.5 hover:text-primary'
-        color='text.primary'
-      >
-        Chat
-      </Typography>
-      <Typography
-        component={Link}
         href='/debug'
         className='font-medium plb-3 pli-1.5 hover:text-primary'
         color='text.primary'
