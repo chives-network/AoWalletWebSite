@@ -6,6 +6,7 @@ import type { ChildrenType } from '@core/types'
 
 // Context Imports
 import { IntersectionProvider } from '@/contexts/intersectionContext'
+import ReactHotToast from '@/libs/styles/react-hot-toast'
 
 // Component Imports
 import Providers from '@components/Providers'
@@ -14,6 +15,7 @@ import FrontLayout from '@components/layout/front-pages'
 
 import { ArweaveWalletKit } from "arweave-wallet-kit"
 import { AuthProvider } from '@/context/AuthContext'
+import { Toaster } from 'react-hot-toast'
 
 // Style Imports
 import '@/app/globals.css'
@@ -49,6 +51,9 @@ const Layout = ({ children }: ChildrenType) => {
                 <IntersectionProvider>
                   <FrontLayout>{children}</FrontLayout>
                 </IntersectionProvider>
+                <ReactHotToast>
+                  <Toaster position={'top-center'} toastOptions={{ className: 'react-hot-toast' }} />
+                </ReactHotToast>
               </BlankLayout>
             </Providers>
           </AuthProvider>

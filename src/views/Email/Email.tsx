@@ -92,7 +92,6 @@ const EmailAppLayout = () => {
   
   const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
     setPaginationModel({ ...paginationModel, page });
-    console.log("handlePageChange", event)
   }
 
   useEffect(() => {

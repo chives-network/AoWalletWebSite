@@ -96,7 +96,6 @@ const TokenModel = () => {
     setLoadingGetTokens(true)
     const MyProcessTxIdsGetTokensData = await MyProcessTxIdsGetTokens(authConfig.AoConnectMyProcessTxIds, currentAddress);
     if (MyProcessTxIdsGetTokensData) {
-        console.log("MyProcessTxIdsGetTokensData", MyProcessTxIdsGetTokensData);
         const TokenList = Object.values(MyProcessTxIdsGetTokensData);
         if (TokenList) {
             const filteredTokens = TokenList.filter((token: any) => token && token?.TokenData && token?.TokenId && token?.TokenId?.length == 43);
@@ -117,7 +116,6 @@ const TokenModel = () => {
             });
             if (filteredTokensDataNew.length > 0) {
               setTokenLeft(filteredTokensDataNew);
-              console.log("tokenLeft filteredTokensDataNew", filteredTokensDataNew);
             }
         }
     }
