@@ -87,6 +87,36 @@ const EmailAppLayout = () => {
     }
   }, [auth])
 
+  const [windowWidth, setWindowWidth] = useState('1152px');
+  useEffect(() => {
+    const handleResize = () => {
+      if(window.innerWidth >=1920)   {
+        setWindowWidth('1392px');
+      }
+      else if(window.innerWidth < 1920 && window.innerWidth > 1440)   {
+        setWindowWidth('1152px');
+      }
+      else if(window.innerWidth <= 1440 && window.innerWidth > 1200)   {
+        setWindowWidth('1152px');
+      }
+      else if(window.innerWidth <= 1200 && window.innerWidth > 900)   {
+        setWindowWidth('852px');
+      }
+      else if(window.innerWidth <= 900)   {
+        setWindowWidth('90%');
+      }
+      console.log("window.innerWidth1 ", window.innerWidth)
+      console.log("window.windowWidth2 ", windowWidth)
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup function to remove the event listener
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
 
   // ** State
   const [paginationModel, setPaginationModel] = useState({ page: 1, pageSize: 12 })
@@ -135,7 +165,7 @@ const EmailAppLayout = () => {
   const handleLeftSidebarToggle = () => setLeftSidebarOpen(!leftSidebarOpen)
 
   return (
-    <Grid container sx={{maxWidth: '1152px', margin: '0 auto'}}>
+    <Grid container sx={{maxWidth: windowWidth, margin: '0 auto'}}>
       {loadingWallet == 0 && (
           <Grid container spacing={5}>
             <Grid item xs={12} justifyContent="center">
