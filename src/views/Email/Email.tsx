@@ -108,6 +108,8 @@ const EmailAppLayout = () => {
       console.log("window.innerWidth1 ", window.innerWidth)
       console.log("window.windowWidth2 ", windowWidth)
     };
+    
+    handleResize();
 
     window.addEventListener('resize', handleResize);
 
