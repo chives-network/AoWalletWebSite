@@ -11,7 +11,7 @@ const Tool = () => {
             <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start', height: '100%' }}>
               <Typography variant="h5" sx={{ mb: 6 }}>Please Connect Wallet First</Typography>
               
-              <Typography variant="h5" sx={{ mb: 3 }}>Tool Functions:</Typography>
+              <Typography variant="h5" sx={{ mb: 3 }}>Tool Functions (Only for developer):</Typography>
               
               <Typography variant="body1" sx={{ mb: 2 }}>
                 1 Simulation Chatroom 
