@@ -32,21 +32,21 @@ const LearnCenter = () => {
     <Grid container sx={{maxWidth: '1152px', margin: '0 auto'}}>
       {loadingWallet == 0 && (
           <Grid container spacing={5}>
-              <Grid item xs={12} justifyContent="flex-end">
-                <Card sx={{ my: 6 }}>
-                  <CardContent>
-                    Loading Wallet Status
-                  </CardContent>
-                </Card>
-              </Grid>
+            <Grid item xs={12} justifyContent="center">
+              <Card sx={{ my: 6, width: '100%', height: '800px' }}>
+                <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                  Loading Wallet Status
+                </CardContent>
+              </Card>
+            </Grid>
           </Grid>
       )}
       {loadingWallet == 2 && (
           <Grid container spacing={5}>
-            <Grid item xs={12} justifyContent="flex-end">
-              <Card sx={{ my: 6 }}>
-                <CardContent>
-                Please Connect Wallet First
+            <Grid item xs={12} justifyContent="center">
+              <Card sx={{ my: 6, width: '100%', height: '800px' }}>
+                <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                  Please Connect Wallet First
                 </CardContent>
               </Card>
             </Grid>

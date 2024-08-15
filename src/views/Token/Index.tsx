@@ -11,7 +11,9 @@ import { useSettings } from '@core/hooks/useSettings'
 
 // ** Third Party Import
 import Box from '@mui/material/Box'
+import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
+import CardContent from '@mui/material/CardContent'
 
 // ** Axios Imports
 import { useAuth } from '@/hooks/useAuth'
@@ -43,7 +45,19 @@ const TokenModel = () => {
   const { skin } = settings
 
   const auth = useAuth()
-  const currentAddress = auth?.address as string
+  const [currentAddress, setCurrentAddress] = useState<string>("")
+  useEffect(()=>{
+    if(auth && auth.connected == false) {
+        setLoadingWallet(2)
+    }
+    if(auth && auth.connected == true && auth.address && auth.address.length == 43) {
+        setLoadingWallet(1)
+        setCurrentAddress(auth.address)
+    }
+  }, [auth])
+
+
+  const [loadingWallet, setLoadingWallet] = useState<number>(0)
 
   const [tokenLeft, setTokenLeft] = useState<any[]>([])
   const [counter, setCounter] = useState<number>(0)
@@ -182,6 +196,29 @@ const TokenModel = () => {
   
   return (
     <Grid container sx={{margin: '0 auto'}} maxWidth='1152px'>
+      {loadingWallet == 0 && (
+          <Grid container spacing={5}>
+            <Grid item xs={12} justifyContent="center">
+              <Card sx={{ my: 6, width: '100%', height: '800px' }}>
+                <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                  Loading Wallet Status
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
+      )}
+      {loadingWallet == 2 && (
+          <Grid container spacing={5}>
+            <Grid item xs={12} justifyContent="center">
+              <Card sx={{ my: 6, width: '100%', height: '800px' }}>
+                <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                  Please Connect Wallet First
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
+      )}
+      {loadingWallet == 1 && (
       <Box
         className='app-chat'
         sx={{
@@ -256,6 +293,7 @@ const TokenModel = () => {
         </Fragment>
 
       </Box>
+      )}
     </Grid>
   )
 }

@@ -81,7 +81,8 @@ const HeroSection = ({ mode }: { mode: Mode }) => {
           <div className='mbs-8'>
             <Button
               component={Link}
-              href='/home#pricing-plans'
+              href='https://web.aowallet.org'
+              target="_blank"
               variant='contained'
               color='primary'
               size='large'
