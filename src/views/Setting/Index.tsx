@@ -1,6 +1,7 @@
+'use client'
 
 // ** React Imports
-import { Fragment, memo, useState } from 'react'
+import { Fragment, memo, useState, useEffect } from 'react'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
@@ -20,6 +21,7 @@ import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
 import CircularProgress from '@mui/material/CircularProgress'
 import { useAuth } from '@/hooks/useAuth'
+import CardContent from '@mui/material/CardContent'
 import { GetTokenAvatar } from '@/functions/AoConnect/Token'
 
 import toast from 'react-hot-toast'
@@ -48,7 +50,51 @@ const SettingModel = () => {
   const { t } = useTranslation()
 
   const auth = useAuth()
-  const currentAddress = auth?.address as string
+  const [currentAddress, setCurrentAddress] = useState<string>("")
+  useEffect(()=>{
+    if(auth && auth.connected == false) {
+        setLoadingWallet(2)
+    }
+    if(auth && auth.connected == true && auth.address && auth.address.length == 43) {
+        setLoadingWallet(1)
+        setCurrentAddress(auth.address)
+    }
+  }, [auth])
+
+  const [windowWidth, setWindowWidth] = useState('1152px');
+  useEffect(() => {
+    const handleResize = () => {
+      if(window.innerWidth >=1920)   {
+        setWindowWidth('1392px');
+      }
+      else if(window.innerWidth < 1920 && window.innerWidth > 1440)   {
+        setWindowWidth('1152px');
+      }
+      else if(window.innerWidth <= 1440 && window.innerWidth > 1200)   {
+        setWindowWidth('1152px');
+      }
+      else if(window.innerWidth <= 1200 && window.innerWidth > 900)   {
+        setWindowWidth('852px');
+      }
+      else if(window.innerWidth <= 900)   {
+        setWindowWidth('90%');
+      }
+      console.log("window.innerWidth1 ", window.innerWidth)
+      console.log("window.windowWidth2 ", windowWidth)
+    };
+    
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup function to remove the event listener
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+
+  const [loadingWallet, setLoadingWallet] = useState<number>(0)
 
   const [serverModel, setServerModel] = useState<string>("Token")
   const [serverTxId, setServerTxId] = useState<string>("cC3CM1npsgqmFygx--WUooDj5SQMDEwIBFKiuGuqu5Y")
@@ -531,324 +577,351 @@ const SettingModel = () => {
 
 
   return (
-    <Box
-        sx={{
-            py: 3,
-            px: 5,
-            display: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between'
-        }}
-        >
-        <Grid container>
-            <Grid item xs={12}>
-                <Card>
-                    <Grid item sx={{ display: 'flex', justifyContent: 'space-between', my: 2 }}>
-                        <Box>
-                            <TextField
-                                sx={{ml: 2, my: 2}}
-                                size="small"
-                                label={`${t('ChivesServerDataTxId')}`}
-                                placeholder={`${t('ChivesServerDataTxId')}`}
-                                value={serverTxId}
-                                onChange={(e: any)=>{
-                                    if(e.target.value && e.target.value.length == 43) {
-                                        setChivesServerDataTxIdError('')
-                                        setServerTxId(e.target.value)
-                                    }
-                                    else {
-                                        setChivesServerDataTxIdError('Please set ChivesServerDataTxId first!')
-                                        setIsDisabledButton(false)
-                                    }
-                                }}
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position='start'>
-                                            <Icon icon='mdi:account-outline' />
-                                        </InputAdornment>
-                                    )
-                                }}
-                                error={!!chivesServerDataTxIdError}
-                                helperText={chivesServerDataTxIdError}
-                            />
-                            <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={isDisabledButton} variant='outlined' onClick={
-                                () => { handleGetServerData('Token') }
-                            }>
-                            {t("Token Data")}
-                            </Button>
-                            <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={isDisabledButton} variant='outlined' onClick={
-                                () => { handleGetServerData('Faucet') }
-                            }>
-                            {t("Faucet Data")}
-                            </Button>
-                            <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={true} variant='outlined' onClick={
-                                () => { handleGetServerData('Lottery') }
-                            }>
-                            {t("Lottery Data")}
-                            </Button>
-                            <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={true} variant='outlined' onClick={
-                                () => { handleGetServerData('Guess') }
-                            }>
-                            {t("Guess Data")}
-                            </Button>
-                            <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={true} variant='outlined' onClick={
-                                () => { handleGetServerData('Chatroom') }
-                            }>
-                            {t("Chatroom Data")}
-                            </Button>
-                            <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={true} variant='outlined' onClick={
-                                () => { handleGetServerData('Blog') }
-                            }>
-                            {t("Blog Data")}
-                            </Button>
-                            <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={true} variant='outlined' onClick={
-                                () => { handleGetServerData('Swap') }
-                            }>
-                            {t("Swap Data")}
-                            </Button>
-                            <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={true} variant='outlined' onClick={
-                                () => { handleGetServerData('Project') }
-                            }>
-                            {t("Project Data")}
-                            </Button>
-                        </Box>
-                    </Grid>
-                    <Grid item sx={{ display: 'flex', justifyContent: 'space-between', my: 2 }}>
-                        <Box>
-                            <TextField
-                                sx={{ml: 2, my: 2}}
-                                size="small"
-                                label={`${t('AddProcessTxId')}`}
-                                placeholder={`${t('AddProcessTxId')}`}
-                                value={processTxId}
-                                onChange={(e: any)=>{
-                                    if(e.target.value && e.target.value.length == 43) {
-                                        setAddAoConnectTxIdError('')
-                                        setProcessTxId(e.target.value)
-                                    }
-                                    else {
-                                        setAddAoConnectTxIdError('Please set AddProcessTxId first!')
-                                        setIsDisabledButton(false)
-                                    }
-                                }}
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position='start'>
-                                            <Icon icon='mdi:account-outline' />
-                                        </InputAdornment>
-                                    )
-                                }}
-                                error={!!AddAoConnectTxIdError}
-                                helperText={AddAoConnectTxIdError}
-                            />
-                            <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={isDisabledButton} variant='outlined' onClick={
-                                () => { handleSearchProcessData(serverModel) }
-                            }>
-                            {t("Search")}
-                            </Button>
-                            <Typography noWrap variant='body2' sx={{ color: 'default.main', pr: 3, display: 'inline', my: 0, py: 0 }}>
-                                Model: {serverModel}
-                            </Typography>
-                            {isAllowAddServerData && (
-                                <Fragment>
-                                    <TextField
-                                        sx={{ml: 2, my: 2, width: '200px'}}
-                                        size="small"
-                                        label={`${t('Group')}`}
-                                        placeholder={`${t('Group')}`}
-                                        value={groupValue}
-                                        onChange={(e: any)=>{
-                                            if(e.target.value) {
-                                                setGroupError('')
-                                                setGroupValue(e.target.value)
-                                            }
-                                            else {
-                                                setGroupError('Please set Group first!')
-                                                setIsDisabledButton(false)
-                                            }
-                                        }}
-                                        InputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position='start'>
-                                                    <Icon icon='mdi:account-outline' />
-                                                </InputAdornment>
-                                            )
-                                        }}
-                                        error={!!groupError}
-                                        helperText={groupError}
-                                    />
-                                    <TextField
-                                        sx={{ml: 2, my: 2, width: '200px'}}
-                                        size="small"
-                                        label={`${t('Sort')}`}
-                                        placeholder={`${t('Sort')}`}
-                                        value={sortValue}
-                                        onChange={(e: any)=>{
-                                            if(e.target.value) {
-                                                setSortError('')
-                                                setSortValue(e.target.value)
-                                            }
-                                            else {
-                                                setSortError('Please set Sort first!')
-                                                setIsDisabledButton(false)
-                                            }
-                                        }}
-                                        InputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position='start'>
-                                                    <Icon icon='mdi:account-outline' />
-                                                </InputAdornment>
-                                            )
-                                        }}
-                                        error={!!sortError}
-                                        helperText={sortError}
-                                    />
-                                    <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={isDisabledButton} variant='outlined' onClick={
-                                        () => { handleAddToServerData(serverModel) }
-                                    }>
-                                    {t("Add to server")}
-                                    </Button>
-                                </Fragment>
-                            )}
-                        </Box>
-                    </Grid>
-                </Card>
+    <Grid container sx={{margin: '0 auto'}} maxWidth={windowWidth}>
+      {loadingWallet == 0 && (
+          <Grid container spacing={5}>
+            <Grid item xs={12} justifyContent="center">
+              <Card sx={{ my: 6, width: '100%', height: '800px' }}>
+                <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                  Loading Wallet Status
+                </CardContent>
+              </Card>
             </Grid>
-        </Grid>
-
-        {processInfo && processInfo.Name && (
-            <>
-            {Object.keys(processInfo).map((itemName: any, index: number) => (
-                <Typography key={index} noWrap variant='body2' sx={{ color: 'default.main', pr: 3, my: 0, py: 0 }}>
-                    {itemName} : {processInfo[itemName]}
-                </Typography>
-            ))}
-            </>
-        )}
-
-
-        <TableContainer>
-            <Table>
-            <TableBody>
-            <TableRow sx={{my: 0, py: 0}}>
-                <TableCell sx={{my: 0, py: 0}} colSpan={7}>
-                    Model: {serverModel}
-                </TableCell>
-            </TableRow>
-            <TableRow sx={{my: 0, py: 0}}>
-                <TableCell sx={{my: 0, py: 0}}>
-                    Id
-                </TableCell>
-                <TableCell sx={{my: 0, py: 0}}>
-                    HashId
-                </TableCell>
-                <TableCell sx={{my: 0, py: 0}}>
-                    Group
-                </TableCell>
-                <TableCell sx={{my: 0, py: 0}}>
-                    Sort
-                </TableCell>
-                <TableCell sx={{my: 0, py: 0}}>
-                    Operation
-                </TableCell>
-                <TableCell sx={{my: 0, py: 0}}>
-                    Avatar
-                </TableCell>
-                <TableCell sx={{my: 0, py: 0}}>
-                    Data
-                </TableCell>
-            </TableRow>
-            {serverData && serverData[serverModel] && serverData[serverModel].map((Item: any, Index: number)=>{
-
-                const Row = Item
-                let AvatarLogo = ""
-                try{ 
-                    const ServerModelData = Row[serverModel + 'Data'] && JSON.parse(Row[serverModel + 'Data'].replace(/\\"/g, '"'))
-                    if(ServerModelData && ServerModelData.Logo) {
-                        AvatarLogo = ServerModelData.Logo
-                    }
-                }
-                catch(Error: any) {
-                    console.log("AvatarLogo Error", Error)
-                }
-
-                return (
-                    <Fragment key={Index}>
-                        {Row &&  (
-                            <TableRow key={Index} sx={{my: 0, py: 0}}>
-                                <TableCell sx={{my: 0, py: 0}}>
-                                    <Typography noWrap variant='body2' sx={{ color: 'primary.main', pr: 3, display: 'inline', my: 0, py: 0 }}>{Index+1}</Typography>
-                                </TableCell>
-                                <TableCell sx={{my: 0, py: 0}}>
-                                    <Typography noWrap variant='body2' sx={{ color: 'info.main', pr: 1, display: 'inline', my: 0, py: 0 }}>{Row[serverModel + 'Id']}</Typography>
-                                    {Row && Row[serverModel + 'Id'] && (
-                                        <IconButton aria-label='capture screenshot' color='secondary' size='small' onClick={()=>{
-                                            navigator.clipboard.writeText(Row[serverModel + 'Id']);
-                                        }}>
-                                            <Icon icon='material-symbols:file-copy-outline-rounded' fontSize='inherit' />
-                                        </IconButton>
-                                    )}
-                                </TableCell>
-                                <TableCell sx={{my: 0, py: 0}}>
-                                    <Typography noWrap variant='body2' sx={{ color: 'primary.main', pr: 3, display: 'inline', my: 0, py: 0 }}>{Row[serverModel + 'Group']}</Typography>
-                                </TableCell>
-                                <TableCell sx={{my: 0, py: 0}}>
-                                    <Typography noWrap variant='body2' sx={{ color: 'primary.main', pr: 3, display: 'inline', my: 0, py: 0 }}>{Row[serverModel + 'Sort']}</Typography>
-                                </TableCell>
-                                <TableCell sx={{my: 0, py: 0}}>
-                                    <Button sx={{textTransform: 'none', my: 0}} size="small" disabled={isDisabledButton} variant='outlined'  onClick={
-                                        () => { handleDeleteServerData(Row[serverModel + 'Id']) }
-                                    }>
-                                    {t("Delete")}
-                                    </Button>
-                                </TableCell>
-                                <TableCell sx={{my: 0, py: 0}}>
-                                    <MuiAvatar
-                                        src={GetTokenAvatar(AvatarLogo)}
-                                        sx={{ width: '2.5rem', height: '2.5rem' }}
-                                    />
-                                </TableCell>
-                                <TableCell sx={{my: 0, py: 0}}>
-                                    <Typography variant='body2' sx={{ color: 'primary.main', pr: 3, my: 0, py: 0 }}>{Row[serverModel + 'Data']}</Typography>
-                                </TableCell>
-                            </TableRow>
-                        )}
-                    </Fragment>
-                )
-                
-            })}
-        
-            </TableBody>
-            </Table>
-
-            {serverData && serverData[serverModel] == null && isDisabledButton == true && (
-                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                    <Box sx={{ pl: 5, py: 3 }}>
-                        <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-                            <Grid item key={"Pagination"} xs={12} sm={12} md={12} lg={12} sx={{ padding: '10px 0 10px 0' }}>
-                                <CircularProgress />
-                                <Typography noWrap variant='body2' sx={{ color: 'primary.main', pr: 3, display: 'inline', ml: 5, pt: 0 }}>{t('Loading Data ...')}</Typography>
-                            </Grid>
-                        </Box>
-                    </Box>
-                </Box>
-            )}
-
-            {serverData && serverData[serverModel] && serverData[serverModel].length == 0 && isDisabledButton == false && (
-                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                    <Box sx={{ pl: 5, py: 3 }}>
-                        <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-                        <Grid item key={"Pagination"} xs={12} sm={12} md={12} lg={12} sx={{ padding: '10px 0 10px 0' }}>
-                            <Typography noWrap variant='body2' sx={{ color: 'primary.main', pr: 3, display: 'inline', ml: 5, pt: 0 }}>{t('No Data')}</Typography>
+          </Grid>
+      )}
+      {loadingWallet == 2 && (
+          <Grid container spacing={5}>
+            <Grid item xs={12} justifyContent="center">
+              <Card sx={{ my: 6, width: '100%', height: '800px' }}>
+                <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                  Only for administrator
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
+      )}
+      {loadingWallet == 1 && (
+        <Box
+            sx={{
+                py: 3,
+                px: 5,
+                display: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between'
+            }}
+            >
+            <Grid container>
+                <Grid item xs={12}>
+                    <Card>
+                        <Grid item sx={{ display: 'flex', justifyContent: 'space-between', my: 2 }}>
+                            <Box>
+                                <TextField
+                                    sx={{ml: 2, my: 2}}
+                                    size="small"
+                                    label={`${t('ChivesServerDataTxId')}`}
+                                    placeholder={`${t('ChivesServerDataTxId')}`}
+                                    value={serverTxId}
+                                    onChange={(e: any)=>{
+                                        if(e.target.value && e.target.value.length == 43) {
+                                            setChivesServerDataTxIdError('')
+                                            setServerTxId(e.target.value)
+                                        }
+                                        else {
+                                            setChivesServerDataTxIdError('Please set ChivesServerDataTxId first!')
+                                            setIsDisabledButton(false)
+                                        }
+                                    }}
+                                    InputProps={{
+                                        startAdornment: (
+                                            <InputAdornment position='start'>
+                                                <Icon icon='mdi:account-outline' />
+                                            </InputAdornment>
+                                        )
+                                    }}
+                                    error={!!chivesServerDataTxIdError}
+                                    helperText={chivesServerDataTxIdError}
+                                />
+                                <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={isDisabledButton} variant='outlined' onClick={
+                                    () => { handleGetServerData('Token') }
+                                }>
+                                {t("Token Data")}
+                                </Button>
+                                <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={isDisabledButton} variant='outlined' onClick={
+                                    () => { handleGetServerData('Faucet') }
+                                }>
+                                {t("Faucet Data")}
+                                </Button>
+                                <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={true} variant='outlined' onClick={
+                                    () => { handleGetServerData('Lottery') }
+                                }>
+                                {t("Lottery Data")}
+                                </Button>
+                                <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={true} variant='outlined' onClick={
+                                    () => { handleGetServerData('Guess') }
+                                }>
+                                {t("Guess Data")}
+                                </Button>
+                                <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={true} variant='outlined' onClick={
+                                    () => { handleGetServerData('Chatroom') }
+                                }>
+                                {t("Chatroom Data")}
+                                </Button>
+                                <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={true} variant='outlined' onClick={
+                                    () => { handleGetServerData('Blog') }
+                                }>
+                                {t("Blog Data")}
+                                </Button>
+                                <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={true} variant='outlined' onClick={
+                                    () => { handleGetServerData('Swap') }
+                                }>
+                                {t("Swap Data")}
+                                </Button>
+                                <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={true} variant='outlined' onClick={
+                                    () => { handleGetServerData('Project') }
+                                }>
+                                {t("Project Data")}
+                                </Button>
+                            </Box>
                         </Grid>
-                        </Box>
-                    </Box>
-                </Box>
+                        <Grid item sx={{ display: 'flex', justifyContent: 'space-between', my: 2 }}>
+                            <Box>
+                                <TextField
+                                    sx={{ml: 2, my: 2}}
+                                    size="small"
+                                    label={`${t('AddProcessTxId')}`}
+                                    placeholder={`${t('AddProcessTxId')}`}
+                                    value={processTxId}
+                                    onChange={(e: any)=>{
+                                        if(e.target.value && e.target.value.length == 43) {
+                                            setAddAoConnectTxIdError('')
+                                            setProcessTxId(e.target.value)
+                                        }
+                                        else {
+                                            setAddAoConnectTxIdError('Please set AddProcessTxId first!')
+                                            setIsDisabledButton(false)
+                                        }
+                                    }}
+                                    InputProps={{
+                                        startAdornment: (
+                                            <InputAdornment position='start'>
+                                                <Icon icon='mdi:account-outline' />
+                                            </InputAdornment>
+                                        )
+                                    }}
+                                    error={!!AddAoConnectTxIdError}
+                                    helperText={AddAoConnectTxIdError}
+                                />
+                                <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={isDisabledButton} variant='outlined' onClick={
+                                    () => { handleSearchProcessData(serverModel) }
+                                }>
+                                {t("Search")}
+                                </Button>
+                                <Typography noWrap variant='body2' sx={{ color: 'default.main', pr: 3, display: 'inline', my: 2, py: 2 }}>
+                                    Model: {serverModel}
+                                </Typography>
+                                {isAllowAddServerData && (
+                                    <Fragment>
+                                        <TextField
+                                            sx={{ml: 2, my: 2, width: '200px'}}
+                                            size="small"
+                                            label={`${t('Group')}`}
+                                            placeholder={`${t('Group')}`}
+                                            value={groupValue}
+                                            onChange={(e: any)=>{
+                                                if(e.target.value) {
+                                                    setGroupError('')
+                                                    setGroupValue(e.target.value)
+                                                }
+                                                else {
+                                                    setGroupError('Please set Group first!')
+                                                    setIsDisabledButton(false)
+                                                }
+                                            }}
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position='start'>
+                                                        <Icon icon='mdi:account-outline' />
+                                                    </InputAdornment>
+                                                )
+                                            }}
+                                            error={!!groupError}
+                                            helperText={groupError}
+                                        />
+                                        <TextField
+                                            sx={{ml: 2, my: 2, width: '200px'}}
+                                            size="small"
+                                            label={`${t('Sort')}`}
+                                            placeholder={`${t('Sort')}`}
+                                            value={sortValue}
+                                            onChange={(e: any)=>{
+                                                if(e.target.value) {
+                                                    setSortError('')
+                                                    setSortValue(e.target.value)
+                                                }
+                                                else {
+                                                    setSortError('Please set Sort first!')
+                                                    setIsDisabledButton(false)
+                                                }
+                                            }}
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position='start'>
+                                                        <Icon icon='mdi:account-outline' />
+                                                    </InputAdornment>
+                                                )
+                                            }}
+                                            error={!!sortError}
+                                            helperText={sortError}
+                                        />
+                                        <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={isDisabledButton} variant='outlined' onClick={
+                                            () => { handleAddToServerData(serverModel) }
+                                        }>
+                                        {t("Add to server")}
+                                        </Button>
+                                    </Fragment>
+                                )}
+                            </Box>
+                        </Grid>
+                    </Card>
+                </Grid>
+            </Grid>
+
+            {processInfo && processInfo.Name && (
+                <>
+                {Object.keys(processInfo).map((itemName: any, index: number) => (
+                    <Typography key={index} noWrap variant='body2' sx={{ color: 'default.main', pr: 3, my: 2, py: 2 }}>
+                        {itemName} : {processInfo[itemName]}
+                    </Typography>
+                ))}
+                </>
             )}
 
-        </TableContainer>
+            <Card sx={{mt: 3}}>
+                <TableContainer>
+                    <Table>
+                    <TableBody>
+                    <TableRow sx={{my: 2, py: 2}}>
+                        <TableCell sx={{my: 2, py: 2}} colSpan={7}>
+                            Model: {serverModel}
+                        </TableCell>
+                    </TableRow>
+                    <TableRow sx={{my: 2, py: 2}}>
+                        <TableCell sx={{my: 2, py: 2}}>
+                            Id
+                        </TableCell>
+                        <TableCell sx={{my: 2, py: 2}}>
+                            HashId
+                        </TableCell>
+                        <TableCell sx={{my: 2, py: 2}}>
+                            Group
+                        </TableCell>
+                        <TableCell sx={{my: 2, py: 2}}>
+                            Sort
+                        </TableCell>
+                        <TableCell sx={{my: 2, py: 2}}>
+                            Operation
+                        </TableCell>
+                        <TableCell sx={{my: 2, py: 2}}>
+                            Avatar
+                        </TableCell>
+                        <TableCell sx={{my: 2, py: 2}}>
+                            Data
+                        </TableCell>
+                    </TableRow>
+                    {serverData && serverData[serverModel] && serverData[serverModel].map((Item: any, Index: number)=>{
 
-    </Box>
+                        const Row = Item
+                        let AvatarLogo = ""
+                        try{ 
+                            const ServerModelData = Row[serverModel + 'Data'] && JSON.parse(Row[serverModel + 'Data'].replace(/\\"/g, '"'))
+                            if(ServerModelData && ServerModelData.Logo) {
+                                AvatarLogo = ServerModelData.Logo
+                            }
+                        }
+                        catch(Error: any) {
+                            console.log("AvatarLogo Error", Error)
+                        }
+
+                        return (
+                            <Fragment key={Index}>
+                                {Row &&  (
+                                    <TableRow key={Index} sx={{my: 2, py: 2}}>
+                                        <TableCell sx={{my: 2, py: 2}}>
+                                            <Typography noWrap variant='body2' sx={{ color: 'primary.main', pr: 3, display: 'inline', my: 2, py: 2 }}>{Index+1}</Typography>
+                                        </TableCell>
+                                        <TableCell sx={{my: 2, py: 2}}>
+                                            <Typography noWrap variant='body2' sx={{ color: 'info.main', pr: 1, display: 'inline', my: 2, py: 2 }}>{Row[serverModel + 'Id']}</Typography>
+                                            {Row && Row[serverModel + 'Id'] && (
+                                                <IconButton aria-label='capture screenshot' color='secondary' size='small' onClick={()=>{
+                                                    navigator.clipboard.writeText(Row[serverModel + 'Id']);
+                                                }}>
+                                                    <Icon icon='material-symbols:file-copy-outline-rounded' fontSize='inherit' />
+                                                </IconButton>
+                                            )}
+                                        </TableCell>
+                                        <TableCell sx={{my: 2, py: 2}}>
+                                            <Typography noWrap variant='body2' sx={{ color: 'primary.main', pr: 3, display: 'inline', my: 2, py: 2 }}>{Row[serverModel + 'Group']}</Typography>
+                                        </TableCell>
+                                        <TableCell sx={{my: 2, py: 2}}>
+                                            <Typography noWrap variant='body2' sx={{ color: 'primary.main', pr: 3, display: 'inline', my: 2, py: 2 }}>{Row[serverModel + 'Sort']}</Typography>
+                                        </TableCell>
+                                        <TableCell sx={{my: 2, py: 2}}>
+                                            <Button sx={{textTransform: 'none', my: 0}} size="small" disabled={isDisabledButton} variant='outlined'  onClick={
+                                                () => { handleDeleteServerData(Row[serverModel + 'Id']) }
+                                            }>
+                                            {t("Delete")}
+                                            </Button>
+                                        </TableCell>
+                                        <TableCell sx={{my: 2, py: 2}}>
+                                            <MuiAvatar
+                                                src={GetTokenAvatar(AvatarLogo)}
+                                                sx={{ width: '2.5rem', height: '2.5rem' }}
+                                            />
+                                        </TableCell>
+                                        <TableCell sx={{my: 2, py: 2}}>
+                                            <Typography variant='body2' sx={{ color: 'primary.main', pr: 3, my: 2, py: 2, wordWrap: 'break-word' }}>{Row[serverModel + 'Data']}</Typography>
+                                        </TableCell>
+                                    </TableRow>
+                                )}
+                            </Fragment>
+                        )
+                        
+                    })}
+                
+                    </TableBody>
+                    </Table>
+
+                    {serverData && serverData[serverModel] == null && isDisabledButton == true && (
+                        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <Box sx={{ pl: 5, py: 3 }}>
+                                <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+                                    <Grid item key={"Pagination"} xs={12} sm={12} md={12} lg={12} sx={{ padding: '10px 0 10px 0' }}>
+                                        <CircularProgress />
+                                        <Typography noWrap variant='body2' sx={{ color: 'primary.main', pr: 3, display: 'inline', ml: 5, pt: 0 }}>{t('Loading Data ...')}</Typography>
+                                    </Grid>
+                                </Box>
+                            </Box>
+                        </Box>
+                    )}
+
+                    {serverData && serverData[serverModel] && serverData[serverModel].length == 0 && isDisabledButton == false && (
+                        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <Box sx={{ pl: 5, py: 3 }}>
+                                <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+                                <Grid item key={"Pagination"} xs={12} sm={12} md={12} lg={12} sx={{ padding: '10px 0 10px 0' }}>
+                                    <Typography noWrap variant='body2' sx={{ color: 'primary.main', pr: 3, display: 'inline', ml: 5, pt: 0 }}>{t('No Data')}</Typography>
+                                </Grid>
+                                </Box>
+                            </Box>
+                        </Box>
+                    )}
+
+                </TableContainer>
+            </Card>
+
+        </Box>
+      )}
+    </Grid>
   );
   
 }
