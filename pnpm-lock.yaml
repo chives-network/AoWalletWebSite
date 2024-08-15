@@ -11,6 +11,9 @@ importers:
       '@auth/prisma-adapter':
         specifier: ^2.4.2
         version: 2.4.2(@prisma/client@5.18.0)
+      '@capacitor/clipboard':
+        specifier: ^6.0.1
+        version: 6.0.1(@capacitor/core@6.1.2)
       '@casl/ability':
         specifier: ^6.7.1
         version: 6.7.1
@@ -909,6 +912,14 @@ packages:
     resolution: {integrity: sha512-tTQ0uDSCL0ypeMa8T/E9wAZRGKWj8kXP7+6RYgPTfOPs9N07C9xM8P02GJ3feETap4Ux5S69D9nteq9mEj86NA==}
     peerDependencies:
       react: '>=16.3.0'
+
+  '@capacitor/clipboard@6.0.1':
+    resolution: {integrity: sha512-aN6QsZD79Z605sK9YA8JtJLuD5vI/WrPzT/RCWUWBWPdFzhnRdT45dbsnQVvL2kzzm5aTsCAPepkdRqpvWwCGA==}
+    peerDependencies:
+      '@capacitor/core': ^6.0.0
+
+  '@capacitor/core@6.1.2':
+    resolution: {integrity: sha512-xFy1/4qLFLp5WCIzIhtwUuVNNoz36+V7/BzHmLqgVJcvotc4MMjswW/TshnPQaLLujEOaLkA4h8ZJ0uoK3ImGg==}
 
   '@casl/ability@6.7.1':
     resolution: {integrity: sha512-e+Vgrehd1/lzOSwSqKHtmJ6kmIuZbGBlM2LBS5IuYGGKmVHuhUuyh3XgTn1VIw9+TO4gqU+uptvxfIRBUEdJuw==}
@@ -5427,6 +5438,14 @@ snapshots:
       deepmerge: 3.3.0
       hoist-non-react-statics: 3.3.2
       react: 18.3.1
+
+  '@capacitor/clipboard@6.0.1(@capacitor/core@6.1.2)':
+    dependencies:
+      '@capacitor/core': 6.1.2
+
+  '@capacitor/core@6.1.2':
+    dependencies:
+      tslib: 2.6.3
 
   '@casl/ability@6.7.1':
     dependencies:
