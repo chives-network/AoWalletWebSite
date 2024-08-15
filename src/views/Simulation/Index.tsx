@@ -1,5 +1,5 @@
 // ** React Imports
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Fragment } from 'react'
 
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
@@ -15,7 +15,7 @@ import ChivesLottery from './ChivesLottery'
 import ChivesFaucet from './ChivesFaucet'
 import ChivesServerData from './ChivesServerData'
 import ChivesEmail from './ChivesEmail'
-import { Fragment } from 'react'
+import ToolHelpText from '@views/Help/Tool'
 
 import { useAuth } from '@/hooks/useAuth'
 
@@ -53,7 +53,7 @@ const LearnCenter = () => {
             <Grid item xs={12} justifyContent="center">
               <Card sx={{ my: 6, width: '100%', height: '800px' }}>
                 <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                  Please Connect Wallet First
+                  <ToolHelpText />
                 </CardContent>
               </Card>
             </Grid>

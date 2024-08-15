@@ -24,6 +24,7 @@ import { useTranslation } from 'react-i18next'
 import { styled } from '@mui/material/styles'
 import { formatHash } from '../../configs/functions'
 import { FormatBalance } from '../../functions/AoConnect/AoConnect'
+import FaucetHelpText from '@views/Help/Faucet'
 
 import { useAuth } from '@/hooks/useAuth'
 import { getAllAoFaucets, setAllAoFaucets, getMyAoFaucetTokenBalance, setMyAoFaucetTokenBalance, addMyAoToken } from '../../functions/ChivesWallets'
@@ -288,7 +289,7 @@ const Faucet = () => {
             <Grid item xs={12} justifyContent="center">
               <Card sx={{ my: 6, width: '100%', height: '800px' }}>
                 <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                  Please Connect Wallet First
+                  <FaucetHelpText />
                 </CardContent>
               </Card>
             </Grid>

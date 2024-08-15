@@ -18,6 +18,7 @@ import { useSettings } from '@core/hooks/useSettings'
 import EmailList from '@views/Email/EmailList'
 import SidebarLeft from '@views/Email/SidebarLeft'
 import ComposePopup from '@views/Email/ComposePopup'
+import EmailHelpText from '@views/Help/Email'
 
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
@@ -151,7 +152,7 @@ const EmailAppLayout = () => {
             <Grid item xs={12} justifyContent="center">
               <Card sx={{ my: 6, width: '100%', height: '800px' }}>
                 <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                  Please Connect Wallet First
+                  <EmailHelpText />
                 </CardContent>
               </Card>
             </Grid>

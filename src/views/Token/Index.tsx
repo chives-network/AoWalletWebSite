@@ -24,6 +24,7 @@ import { MyProcessTxIdsGetTokens, MyProcessTxIdsAddToken, MyProcessTxIdsDelToken
 
 import TokenLeft from '@views/Token/TokenLeft'
 import TokenIndex from '@views/Token/TokenIndex'
+import TokenHelpText from '@views/Help/Token'
 
 import { ansiRegex } from '@configs/functions'
 import { AoCreateProcessAuto } from '@/functions/AoConnect/AoConnect'
@@ -212,7 +213,7 @@ const TokenModel = () => {
             <Grid item xs={12} justifyContent="center">
               <Card sx={{ my: 6, width: '100%', height: '800px' }}>
                 <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                  Please Connect Wallet First
+                  <TokenHelpText />
                 </CardContent>
               </Card>
             </Grid>

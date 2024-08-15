@@ -12,6 +12,7 @@ import AoCreateProcessModel from './AoCreateProcessModel'
 import AoGetPageRecordsModel from './AoGetPageRecordsModel'
 import AoGetMessageModel from './AoGetMessageModel'
 import AoWalletModel from './AoWalletModel'
+import DebugHelpText from '@views/Help/Debug'
 
 
 const LearnCenter = () => {
@@ -46,7 +47,7 @@ const LearnCenter = () => {
             <Grid item xs={12} justifyContent="center">
               <Card sx={{ my: 6, width: '100%', height: '800px' }}>
                 <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                  Please Connect Wallet First
+                  <DebugHelpText />
                 </CardContent>
               </Card>
             </Grid>
