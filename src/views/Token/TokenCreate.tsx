@@ -40,6 +40,8 @@ const TokenCreate = (props: any) => {
             LogoError: '',
             TickerError: '',
             BalanceError: '',
+            Denomination: '3',
+            DenominationError: '',
             isDisabledButton: false,
             openCreateToken: false,
             ManualProcessTxId: '',
@@ -72,6 +74,15 @@ const TokenCreate = (props: any) => {
             setTokenCreate( (prevState: any) => ({ 
                 ...prevState, 
                 BalanceError: t('Token Balance more than zero')
+            }) )
+            
+            return
+        }
+
+        if(tokenCreate && (Number(tokenCreate.Denomination.trim()) < 1 || Number(tokenCreate.Denomination.trim()) > 12) )  {
+            setTokenCreate( (prevState: any) => ({ 
+                ...prevState, 
+                DenominationError: t('Denomination must in 1 and 12')
             }) )
             
             return
@@ -227,6 +238,20 @@ const TokenCreate = (props: any) => {
                             }}
                             error={!!tokenCreate?.LogoError}
                             helperText={tokenCreate?.LogoError}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            fullWidth
+                            label={`${t('Denomination')}`}
+                            placeholder={`${t('Denomination')}`}
+                            disabled={tokenCreate.isDisabledButton}
+                            value={tokenCreate?.Denomination ?? '3'}
+                            onChange={(e: any)=>{
+                                setTokenCreate( (prevState: any) => ({ ...prevState, Denomination: e.target.value }) )
+                            }}
+                            error={!!tokenCreate?.DenominationError}
+                            helperText={tokenCreate?.DenominationError}
                         />
                     </Grid>
 

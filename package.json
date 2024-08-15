@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.4.2",
+    "@capacitor/clipboard": "^6.0.1",
     "@casl/ability": "^6.7.1",
     "@emotion/cache": "11.11.0",
     "@emotion/react": "11.11.4",

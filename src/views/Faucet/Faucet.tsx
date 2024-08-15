@@ -2,6 +2,7 @@
 
 // ** React Imports
 import { useState, useEffect, Fragment } from 'react'
+import { Clipboard } from '@capacitor/clipboard';
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
@@ -349,7 +350,11 @@ const Faucet = () => {
                                     </CustomAvatar>
                                     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                                       <Typography sx={{ fontWeight: 600 }}>{Faucet.FaucetData.Name}</Typography>
-                                      <Typography variant='caption' sx={{ letterSpacing: '0.4px' }}>
+                                      <Typography variant='caption' sx={{ letterSpacing: '0.4px', cursor: 'pointer' }} onClick={async ()=>{
+                                        await Clipboard.write({
+                                          string: Faucet.FaucetData.FaucetTokenId
+                                        });
+                                      }}>
                                         {formatHash(Faucet.FaucetData.FaucetTokenId, 12)}
                                       </Typography>
                                       <Typography variant='caption' sx={{ letterSpacing: '0.4px' }}>
@@ -390,7 +395,7 @@ const Faucet = () => {
                                   <Box sx={{ display: 'flex', '& svg': { mr: 3, mt: 1, fontSize: '1.375rem', color: 'text.secondary' } }}>
                                     <Icon icon='material-symbols:info-outline' />
                                     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                                      <Typography sx={{ fontSize: '0.875rem', py: 0.8 }}>{t('Requirement AR') as string}: {Faucet.FaucetData.RequirementAR}</Typography>
+                                      <Typography sx={{ fontSize: '0.875rem', py: 0.8 }}>{t('Requirement AR') as string}: {Faucet.FaucetData.RequirementAR ?? 0}</Typography>
                                     </Box>
                                   </Box>
 
