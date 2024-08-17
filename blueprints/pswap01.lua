@@ -200,7 +200,10 @@ Handlers.add('balance', Handlers.utils.hasMatchingTag('Action', 'Balance'),
     end
 )
 
-Handlers.add('deposit', function(msg) return (msg.Action == 'Credit-Notice') and (msg['X-Chives-For'] ~= 'Swap') end, 
+Handlers.add('deposit', 
+    function(msg) 
+        return (msg.Action == 'Credit-Notice') and (msg['X-Chives-For'] ~= 'Swap') 
+    end, 
     function(msg)
         assert(type(msg.Sender) == 'string', 'Sender is required')
         assert(type(msg.Quantity) == 'string', 'Quantity is required')
@@ -301,7 +304,10 @@ local function validateSwapMsg(msg)
     return true, nil
 end
 
-Handlers.add('swap', function(msg) return (msg.Action == 'Credit-Notice') and (msg['X-Chives-For'] == 'Swap') end, 
+Handlers.add('swap', 
+    function(msg) 
+        return (msg.Action == 'Credit-Notice') and (msg['X-Chives-For'] == 'Swap') 
+    end, 
     function(msg)
         assert(type(msg.Sender) == 'string', 'Sender is required')
         assert(type(msg.Quantity) == 'string', 'Quantity is required')
@@ -858,7 +864,6 @@ Handlers.add('balances', Handlers.utils.hasMatchingTag('Action', 'Balances'),
         local bs = {
             BalancesX = BalancesX,
             BalancesY = BalancesY,
-
             Ticker = Ticker,
             Balances = Balances,
             TotalSupply = TotalSupply,
