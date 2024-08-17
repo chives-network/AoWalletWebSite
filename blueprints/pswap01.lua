@@ -870,10 +870,6 @@ Handlers.add('balances', Handlers.utils.hasMatchingTag('Action', 'Balances'),
     end
 )
 
---[[
-        Transfer
-    ]]
---
 Handlers.add('transfer', Handlers.utils.hasMatchingTag('Action', 'Transfer'), function(msg)
     assert(type(msg.Recipient) == 'string', 'Recipient is required!')
     assert(type(msg.Quantity) == 'string', 'Quantity is required!')
@@ -962,7 +958,6 @@ Handlers.add('totalSupply', Handlers.utils.hasMatchingTag('Action', 'Total-Suppl
     end
 )
 
--- liquidity mining
 Handlers.add('registerMining', Handlers.utils.hasMatchingTag('Action', 'RegisterMining'), 
     function(msg)
         local exists = false
