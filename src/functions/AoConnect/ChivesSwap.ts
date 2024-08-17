@@ -78,7 +78,7 @@ export const ChivesSwapInfo = async (TargetTxId: string) => {
             process: TargetTxId,
             data: null,
             tags: [
-                { name: 'Action', value: 'info' },
+                { name: 'Action', value: 'Info' },
                 { name: 'Target', value: TargetTxId },
                 { name: 'Data-Protocol', value: 'ao' },
                 { name: 'Type', value: 'Message' },
@@ -86,9 +86,14 @@ export const ChivesSwapInfo = async (TargetTxId: string) => {
             ]
         });
 
-        if(result && result.Messages && result.Messages[0] && result.Messages[0].Data) {
+        if(result && result.Messages && result.Messages[0] && result.Messages[0].Tags) {
+            const Tags: any[] = result.Messages[0].Tags
+            const TagsMap: any = {}
+            Tags && Tags.map((Tag: any)=>{
+                TagsMap[Tag.name] = Tag.value
+            })
 
-            return JSON.parse(result.Messages[0].Data)
+            return TagsMap
         }
         else {
 
@@ -124,7 +129,7 @@ export const ChivesSwapBalance = async (TargetTxId: string) => {
             process: TargetTxId,
             data: null,
             tags: [
-                { name: 'Action', value: 'balance' },
+                { name: 'Action', value: 'Balance' },
                 { name: 'Target', value: TargetTxId },
                 { name: 'Data-Protocol', value: 'ao' },
                 { name: 'Type', value: 'Message' },
@@ -170,7 +175,7 @@ export const ChivesSwapBalances = async (TargetTxId: string) => {
             process: TargetTxId,
             data: null,
             tags: [
-                { name: 'Action', value: 'balances' },
+                { name: 'Action', value: 'Balances' },
                 { name: 'Target', value: TargetTxId },
                 { name: 'Data-Protocol', value: 'ao' },
                 { name: 'Type', value: 'Message' },

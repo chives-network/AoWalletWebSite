@@ -15,6 +15,7 @@ import ChivesLottery from './ChivesLottery'
 import ChivesFaucet from './ChivesFaucet'
 import ChivesServerData from './ChivesServerData'
 import ChivesEmail from './ChivesEmail'
+import ChivesSwap from './ChivesSwap'
 import ToolHelpText from '@views/Help/Tool'
 
 import { useAuth } from '@/hooks/useAuth'
@@ -93,6 +94,11 @@ const LearnCenter = () => {
       )}
       {loadingWallet == 1 && (
         <Fragment>
+          <Grid item xs={12}>
+            <Card sx={{ mt: 6, p: 2, pb: 0 }}>
+              <ChivesSwap auth={auth} />
+            </Card>
+          </Grid>
           <Grid item xs={12}>
             <Card sx={{ mt: 6, p: 2, pb: 0 }}>
               <ChivesFaucet auth={auth} />
