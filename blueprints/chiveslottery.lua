@@ -155,7 +155,7 @@ Handlers.add(
     "MonitorReceivedTxActions",
     function(msg)
       if msg.Tags.Sender and msg.Tags.Quantity and msg.Tags['Data-Protocol'] == 'ao' and msg.Tags['From-Process'] == LOTTERY_PROCESS then
-        if msg.Tags.Action == 'Credit-Notice' or msg.Tags.Action == 'ChivesToken-Credit-Notice' then
+        if msg.Tags.Action == 'Credit-Notice' then
           return true
         else 
           return true

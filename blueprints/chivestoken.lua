@@ -221,7 +221,7 @@ Handlers.add('Transfer', Handlers.utils.hasMatchingTag('Action', 'Transfer'), fu
       -- Debit-Notice message template, that is sent to the Sender of the transfer
       local debitNotice = {
         Target = msg.From,
-        Action = 'ChivesToken-Debit-Notice',
+        Action = 'Debit-Notice',
         Recipient = msg.Recipient,
         Quantity = msg.Quantity,
         Data = Colors.gray ..
@@ -231,7 +231,7 @@ Handlers.add('Transfer', Handlers.utils.hasMatchingTag('Action', 'Transfer'), fu
       -- Credit-Notice message template, that is sent to the Recipient of the transfer
       local creditNotice = {
         Target = msg.Recipient,
-        Action = 'ChivesToken-Credit-Notice',
+        Action = 'Credit-Notice',
         Sender = msg.From,
         Quantity = msg.Quantity,
         Data = Colors.gray ..
@@ -255,7 +255,7 @@ Handlers.add('Transfer', Handlers.utils.hasMatchingTag('Action', 'Transfer'), fu
   else
     ao.send({
       Target = msg.From,
-      Action = 'ChivesToken-Transfer-Error',
+      Action = 'Transfer-Error',
       ['Message-Id'] = msg.Id,
       Error = 'Insufficient Balance!'
     })
