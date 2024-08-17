@@ -45,7 +45,20 @@ local json = require('json')
 local bint = require('.bint')(1024)
 local txs = require('.txs')
 
-Variant = '0.0.4'
+Variant = '0.0.1'
+
+function Welcome()
+    return(
+        "Welcome to Chives Swap V0.0.1!\n\n" ..
+        "Main functoin:\n\n" ..
+        "1. Add Token pair.\n" ..
+        "2. Add Liquidity.\n" ..
+        "3. Remove Liquidity.\n" ..
+        "4. Liquidity Mining.\n" ..
+        "5. Swap.\n" ..
+        "6. Get Txs.\n" ..
+        "Have fun, be respectful !")
+end
 
 -- Pool Config
 Pool = {
@@ -108,6 +121,14 @@ function NotTrusted(msg)
     return true
 end
 
+function isAssignment(msg)
+    return msg.Target ~= ao.id
+end
+
+function isAssignable(msg)
+    return false
+end
+
 Handlers.prepend("verifyMsgTrust", 
     NotTrusted,
     function (msg)
@@ -115,9 +136,9 @@ Handlers.prepend("verifyMsgTrust",
     end
 )
 
-Handlers.prepend("sec-patch-7-18-2024", 
+Handlers.prepend("sec-patch-8-18-2024", 
     function (msg)
-        return ao.isAssignment(msg) and not ao.isAssignable(msg)
+        return isAssignment(msg) and not isAssignable(msg)
     end, 
     function (msg) 
         Send({Target = msg.From, Data = "Assignment is not trusted by this process!"})
@@ -982,3 +1003,6 @@ Handlers.add('unregisterMining', Handlers.utils.hasMatchingTag('Action', 'Unregi
         })
     end
 )
+
+
+return Welcome()
