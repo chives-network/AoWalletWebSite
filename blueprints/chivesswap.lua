@@ -228,7 +228,7 @@ Handlers.add('deposit',
             -- todo: refund
             ao.send({
                 Target = msg.Sender,
-                Error = 'err_invalid_deposit_token'
+                Error = 'ERROR_INVALID_DEPOSIT_TOKEN'
             })
         end
     end
@@ -240,7 +240,7 @@ Handlers.add('withdraw', Handlers.utils.hasMatchingTag('Action', 'Withdraw'),
             and (not BalancesY[msg.From] or bint.__eq(bint(0), bint(BalancesY[msg.From]))) then
             ao.send({
                 Target = msg.Sender,
-                Error = 'err_insufficient_balance'
+                Error = 'ERROR_INSUFFICIENT_BALANCE'
             })
             return
         end
@@ -282,24 +282,24 @@ Handlers.add('withdraw', Handlers.utils.hasMatchingTag('Action', 'Withdraw'),
 
 local function validateSwapMsg(msg) 
     if not bint.__lt(0, bint(TotalSupply)) then
-        return false, 'err_pool_no_liquidity'
+        return false, 'ERROR_POOL_NO_LIQUIDITY'
     end
 
     if msg.From ~= Pool.X and msg.From ~= Pool.Y then
-        return false, 'err_invalid_token_in'
+        return false, 'ERROR_INVALID_TOKEN_IN'
     end
 
     if not msg['X-Chives-MinAmountOut'] then
-        return false, 'err_invalid_min_amount_out'
+        return false, 'ERROR_INVALID_MIN_AMOUNT_OUT'
     end
 
     local ok, minAmountOut = pcall(bint, msg['X-Chives-MinAmountOut'])
     if not ok then
-        return false, 'err_invalid_min_amount_out'
+        return false, 'ERROR_INVALID_MIN_AMOUNT_OUT'
     end
 
     if not bint.__lt(0, minAmountOut) then
-        return false, 'err_invalid_min_amount_out'
+        return false, 'ERROR_INVALID_MIN_AMOUNT_OUT'
     end
     return true, nil
 end
@@ -364,7 +364,7 @@ Handlers.add('swap',
                     ['X-Chives-TokenIn'] = msg.From, 
                     ['X-Chives-AmountIn'] = msg.Quantity, 
                     ['X-Chives-Status'] = 'Refund',
-                    ['X-Chives-Error'] = 'err_amount_out_too_small'
+                    ['X-Chives-Error'] = 'ERROR_AMOUNT_OUT_TOO_SMALL'
                 })
                 return
             end
@@ -401,7 +401,7 @@ Handlers.add('swap',
                     ['X-Chives-TokenIn'] = msg.From, 
                     ['X-Chives-AmountIn'] = msg.Quantity, 
                     ['X-Chives-Status'] = 'Refund', 
-                    ['X-Chives-Error'] = 'err_amount_out_too_small'
+                    ['X-Chives-Error'] = 'ERROR_AMOUNT_OUT_TOO_SMALL'
                 })
                 return
             end
@@ -775,7 +775,7 @@ Handlers.add('removeLiquidity', Handlers.utils.hasMatchingTag('Action', 'RemoveL
                     MinY = msg.MinY,
                     RemoveLiquidityTx = msg.Id,
                     Data = 'Liquidity not removed',
-                    Error = 'err_amount_output_too_small'
+                    Error = 'ERROR_AMOUNT_OUTPUT_TOO_SMALL'
                 })
                 return
             end
@@ -853,7 +853,7 @@ Handlers.add('removeLiquidity', Handlers.utils.hasMatchingTag('Action', 'RemoveL
                 MinY = msg.MinY,
                 RemoveLiquidityTx = msg.Id,
                 Data = 'Liquidity not removed',
-                Error = 'err_insufficient_balance'
+                Error = 'ERROR_INSUFFICIENT_BALANCE'
             })
         end
     end
@@ -983,7 +983,7 @@ Handlers.add('registerMining', Handlers.utils.hasMatchingTag('Action', 'Register
         else
             ao.send({ 
                 Target = msg.From, 
-                Error = 'err_mining_pid_exists'
+                Error = 'ERROR_MINING_PID_EXISTS'
             })
         end
     end
