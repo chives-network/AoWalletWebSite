@@ -109,8 +109,8 @@ const TokenIndexModel = (prop: any) => {
   const [tokenListModel, setTokenListModel] = useState<string>("ChivesToken")
   const [pageId, setPageId] = useState<number>(1)
   const [startIndex, setStartIndex] = useState<number>(1)
-  const [endIndex, setEndIndex] = useState<number>(15)
-  const pageSize = 15
+  const [endIndex, setEndIndex] = useState<number>(addTokenFavorite ? 13 : 15)
+  const pageSize = addTokenFavorite ? 13 : 15
 
   useEffect(()=>{
     if(tokenInfo && pageId > 0 && Number(tokenInfo.TokenHolders)>0 ) {
