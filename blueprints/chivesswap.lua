@@ -62,12 +62,12 @@ end
 
 -- Pool Config
 Pool = {
-    X = 'Dkey3Xt4z_dvZ6WDSAW7YdIz29y0QwNXUMEaNYuSG00',
-    SymbolX = 'AoWallet',
+    X = 'IqsK8fW3UaYo798gHBDOlqQKZ_reGsNHXFm-TRrXnuo',
+    SymbolX = 'Test',
     DecimalX = '3',
-    Y = 'xU9zFkq3X2ZQ6olwNVvr1vUWIjc3kXTWr7xKQD6dh10',
-    SymbolY = 'AR',
-    DecimalY = '12',
+    Y = 'Dkey3Xt4z_dvZ6WDSAW7YdIz29y0QwNXUMEaNYuSG00',
+    SymbolY = 'AOW',
+    DecimalY = '3',
     Fee = '100'
 }
 
@@ -875,81 +875,83 @@ Handlers.add('balances', Handlers.utils.hasMatchingTag('Action', 'Balances'),
     end
 )
 
-Handlers.add('transfer', Handlers.utils.hasMatchingTag('Action', 'Transfer'), function(msg)
-    assert(type(msg.Recipient) == 'string', 'Recipient is required!')
-    assert(type(msg.Quantity) == 'string', 'Quantity is required!')
-    assert(bint.__lt(0, bint(msg.Quantity)), 'Quantity must be greater than 0')
+Handlers.add('transfer', Handlers.utils.hasMatchingTag('Action', 'Transfer'), 
+    function(msg)
+        assert(type(msg.Recipient) == 'string', 'Recipient is required!')
+        assert(type(msg.Quantity) == 'string', 'Quantity is required!')
+        assert(bint.__lt(0, bint(msg.Quantity)), 'Quantity must be greater than 0')
 
-    if not Balances[msg.From] then Balances[msg.From] = '0' end
-    if not Balances[msg.Recipient] then Balances[msg.Recipient] = '0' end
+        if not Balances[msg.From] then Balances[msg.From] = '0' end
+        if not Balances[msg.Recipient] then Balances[msg.Recipient] = '0' end
 
-    if bint(msg.Quantity) <= bint(Balances[msg.From]) then
-        Balances[msg.From] = utils.subtract(Balances[msg.From], msg.Quantity)
-        Balances[msg.Recipient] = utils.add(Balances[msg.Recipient], msg.Quantity)
+        if bint(msg.Quantity) <= bint(Balances[msg.From]) then
+            Balances[msg.From] = utils.subtract(Balances[msg.From], msg.Quantity)
+            Balances[msg.Recipient] = utils.add(Balances[msg.Recipient], msg.Quantity)
 
-        --[[
-            Only send the notifications to the Sender and Recipient
-            if the Cast tag is not set on the Transfer message
-        ]]
-        --
-        if not msg.Cast then
-            -- Debit-Notice message template, that is sent to the Sender of the transfer
-            local debitNotice = {
-                Target = msg.From,
-                Action = 'Debit-Notice',
-                Recipient = msg.Recipient,
-                Quantity = msg.Quantity,
-                Data = Colors.gray ..
-                    'You transferred ' ..
-                    Colors.blue .. msg.Quantity .. Colors.gray .. ' to ' .. Colors.green .. msg.Recipient .. Colors.reset
-            }
-            -- Credit-Notice message template, that is sent to the Recipient of the transfer
-            local creditNotice = {
-                Target = msg.Recipient,
-                Action = 'Credit-Notice',
-                Sender = msg.From,
-                Quantity = msg.Quantity,
-                Data = Colors.gray ..
-                    'You received ' ..
-                    Colors.blue .. msg.Quantity .. Colors.gray .. ' from ' .. Colors.green .. msg.From .. Colors.reset
-            }
-
-            -- Add forwarded tags to the credit and debit notice messages
-            for tagName, tagValue in pairs(msg) do
-                -- Tags beginning with 'X-' are forwarded
-                if string.sub(tagName, 1, 2) == 'X-' then
-                    debitNotice[tagName] = tagValue
-                    creditNotice[tagName] = tagValue
-                end
-            end
-
-            -- Send Debit-Notice and Credit-Notice
-            ao.send(debitNotice)
-            ao.send(creditNotice)
-
-            -- Send Transfer-Notice
-            for i, pid in ipairs(Mining) do
-                ao.send({
-                    Target = pid,
-                    Action = "Transfer-Notice",
-                    Sender = msg.From,
+            --[[
+                Only send the notifications to the Sender and Recipient
+                if the Cast tag is not set on the Transfer message
+            ]]
+            --
+            if not msg.Cast then
+                -- Debit-Notice message template, that is sent to the Sender of the transfer
+                local debitNotice = {
+                    Target = msg.From,
+                    Action = 'Debit-Notice',
                     Recipient = msg.Recipient,
                     Quantity = msg.Quantity,
-                    SenderBalance = Balances[msg.From],
-                    RecipientBalance = Balances[msg.Recipient],
-                    Data = 'Liquidity transfered',
-                })
+                    Data = Colors.gray ..
+                        'You transferred ' ..
+                        Colors.blue .. msg.Quantity .. Colors.gray .. ' to ' .. Colors.green .. msg.Recipient .. Colors.reset
+                }
+                -- Credit-Notice message template, that is sent to the Recipient of the transfer
+                local creditNotice = {
+                    Target = msg.Recipient,
+                    Action = 'Credit-Notice',
+                    Sender = msg.From,
+                    Quantity = msg.Quantity,
+                    Data = Colors.gray ..
+                        'You received ' ..
+                        Colors.blue .. msg.Quantity .. Colors.gray .. ' from ' .. Colors.green .. msg.From .. Colors.reset
+                }
+
+                -- Add forwarded tags to the credit and debit notice messages
+                for tagName, tagValue in pairs(msg) do
+                    -- Tags beginning with 'X-' are forwarded
+                    if string.sub(tagName, 1, 2) == 'X-' then
+                        debitNotice[tagName] = tagValue
+                        creditNotice[tagName] = tagValue
+                    end
+                end
+
+                -- Send Debit-Notice and Credit-Notice
+                ao.send(debitNotice)
+                ao.send(creditNotice)
+
+                -- Send Transfer-Notice
+                for i, pid in ipairs(Mining) do
+                    ao.send({
+                        Target = pid,
+                        Action = "Transfer-Notice",
+                        Sender = msg.From,
+                        Recipient = msg.Recipient,
+                        Quantity = msg.Quantity,
+                        SenderBalance = Balances[msg.From],
+                        RecipientBalance = Balances[msg.Recipient],
+                        Data = 'Liquidity transfered',
+                    })
+                end
             end
+        else
+            ao.send({
+                Target = msg.From,
+                Action = 'Transfer-Error',
+                ['Message-Id'] = msg.Id,
+                Error = 'Insufficient Balance!'
+            })
         end
-    else
-        ao.send({
-            Target = msg.From,
-            Action = 'Transfer-Error',
-            ['Message-Id'] = msg.Id,
-            Error = 'Insufficient Balance!'
-        })
     end
-end)
+)
 
 Handlers.add('totalSupply', Handlers.utils.hasMatchingTag('Action', 'Total-Supply'), 
     function(msg)
