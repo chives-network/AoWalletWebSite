@@ -62,8 +62,8 @@ end
 
 -- Pool Config
 Pool = {
-    X = 'OT9qTE2467gcozb2g8R6D6N3nQS94ENcaAIJfUzHCww',
-    SymbolX = 'TRUNK',
+    X = 'Dkey3Xt4z_dvZ6WDSAW7YdIz29y0QwNXUMEaNYuSG00',
+    SymbolX = 'AoWallet',
     DecimalX = '3',
     Y = 'xU9zFkq3X2ZQ6olwNVvr1vUWIjc3kXTWr7xKQD6dh10',
     SymbolY = 'AR',
