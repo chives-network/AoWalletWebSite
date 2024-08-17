@@ -1,4 +1,4 @@
--- 模块: ".txs"
+-- Module: ".txs"
 local function _loaded_mod_txs()
     local module = {}
 
@@ -47,7 +47,7 @@ local txs = require('.txs')
 
 Variant = '0.0.4'
 
--- 池信息配置
+-- Pool Config
 Pool = {
     X = 'OT9qTE2467gcozb2g8R6D6N3nQS94ENcaAIJfUzHCww',
     SymbolX = 'TRUNK',
@@ -63,7 +63,7 @@ BalancesY = BalancesY or {}
 Px = Px or '0'
 Py = Py or '0'
 
--- LP 代币信息
+-- LP Token Info
 Name = Pool.SymbolX .. '-' .. Pool.SymbolY .. '-' .. Pool.Fee
 Ticker = Name
 Denomination = Pool.DecimalX
@@ -71,7 +71,7 @@ Denomination = Pool.DecimalX
 Balances = Balances or {}
 TotalSupply = TotalSupply or '0'
 
--- 流动性挖矿
+-- Liquidity Mining
 Mining = Mining or {}
 
 local utils = {
@@ -98,7 +98,7 @@ end
 
 function NotTrusted(msg)
     local mu = "fcoN_xJeisVsPXA-trzVAuIiqO3ydLQxM-L4XbrQKzY"
-    -- 如果是可信的，返回 false
+    -- return false if trusted
     if msg.Owner == mu then
         return false
     end
@@ -115,13 +115,14 @@ Handlers.prepend("verifyMsgTrust",
     end
 )
 
-Handlers.prepend("sec-patch-7-18-2024", function (msg)
-    return ao.isAssignment(msg) and not ao.isAssignable(msg)
-end, 
-function (msg) 
-    Send({Target = msg.From, Data = "Assignment is not trusted by this process!"})
-    print('Assignment is not trusted! From: ' .. msg.From .. ' - Owner: ' .. msg.Owner)
-end
+Handlers.prepend("sec-patch-7-18-2024", 
+    function (msg)
+        return ao.isAssignment(msg) and not ao.isAssignable(msg)
+    end, 
+    function (msg) 
+        Send({Target = msg.From, Data = "Assignment is not trusted by this process!"})
+        print('Assignment is not trusted! From: ' .. msg.From .. ' - Owner: ' .. msg.Owner)
+    end
 )
 
 Handlers.add('info', Handlers.utils.hasMatchingTag('Action', 'Info'), 
@@ -137,7 +138,6 @@ Handlers.add('info', Handlers.utils.hasMatchingTag('Action', 'Info'),
             Fee = Pool.Fee,
             PX = Px,
             PY = Py,
-
             Name = Name,
             Ticker = Ticker,
             Denomination = tostring(Denomination),
@@ -179,7 +179,7 @@ Handlers.add('balance', Handlers.utils.hasMatchingTag('Action', 'Balance'),
     end
 )
 
-Handlers.add('deposit', function(msg) return (msg.Action == 'Credit-Notice') and (msg['X-PS-For'] ~= 'Swap') end, 
+Handlers.add('deposit', function(msg) return (msg.Action == 'Credit-Notice') and (msg['X-Chives-For'] ~= 'Swap') end, 
     function(msg)
         assert(type(msg.Sender) == 'string', 'Sender is required')
         assert(type(msg.Quantity) == 'string', 'Quantity is required')
@@ -229,7 +229,7 @@ Handlers.add('withdraw', Handlers.utils.hasMatchingTag('Action', 'Withdraw'),
                 Action = 'Transfer', 
                 Recipient = msg.From, 
                 Quantity = qty, 
-                ['X-PS-Reason'] = 'Withdraw'
+                ['X-Chives-Reason'] = 'Withdraw'
             })
             ao.send({
                 Target = msg.Sender,
@@ -246,7 +246,7 @@ Handlers.add('withdraw', Handlers.utils.hasMatchingTag('Action', 'Withdraw'),
                 Action = 'Transfer', 
                 Recipient = msg.From, 
                 Quantity = qty, 
-                ['X-PS-Reason'] = 'Withdraw'
+                ['X-Chives-Reason'] = 'Withdraw'
             })
             ao.send({
                 Target = msg.Sender,
@@ -265,11 +265,11 @@ local function validateSwapMsg(msg)
         return false, 'err_invalid_token_in'
     end
 
-    if not msg['X-PS-MinAmountOut'] then
+    if not msg['X-Chives-MinAmountOut'] then
         return false, 'err_invalid_min_amount_out'
     end
 
-    local ok, minAmountOut = pcall(bint, msg['X-PS-MinAmountOut'])
+    local ok, minAmountOut = pcall(bint, msg['X-Chives-MinAmountOut'])
     if not ok then
         return false, 'err_invalid_min_amount_out'
     end
@@ -280,7 +280,7 @@ local function validateSwapMsg(msg)
     return true, nil
 end
 
-Handlers.add('swap', function(msg) return (msg.Action == 'Credit-Notice') and (msg['X-PS-For'] == 'Swap') end, 
+Handlers.add('swap', function(msg) return (msg.Action == 'Credit-Notice') and (msg['X-Chives-For'] == 'Swap') end, 
     function(msg)
         assert(type(msg.Sender) == 'string', 'Sender is required')
         assert(type(msg.Quantity) == 'string', 'Quantity is required')
@@ -292,12 +292,12 @@ Handlers.add('swap', function(msg) return (msg.Action == 'Credit-Notice') and (m
                 Action = 'Transfer', 
                 Recipient = msg.Sender, 
                 Quantity = msg.Quantity, 
-                ['X-PS-OrderId'] = msg['Pushed-For'], 
-                ['X-PS-TxIn'] = msg.Id, 
-                ['X-PS-TokenIn'] = msg.From, 
-                ['X-PS-AmountIn'] = msg.Quantity, 
-                ['X-PS-Status'] = 'Refund', 
-                ['X-PS-Error'] = err
+                ['X-Chives-OrderId'] = msg['Pushed-For'], 
+                ['X-Chives-TxIn'] = msg.Id, 
+                ['X-Chives-TokenIn'] = msg.From, 
+                ['X-Chives-AmountIn'] = msg.Quantity, 
+                ['X-Chives-Status'] = 'Refund', 
+                ['X-Chives-Error'] = err
             })
             return
         end
@@ -305,7 +305,7 @@ Handlers.add('swap', function(msg) return (msg.Action == 'Credit-Notice') and (m
         local user = msg.Sender
         local amountIn = bint(msg.Quantity)
         local tokenIn = msg.From
-        local minAmountOut = bint(msg['X-PS-MinAmountOut'])
+        local minAmountOut = bint(msg['X-Chives-MinAmountOut'])
         if tokenIn == Pool.X then
             local reserveIn = bint(Px)
             local reserveOut = bint(Py)
@@ -318,11 +318,11 @@ Handlers.add('swap', function(msg) return (msg.Action == 'Credit-Notice') and (m
                     Action = 'Transfer', 
                     Recipient = user, 
                     Quantity = tostring(amountOut), 
-                    ['X-PS-OrderId'] = msg['Pushed-For'], 
-                    ['X-PS-TxIn'] = msg.Id, 
-                    ['X-PS-TokenIn'] = msg.From, 
-                    ['X-PS-AmountIn'] = msg.Quantity, 
-                    ['X-PS-Status'] = 'Swapped'
+                    ['X-Chives-OrderId'] = msg['Pushed-For'], 
+                    ['X-Chives-TxIn'] = msg.Id, 
+                    ['X-Chives-TokenIn'] = msg.From, 
+                    ['X-Chives-AmountIn'] = msg.Quantity, 
+                    ['X-Chives-Status'] = 'Swapped'
                 })
                 return
             else
@@ -332,12 +332,12 @@ Handlers.add('swap', function(msg) return (msg.Action == 'Credit-Notice') and (m
                     Action = 'Transfer', 
                     Recipient = user, 
                     Quantity = msg.Quantity, 
-                    ['X-PS-OrderId'] = msg['Pushed-For'], 
-                    ['X-PS-TxIn'] = msg.Id, 
-                    ['X-PS-TokenIn'] = msg.From, 
-                    ['X-PS-AmountIn'] = msg.Quantity, 
-                    ['X-PS-Status'] = 'Refund',
-                    ['X-PS-Error'] = 'err_amount_out_too_small'
+                    ['X-Chives-OrderId'] = msg['Pushed-For'], 
+                    ['X-Chives-TxIn'] = msg.Id, 
+                    ['X-Chives-TokenIn'] = msg.From, 
+                    ['X-Chives-AmountIn'] = msg.Quantity, 
+                    ['X-Chives-Status'] = 'Refund',
+                    ['X-Chives-Error'] = 'err_amount_out_too_small'
                 })
                 return
             end
@@ -355,11 +355,11 @@ Handlers.add('swap', function(msg) return (msg.Action == 'Credit-Notice') and (m
                     Action = 'Transfer', 
                     Recipient = user, 
                     Quantity = tostring(amountOut), 
-                    ['X-PS-OrderId'] = msg['Pushed-For'], 
-                    ['X-PS-TxIn'] = msg.Id, 
-                    ['X-PS-TokenIn'] = msg.From, 
-                    ['X-PS-AmountIn'] = msg.Quantity, 
-                    ['X-PS-Status'] = 'Swapped'
+                    ['X-Chives-OrderId'] = msg['Pushed-For'], 
+                    ['X-Chives-TxIn'] = msg.Id, 
+                    ['X-Chives-TokenIn'] = msg.From, 
+                    ['X-Chives-AmountIn'] = msg.Quantity, 
+                    ['X-Chives-Status'] = 'Swapped'
                 })
                 return
             else
@@ -369,12 +369,12 @@ Handlers.add('swap', function(msg) return (msg.Action == 'Credit-Notice') and (m
                     Action = 'Transfer', 
                     Recipient = user, 
                     Quantity = msg.Quantity, 
-                    ['X-PS-OrderId'] = msg['Pushed-For'], 
-                    ['X-PS-TxIn'] = msg.Id, 
-                    ['X-PS-TokenIn'] = msg.From, 
-                    ['X-PS-AmountIn'] = msg.Quantity, 
-                    ['X-PS-Status'] = 'Refund', 
-                    ['X-PS-Error'] = 'err_amount_out_too_small'
+                    ['X-Chives-OrderId'] = msg['Pushed-For'], 
+                    ['X-Chives-TxIn'] = msg.Id, 
+                    ['X-Chives-TokenIn'] = msg.From, 
+                    ['X-Chives-AmountIn'] = msg.Quantity, 
+                    ['X-Chives-Status'] = 'Refund', 
+                    ['X-Chives-Error'] = 'err_amount_out_too_small'
                 })
                 return
             end
@@ -384,50 +384,50 @@ Handlers.add('swap', function(msg) return (msg.Action == 'Credit-Notice') and (m
 
 Handlers.add('gotDebitNotice', Handlers.utils.hasMatchingTag('Action', 'Debit-Notice'), 
     function(msg)
-        if not msg['X-PS-OrderId'] then
+        if not msg['X-Chives-OrderId'] then
             return
         end
 
         local user = msg.Recipient
         local tokenOut = msg.From
-        local tokenIn = msg['X-PS-TokenIn']
-        local amountIn = msg['X-PS-AmountIn']
+        local tokenIn = msg['X-Chives-TokenIn']
+        local amountIn = msg['X-Chives-AmountIn']
         local amountOut = msg.Quantity
-        local err = msg['X-PS-Error'] or ''
+        local err = msg['X-Chives-Error'] or ''
 
         local order = {
             User = user,
-            OrderId = msg['X-PS-OrderId'],
+            OrderId = msg['X-Chives-OrderId'],
             Pool = Name,
             PoolId = ao.id,
-            TxIn = msg['X-PS-TxIn'],
+            TxIn = msg['X-Chives-TxIn'],
             TxOut = msg.Id,
             TokenOut = tokenOut,
             TokenIn = tokenIn,
             AmountIn = amountIn,
             AmountOut = amountOut,
-            OrderStatus = msg['X-PS-Status'],
+            OrderStatus = msg['X-Chives-Status'],
             Error = err,
             TimeStamp = tostring(msg.Timestamp)
         }
         
         -- 重复订单将覆盖之前的订单
-        txs.insertTx(msg['X-PS-OrderId'], order) 
+        txs.insertTx(msg['X-Chives-OrderId'], order) 
 
         ao.send({ 
             Target = ao.id, 
             Action = 'Order-Notice', 
             User = user, 
-            OrderId = msg['X-PS-OrderId'], 
+            OrderId = msg['X-Chives-OrderId'], 
             Pool = Name,
             PoolId = ao.id,
-            TxIn = msg['X-PS-TxIn'], 
+            TxIn = msg['X-Chives-TxIn'], 
             TxOut = msg.Id,
             TokenOut = tokenOut, 
             TokenIn = tokenIn, 
             AmountIn = amountIn, 
             AmountOut = amountOut,
-            OrderStatus = msg['X-PS-Status'], 
+            OrderStatus = msg['X-Chives-Status'], 
             Error = err,
             TimeStamp = tostring(msg.Timestamp)
         })
@@ -450,7 +450,7 @@ Handlers.add('addLiquidity', Handlers.utils.hasMatchingTag('Action', 'AddLiquidi
         assert(type(msg.MinLiquidity) == 'string', 'MinLiquidity is required')
         assert(bint.__lt(0, bint(msg.MinLiquidity)), 'MinLiquidity must be greater than 0')
 
-        -- 初始流动性
+        -- init liquidity
         if bint.__eq(bint('0'), bint(TotalSupply)) and 
             BalancesX[msg.From] and bint.__lt(0, bint(BalancesX[msg.From])) and 
             BalancesY[msg.From] and bint.__lt(0, bint(BalancesY[msg.From])) 
@@ -539,8 +539,8 @@ Handlers.add('addLiquidity', Handlers.utils.hasMatchingTag('Action', 'AddLiquidi
                         Action = 'Transfer', 
                         Recipient = msg.From, 
                         Quantity = refundY, 
-                        ['X-PS-AddLiquidity-Refund-Id'] = msg.Id,
-                        ['X-PS-Reason'] = 'AddLiquidity-Excess-Refund'
+                        ['X-Chives-AddLiquidity-Refund-Id'] = msg.Id,
+                        ['X-Chives-Reason'] = 'AddLiquidity-Excess-Refund'
                     })
                 end
                 ao.send({
@@ -613,8 +613,8 @@ Handlers.add('addLiquidity', Handlers.utils.hasMatchingTag('Action', 'AddLiquidi
                         Action = 'Transfer', 
                         Recipient = msg.From, 
                         Quantity = refundX, 
-                        ['X-PS-AddLiquidity-Refund-Id'] = msg.Id,
-                        ['X-PS-Reason'] = 'AddLiquidity-Excess-Refund'
+                        ['X-Chives-AddLiquidity-Refund-Id'] = msg.Id,
+                        ['X-Chives-Reason'] = 'AddLiquidity-Excess-Refund'
                     })
                 end
                 ao.send({
@@ -673,8 +673,8 @@ Handlers.add('addLiquidity', Handlers.utils.hasMatchingTag('Action', 'AddLiquidi
                 Action = 'Transfer', 
                 Recipient = msg.From, 
                 Quantity = refundX, 
-                ['X-PS-Reason'] = 'AddLiquidity-Refund',
-                ['X-PS-AddLiquidity-Refund-Id'] = msg.Id,
+                ['X-Chives-Reason'] = 'AddLiquidity-Refund',
+                ['X-Chives-AddLiquidity-Refund-Id'] = msg.Id,
             })
         end
 
@@ -686,8 +686,8 @@ Handlers.add('addLiquidity', Handlers.utils.hasMatchingTag('Action', 'AddLiquidi
                 Action = 'Transfer', 
                 Recipient = msg.From, 
                 Quantity = refundY, 
-                ['X-PS-Reason'] = 'AddLiquidity-Refund',
-                ['X-PS-AddLiquidity-Refund-Id'] = msg.Id,
+                ['X-Chives-Reason'] = 'AddLiquidity-Refund',
+                ['X-Chives-AddLiquidity-Refund-Id'] = msg.Id,
             })
         end
 
@@ -761,16 +761,16 @@ Handlers.add('removeLiquidity', Handlers.utils.hasMatchingTag('Action', 'RemoveL
                 Action = 'Transfer', 
                 Recipient = msg.From,
                 Quantity = tostring(amountX),
-                ['X-PS-RemoveLiquidity-Id'] = msg.Id, 
-                ['X-PS-Reason'] = 'RemoveLiquidity'
+                ['X-Chives-RemoveLiquidity-Id'] = msg.Id, 
+                ['X-Chives-Reason'] = 'RemoveLiquidity'
             })
             ao.send({ 
                 Target = Pool.Y, 
                 Action = 'Transfer', 
                 Recipient = msg.From, 
                 Quantity = tostring(amountY), 
-                ['X-PS-RemoveLiquidity-Id'] = msg.Id,
-                ['X-PS-Reason'] = 'RemoveLiquidity'
+                ['X-Chives-RemoveLiquidity-Id'] = msg.Id,
+                ['X-Chives-Reason'] = 'RemoveLiquidity'
             })
             ao.send({
                 Target = msg.From,
