@@ -92,7 +92,7 @@ const TokenAllTransactions = (prop: any) => {
                                 </TableCell>
                                 <TableCell sx={{my: 0, py: 0}}>
                                     {Item && Item[2] && (
-                                        <Typography noWrap variant='body2' sx={{ color: 'primary.main', pr: 3, display: 'inline', my: 0, py: 0 }}>{formatToken(Number(Item[2]), 12)}</Typography>
+                                        <Typography noWrap variant='body2' sx={{ color: 'primary.main', pr: 3, display: 'inline', my: 0, py: 0 }}>{formatToken(Number(Item[2]), tokenGetInfor.Denomination)}</Typography>
                                     )}
                                 </TableCell>
                                 <TableCell sx={{my: 0, py: 0}}>
