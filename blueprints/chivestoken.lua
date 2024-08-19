@@ -2,7 +2,7 @@
 -- Author: Chives-Network
 -- Email: chivescoin@gmail.com
 -- Copyright: MIT
--- Version: 20240818
+-- Version: 20240819
 -- Github: https://github.com/chives-network/AoConnect/blob/main/blueprints/token.lua
 
 -- Function
@@ -67,7 +67,7 @@ local utils = {
 
 function Welcome()
   return(
-      "Welcome to Chives Token V0.3!\n\n" ..
+      "Welcome to Chives Token V20240819!\n\n" ..
       "Main functoin:\n\n" ..
       "1. Support Token Airdrop.\n" ..
       "2. Support Balances.\n" ..
@@ -106,7 +106,7 @@ Handlers.add('Info', Handlers.utils.hasMatchingTag('Action', 'Info'), function(m
     TokenHolders = tokenHolders,
     Logo = Logo,
     Release = 'ChivesToken',
-    Version = '20240818'
+    Version = '20240819'
   })
 end)
 
@@ -190,7 +190,7 @@ Handlers.add('Transfer', Handlers.utils.hasMatchingTag('Action', 'Transfer'), fu
     Balances[msg.From] = utils.subtract(Balances[msg.From], msg.Quantity)
     Balances[msg.Recipient] = utils.add(Balances[msg.Recipient], msg.Quantity)
 
-    table.insert(AllTransactions, 1, { msg.From, msg.Recipient, msg.Quantity, msg.Tags.Ref_ })
+    table.insert(AllTransactions, 1, { #AllTransactions[msg.From], msg.From, msg.Recipient, msg.Quantity })
 
     if not SentTransactions[msg.From] then
       SentTransactions[msg.From] = {}
@@ -273,12 +273,12 @@ Handlers.add('MyAllTransactions',
 
       local filterMyAllTransactions = {}
       local startIndex = tonumber(msg.Tags.startIndex) or 1
-      local endIndex = tonumber(msg.Tags.endIndex) or 1
+      local endIndex = tonumber(msg.Tags.endIndex) or 10
       if startIndex <= 0 then
         startIndex = 1
       end
       if endIndex <= 0 then
-        endIndex = 1
+        endIndex = 10
       end
       if startIndex > endIndex then
         startIndex = endIndex
@@ -286,9 +286,7 @@ Handlers.add('MyAllTransactions',
       if endIndex > totalRecords then
         endIndex = totalRecords
       end
-      local endFilter = totalRecords - startIndex + 1
-      local startFilter = totalRecords - endIndex + 1
-      for i = startFilter, endFilter do
+      for i = startIndex, endIndex do
           table.insert(filterMyAllTransactions, MyAllTransactions[msg.Tags.Sender][i])
       end
 
@@ -324,9 +322,7 @@ Handlers.add('AllTransactions',
     if endIndex > totalRecords then
       endIndex = totalRecords
     end
-    local endFilter = totalRecords - startIndex + 1
-    local startFilter = totalRecords - endIndex + 1
-    for i = startFilter, endFilter do
+    for i = startIndex, endIndex do
         table.insert(filterAllTransactions, AllTransactions[i])
     end
 
@@ -359,9 +355,7 @@ Handlers.add('SentTransactions',
       if endIndex > totalRecords then
         endIndex = totalRecords
       end
-      local endFilter = totalRecords - startIndex + 1
-      local startFilter = totalRecords - endIndex + 1
-      for i = startFilter, endFilter do
+      for i = startIndex, endIndex do
           table.insert(filterSentTransactions, SentTransactions[msg.Tags.Sender][i])
       end
 
@@ -402,9 +396,7 @@ Handlers.add('ReceivedTransactions',
       if endIndex > totalRecords then
         endIndex = totalRecords
       end
-      local endFilter = totalRecords - startIndex + 1
-      local startFilter = totalRecords - endIndex + 1
-      for i = startFilter, endFilter do
+      for i = startIndex, endIndex do
           table.insert(filterReceivedTransactions, ReceivedTransactions[msg.Tags.Recipient][i])
       end
 
