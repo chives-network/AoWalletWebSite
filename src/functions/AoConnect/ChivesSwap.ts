@@ -4,9 +4,9 @@ import { connect, createDataItemSigner }  from "@permaweb/aoconnect"
 
 import axios from 'axios'
 
+import { getNanoid } from '../../functions/ChivesWallets'
 import { MU_URL, CU_URL, GATEWAY_URL, AoGetRecord, BalanceTimes10 } from './AoConnect'
 import { AoTokenTransfer } from './Token'
-
 
 export const AoLoadBlueprintSwap = async (currentWalletJwk: any, processTxId: string, SwapInfo: any) => {
     try {
@@ -111,7 +111,7 @@ export const ChivesSwapInfo = async (TargetTxId: string) => {
     }
 }
 
-export const ChivesSwapBalance = async (TargetTxId: string) => {
+export const ChivesSwapBalance = async (TargetTxId: string, currentAddress: string) => {
     try {
         if(TargetTxId && TargetTxId.length != 43) {
 
@@ -130,7 +130,7 @@ export const ChivesSwapBalance = async (TargetTxId: string) => {
             data: null,
             tags: [
                 { name: 'Action', value: 'Balance' },
-                { name: 'Target', value: TargetTxId },
+                { name: 'Target', value: currentAddress },
                 { name: 'Data-Protocol', value: 'ao' },
                 { name: 'Type', value: 'Message' },
                 { name: 'Variant', value: 'ao.TN.1' }
@@ -176,7 +176,6 @@ export const ChivesSwapBalances = async (TargetTxId: string) => {
             data: null,
             tags: [
                 { name: 'Action', value: 'Balances' },
-                { name: 'Target', value: TargetTxId },
                 { name: 'Data-Protocol', value: 'ao' },
                 { name: 'Type', value: 'Message' },
                 { name: 'Variant', value: 'ao.TN.1' }
@@ -268,7 +267,6 @@ export const ChivesSwapGetOrder = async (TargetTxId: string, OrderId: string) =>
             data: null,
             tags: [
                 { name: 'Action', value: 'GetOrder' },
-                { name: 'Target', value: TargetTxId },
                 { name: 'OrderId', value: OrderId },
                 { name: 'Data-Protocol', value: 'ao' },
                 { name: 'Type', value: 'Message' },
@@ -345,7 +343,7 @@ export const ChivesSwapDebitNotice = async (TargetTxId: string, Recipient: strin
     }
 }
 
-export const ChivesSwapAddLiquidity = async (currentWalletJwk: any, TargetTxId: string, MinLiquidity: string, Subject: string, Content: string, Summary: string, Encrypted: string) => {
+export const ChivesSwapAddLiquidity = async (currentWalletJwk: any, TargetTxId: string, MinLiquidity: string) => {
     try {
         const currentTimestampWithOffset: number = Date.now();
         const currentTimezoneOffset: number = new Date().getTimezoneOffset();
@@ -357,13 +355,10 @@ export const ChivesSwapAddLiquidity = async (currentWalletJwk: any, TargetTxId: 
             tags: [
               { name: "Action", value: "AddLiquidity" },
               { name: "MinLiquidity", value: MinLiquidity.toString() },
-              { name: "Subject", value: Subject.toString() },
-              { name: "Summary", value: Summary.toString() },
-              { name: "Encrypted", value: Encrypted.toString() },
               { name: "Timestamp", value: currentTimestampInZeroUTC.toString() },
               ],
             signer: createDataItemSigner(currentWalletJwk),
-            data: Content.toString()
+            data: ''
         }
         const GetChivesLiquidityResult = await message(data)
 
@@ -391,4 +386,53 @@ export const ChivesSwapAddLiquidity = async (currentWalletJwk: any, TargetTxId: 
   
 }
 
+export const ChivesSwapSendTokenToSwap = async (currentWalletJwk: any, tokenTxId: string, sendOutAddress: string, sendOutAmount: number, Denomination = 12, MinAmountOut: string) => {
+    try {
+        if(tokenTxId && tokenTxId.length != 43) {
 
+            return
+        }
+        if(sendOutAddress && sendOutAddress.length != 43) {
+
+            return
+        }
+        if(typeof tokenTxId != 'string' || typeof sendOutAddress != 'string') {
+
+            return 
+        }
+        
+        const { message } = connect( { MU_URL, CU_URL, GATEWAY_URL } );
+
+        const data = {
+            process: tokenTxId,
+            tags: [
+                { name: "Action", value: "Transfer" },
+                { name: "Recipient", value: sendOutAddress },
+                { name: "X-Chives-For", value: 'Swap' },
+                { name: "X-Chives-MinAmountOut", value: String(MinAmountOut) },
+                { name: "Quantity", value: String(BalanceTimes10(sendOutAmount, Denomination)) },
+                ],
+            signer: createDataItemSigner(currentWalletJwk),
+            data: ""
+        }
+        const SendTokenResult = await message(data);
+
+        if(SendTokenResult && SendTokenResult.length == 43) {
+            const MsgContent = await AoGetRecord(tokenTxId, SendTokenResult)
+
+            return { status: 'ok', id: SendTokenResult, msg: MsgContent };
+        }
+        else {
+
+            return { status: 'ok', id: SendTokenResult };
+        }
+    }
+    catch(Error: any) {
+        console.error("AoTokenTransfer Error:", Error)
+        if(Error && Error.message) {
+
+            return { status: 'error', msg: Error.message };
+        }
+    }
+    
+}

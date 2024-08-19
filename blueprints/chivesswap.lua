@@ -62,10 +62,10 @@ end
 
 -- Pool Config
 Pool = {
-    X = 'IqsK8fW3UaYo798gHBDOlqQKZ_reGsNHXFm-TRrXnuo',
-    SymbolX = 'Test',
+    X = 'UKkF0_BZ-SpEjUn6v1qjW9sZDSr8ny9GYpnocNipQ9Q',
+    SymbolX = 'TEST',
     DecimalX = '3',
-    Y = 'Dkey3Xt4z_dvZ6WDSAW7YdIz29y0QwNXUMEaNYuSG00',
+    Y = 'UAGSgMlv9c806Wfbu85RZHlRDR2WGuPQCi7ShDtLlvw',
     SymbolY = 'AOW',
     DecimalY = '3',
     Fee = '100'
@@ -536,6 +536,8 @@ Handlers.add('addLiquidity', Handlers.utils.hasMatchingTag('Action', 'AddLiquidi
             return
         end
 
+        local liquidityMinted = 0
+
         if bint.__lt(0, bint(TotalSupply)) and 
             BalancesX[msg.From] and bint.__lt(0, bint(BalancesX[msg.From])) and 
             BalancesY[msg.From] and bint.__lt(0, bint(BalancesY[msg.From])) 
@@ -545,8 +547,22 @@ Handlers.add('addLiquidity', Handlers.utils.hasMatchingTag('Action', 'AddLiquidi
             local reserveY = bint(Py)
             local amountX = bint(BalancesX[msg.From])
             local amountY = bint.udiv(bint.__mul(amountX, reserveY), reserveX) + 1
-            local liquidityMinted = bint.udiv(bint.__mul(amountX, totalLiquidity), reserveX) 
-            
+            liquidityMinted = bint.udiv(bint.__mul(amountX, totalLiquidity), reserveX) 
+
+            ao.send({
+                Target = msg.From,
+                totalLiquidity = tostring(totalLiquidity),
+                reserveX = tostring(reserveX),
+                reserveY = tostring(reserveY),
+                amountX = tostring(amountX),
+                amountY = tostring(amountY),
+                BalancesX = BalancesX,
+                BalancesY = BalancesY,
+                liquidityMinted = tostring(liquidityMinted),
+                falseLiquidityMintedMinLiquidity = (not bint.__lt(liquidityMinted, bint(msg.MinLiquidity))),
+                falseBalancesYAmountY = (not bint.__lt(bint(BalancesY[msg.From]), amountY))
+            })
+
             if (not bint.__lt(liquidityMinted, bint(msg.MinLiquidity))) and (not bint.__lt(bint(BalancesY[msg.From]), amountY)) then
                 Px = tostring(bint.__add(reserveX, amountX))
                 Py = tostring(bint.__add(reserveY, amountY))
@@ -559,7 +575,7 @@ Handlers.add('addLiquidity', Handlers.utils.hasMatchingTag('Action', 'AddLiquidi
                 if not Balances[msg.From] then Balances[msg.From] = '0' end
                 Balances[msg.From] = tostring(bint.__add(bint(Balances[msg.From]), liquidityMinted))
 
-                -- 退还多余的 Y 代币
+                -- Refund Token Y
                 if bint.__lt(0, bint(refundY)) then
                     ao.send({ 
                         Target = Pool.Y, 
@@ -633,7 +649,7 @@ Handlers.add('addLiquidity', Handlers.utils.hasMatchingTag('Action', 'AddLiquidi
                 if not Balances[msg.From] then Balances[msg.From] = '0' end
                 Balances[msg.From] = tostring(bint.__add(bint(Balances[msg.From]), liquidityMinted))
 
-                -- 退还多余的 X 代币
+                -- Refund Token X
                 if bint.__lt(0, bint(refundX)) then
                     ao.send({ 
                         Target = Pool.X, 
@@ -688,6 +704,21 @@ Handlers.add('addLiquidity', Handlers.utils.hasMatchingTag('Action', 'AddLiquidi
                 end
                 return
             end
+            
+            ao.send({
+                Target = msg.From,
+                totalLiquidity = tostring(totalLiquidity),
+                reserveX = tostring(reserveX),
+                reserveY = tostring(reserveY),
+                amountX = tostring(amountX),
+                amountY = tostring(amountY),
+                BalancesX = BalancesX,
+                BalancesY = BalancesY,
+                liquidityMinted = tostring(liquidityMinted),
+                falseLiquidityMintedMinLiquidity = (not bint.__lt(liquidityMinted, bint(msg.MinLiquidity))),
+                falseBalancesXAmountX = (not bint.__lt(bint(BalancesX[msg.From]), amountX)),
+            })
+
         end
 
         local refundX = '0'
@@ -737,7 +768,9 @@ Handlers.add('addLiquidity', Handlers.utils.hasMatchingTag('Action', 'AddLiquidi
             AmountLp = '0',
             BalanceLp = bp,
             TotalSupply = TotalSupply,
-            Data = 'Liquidity not added'
+            Data = 'Liquidity not added',
+            liquidityMinted = tostring(liquidityMinted),
+            MinLiquidity = msg.MinLiquidity
         })
     end
 )
