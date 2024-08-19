@@ -4,7 +4,7 @@
 -- Email: chivescoin@gmail.com
 -- Copyright: MIT
 -- Version: 20240715
--- Github: https://github.com/chives-network/AoConnect/blob/main/blueprints/chiveschat.lua
+-- Github: https://github.com/chives-network/AoWalletWebsite/blob/main/blueprints/chiveschat.lua
 
 -- Function
 -- 1. Chatroom support three roles: owner, admin, member.

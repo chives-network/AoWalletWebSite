@@ -9,18 +9,13 @@ import Grid from '@mui/material/Grid'
 import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
 import Tooltip from '@mui/material/Tooltip'
-import TextField from '@mui/material/TextField'
-import InputAdornment from '@mui/material/InputAdornment'
-
-// ** Icon Imports
-import Icon from '@/@core/components/icon'
 
 // ** Third Party Import
 import { useTranslation } from 'react-i18next'
 
-import { AoCreateProcessAuto, generateRandomNumber, sleep } from '@/functions/AoConnect/AoConnect'
+import { AoCreateProcessAuto, sleep } from '@/functions/AoConnect/AoConnect'
 import { AoLoadBlueprintSwap, ChivesSwapInfo, ChivesSwapBalance, ChivesSwapBalances, ChivesSwapTotalSupply, ChivesSwapGetOrder, ChivesSwapDebitNotice, ChivesSwapAddLiquidity, ChivesSwapSendTokenToSwap, ChivesSwapRemoveLiquidity } from '@/functions/AoConnect/ChivesSwap'
-import { AoLoadBlueprintToken, AoTokenTransfer, AoTokenMint, AoTokenBalancesDryRun } from '@/functions/AoConnect/Token'
+import { AoTokenTransfer } from '@/functions/AoConnect/Token'
 import { ansiRegex } from '@configs/functions'
 
 const ChivesSwap = ({auth} : any) => {
@@ -31,7 +26,6 @@ const ChivesSwap = ({auth} : any) => {
 
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false)
   const [toolInfo, setToolInfo] = useState<any>()
-  const [TokenAoConnectTxIdError, setTokenAoConnectTxIdError] = useState<string>('')
 
   const TokenProcessTxId = "d07vdUZUUUThQiuEb-pM0a0_QTyog_NBl5S7FhUIhJk"
   const X = "oz3s7ImYeqXs1Hw-wkZenUp67ild8SzVZc6apVt_ZnU"
@@ -85,7 +79,14 @@ const ChivesSwap = ({auth} : any) => {
           BalancesY: JSON.stringify(ChivesSwapBalancesData['BalancesY']),
       }))
     }
-    console.log("handleSimulatedSwapBalances ChivesSwapBalances", ChivesSwapBalancesData)
+    console.log("handleSimulatedSwapBalances ChivesSwapBalances", ChivesSwapBalancesData, "ChivesSwapDebitNotice Not Finished", ChivesSwapDebitNotice)
+
+    const ChivesSwapTotalSupplyData = await ChivesSwapTotalSupply(TokenProcessTxId)
+    setToolInfo((prevState: any)=>({
+        ...prevState,
+        ChivesSwapTotalSupplyData: JSON.stringify(ChivesSwapTotalSupplyData)
+    }))
+    console.log("handleSimulatedSwapBalances ChivesSwapTotalSupply", ChivesSwapTotalSupplyData)
 
   }
 
@@ -133,20 +134,11 @@ const ChivesSwap = ({auth} : any) => {
 
   }
 
-  const handleSimulatedSwapAddLiquidity = async function () {
+  const handleSimulatedSwapCreatePool = async function () {
 
     //setIsDisabledButton(true)
     setToolInfo(null)
 
-    if(TokenProcessTxId) {
-        setToolInfo((prevState: any)=>({
-            ...prevState,
-            TokenProcessTxId: TokenProcessTxId,
-            X: X,
-            Y: Y
-        }))
-    }
-    /*
     const TokenProcessTxId = await AoCreateProcessAuto(globalThis.arweaveWallet)
     if(TokenProcessTxId) {
       setToolInfo((prevState: any)=>({
@@ -173,8 +165,32 @@ const ChivesSwap = ({auth} : any) => {
       }
     }
     console.log("handleSimulatedSwapAddLiquidity LoadBlueprintToken", LoadBlueprintToken)
-    */
 
+    if(TokenProcessTxId) {
+      setToolInfo((prevState: any)=>({
+          ...prevState,
+          TokenProcessTxId: TokenProcessTxId,
+          X: X,
+          Y: Y
+      }))
+    }
+    
+  }
+
+  const handleSimulatedSwapAddLiquidity = async function () {
+
+    //setIsDisabledButton(true)
+    setToolInfo(null)
+
+    if(TokenProcessTxId) {
+        setToolInfo((prevState: any)=>({
+            ...prevState,
+            TokenProcessTxId: TokenProcessTxId,
+            X: X,
+            Y: Y
+        }))
+    }
+    
     await sleep(2000)
 
     const SendToSwapTokenX = await AoTokenTransfer(globalThis.arweaveWallet, X, TokenProcessTxId, 11, 12);
@@ -246,15 +262,6 @@ const ChivesSwap = ({auth} : any) => {
           BalancesY2: ChivesSwapBalancesData2['BalancesY'][currentAddress]
       }))
     }
-
-    /*
-    const ChivesSwapTotalSupplyData = await ChivesSwapTotalSupply(TokenProcessTxId)
-    setToolInfo((prevState: any)=>({
-        ...prevState,
-        ChivesSwapTotalSupplyData: JSON.stringify(ChivesSwapTotalSupplyData)
-    }))
-    console.log("handleSimulatedSwapAddLiquidity ChivesSwapTotalSupply", ChivesSwapTotalSupplyData)
-    */
 
     setToolInfo((prevState: any)=>({
       ...prevState,
@@ -405,6 +412,11 @@ const ChivesSwap = ({auth} : any) => {
               <Grid item sx={{ display: 'flex', justifyContent: 'space-between' }}>
                   <Box>
                     <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={isDisabledButton} variant='outlined' onClick={
+                        () => { handleSimulatedSwapCreatePool() }
+                    }>
+                    {t("Create Pool")}
+                    </Button>
+                    <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={isDisabledButton} variant='outlined' onClick={
                         () => { handleSimulatedSwapAddLiquidity() }
                     }>
                     {t("Add Liquidity")}
@@ -423,6 +435,11 @@ const ChivesSwap = ({auth} : any) => {
                         () => { handleSimulatedSwapBalances() }
                     }>
                     {t("Balances")}
+                    </Button>
+                    <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={isDisabledButton} variant='outlined' onClick={
+                        () => { handleSimulatedSwapGetOrder() }
+                    }>
+                    {t("Get Order")}
                     </Button>
                     <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={isDisabledButton} variant='outlined' onClick={
                         () => { handleSimulatedSwapWithdraw() }

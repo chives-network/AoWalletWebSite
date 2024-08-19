@@ -221,7 +221,6 @@ export const ChivesSwapTotalSupply = async (TargetTxId: string) => {
             data: null,
             tags: [
                 { name: 'Action', value: 'Total-Supply' },
-                { name: 'Target', value: TargetTxId },
                 { name: 'Data-Protocol', value: 'ao' },
                 { name: 'Type', value: 'Message' },
                 { name: 'Variant', value: 'ao.TN.1' }

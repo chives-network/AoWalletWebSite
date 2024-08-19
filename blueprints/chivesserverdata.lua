@@ -4,7 +4,7 @@
 -- Email: chivescoin@gmail.com
 -- Copyright: MIT
 -- Version: 20240620
--- Github: https://github.com/chives-network/AoConnect/blob/main/blueprints/chivesserverdata.lua
+-- Github: https://github.com/chives-network/AoWalletWebsite/blob/main/blueprints/chivesserverdata.lua
 
 -- Function
 -- Save server's data, used for explorer.

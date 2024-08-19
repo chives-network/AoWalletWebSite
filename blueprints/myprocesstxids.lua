@@ -4,7 +4,7 @@
 -- Email: chivescoin@gmail.com
 -- Copyright: MIT
 -- Version: 20240612
--- Github: https://github.com/chives-network/AoConnect/blob/main/blueprints/myprocesstxids.lua
+-- Github: https://github.com/chives-network/AoWalletWebsite/blob/main/blueprints/myprocesstxids.lua
 
 -- Function
 -- Save user's setting data, every user have his own data.

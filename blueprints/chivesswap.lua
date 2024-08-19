@@ -1,4 +1,19 @@
--- Module: ".txs"
+-- Name: ChivesSwap
+-- Author: Chives-Network
+-- Email: chivescoin@gmail.com
+-- Copyright: MIT
+-- Version: 20240819
+-- Github: https://github.com/chives-network/AoWalletWebsite/blob/main/blueprints/chivesswap.lua
+
+-- Function
+-- 1. Add Token pair
+-- 2. Add Liquidity
+-- 3. Remove Liquidity
+-- 4. Liquidity Mining
+-- 5. Swap
+-- 6. Get Txs
+
+
 local function _loaded_mod_txs()
     local module = {}
 
@@ -45,11 +60,11 @@ local json = require('json')
 local bint = require('.bint')(1024)
 local txs = require('.txs')
 
-Variant = '0.0.1'
+Variant = '20240819'
 
 function Welcome()
     return(
-        "Welcome to Chives Swap V0.0.1!\n\n" ..
+        "Welcome to Chives Swap V20240819!\n\n" ..
         "Main functoin:\n\n" ..
         "1. Add Token pair.\n" ..
         "2. Add Liquidity.\n" ..

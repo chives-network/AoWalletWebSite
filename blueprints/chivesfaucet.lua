@@ -3,7 +3,7 @@
 -- Email: chivescoin@gmail.com
 -- Copyright: MIT
 -- Version: 20240808
--- Github: https://github.com/chives-network/AoConnect/blob/main/blueprints/chivesfaucet.lua
+-- Github: https://github.com/chives-network/AoWalletWebsite/blob/main/blueprints/chivesfaucet.lua
 
 -- Function
 -- 1. Deposit token to faucet wallet address.

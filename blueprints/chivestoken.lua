@@ -3,7 +3,7 @@
 -- Email: chivescoin@gmail.com
 -- Copyright: MIT
 -- Version: 20240819
--- Github: https://github.com/chives-network/AoConnect/blob/main/blueprints/token.lua
+-- Github: https://github.com/chives-network/AoWalletWebsite/blob/main/blueprints/token.lua
 
 -- Function
 -- 1. Support Token Airdrop.

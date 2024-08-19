@@ -3,7 +3,7 @@
 -- Email: chivescoin@gmail.com
 -- Copyright: MIT
 -- Version: 20240620
--- Github: https://github.com/chives-network/AoConnect/blob/main/blueprints/chiveslottery.lua
+-- Github: https://github.com/chives-network/AoWalletWebsite/blob/main/blueprints/chiveslottery.lua
 
 -- Function
 -- 1. periodic lottery.

@@ -4,7 +4,7 @@
 -- Email: chivescoin@gmail.com
 -- Copyright: MIT
 -- Version: 20240705
--- Github: https://github.com/chives-network/AoConnect/blob/main/blueprints/chivesemail.lua
+-- Github: https://github.com/chives-network/AoWalletWebsite/blob/main/blueprints/chivesemail.lua
 
 -- Function
 -- 1. Send and receive email
