@@ -4,9 +4,7 @@ import { connect, createDataItemSigner }  from "@permaweb/aoconnect"
 
 import axios from 'axios'
 
-import { getNanoid } from '../../functions/ChivesWallets'
 import { MU_URL, CU_URL, GATEWAY_URL, AoGetRecord, BalanceTimes10 } from './AoConnect'
-import { AoTokenTransfer } from './Token'
 
 export const AoLoadBlueprintSwap = async (currentWalletJwk: any, processTxId: string, SwapInfo: any) => {
     try {
