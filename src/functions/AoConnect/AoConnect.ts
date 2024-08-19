@@ -405,7 +405,8 @@ export const BalanceCompare = (Balance1: number, Balance2: number) => {
     return comparisonResult
 }
 
-export const sleep = (ms: number) => {
+export const sleep = (ms: number): Promise<void> => {
 
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
