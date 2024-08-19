@@ -62,12 +62,12 @@ end
 
 -- Pool Config
 Pool = {
-    X = 'UKkF0_BZ-SpEjUn6v1qjW9sZDSr8ny9GYpnocNipQ9Q',
-    SymbolX = 'TEST',
-    DecimalX = '3',
-    Y = 'UAGSgMlv9c806Wfbu85RZHlRDR2WGuPQCi7ShDtLlvw',
-    SymbolY = 'AOW',
-    DecimalY = '3',
+    X = 'oz3s7ImYeqXs1Hw-wkZenUp67ild8SzVZc6apVt_ZnU',
+    SymbolX = 'PX',
+    DecimalX = '12',
+    Y = 'fxgm-Vl5CeXUj1_bMgLw1eiUTDkHY_bjrgw0H9DGmW0',
+    SymbolY = 'PY',
+    DecimalY = '6',
     Fee = '100'
 }
 
@@ -546,7 +546,7 @@ Handlers.add('addLiquidity', Handlers.utils.hasMatchingTag('Action', 'AddLiquidi
             local reserveX = bint(Px)
             local reserveY = bint(Py)
             local amountX = bint(BalancesX[msg.From])
-            local amountY = bint.udiv(bint.__mul(amountX, reserveY), reserveX) + 1
+            local amountY = bint.udiv(bint.__mul(amountX, reserveY), reserveX) -- + 1
             liquidityMinted = bint.udiv(bint.__mul(amountX, totalLiquidity), reserveX) 
 
             ao.send({
@@ -635,7 +635,7 @@ Handlers.add('addLiquidity', Handlers.utils.hasMatchingTag('Action', 'AddLiquidi
 
             -- 使用 amount Y
             amountY = bint(BalancesY[msg.From])
-            amountX = bint.udiv(bint.__mul(amountY, reserveX), reserveY) + 1
+            amountX = bint.udiv(bint.__mul(amountY, reserveX), reserveY) -- + 1
             liquidityMinted = bint.udiv(bint.__mul(amountX, totalLiquidity), reserveX)
             if (not bint.__lt(liquidityMinted, bint(msg.MinLiquidity))) and (not bint.__lt(bint(BalancesX[msg.From]), amountX)) then
                 Px = tostring(bint.__add(reserveX, amountX))

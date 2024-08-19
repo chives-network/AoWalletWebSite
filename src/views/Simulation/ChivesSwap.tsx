@@ -33,9 +33,9 @@ const ChivesSwap = ({auth} : any) => {
   const [toolInfo, setToolInfo] = useState<any>()
   const [TokenAoConnectTxIdError, setTokenAoConnectTxIdError] = useState<string>('')
 
-  const TokenProcessTxId = "DCITJ5AlPjHTSq8pApRZ1e23qEaDx__Wbx1g5w9x_8c"
-  const X = "UKkF0_BZ-SpEjUn6v1qjW9sZDSr8ny9GYpnocNipQ9Q"
-  const Y = "UAGSgMlv9c806Wfbu85RZHlRDR2WGuPQCi7ShDtLlvw"
+  const TokenProcessTxId = "d07vdUZUUUThQiuEb-pM0a0_QTyog_NBl5S7FhUIhJk"
+  const X = "oz3s7ImYeqXs1Hw-wkZenUp67ild8SzVZc6apVt_ZnU"
+  const Y = "fxgm-Vl5CeXUj1_bMgLw1eiUTDkHY_bjrgw0H9DGmW0"
 
   const handleSimulatedSwapInfo = async function () {
 
@@ -177,20 +177,20 @@ const ChivesSwap = ({auth} : any) => {
 
     await sleep(2000)
 
-    const SendToSwapTokenX = await AoTokenTransfer(globalThis.arweaveWallet, X, TokenProcessTxId, 11, 3);
+    const SendToSwapTokenX = await AoTokenTransfer(globalThis.arweaveWallet, X, TokenProcessTxId, 11, 12);
     console.log("SendToSwapTokenX", SendToSwapTokenX)
     setToolInfo((prevState: any)=>({
       ...prevState,
-      SendToSwapTokenX1: SendToSwapTokenX?.msg?.Messages && SendToSwapTokenX?.msg?.Messages[0]?.Data.replace(ansiRegex, ''),
-      SendToSwapTokenX2: SendToSwapTokenX?.msg?.Messages && SendToSwapTokenX?.msg?.Messages[1]?.Data.replace(ansiRegex, '')
+      SendToSwapTokenX1: SendToSwapTokenX?.msg?.Messages && SendToSwapTokenX?.msg?.Messages[0]?.Data?.replace(ansiRegex, ''),
+      SendToSwapTokenX2: SendToSwapTokenX?.msg?.Messages && SendToSwapTokenX?.msg?.Messages[1]?.Data?.replace(ansiRegex, '')
     }))
 
-    const SendToSwapTokenY = await AoTokenTransfer(globalThis.arweaveWallet, Y, TokenProcessTxId, 40, 3);
+    const SendToSwapTokenY = await AoTokenTransfer(globalThis.arweaveWallet, Y, TokenProcessTxId, 40, 6);
     console.log("SendToSwapTokenY", SendToSwapTokenY)
     setToolInfo((prevState: any)=>({
       ...prevState,
-      SendToSwapTokenY1: SendToSwapTokenY?.msg?.Messages && SendToSwapTokenY?.msg?.Messages[0]?.Data.replace(ansiRegex, ''),
-      SendToSwapTokenY2: SendToSwapTokenY?.msg?.Messages && SendToSwapTokenY?.msg?.Messages[1]?.Data.replace(ansiRegex, '')
+      SendToSwapTokenY1: SendToSwapTokenY?.msg?.Messages && SendToSwapTokenY?.msg?.Messages[0]?.Data?.replace(ansiRegex, ''),
+      SendToSwapTokenY2: SendToSwapTokenY?.msg?.Messages && SendToSwapTokenY?.msg?.Messages[1]?.Data?.replace(ansiRegex, '')
     }))
 
     const ChivesSwapInfoData = await ChivesSwapInfo(TokenProcessTxId)
@@ -286,7 +286,7 @@ const ChivesSwap = ({auth} : any) => {
         }))
     }
     
-    const handleSimulatedSwapData: any = await ChivesSwapSendTokenToSwap(globalThis.arweaveWallet, X, TokenProcessTxId, 0.1, 3, '1')
+    const handleSimulatedSwapData: any = await ChivesSwapSendTokenToSwap(globalThis.arweaveWallet, X, TokenProcessTxId, 0.1, 12, '1')
     setToolInfo((prevState: any)=>({
         ...prevState,
         handleSimulatedSwapData: JSON.stringify(handleSimulatedSwapData)
@@ -295,8 +295,8 @@ const ChivesSwap = ({auth} : any) => {
     if(handleSimulatedSwapData)   {
       setToolInfo((prevState: any)=>({
         ...prevState,
-        handleSimulatedSwapData1: handleSimulatedSwapData?.msg?.Messages && handleSimulatedSwapData?.msg?.Messages[0]?.Data.replace(ansiRegex, ''),
-        handleSimulatedSwapData2: handleSimulatedSwapData?.msg?.Messages && handleSimulatedSwapData?.msg?.Messages[1]?.Data.replace(ansiRegex, '')
+        handleSimulatedSwapData1: handleSimulatedSwapData?.msg?.Messages && handleSimulatedSwapData?.msg?.Messages[0]?.Data?.replace(ansiRegex, ''),
+        handleSimulatedSwapData2: handleSimulatedSwapData?.msg?.Messages && handleSimulatedSwapData?.msg?.Messages[1]?.Data?.replace(ansiRegex, '')
       }))
     }
 
@@ -312,7 +312,7 @@ const ChivesSwap = ({auth} : any) => {
         }))
       }
     }
-    
+
     /*
     const ChivesSwapBalanceData = await ChivesSwapBalance(TokenProcessTxId, currentAddress)
     setToolInfo((prevState: any)=>({
@@ -375,11 +375,6 @@ const ChivesSwap = ({auth} : any) => {
                         () => { handleSimulatedSwapBalances() }
                     }>
                     {t("Balances")}
-                    </Button>
-                    <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={isDisabledButton} variant='outlined' onClick={
-                        () => { handleSimulatedSwapGetOrder() }
-                    }>
-                    {t("getOrder")}
                     </Button>
                     <Button sx={{ textTransform: 'none', m: 2 }} size="small" disabled={isDisabledButton} variant='outlined' onClick={
                         () => { handleSimulatedSwapWithdraw() }
