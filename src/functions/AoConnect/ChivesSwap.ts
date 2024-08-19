@@ -436,3 +436,48 @@ export const ChivesSwapSendTokenToSwap = async (currentWalletJwk: any, tokenTxId
     }
     
 }
+
+export const ChivesSwapRemoveLiquidity = async (currentWalletJwk: any, TargetTxId: string, Quantity: string, MinX: string, MinY: string) => {
+    try {
+        if(TargetTxId && TargetTxId.length != 43) {
+
+            return
+        }
+        if(typeof TargetTxId != 'string') {
+
+            return 
+        }
+        
+        const { message } = connect( { MU_URL, CU_URL, GATEWAY_URL } );
+
+        const data = {
+            process: TargetTxId,
+            tags: [
+                { name: 'Action', value: 'RemoveLiquidity' },
+                { name: 'Quantity', value: Quantity },
+                { name: 'MinX', value: MinX },
+                { name: 'MinY', value: MinY }
+                ],
+            signer: createDataItemSigner(currentWalletJwk),
+            data: ""
+        }
+        const SendTokenResult = await message(data);
+
+        if(SendTokenResult && SendTokenResult.length == 43) {
+            const MsgContent = await AoGetRecord(TargetTxId, SendTokenResult)
+
+            return { status: 'ok', id: SendTokenResult, msg: MsgContent };
+        }
+        else {
+
+            return { status: 'ok', id: SendTokenResult };
+        }
+    }
+    catch(Error: any) {
+        console.error("ChivesSwapRemoveLiquidity Error:", Error)
+        if(Error && Error.message) {
+
+            return { status: 'error', msg: Error.message };
+        }
+    }
+}

@@ -19,7 +19,7 @@ import Icon from '@/@core/components/icon'
 import { useTranslation } from 'react-i18next'
 
 import { AoCreateProcessAuto, generateRandomNumber, sleep } from '@/functions/AoConnect/AoConnect'
-import { AoLoadBlueprintSwap, ChivesSwapInfo, ChivesSwapBalance, ChivesSwapBalances, ChivesSwapTotalSupply, ChivesSwapGetOrder, ChivesSwapDebitNotice, ChivesSwapAddLiquidity, ChivesSwapSendTokenToSwap } from '@/functions/AoConnect/ChivesSwap'
+import { AoLoadBlueprintSwap, ChivesSwapInfo, ChivesSwapBalance, ChivesSwapBalances, ChivesSwapTotalSupply, ChivesSwapGetOrder, ChivesSwapDebitNotice, ChivesSwapAddLiquidity, ChivesSwapSendTokenToSwap, ChivesSwapRemoveLiquidity } from '@/functions/AoConnect/ChivesSwap'
 import { AoLoadBlueprintToken, AoTokenTransfer, AoTokenMint, AoTokenBalancesDryRun } from '@/functions/AoConnect/Token'
 import { ansiRegex } from '@configs/functions'
 
@@ -254,11 +254,7 @@ const ChivesSwap = ({auth} : any) => {
         ChivesSwapTotalSupplyData: JSON.stringify(ChivesSwapTotalSupplyData)
     }))
     console.log("handleSimulatedSwapAddLiquidity ChivesSwapTotalSupply", ChivesSwapTotalSupplyData)
-
-    
     */
-
-
 
     setToolInfo((prevState: any)=>({
       ...prevState,
@@ -270,6 +266,58 @@ const ChivesSwap = ({auth} : any) => {
   }
 
   const handleSimulatedSwapRemoveLiquidity = async function () {
+
+    //setIsDisabledButton(true)
+    setToolInfo(null)
+
+    if(TokenProcessTxId) {
+        setToolInfo((prevState: any)=>({
+            ...prevState,
+            TokenProcessTxId: TokenProcessTxId,
+            X: X,
+            Y: Y
+        }))
+    }
+
+    let MyAddressBalanceInPoolFilter = 0
+    const ChivesSwapBalancesData = await ChivesSwapBalances(TokenProcessTxId)
+    console.log("handleSimulatedSwapBalances ChivesSwapBalances", ChivesSwapBalancesData)
+    if(ChivesSwapBalancesData && ChivesSwapBalancesData['BalancesX'])   {
+      const MyAddressBalanceInPool = ChivesSwapBalancesData['Balances'][currentAddress]
+      MyAddressBalanceInPoolFilter = Math.floor(MyAddressBalanceInPool/2)   
+      setToolInfo((prevState: any)=>({
+        ...prevState,
+        Balances2: JSON.stringify(ChivesSwapBalancesData['Balances']),
+        BalancesX2: ChivesSwapBalancesData['BalancesX'][currentAddress],
+        BalancesY2: ChivesSwapBalancesData['BalancesY'][currentAddress],
+        MyAddressBalanceInPoolFilter: MyAddressBalanceInPoolFilter
+      }))
+    }
+    console.log("handleSimulatedSwapBalances MyAddressBalanceInPoolFilter", MyAddressBalanceInPoolFilter)
+    
+    if(MyAddressBalanceInPoolFilter > 0)  {
+        const ChivesSwapRemoveLiquidityData: any = await ChivesSwapRemoveLiquidity(globalThis.arweaveWallet, TokenProcessTxId, String(MyAddressBalanceInPoolFilter), '1', '1')
+        setToolInfo((prevState: any)=>({
+            ...prevState,
+            ChivesSwapRemoveLiquidityData: JSON.stringify(ChivesSwapRemoveLiquidityData)
+        }))
+        console.log("ChivesSwapRemoveLiquidity ChivesSwapRemoveLiquidityData", ChivesSwapRemoveLiquidityData)
+        if(ChivesSwapRemoveLiquidityData)   {
+          setToolInfo((prevState: any)=>({
+            ...prevState,
+            ChivesSwapRemoveLiquidityData: ChivesSwapRemoveLiquidityData?.msg?.Messages && ChivesSwapRemoveLiquidityData?.msg?.Messages[2]?.Data?.replace(ansiRegex, '')
+          }))
+        }
+    
+    }
+    
+
+    setToolInfo((prevState: any)=>({
+      ...prevState,
+      ExecuteStatus: 'All Finished.'
+    }))
+
+    setIsDisabledButton(false)
   }
 
   const handleSimulatedSwap = async function () {
