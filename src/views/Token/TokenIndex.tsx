@@ -202,7 +202,7 @@ const TokenIndexModel = (prop: any) => {
         ...TokenGetMap,
         isLoading: false
       }))
-      const isFavorite = tokenLeft.some((item: any) => item.Id == CurrentToken)
+      const isFavorite = tokenLeft.some((item: any) => item.TokenId == CurrentToken)
       if(isFavorite) {
         setAddTokenButtonText('Have favorite')
         setAddTokenButtonDisabled(true)

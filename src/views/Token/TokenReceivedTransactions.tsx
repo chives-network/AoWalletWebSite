@@ -31,7 +31,8 @@ const TokenReceivedTransactions = (prop: any) => {
     setPageId(page)
     console.log("handlePageChange 1", event)
   }  
-  console.log("handlePageChange 2", pageId, pageCount, tokenGetInfor)
+
+  //console.log("handlePageChange 2", pageId, pageCount, tokenGetInfor)
   
   return (
     <Box
