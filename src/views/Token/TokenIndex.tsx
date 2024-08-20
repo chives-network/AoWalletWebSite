@@ -109,8 +109,9 @@ const TokenIndexModel = (prop: any) => {
   const [tokenListModel, setTokenListModel] = useState<string>("ChivesToken")
   const [pageId, setPageId] = useState<number>(1)
   const [startIndex, setStartIndex] = useState<number>(1)
-  const [endIndex, setEndIndex] = useState<number>(addTokenFavorite ? 13 : 15)
-  const pageSize = addTokenFavorite ? 13 : 15
+  const [endIndex, setEndIndex] = useState<number>(13)
+  const pageSize = 13
+
 
   useEffect(()=>{
     if(tokenInfo && pageId > 0 && Number(tokenInfo.TokenHolders)>0 ) {
@@ -165,7 +166,6 @@ const TokenIndexModel = (prop: any) => {
     setIsDisabledButton(true)
     setIsSearchTokenModelOpen(true)
     setSearchToken(CurrentToken)
-    setCancelTokenFavorite(false)
 
     setTokenGetInfor((prevState: any)=>({
       ...prevState,
@@ -706,7 +706,7 @@ const TokenIndexModel = (prop: any) => {
                 <Grid item xs={12} sx={{my: 1}}>
                   <Card>
 
-                      {addTokenFavorite == true && (
+                      {true && (
                         <Grid item sx={{ display: 'column', m: 2 }}>
                           <TextField
                               sx={{ml: 2, my: 2}}
@@ -728,7 +728,6 @@ const TokenIndexModel = (prop: any) => {
                                   )
                               }}
                           />
-
                           <Button sx={{textTransform: 'none',  m: 2, mt: 3 }} size="small" disabled={isDisabledButton} variant='outlined' onClick={
                               () => { handleTokenSearch(tokenGetInfor?.CurrentToken) }
                           }>
@@ -757,15 +756,17 @@ const TokenIndexModel = (prop: any) => {
                                 }}
                             />
                           )}
-                          <Button sx={{textTransform: 'none',  m: 2, mt: 3 }} disabled={addTokenButtonDisabled} size="small" variant='outlined' onClick={
-                              () => { 
-                                if(tokenGetInfor.CurrentToken) {
-                                  handleAddToken(tokenGetInfor.CurrentToken)
+                          {cancelTokenFavorite == false && (
+                            <Button sx={{textTransform: 'none',  m: 2, mt: 3 }} disabled={addTokenButtonDisabled} size="small" variant='outlined' onClick={
+                                () => { 
+                                  if(tokenGetInfor.CurrentToken) {
+                                    handleAddToken(tokenGetInfor.CurrentToken)
+                                  }
                                 }
-                              }
-                          }>
-                          {t(addTokenButtonText)}
-                          </Button>
+                            }>
+                            {t(addTokenButtonText)}
+                            </Button>
+                          )}
 
                           {cancelTokenFavorite && (
                             <Button sx={{textTransform: 'none',  m: 2, mt: 3 }} disabled={cancelTokenButtonDisabled} size="small" variant='outlined' onClick={

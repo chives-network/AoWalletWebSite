@@ -62,24 +62,24 @@ const TokenReceivedTransactions = (prop: any) => {
 
                 return (
                     <Fragment key={Index}>
-                        {Item[0] != '' &&  (
+                        {Item[1] != '' &&  (
                             <TableRow key={Index} sx={{my: 0, py: 0}}>
                                 <TableCell sx={{my: 0, py: 0}}>
                                     <Typography noWrap variant='body2' sx={{ color: 'primary.main', pr: 3, display: 'inline', my: 0, py: 0 }}>{Number(startIndex) + Index}</Typography>
                                 </TableCell>
                                 <TableCell sx={{my: 0, py: 0}}>
-                                    <Typography noWrap variant='body2' sx={{ color: 'info.main', pr: 1, display: 'inline', my: 0, py: 0 }}>{formatHash(Item[0], 6)}</Typography>
+                                    <Typography noWrap variant='body2' sx={{ color: 'info.main', pr: 1, display: 'inline', my: 0, py: 0 }}>{formatHash(Item[1], 15)}</Typography>
                                     {Item && (
                                         <IconButton aria-label='capture screenshot' color='secondary' size='small' onClick={()=>{
-                                            navigator.clipboard.writeText(Item[0]);
+                                            navigator.clipboard.writeText(Item[1]);
                                         }}>
                                             <Icon icon='material-symbols:file-copy-outline-rounded' fontSize='inherit' />
                                         </IconButton>
                                     )}
                                 </TableCell>
                                 <TableCell sx={{my: 0, py: 0}}>
-                                    {Item && Item[1] && (
-                                        <Typography noWrap variant='body2' sx={{ color: 'primary.main', pr: 3, display: 'inline', my: 0, py: 0 }}>{formatToken(Number(Item[1]), tokenGetInfor.Denomination)}</Typography>
+                                    {Item && Item[2] && (
+                                        <Typography noWrap variant='body2' sx={{ color: 'primary.main', pr: 3, display: 'inline', my: 0, py: 0 }}>{formatToken(Number(Item[2]), tokenGetInfor.Denomination)}</Typography>
                                     )}
                                 </TableCell>
                                 <TableCell sx={{my: 0, py: 0}}>

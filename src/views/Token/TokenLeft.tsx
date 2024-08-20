@@ -70,7 +70,7 @@ const TokenLeft = (props: any) => {
     setAddTokenButtonDisabled(true)
     setAddTokenButtonText('Have favorite')
     setAddTokenFavorite(false)
-    setCancelTokenFavorite(false)
+    setCancelTokenFavorite(true)
     setPageCount(0)
     console.log("handleTokenClick myAoConnectTxId", myAoConnectTxId)
   }
@@ -207,6 +207,7 @@ const TokenLeft = (props: any) => {
                 setAddTokenFavorite(true)
                 setSearchToken('')
                 setAddTokenButtonDisabled(true)
+                setCancelTokenFavorite(false)
                 setAddTokenButtonText('Add favorite')
                 setTokenGetInfor((prevState: any)=>({
                   ...prevState,

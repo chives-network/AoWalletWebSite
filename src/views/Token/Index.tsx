@@ -201,28 +201,15 @@ const TokenModel = () => {
   const handleCancelFavoriteToken = async (WantToSaveTokenProcessTxId: string) => {
     setCancelTokenButtonDisabled(true)
     setCancelTokenButtonText('waiting')
-    const WantToSaveTokenProcessTxIdData = await MyProcessTxIdsDelToken(globalThis.arweaveWallet, authConfig.AoConnectMyProcessTxIds, WantToSaveTokenProcessTxId)
-    if(WantToSaveTokenProcessTxIdData) {
-      console.log("WantToSaveTokenProcessTxIdData", WantToSaveTokenProcessTxIdData)
-      if(WantToSaveTokenProcessTxIdData?.msg?.Output?.data?.output)  {
+    const WantToCancelTokenProcessTxIdData = await MyProcessTxIdsDelToken(globalThis.arweaveWallet, authConfig.AoConnectMyProcessTxIds, WantToSaveTokenProcessTxId)
+    if(WantToCancelTokenProcessTxIdData) {
+      console.log("WantToCancelTokenProcessTxIdData", WantToCancelTokenProcessTxIdData)
+      if(WantToCancelTokenProcessTxIdData?.msg?.Messages && WantToCancelTokenProcessTxIdData?.msg?.Messages[0]?.Data)  {
         setCounter(counter + 1)
         setCancelTokenButtonText('Have cancel')
-        const formatText = WantToSaveTokenProcessTxIdData?.msg?.Output?.data?.output.replace(ansiRegex, '');
-        if(formatText) {
-
-          //Read message from inbox
-          const MyProcessTxIdsDelTokenData1 = await GetMyLastMsg(globalThis.arweaveWallet, WantToSaveTokenProcessTxId)
-          if(MyProcessTxIdsDelTokenData1?.msg?.Output?.data?.output)  {
-            const formatText2 = MyProcessTxIdsDelTokenData1?.msg?.Output?.data?.output.replace(ansiRegex, '');
-            if(formatText2) {
-              toast.success(formatText2, {
-                duration: 2000
-              })
-            }
-          }
-
-        }
-
+        toast.success(WantToCancelTokenProcessTxIdData?.msg?.Messages[0]?.Data, {
+          duration: 2000
+        })
       }
     }
   }
