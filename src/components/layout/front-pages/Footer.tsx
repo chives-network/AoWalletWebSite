@@ -154,7 +154,7 @@ function Footer() {
             <span>{`❤️`}</span>
             <span>{` by `}</span>
             <Link href='https://www.aowallet.org' target='_blank' className='font-medium text-white'>
-              AoWallet By Chives Network
+              Chives Network
             </Link>
           </p>
           <div className='flex gap-6 items-center opacity-[0.78]'>
