@@ -24,7 +24,7 @@ import '@/app/globals.css'
 import '@assets/iconify-icons/generated-icons.css'
 
 export const metadata = {
-  title: 'AoWallet & Arweave Wallet',
+  title: 'AoWallet By Chives Network',
   description:
     'AoWallet & Arweave Wallet By Chives Network.'
 }
